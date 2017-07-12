@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DB1505180634A8C93552B4E /* Pods_TypeBattle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D5DD2C2501F40C389C845E /* Pods_TypeBattle.framework */; };
 		FF889A091F169C3E006955BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A081F169C3E006955BB /* AppDelegate.swift */; };
 		FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A0E1F169C3E006955BB /* GameScene.swift */; };
 		FF889A111F169C3E006955BB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A101F169C3E006955BB /* GameViewController.swift */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3029A304BE1D7F9A3D6C520B /* Pods-TypeBattle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeBattle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle.release.xcconfig"; sourceTree = "<group>"; };
+		7E54337C874835B9BE8DB6A2 /* Pods-TypeBattle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeBattle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle.debug.xcconfig"; sourceTree = "<group>"; };
+		B5D5DD2C2501F40C389C845E /* Pods_TypeBattle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypeBattle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF889A051F169C3E006955BB /* TypeBattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypeBattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF889A081F169C3E006955BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF889A0E1F169C3E006955BB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -31,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DB1505180634A8C93552B4E /* Pods_TypeBattle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		871B9D7CFCF815F4E6047EE4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7E54337C874835B9BE8DB6A2 /* Pods-TypeBattle.debug.xcconfig */,
+				3029A304BE1D7F9A3D6C520B /* Pods-TypeBattle.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		ACB5CF4443A36FDC846EA8E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B5D5DD2C2501F40C389C845E /* Pods_TypeBattle.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FF8899FC1F169C3E006955BB = {
 			isa = PBXGroup;
 			children = (
 				FF889A071F169C3E006955BB /* TypeBattle */,
 				FF889A061F169C3E006955BB /* Products */,
+				871B9D7CFCF815F4E6047EE4 /* Pods */,
+				ACB5CF4443A36FDC846EA8E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,9 +106,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF889A1D1F169C3E006955BB /* Build configuration list for PBXNativeTarget "TypeBattle" */;
 			buildPhases = (
+				A98719D4739FEEDCC39D40AC /* [CP] Check Pods Manifest.lock */,
 				FF889A011F169C3E006955BB /* Sources */,
 				FF889A021F169C3E006955BB /* Frameworks */,
 				FF889A031F169C3E006955BB /* Resources */,
+				1F2D086712E51C8747293709 /* [CP] Embed Pods Frameworks */,
+				2FC54FC5354EE8522D60BE67 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -142,6 +169,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F2D086712E51C8747293709 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2FC54FC5354EE8522D60BE67 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A98719D4739FEEDCC39D40AC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FF889A011F169C3E006955BB /* Sources */ = {
@@ -271,6 +346,7 @@
 		};
 		FF889A1E1F169C3E006955BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E54337C874835B9BE8DB6A2 /* Pods-TypeBattle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5GMBY6V284;
@@ -284,6 +360,7 @@
 		};
 		FF889A1F1F169C3E006955BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3029A304BE1D7F9A3D6C520B /* Pods-TypeBattle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5GMBY6V284;
