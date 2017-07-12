@@ -14,6 +14,7 @@
 		FF889A141F169C3E006955BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A121F169C3E006955BB /* Main.storyboard */; };
 		FF889A161F169C3E006955BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF889A151F169C3E006955BB /* Assets.xcassets */; };
 		FF889A191F169C3E006955BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A171F169C3E006955BB /* LaunchScreen.storyboard */; };
+		FF889A231F16AFF6006955BB /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A221F16AFF6006955BB /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		FF889A151F169C3E006955BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF889A181F169C3E006955BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF889A1A1F169C3E006955BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF889A221F16AFF6006955BB /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		FF889A071F169C3E006955BB /* TypeBattle */ = {
 			isa = PBXGroup;
 			children = (
+				FF889A211F16AFE9006955BB /* Player */,
 				FF889A201F169C58006955BB /* GameScene */,
 				FF889A081F169C3E006955BB /* AppDelegate.swift */,
 				FF889A101F169C3E006955BB /* GameViewController.swift */,
@@ -97,6 +100,14 @@
 				FF889A0E1F169C3E006955BB /* GameScene.swift */,
 			);
 			name = GameScene;
+			sourceTree = "<group>";
+		};
+		FF889A211F16AFE9006955BB /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				FF889A221F16AFF6006955BB /* Player.swift */,
+			);
+			name = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF889A231F16AFF6006955BB /* Player.swift in Sources */,
 				FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */,
 				FF889A111F169C3E006955BB /* GameViewController.swift in Sources */,
 				FF889A091F169C3E006955BB /* AppDelegate.swift in Sources */,
