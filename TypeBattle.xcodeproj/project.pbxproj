@@ -18,6 +18,8 @@
 		FF889A261F16BB94006955BB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A251F16BB94006955BB /* LoginViewController.swift */; };
 		FF889A281F16BBA9006955BB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A271F16BBA9006955BB /* Login.storyboard */; };
 		FF889A351F16E779006955BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF889A341F16E779006955BB /* GoogleService-Info.plist */; };
+		FF889A381F16E9BC006955BB /* KeyboardTestVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */; };
+		FF889A391F16E9BC006955BB /* KeyboardTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		FF889A251F16BB94006955BB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF889A271F16BBA9006955BB /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		FF889A341F16E779006955BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KeyboardTestVC.storyboard; sourceTree = "<group>"; };
+		FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 		FF889A071F169C3E006955BB /* TypeBattle */ = {
 			isa = PBXGroup;
 			children = (
+				FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */,
+				FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */,
 				FF889A241F16BB79006955BB /* Login */,
 				FF889A211F16AFE9006955BB /* Player */,
 				FF889A201F169C58006955BB /* GameScene */,
@@ -194,6 +200,7 @@
 				FF889A141F169C3E006955BB /* Main.storyboard in Resources */,
 				FF889A351F16E779006955BB /* GoogleService-Info.plist in Resources */,
 				FF889A161F169C3E006955BB /* Assets.xcassets in Resources */,
+				FF889A381F16E9BC006955BB /* KeyboardTestVC.storyboard in Resources */,
 				FF889A191F169C3E006955BB /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF889A391F16E9BC006955BB /* KeyboardTestViewController.swift in Sources */,
 				FF889A231F16AFF6006955BB /* Player.swift in Sources */,
 				FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */,
 				FF889A111F169C3E006955BB /* GameViewController.swift in Sources */,
