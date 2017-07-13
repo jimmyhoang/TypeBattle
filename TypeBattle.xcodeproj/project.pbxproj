@@ -55,6 +55,7 @@
 		FF889A341F16E779006955BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KeyboardTestVC.storyboard; sourceTree = "<group>"; };
 		FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTestViewController.swift; sourceTree = "<group>"; };
+		FF889A3A1F180836006955BB /* TypeBattle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TypeBattle.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +132,7 @@
 		FF889A071F169C3E006955BB /* TypeBattle */ = {
 			isa = PBXGroup;
 			children = (
+				FF889A3A1F180836006955BB /* TypeBattle.entitlements */,
 				4340E6081F17F84C003C0167 /* Fonts */,
 				4340E6051F17F7A6003C0167 /* Extensions */,
 				FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */,
@@ -217,6 +219,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 5GMBY6V284;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -444,6 +451,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TypeBattle/TypeBattle.entitlements;
 				DEVELOPMENT_TEAM = 5GMBY6V284;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -463,6 +471,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TypeBattle/TypeBattle.entitlements;
 				DEVELOPMENT_TEAM = 5GMBY6V284;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
