@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3DB1505180634A8C93552B4E /* Pods_TypeBattle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D5DD2C2501F40C389C845E /* Pods_TypeBattle.framework */; };
+		4AF075531F16CE2B0056E013 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF075521F16CE2B0056E013 /* Character.swift */; };
 		FF889A091F169C3E006955BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A081F169C3E006955BB /* AppDelegate.swift */; };
 		FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A0E1F169C3E006955BB /* GameScene.swift */; };
 		FF889A111F169C3E006955BB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A101F169C3E006955BB /* GameViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		3029A304BE1D7F9A3D6C520B /* Pods-TypeBattle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeBattle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle.release.xcconfig"; sourceTree = "<group>"; };
+		4AF075521F16CE2B0056E013 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		7E54337C874835B9BE8DB6A2 /* Pods-TypeBattle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeBattle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle.debug.xcconfig"; sourceTree = "<group>"; };
 		B5D5DD2C2501F40C389C845E /* Pods_TypeBattle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypeBattle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF889A051F169C3E006955BB /* TypeBattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypeBattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				FF889A0E1F169C3E006955BB /* GameScene.swift */,
+				4AF075521F16CE2B0056E013 /* Character.swift */,
 			);
 			name = GameScene;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			files = (
 				FF889A231F16AFF6006955BB /* Player.swift in Sources */,
 				FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */,
+				4AF075531F16CE2B0056E013 /* Character.swift in Sources */,
 				FF889A111F169C3E006955BB /* GameViewController.swift in Sources */,
 				FF889A091F169C3E006955BB /* AppDelegate.swift in Sources */,
 			);

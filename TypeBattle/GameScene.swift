@@ -11,9 +11,10 @@ import GameplayKit
 
 class GameScene: SKScene {
 
+    var player: SKSpriteNode!
     
     override func didMove(to view: SKView) {
-        
+        addPlayer()
         
     }
     
@@ -52,4 +53,41 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
     }
+    
+    //MARK: addPlayer
+    
+    func addPlayer() {
+        player = SKSpriteNode()
+//        player.texture = SKTexture(imageNamed: Character.selectedCharString(char: Character.selectedChar.cat))
+        let scaling = CGSize(width: 150, height: 200)
+        player.aspectFillToSize(fillSize: scaling)
+        
+        player.position = CGPoint(x: 0, y: 0)
+        
+        self.addChild(player)
+    }
+    
+    //MARK: playerAnimation
+    
+    func playerAnimation() {
+        
+    }
+}
+
+extension SKSpriteNode {
+
+func aspectFillToSize(fillSize: CGSize) {
+    
+    if texture != nil {
+        self.size = texture!.size()
+        
+        let verticalRatio = fillSize.height / self.texture!.size().height
+        let horizontalRatio = fillSize.width /  self.texture!.size().width
+        
+        let scaleRatio = horizontalRatio > verticalRatio ? horizontalRatio : verticalRatio
+        
+        self.setScale(scaleRatio)
+    }
+}
+
 }
