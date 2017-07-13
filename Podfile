@@ -12,5 +12,7 @@ target 'TypeBattle' do
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
     pod 'SwiftyJSON'
+    pod 'FacebookCore'
+    pod 'FacebookLogin'
 
 end
