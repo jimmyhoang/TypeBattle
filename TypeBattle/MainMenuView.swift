@@ -22,7 +22,7 @@ class MainMenuView: UIView {
         let label = UILabel()
         label.textColor = UIColor.black
         label.contentMode = .scaleAspectFit
-        label.font = UIFont.gameFont(size: 50.0)
+        label.font = UIFont.gameFont(size: 60.0)
         label.text = "Type\nBattle"
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -46,7 +46,7 @@ class MainMenuView: UIView {
         let button = UIButton()
         button.contentVerticalAlignment = .fill
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(colorLiteralRed: 196.0/255.0, green: 48.0/255.0, blue: 43.0/255.0, alpha: 1.0)
+        button.backgroundColor = UIColor.gameRed
         button.setTitle("Singleplayer", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.gameFont(size: 30.0)
@@ -58,7 +58,7 @@ class MainMenuView: UIView {
         let button = UIButton()
         button.contentVerticalAlignment = .fill
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(colorLiteralRed: 196.0/255.0, green: 48.0/255.0, blue: 43.0/255.0, alpha: 1.0)
+        button.backgroundColor = UIColor.gameRed
         button.setTitle("Multiplayer", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.gameFont(size: 30.0)
@@ -70,7 +70,7 @@ class MainMenuView: UIView {
         let button = UIButton()
         button.contentVerticalAlignment = .fill
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(colorLiteralRed: 196.0/255.0, green: 48.0/255.0, blue: 43.0/255.0, alpha: 1.0)
+        button.backgroundColor = UIColor.gameRed
         button.setTitle("Settings", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.gameFont(size: 30.0)
