@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3DB1505180634A8C93552B4E /* Pods_TypeBattle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D5DD2C2501F40C389C845E /* Pods_TypeBattle.framework */; };
+		431E7F321F180EF300B7B5CE /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431E7F311F180EF300B7B5CE /* UIColor+CustomColors.swift */; };
 		4340E6071F17F7BF003C0167 /* UIFont+CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340E6061F17F7BF003C0167 /* UIFont+CustomFonts.swift */; };
 		4340E60A1F17F862003C0167 /* Supersonic Rocketship.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4340E6091F17F862003C0167 /* Supersonic Rocketship.ttf */; };
 		438DC9601F180476005699C3 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438DC95F1F180476005699C3 /* MainMenuView.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		3029A304BE1D7F9A3D6C520B /* Pods-TypeBattle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeBattle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle.release.xcconfig"; sourceTree = "<group>"; };
+		431E7F311F180EF300B7B5CE /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		4340E6061F17F7BF003C0167 /* UIFont+CustomFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFonts.swift"; sourceTree = "<group>"; };
 		4340E6091F17F862003C0167 /* Supersonic Rocketship.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Supersonic Rocketship.ttf"; sourceTree = "<group>"; };
 		438DC95F1F180476005699C3 /* MainMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				4340E6061F17F7BF003C0167 /* UIFont+CustomFonts.swift */,
+				431E7F311F180EF300B7B5CE /* UIColor+CustomColors.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				9C34E2C61F1746D5008372DC /* PlayerSession.swift in Sources */,
 				FF889A231F16AFF6006955BB /* Player.swift in Sources */,
 				9C34E2C81F17489B008372DC /* GameManager.swift in Sources */,
+				431E7F321F180EF300B7B5CE /* UIColor+CustomColors.swift in Sources */,
 				4340E6071F17F7BF003C0167 /* UIFont+CustomFonts.swift in Sources */,
 				9C34E2C01F173E07008372DC /* GameSession.swift in Sources */,
 				FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */,
