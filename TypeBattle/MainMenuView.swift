@@ -23,7 +23,10 @@ class MainMenuView: UIView {
         label.textColor = UIColor.black
         label.contentMode = .scaleAspectFit
         label.font = UIFont.gameFont(size: 50.0)
-        label.text = "Type Battle"
+        label.text = "Type\nBattle"
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -44,9 +47,10 @@ class MainMenuView: UIView {
         button.contentVerticalAlignment = .fill
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(colorLiteralRed: 196.0/255.0, green: 48.0/255.0, blue: 43.0/255.0, alpha: 1.0)
-        button.setTitle("Single player", for: .normal)
+        button.setTitle("Singleplayer", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        button.layer.cornerRadius = 4.0
         return button
     }()
     
@@ -55,9 +59,10 @@ class MainMenuView: UIView {
         button.contentVerticalAlignment = .fill
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(colorLiteralRed: 196.0/255.0, green: 48.0/255.0, blue: 43.0/255.0, alpha: 1.0)
-        button.setTitle("Multi-player", for: .normal)
+        button.setTitle("Multiplayer", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        button.layer.cornerRadius = 4.0
         return button
     }()
     
@@ -69,6 +74,7 @@ class MainMenuView: UIView {
         button.setTitle("Settings", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        button.layer.cornerRadius = 4.0
         return button
     }()
     
@@ -95,7 +101,7 @@ class MainMenuView: UIView {
                                       nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 50.0),
                                       stack.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 25.0),
                                       stack.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                      stack.widthAnchor.constraint(equalTo: nameLabel.widthAnchor)])
+                                      stack.widthAnchor.constraint(equalTo: nameLabel.widthAnchor, constant: 50.0)])
         super.updateConstraints()
     }
 }
