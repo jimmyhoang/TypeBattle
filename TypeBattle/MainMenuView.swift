@@ -18,15 +18,15 @@ class MainMenuView: UIView {
     }
     */
     
-    private lazy var nameLabel:UILabel = {
-        let label = UILabel()
+    private lazy var nameLabel:GameLabel = {
+        let label = GameLabel()
         label.textColor = UIColor.black
-        label.contentMode = .scaleAspectFit
+        //label.contentMode = .scaleAspectFit
         label.font = UIFont.gameFont(size: 60.0)
         label.text = "Type\nBattle"
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.sizeToFit()
+        //label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -42,9 +42,8 @@ class MainMenuView: UIView {
         return sv
     }()
     
-    private lazy var singlePlayerButton:UIButton = {
-        let button = UIButton()
-        button.contentVerticalAlignment = .fill
+    private lazy var singlePlayerButton:MainMenuButton = {
+        let button = MainMenuButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.gameRed
         button.setTitle("Singleplayer", for: .normal)
@@ -54,9 +53,8 @@ class MainMenuView: UIView {
         return button
     }()
     
-    private lazy var multiPlayerButton:UIButton = {
-        let button = UIButton()
-        button.contentVerticalAlignment = .fill
+    private lazy var multiPlayerButton:MainMenuButton = {
+        let button = MainMenuButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.gameRed
         button.setTitle("Multiplayer", for: .normal)
@@ -66,8 +64,8 @@ class MainMenuView: UIView {
         return button
     }()
     
-    private lazy var settingsButton:UIButton = {
-        let button = UIButton()
+    private lazy var settingsButton:MainMenuButton = {
+        let button = MainMenuButton()
         button.contentVerticalAlignment = .fill
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.gameRed
