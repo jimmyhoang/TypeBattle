@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3DB1505180634A8C93552B4E /* Pods_TypeBattle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D5DD2C2501F40C389C845E /* Pods_TypeBattle.framework */; };
+		4340E6071F17F7BF003C0167 /* UIFont+CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340E6061F17F7BF003C0167 /* UIFont+CustomFonts.swift */; };
+		4340E60A1F17F862003C0167 /* Supersonic Rocketship.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4340E6091F17F862003C0167 /* Supersonic Rocketship.ttf */; };
 		9C34E2BE1F173E00008372DC /* GameLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2BD1F173E00008372DC /* GameLobby.swift */; };
 		9C34E2C01F173E07008372DC /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2BF1F173E07008372DC /* GameSession.swift */; };
 		9C34E2C41F173EE0008372DC /* GameCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2C31F173EE0008372DC /* GameCharacter.swift */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		3029A304BE1D7F9A3D6C520B /* Pods-TypeBattle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeBattle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle.release.xcconfig"; sourceTree = "<group>"; };
+		4340E6061F17F7BF003C0167 /* UIFont+CustomFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFonts.swift"; sourceTree = "<group>"; };
+		4340E6091F17F862003C0167 /* Supersonic Rocketship.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Supersonic Rocketship.ttf"; sourceTree = "<group>"; };
 		4AF075521F16CE2B0056E013 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		7E54337C874835B9BE8DB6A2 /* Pods-TypeBattle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeBattle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle.debug.xcconfig"; sourceTree = "<group>"; };
 		9C34E2BD1F173E00008372DC /* GameLobby.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLobby.swift; sourceTree = "<group>"; };
@@ -65,6 +69,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4340E6051F17F7A6003C0167 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4340E6061F17F7BF003C0167 /* UIFont+CustomFonts.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		4340E6081F17F84C003C0167 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4340E6091F17F862003C0167 /* Supersonic Rocketship.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		871B9D7CFCF815F4E6047EE4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +131,8 @@
 		FF889A071F169C3E006955BB /* TypeBattle */ = {
 			isa = PBXGroup;
 			children = (
+				4340E6081F17F84C003C0167 /* Fonts */,
+				4340E6051F17F7A6003C0167 /* Extensions */,
 				FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */,
 				FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */,
 				FF889A241F16BB79006955BB /* Login */,
@@ -223,6 +245,7 @@
 			files = (
 				FF889A281F16BBA9006955BB /* Login.storyboard in Resources */,
 				FF889A141F169C3E006955BB /* Main.storyboard in Resources */,
+				4340E60A1F17F862003C0167 /* Supersonic Rocketship.ttf in Resources */,
 				FF889A351F16E779006955BB /* GoogleService-Info.plist in Resources */,
 				FF889A161F169C3E006955BB /* Assets.xcassets in Resources */,
 				FF889A381F16E9BC006955BB /* KeyboardTestVC.storyboard in Resources */,
@@ -289,6 +312,7 @@
 				9C34E2C61F1746D5008372DC /* PlayerSession.swift in Sources */,
 				FF889A231F16AFF6006955BB /* Player.swift in Sources */,
 				9C34E2C81F17489B008372DC /* GameManager.swift in Sources */,
+				4340E6071F17F7BF003C0167 /* UIFont+CustomFonts.swift in Sources */,
 				9C34E2C01F173E07008372DC /* GameSession.swift in Sources */,
 				FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */,
 				9C34E2C41F173EE0008372DC /* GameCharacter.swift in Sources */,
