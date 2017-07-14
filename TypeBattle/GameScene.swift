@@ -11,13 +11,23 @@ import GameplayKit
 
 class GameScene: SKScene {
 
-    var player: SKSpriteNode!
     
+    var players: [PlayerSession]!
+//    var mainPlayer: PlayerSession!
+    
+    //test
+    let mainPlayer = PlayerSession(playerID: "123", currentPosition: 1, gameCharacter: .cat)
+    //
+    
+    var mainPlayerNode = SKSpriteNode()
+    let mainPlayerSize = CGSize(width: 150, height: 200)
+    let mainPlayerPosition = CGPoint(x: 0, y: 0)
+
     override func didMove(to view: SKView) {
-        addPlayer()
+        self.backgroundColor = UIColor.gameBlue
+        setupMainPlayer()
         
     }
-    
     
     func touchDown(atPoint pos : CGPoint) {
         
@@ -54,24 +64,29 @@ class GameScene: SKScene {
         // Called before each frame is rendered
     }
     
-    //MARK: addPlayer
+    //MARK: Main Player Setup
     
-    func addPlayer() {
-        player = SKSpriteNode()
-//        player.texture = SKTexture(imageNamed: Character.selectedCharString(char: Character.selectedChar.cat))
-        let scaling = CGSize(width: 150, height: 200)
-        player.aspectFillToSize(fillSize: scaling)
-        
-        player.position = CGPoint(x: 0, y: 0)
-        
-        self.addChild(player)
+    func setupMainPlayer() {
+        addPlayer(player: mainPlayer, spriteNode: mainPlayerNode)
+        CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
     }
     
-    //MARK: playerAnimation
     
-    func playerAnimation() {
-        
+    //MARK: Add Player to Scene
+    func addPlayer(player: PlayerSession, spriteNode: SKSpriteNode) {
+        //if mainPlayer
+//        let spriteSize = mainPlayerSize
+//        spriteNode.aspectFillToSize(fillSize: spriteSize)
+        spriteNode.size = mainPlayerSize
+        spriteNode.position = mainPlayerPosition
+        //else other players
+        //otherplayer sizes
+
+        self.addChild(spriteNode)
     }
+    
+    
+    
 }
 
 extension SKSpriteNode {
