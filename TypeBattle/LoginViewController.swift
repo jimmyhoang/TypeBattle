@@ -27,17 +27,21 @@ class LoginViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func loginButton(_ sender: UIButton) {
-        let (success,error) = NetworkManager.login(email: emailTextField.text!, password: passwordTextField.text!)
         
-        if success {
-            performSegue(withIdentifier: "mainmenu", sender: self)
-        } else {
-            let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-            
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            
-            present(alertController, animated: true, completion: nil)
+        guard let email    = emailTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
+        
+        NetworkManager.login(email: email, password: password) { (success, error) -> (Void) in
+            if success == true {
+                self.performSegue(withIdentifier: "mainmenu", sender: self)
+            } else {
+                let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
     }
 
@@ -45,20 +49,17 @@ class LoginViewController: UIViewController {
         performSegue(withIdentifier: "registerscreen", sender: self)
     }
     @IBAction func facebookButton(_ sender: Any) {
-        let (success,error) = NetworkManager.facebookLogin()
-        
-        if success {
-            performSegue(withIdentifier: "mainmenu", sender: self)
-        } else {
-            let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-            
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            
-            present(alertController, animated: true, completion: nil)
+        NetworkManager.facebookLogin { (success, error) -> (Void) in
+            if success == true {
+                self.performSegue(withIdentifier: "mainmenu", sender: self)
+            } else {
+                let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
-        
     }
-    
-
 }

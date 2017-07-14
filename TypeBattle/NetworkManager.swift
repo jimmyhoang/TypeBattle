@@ -32,22 +32,21 @@ class NetworkManager{
         }
     }
     
-    class func login(email: String, password: String) -> (Bool, String) {
-        var loginSuccess: Bool!
+    class func login(email: String, password: String, completion:@escaping (Bool?, String?) -> (Void)){
+        var loginSuccess = false
         var errorDescription = ""
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error == nil {loginSuccess = true}
             else {
-                loginSuccess = false
                 guard let error = error else {return}
                 errorDescription = error.localizedDescription
             }
+            completion(loginSuccess, errorDescription)
         }
-        return (loginSuccess, errorDescription)
     }
  
-    class func facebookLogin() -> (Bool,String) {
+    class func facebookLogin(completion:@escaping (Bool?, String?) -> (Void)) {
         let loginManager = LoginManager()
         var errorDescription = ""
         var loginSuccess = false
@@ -68,11 +67,10 @@ class NetworkManager{
                         guard let error = error else {return}
                         errorDescription = error.localizedDescription
                     }
-        
+                    completion(loginSuccess,errorDescription)
                 })
             }
         }
-        return (loginSuccess,errorDescription)
     }
     
     
