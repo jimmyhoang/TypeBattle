@@ -17,6 +17,12 @@ class MainMenuView: UIView {
         // Drawing code
     }
     */
+    private lazy var nameIcon:UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "TypeBattle3D"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
     
     private lazy var nameLabel:GameLabel = {
         let label = GameLabel()
@@ -84,7 +90,9 @@ class MainMenuView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.addSubview(nameLabel)
+        self.backgroundColor = UIColor(colorLiteralRed: 210.0/255.0, green: 210.0/255.0, blue: 209.0/255.0, alpha: 1.0)
+        self.addSubview(nameIcon)
+//        self.addSubview(nameLabel)
         self.addSubview(stack)
         
         stack.addArrangedSubview(singlePlayerButton)
@@ -95,11 +103,13 @@ class MainMenuView: UIView {
     }
     
     override func updateConstraints() {
-        NSLayoutConstraint.activate([ nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                      nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 50.0),
-                                      stack.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 25.0),
+        NSLayoutConstraint.activate([ nameIcon.centerXAnchor.constraint(equalTo: centerXAnchor),
+                                      nameIcon.topAnchor.constraint(equalTo: topAnchor, constant: 50.0),
+                                      nameIcon.heightAnchor.constraint(equalTo:widthAnchor, multiplier: 0.75),
+                                      nameIcon.widthAnchor.constraint(equalTo: nameIcon.heightAnchor),
+                                      stack.topAnchor.constraint(equalTo: nameIcon.bottomAnchor),
                                       stack.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                      stack.widthAnchor.constraint(equalTo: nameLabel.widthAnchor, constant: 50.0)])
+                                      stack.widthAnchor.constraint(equalTo: nameIcon.widthAnchor, constant: 50.0)])
         super.updateConstraints()
     }
 }
