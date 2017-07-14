@@ -24,19 +24,6 @@ class MainMenuView: UIView {
         return imageView
     }()
     
-    private lazy var nameLabel:GameLabel = {
-        let label = GameLabel()
-        label.textColor = UIColor.black
-        //label.contentMode = .scaleAspectFit
-        label.font = UIFont.gameFont(size: 60.0)
-        label.text = "Type\nBattle"
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        //label.sizeToFit()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     private lazy var stack:UIStackView = {
         let sv = UIStackView()
         sv.alignment = UIStackViewAlignment.fill
@@ -44,29 +31,17 @@ class MainMenuView: UIView {
         sv.isLayoutMarginsRelativeArrangement = true
         sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         sv.axis = .vertical
-        sv.spacing = 8
+        sv.spacing = 15
         return sv
     }()
     
     private lazy var singlePlayerButton:MainMenuButton = {
-        let button = MainMenuButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor.gameRed
-        button.setTitle("Singleplayer", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.gameFont(size: 30.0)
-        button.layer.cornerRadius = 4.0
+        let button = self.createMenuButton(title: "Single Player")
         return button
     }()
     
     private lazy var multiPlayerButton:MainMenuButton = {
-        let button = MainMenuButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor.gameRed
-        button.setTitle("Multiplayer", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.gameFont(size: 30.0)
-        button.layer.cornerRadius = 4.0
+        let button = self.createMenuButton(title: "Multiplayer")
         
         button.addTarget(self, action: #selector(multiplayerSegue(sender:)), for: .touchUpInside)
         
@@ -74,14 +49,12 @@ class MainMenuView: UIView {
     }()
     
     private lazy var settingsButton:MainMenuButton = {
-        let button = MainMenuButton()
-        button.contentVerticalAlignment = .fill
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor.gameRed
-        button.setTitle("Settings", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.gameFont(size: 30.0)
-        button.layer.cornerRadius = 4.0
+        let button = self.createMenuButton(title: "Settings")
+        return button
+    }()
+    
+    private lazy var profileButton:MainMenuButton = {
+        let button = self.createMenuButton(title: "My Profile")
         return button
     }()
     
@@ -93,13 +66,14 @@ class MainMenuView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor(colorLiteralRed: 210.0/255.0, green: 210.0/255.0, blue: 209.0/255.0, alpha: 1.0)
+        self.backgroundColor = UIColor(colorLiteralRed: 194.0/255.0, green: 217.0/255.0, blue: 241.0/255.0, alpha: 1.0)
         self.addSubview(nameIcon)
-//        self.addSubview(nameLabel)
+
         self.addSubview(stack)
         
         stack.addArrangedSubview(singlePlayerButton)
         stack.addArrangedSubview(multiPlayerButton)
+        stack.addArrangedSubview(profileButton)
         stack.addArrangedSubview(settingsButton)
         
         self.setNeedsUpdateConstraints()
@@ -112,8 +86,20 @@ class MainMenuView: UIView {
                                       nameIcon.widthAnchor.constraint(equalTo: nameIcon.heightAnchor),
                                       stack.topAnchor.constraint(equalTo: nameIcon.bottomAnchor),
                                       stack.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                      stack.widthAnchor.constraint(equalTo: nameIcon.widthAnchor, constant: 50.0)])
+                                      stack.widthAnchor.constraint(equalTo: nameIcon.widthAnchor, constant: -25.0)])
         super.updateConstraints()
+    }
+    
+    func createMenuButton(title:String!) -> MainMenuButton {
+        let button = MainMenuButton()
+        button.contentVerticalAlignment = .fill
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.gameRed
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        button.layer.cornerRadius = 4.0
+        return button
     }
     
     func multiplayerSegue(sender:UIButton!) {
