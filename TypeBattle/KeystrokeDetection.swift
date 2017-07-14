@@ -13,16 +13,16 @@ class KeystrokeDetection:NSObject, UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         switch string {
         case "a":
-            <#code#>
+            break
         case "b":
-            <#code#>
+            break
         case "c":
-            <#code#>
+            break
         case "d":
-            <#code#>
+            break
         default:
-            <#code#>
+            break
         }
+        return true
     }
-    
 }
