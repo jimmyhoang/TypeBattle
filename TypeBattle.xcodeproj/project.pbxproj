@@ -208,7 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				FF889A0E1F169C3E006955BB /* GameScene.swift */,
-                4AF075521F16CE2B0056E013 /* Character.swift */,
+				4AF075521F16CE2B0056E013 /* Character.swift */,
 				4AF075841F18E6790056E013 /* KeystrokeDetection.swift */,
 				4AF0755C1F18A9FC0056E013 /* GameScene.sks */,
 				4AF075581F1888820056E013 /* CharacterAnimation.swift */,
@@ -237,7 +237,7 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
-        FF889A3B1F18421C006955BB /* Register */ = {
+		FF889A3B1F18421C006955BB /* Register */ = {
 			isa = PBXGroup;
 			children = (
 				FF889A3C1F18422E006955BB /* RegisterViewController.swift */,
@@ -402,7 +402,7 @@
 				FF889A111F169C3E006955BB /* GameViewController.swift in Sources */,
 				438DC9601F180476005699C3 /* MainMenuView.swift in Sources */,
 				9C34E2D01F184F59008372DC /* CreateRoomViewController.swift in Sources */,
-                FF889A3D1F18422E006955BB /* RegisterViewController.swift in Sources */,
+				FF889A3D1F18422E006955BB /* RegisterViewController.swift in Sources */,
 				FF889A261F16BB94006955BB /* LoginViewController.swift in Sources */,
 				FF889A091F169C3E006955BB /* AppDelegate.swift in Sources */,
 				9C34E2CE1F184F33008372DC /* MainLobbyViewController.swift in Sources */,
