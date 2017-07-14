@@ -61,6 +61,10 @@ class GameManager {
                                       typeDescription: "Warrior typers are very dangerous and feared by all enemies",
                                       perkDescription: "ACTIVE: Send all others players 5 positions back"))
         
+        allTypes.append(GameCharacter(type: .robot,
+                                      typeDescription: "Sometimes this robot can teleport and time travel",
+                                      perkDescription: "PASSIVE: Skip 8 letters"))
+        
         allTypes.append(GameCharacter(type: .ninjaBoy,
                                       typeDescription: "Ninja Boy. Where is he?",
                                       perkDescription: "PASSIVE: Allows you to type uppercase letters as lowercase"))
@@ -68,10 +72,6 @@ class GameManager {
         allTypes.append(GameCharacter(type: .ninjaGirl,
                                       typeDescription: "Never underestimate a Ninja Girl. Typing is her main weapon",
                                       perkDescription: "PASSIVE: Allows you to skip spaces in the text"))
-        
-        allTypes.append(GameCharacter(type: .robot,
-                                      typeDescription: "Sometimes this robot can teleport and time travel",
-                                      perkDescription: "PASSIVE: Skip 8 letters"))
         
         allTypes.append(GameCharacter(type: .zombieBoy,
                                       typeDescription: "Typing Dead...",
