@@ -73,7 +73,9 @@ class NetworkManager{
         }
     }
     
-    
+    class func fetchPlayerDetails(userUID:String) {
+        
+    }
     
 }
 
