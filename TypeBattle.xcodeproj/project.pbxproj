@@ -37,6 +37,8 @@
 		FF889A351F16E779006955BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF889A341F16E779006955BB /* GoogleService-Info.plist */; };
 		FF889A381F16E9BC006955BB /* KeyboardTestVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */; };
 		FF889A391F16E9BC006955BB /* KeyboardTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */; };
+		FF889A3D1F18422E006955BB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A3C1F18422E006955BB /* RegisterViewController.swift */; };
+		FF889A3F1F18423C006955BB /* RegisterScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A3E1F18423C006955BB /* RegisterScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,8 @@
 		FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KeyboardTestVC.storyboard; sourceTree = "<group>"; };
 		FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTestViewController.swift; sourceTree = "<group>"; };
 		FF889A3A1F180836006955BB /* TypeBattle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TypeBattle.entitlements; sourceTree = "<group>"; };
+		FF889A3C1F18422E006955BB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		FF889A3E1F18423C006955BB /* RegisterScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,7 @@
 				4340E6051F17F7A6003C0167 /* Extensions */,
 				FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */,
 				FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */,
+				FF889A3B1F18421C006955BB /* Register */,
 				FF889A241F16BB79006955BB /* Login */,
 				FF889A211F16AFE9006955BB /* Models */,
 				9C34E2C91F17489E008372DC /* Controllers */,
@@ -218,6 +223,15 @@
 				FF889A271F16BBA9006955BB /* Login.storyboard */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		FF889A3B1F18421C006955BB /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				FF889A3C1F18422E006955BB /* RegisterViewController.swift */,
+				FF889A3E1F18423C006955BB /* RegisterScreen.storyboard */,
+			);
+			name = Register;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +311,7 @@
 				FF889A161F169C3E006955BB /* Assets.xcassets in Resources */,
 				FF889A381F16E9BC006955BB /* KeyboardTestVC.storyboard in Resources */,
 				FF889A191F169C3E006955BB /* LaunchScreen.storyboard in Resources */,
+				FF889A3F1F18423C006955BB /* RegisterScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +386,7 @@
 				FF889A111F169C3E006955BB /* GameViewController.swift in Sources */,
 				438DC9601F180476005699C3 /* MainMenuView.swift in Sources */,
 				9C34E2D01F184F59008372DC /* CreateRoomViewController.swift in Sources */,
+				FF889A3D1F18422E006955BB /* RegisterViewController.swift in Sources */,
 				FF889A261F16BB94006955BB /* LoginViewController.swift in Sources */,
 				FF889A091F169C3E006955BB /* AppDelegate.swift in Sources */,
 				9C34E2CE1F184F33008372DC /* MainLobbyViewController.swift in Sources */,
