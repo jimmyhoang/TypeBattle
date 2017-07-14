@@ -17,6 +17,7 @@ class Player {
     
     // Additional profile properties
     var avatar: UIImage = UIImage()
+    var avatarName: String
     
     // Game/stats properties
     var level = 0
@@ -24,9 +25,10 @@ class Player {
     var matchesWon = 0
     var matchesPlayed = 0
     
-    init(name: String,playerID: String) {
-        self.playerID = playerID
-        self.name = name
+    init(name: String,playerID: String,avatarName: String) {
+        self.playerID     = playerID
+        self.name         = name
+        self.avatarName   = avatarName
     }
     
     func saveToFirebase() {
@@ -43,6 +45,7 @@ class Player {
             "levelProgression" : levelProgression,
             "matchesWon"       : matchesWon,
             "matchesPlayed"    : matchesPlayed,
+            "avatarName"       : avatarName
         ]
     }
     
