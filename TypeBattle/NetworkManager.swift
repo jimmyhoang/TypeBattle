@@ -25,6 +25,9 @@ class NetworkManager{
                         let newPlayer = Player(name: nickname, playerID: user.uid,avatarName: avatarName)
                         let playerRef = ref.child(nickname.lowercased())
                         
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.player = newPlayer
+                        
                         playerRef.setValue(newPlayer.toAnyObject())
                     }
                     completion()
