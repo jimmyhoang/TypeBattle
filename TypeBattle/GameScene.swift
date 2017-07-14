@@ -19,12 +19,16 @@ class GameScene: SKScene {
     let mainPlayer = PlayerSession(playerID: "123", currentPosition: 1, gameCharacter: .cat)
     //
     
-    var mainPlayerNode = SKSpriteNode()
+    let mainPlayerNode = SKSpriteNode()
     let mainPlayerSize = CGSize(width: 150, height: 200)
-    let mainPlayerPosition = CGPoint(x: 0, y: 0)
+    let mainPlayerPosition = CGPoint(x: 200, y: 200)
 
+    var sky: SKSpriteNode!
+    var ground: SKSpriteNode!
+    
     override func didMove(to view: SKView) {
-        self.backgroundColor = UIColor.gameBlue
+        self.anchorPoint = CGPoint.zero
+        setupBackground()
         setupMainPlayer()
         
     }
@@ -68,6 +72,7 @@ class GameScene: SKScene {
     
     func setupMainPlayer() {
         addPlayer(player: mainPlayer, spriteNode: mainPlayerNode)
+        mainPlayerNode.zPosition = 10
         CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
     }
     
@@ -85,7 +90,30 @@ class GameScene: SKScene {
         self.addChild(spriteNode)
     }
     
+    //MARK: Background Setup
+    func setupBackground() {
+        backgroundColor = UIColor.gameBlue
+        setupGround()
+        setupSky()
+    }
     
+    func setupGround() {
+        ground = SKSpriteNode()
+        ground.texture = SKTexture(imageNamed: "ground")
+        ground.anchorPoint = CGPoint.zero
+        ground.position = CGPoint.zero
+        ground.size = CGSize(width: self.frame.size.width , height: 200)
+        addChild(ground)
+    }
+    
+    func setupSky() {
+        sky = SKSpriteNode()
+        sky.texture = SKTexture(imageNamed: "sky")
+        sky.anchorPoint = CGPoint.zero
+        sky.position = CGPoint(x: 0, y: 200)
+        sky.size = CGSize(width: self.frame.size.width * 2, height: 400)
+        addChild(sky)
+    }
     
 }
 
