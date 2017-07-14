@@ -136,11 +136,29 @@
                         <outlet property="loginView" destination="KVE-S7-oyc" id="Xzu-x9-AF9"/>
                         <outlet property="passwordTextField" destination="Git-wR-80p" id="0F3-gb-Svc"/>
                         <outlet property="usernameTextField" destination="4pQ-cq-Zk5" id="qEq-Ml-9Tx"/>
+                        <segue destination="ecP-u5-fy7" kind="showDetail" identifier="mainmenu" action="showViewController:sender:" id="gO3-nU-BAs"/>
+                        <segue destination="c2s-vo-nov" kind="show" identifier="registerscreen" id="saG-qH-ncS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z3u-p0-ldB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-116" y="138.98050974512745"/>
+        </scene>
+        <!--MainMenu-->
+        <scene sceneID="iyj-mP-uH4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MainMenu" id="ecP-u5-fy7" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wUL-4G-gQh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560" y="96"/>
+        </scene>
+        <!--RegisterScreen-->
+        <scene sceneID="0Ci-lc-jBu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RegisterScreen" id="c2s-vo-nov" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V5E-9h-QPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="538" y="229"/>
         </scene>
     </scenes>
     <resources>
