@@ -11,13 +11,27 @@ import GameplayKit
 
 class GameScene: SKScene {
 
-    var player: SKSpriteNode!
+    
+    var players: [PlayerSession]!
+//    var mainPlayer: PlayerSession!
+    
+    //test
+    let mainPlayer = PlayerSession(playerID: "123", currentPosition: 1, gameCharacter: .cat)
+    //
+    
+    let mainPlayerNode = SKSpriteNode()
+    let mainPlayerSize = CGSize(width: 150, height: 200)
+    let mainPlayerPosition = CGPoint(x: 200, y: 200)
+
+    var sky: SKSpriteNode!
+    var ground: SKSpriteNode!
     
     override func didMove(to view: SKView) {
-        addPlayer()
+        self.anchorPoint = CGPoint.zero
+        setupBackground()
+        setupMainPlayer()
         
     }
-    
     
     func touchDown(atPoint pos : CGPoint) {
         
@@ -54,24 +68,53 @@ class GameScene: SKScene {
         // Called before each frame is rendered
     }
     
-    //MARK: addPlayer
+    //MARK: Main Player Setup
     
-    func addPlayer() {
-        player = SKSpriteNode()
-//        player.texture = SKTexture(imageNamed: Character.selectedCharString(char: Character.selectedChar.cat))
-        let scaling = CGSize(width: 150, height: 200)
-        player.aspectFillToSize(fillSize: scaling)
-        
-        player.position = CGPoint(x: 0, y: 0)
-        
-        self.addChild(player)
+    func setupMainPlayer() {
+        addPlayer(player: mainPlayer, spriteNode: mainPlayerNode)
+        mainPlayerNode.zPosition = 10
+        CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
     }
     
-    //MARK: playerAnimation
     
-    func playerAnimation() {
-        
+    //MARK: Add Player to Scene
+    func addPlayer(player: PlayerSession, spriteNode: SKSpriteNode) {
+        //if mainPlayer
+//        let spriteSize = mainPlayerSize
+//        spriteNode.aspectFillToSize(fillSize: spriteSize)
+        spriteNode.size = mainPlayerSize
+        spriteNode.position = mainPlayerPosition
+        //else other players
+        //otherplayer sizes
+
+        self.addChild(spriteNode)
     }
+    
+    //MARK: Background Setup
+    func setupBackground() {
+        backgroundColor = UIColor.gameBlue
+        setupGround()
+        setupSky()
+    }
+    
+    func setupGround() {
+        ground = SKSpriteNode()
+        ground.texture = SKTexture(imageNamed: "ground")
+        ground.anchorPoint = CGPoint.zero
+        ground.position = CGPoint.zero
+        ground.size = CGSize(width: self.frame.size.width , height: 200)
+        addChild(ground)
+    }
+    
+    func setupSky() {
+        sky = SKSpriteNode()
+        sky.texture = SKTexture(imageNamed: "sky")
+        sky.anchorPoint = CGPoint.zero
+        sky.position = CGPoint(x: 0, y: 200)
+        sky.size = CGSize(width: self.frame.size.width * 2, height: 400)
+        addChild(sky)
+    }
+    
 }
 
 extension SKSpriteNode {

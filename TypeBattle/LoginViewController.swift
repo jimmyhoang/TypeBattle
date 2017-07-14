@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 import FacebookLogin
 import FacebookCore
 
@@ -21,8 +22,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if (AccessToken.current != nil) {performSegue(withIdentifier: "mainmenu", sender: self)}
+
     }
     
     // MARK: - Actions

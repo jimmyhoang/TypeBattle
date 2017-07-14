@@ -27,7 +27,6 @@ class Player {
     init(name: String,playerID: String) {
         self.playerID = playerID
         self.name = name
-
     }
     
     func saveToFirebase() {
@@ -53,4 +52,21 @@ class Player {
     
     func changeAvatar() {}
         
+    //    var name:String
+    //    var uniqueIdentifier:String
+    //    var avatar:UIImage
+    //    var level:Int
+    //    var experience:Double?
+    //    var matchesWon:Int?
+    //    var matchesPlayed:Int?
+    //    var fastestGame:Int?
+    //    var perk:String?
+    //    var timeFinished:Int?
+    //
+    //    init(name:String,uniqueIdentifier:String,avatar:UIImage,level:Int) {
+    //        self.name             = name
+    //        self.uniqueIdentifier = uniqueIdentifier
+    //        self.avatar           = avatar
+    //        self.level            = level
+    //    }
 }

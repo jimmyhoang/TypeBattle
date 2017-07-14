@@ -21,12 +21,12 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
- 
+    
     // MARK: - Actions
     @IBAction func registerButton(_ sender: UIButton) {
         
@@ -57,5 +57,5 @@ class RegisterViewController: UIViewController {
             return false
         }
     }
-
+    
 }
