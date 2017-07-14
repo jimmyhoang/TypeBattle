@@ -13,7 +13,7 @@ import FacebookCore
 
 class NetworkManager{
     
-    class func registerUser(email: String, password: String, nickname: String, completion: () -> (Void)) {
+    class func registerUser(email: String, password: String, nickname: String, avatarName: String, completion: @escaping () -> (Void)) {
         let ref = Database.database().reference(withPath: "players")
         
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
@@ -22,11 +22,12 @@ class NetworkManager{
                     if error == nil {
                         guard let user = user else {return}
                         
-                        let newPlayer = Player(name: nickname, playerID: user.uid)
+                        let newPlayer = Player(name: nickname, playerID: user.uid,avatarName: avatarName)
                         let playerRef = ref.child(nickname.lowercased())
                         
                         playerRef.setValue(newPlayer.toAnyObject())
                     }
+                    completion()
                 })
             }
         }
@@ -77,6 +78,10 @@ class NetworkManager{
         
     }
     
+    class func downloadAvatars() {
+        
+    }
+
 }
 
 
