@@ -31,6 +31,7 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     var selectedImage = ""
     var avatarImages:[UIImage] = []
+    var checkmarkImageView:UIImageView!
 
     
     override func viewDidLoad() {
@@ -88,7 +89,8 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! AvatarPickerCollectionViewCell
-        
+        cell.isSelected = true
+        blueCheckmark(cell: cell)
         let image = cell.avatarImage.image
         
         for (key,value) in defaultAvatars {
@@ -104,6 +106,18 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
             return true
         } else {
             return false
+        }
+    }
+    
+    func blueCheckmark(cell: UICollectionViewCell) {
+        if checkmarkImageView == nil {
+            checkmarkImageView = UIImageView(image: UIImage(named: "blue_checkmark"))
+            cell.addSubview(checkmarkImageView)
+            checkmarkImageView.translatesAutoresizingMaskIntoConstraints = false
+            checkmarkImageView.contentMode = .scaleAspectFill
+            checkmarkImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            checkmarkImageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
+            checkmarkImageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
         }
     }
     
