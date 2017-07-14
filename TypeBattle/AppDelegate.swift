@@ -15,23 +15,23 @@ import FacebookCore
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var player:Player?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
-//        var player:Player?
-//        var storyboard:UIStoryboard
-//        
-//        if player == nil {
-//            storyboard = UIStoryboard.init(name: "Login", bundle: .main)
-//        } else {
-//            storyboard = UIStoryboard.init(name: "MainMenu", bundle: .main)
-//        }
-//        
-//        let rootVC = storyboard.instantiateInitialViewController()
-//        window?.rootViewController = rootVC
-//        window?.makeKeyAndVisible()
+       
+        var storyboard:UIStoryboard
+        
+        if player == nil {
+            storyboard = UIStoryboard.init(name: "Login", bundle: .main)
+        } else {
+            storyboard = UIStoryboard.init(name: "MainMenu", bundle: .main)
+        }
+        
+        let rootVC = storyboard.instantiateInitialViewController()
+        window?.rootViewController = rootVC
+        window?.makeKeyAndVisible()
         
         return true
     }
