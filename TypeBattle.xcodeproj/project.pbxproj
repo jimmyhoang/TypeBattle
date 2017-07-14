@@ -383,11 +383,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				FF889A431F1861A2006955BB /* NetworkManager.swift in Sources */,
-=======
 				9C34E2D21F184F64008372DC /* JoinRoomViewController.swift in Sources */,
->>>>>>> Dev
 				FF889A391F16E9BC006955BB /* KeyboardTestViewController.swift in Sources */,
 				431E7F361F181F9900B7B5CE /* MainMenuButton.swift in Sources */,
 				4AF075851F18E6790056E013 /* KeystrokeDetection.swift in Sources */,

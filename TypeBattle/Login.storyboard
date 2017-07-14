@@ -152,12 +152,7 @@
                         <outlet property="fireloginButton" destination="aFt-t6-yPp" id="2YM-ce-A0b"/>
                         <outlet property="loginView" destination="KVE-S7-oyc" id="Xzu-x9-AF9"/>
                         <outlet property="passwordTextField" destination="Git-wR-80p" id="0F3-gb-Svc"/>
-<<<<<<< HEAD
                         <segue destination="ecP-u5-fy7" kind="showDetail" identifier="mainmenu" action="showViewController:sender:" id="gO3-nU-BAs"/>
-=======
-                        <outlet property="usernameTextField" destination="4pQ-cq-Zk5" id="qEq-Ml-9Tx"/>
-                        <segue destination="ecP-u5-fy7" kind="showDetail" identifier="mainmenu" action="showViewController:sender:" id="gO3-nU-BAs"/>		
->>>>>>> Dev
                         <segue destination="c2s-vo-nov" kind="show" identifier="registerscreen" id="saG-qH-ncS"/>
                     </connections>
                 </viewController>
