@@ -44,7 +44,7 @@ class MainMenuView: UIView {
         sv.isLayoutMarginsRelativeArrangement = true
         sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         sv.axis = .vertical
-        sv.spacing = 8
+        sv.spacing = 15
         return sv
     }()
     
@@ -93,7 +93,7 @@ class MainMenuView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor(colorLiteralRed: 210.0/255.0, green: 210.0/255.0, blue: 209.0/255.0, alpha: 1.0)
+        self.backgroundColor = UIColor(colorLiteralRed: 194.0/255.0, green: 217.0/255.0, blue: 241.0/255.0, alpha: 1.0)
         self.addSubview(nameIcon)
 //        self.addSubview(nameLabel)
         self.addSubview(stack)
@@ -112,7 +112,7 @@ class MainMenuView: UIView {
                                       nameIcon.widthAnchor.constraint(equalTo: nameIcon.heightAnchor),
                                       stack.topAnchor.constraint(equalTo: nameIcon.bottomAnchor),
                                       stack.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                      stack.widthAnchor.constraint(equalTo: nameIcon.widthAnchor, constant: 50.0)])
+                                      stack.widthAnchor.constraint(equalTo: nameIcon.widthAnchor, constant: -25.0)])
         super.updateConstraints()
     }
     
