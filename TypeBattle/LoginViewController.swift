@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 import FacebookLogin
 import FacebookCore
 
@@ -24,7 +25,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         
         if (AccessToken.current != nil)
         {
-            performSegue(withIdentifier: "mainmenu", sender: self)
+            // User is already logged in, go to main screen
         }
         else
         {
@@ -37,6 +38,17 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         }
 
     }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
     
     // MARK: - FBLoginButtonDelegate
     func loginButtonDidLogOut(_ loginButton: LoginButton) {
@@ -54,8 +66,8 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
             
             Auth.auth().signIn(with: credential) { (user, error) in
                 guard error != nil else{return}
-                
-                self.performSegue(withIdentifier: "mainmenu", sender: self)
+                // User is signed in
+                // Segue to main screen
             }
         }
         
@@ -68,7 +80,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
             if error == nil {
                 
                 // TODO: Make segue
-                self.performSegue(withIdentifier: "mainmenu", sender: self)
+                self.performSegue(withIdentifier: "mainMenu", sender: self)
                 
             } else {
                 let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
@@ -84,7 +96,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     @IBAction func registerButton(_ sender: UIButton) {
         
         // TODO: Make segue
-        performSegue(withIdentifier: "registerscreen", sender: self)
+        performSegue(withIdentifier: "registerUser", sender: self)
     }
     
 
