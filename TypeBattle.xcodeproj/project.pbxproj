@@ -40,6 +40,8 @@
 		FF889A351F16E779006955BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF889A341F16E779006955BB /* GoogleService-Info.plist */; };
 		FF889A381F16E9BC006955BB /* KeyboardTestVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */; };
 		FF889A391F16E9BC006955BB /* KeyboardTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */; };
+		FF889A3D1F18422E006955BB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A3C1F18422E006955BB /* RegisterViewController.swift */; };
+		FF889A3F1F18423C006955BB /* RegisterScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A3E1F18423C006955BB /* RegisterScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,7 @@
 		4340E6091F17F862003C0167 /* Supersonic Rocketship.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Supersonic Rocketship.ttf"; sourceTree = "<group>"; };
 		438DC95F1F180476005699C3 /* MainMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		438DC9631F180600005699C3 /* MainMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
+		4AF075521F16CE2B0056E013 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		4AF075581F1888820056E013 /* CharacterAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterAnimation.swift; sourceTree = "<group>"; };
 		4AF0755C1F18A9FC0056E013 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		4AF075841F18E6790056E013 /* KeystrokeDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeystrokeDetection.swift; sourceTree = "<group>"; };
@@ -81,6 +84,8 @@
 		FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KeyboardTestVC.storyboard; sourceTree = "<group>"; };
 		FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTestViewController.swift; sourceTree = "<group>"; };
 		FF889A3A1F180836006955BB /* TypeBattle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TypeBattle.entitlements; sourceTree = "<group>"; };
+		FF889A3C1F18422E006955BB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		FF889A3E1F18423C006955BB /* RegisterScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +180,7 @@
 				4340E6051F17F7A6003C0167 /* Extensions */,
 				FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */,
 				FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */,
+				FF889A3B1F18421C006955BB /* Register */,
 				FF889A241F16BB79006955BB /* Login */,
 				FF889A211F16AFE9006955BB /* Models */,
 				9C34E2C91F17489E008372DC /* Controllers */,
@@ -199,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				FF889A0E1F169C3E006955BB /* GameScene.swift */,
+                4AF075521F16CE2B0056E013 /* Character.swift */,
 				4AF075841F18E6790056E013 /* KeystrokeDetection.swift */,
 				4AF0755C1F18A9FC0056E013 /* GameScene.sks */,
 				4AF075581F1888820056E013 /* CharacterAnimation.swift */,
@@ -225,6 +232,15 @@
 				FF889A271F16BBA9006955BB /* Login.storyboard */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+        FF889A3B1F18421C006955BB /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				FF889A3C1F18422E006955BB /* RegisterViewController.swift */,
+				FF889A3E1F18423C006955BB /* RegisterScreen.storyboard */,
+			);
+			name = Register;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,7 +278,7 @@
 				TargetAttributes = {
 					FF889A041F169C3E006955BB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = HCCWVL286N;
+						DevelopmentTeam = 5GMBY6V284;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -305,6 +321,7 @@
 				4AF0755D1F18A9FC0056E013 /* GameScene.sks in Resources */,
 				FF889A381F16E9BC006955BB /* KeyboardTestVC.storyboard in Resources */,
 				FF889A191F169C3E006955BB /* LaunchScreen.storyboard in Resources */,
+				FF889A3F1F18423C006955BB /* RegisterScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +398,7 @@
 				FF889A111F169C3E006955BB /* GameViewController.swift in Sources */,
 				438DC9601F180476005699C3 /* MainMenuView.swift in Sources */,
 				9C34E2D01F184F59008372DC /* CreateRoomViewController.swift in Sources */,
+                FF889A3D1F18422E006955BB /* RegisterViewController.swift in Sources */,
 				FF889A261F16BB94006955BB /* LoginViewController.swift in Sources */,
 				FF889A091F169C3E006955BB /* AppDelegate.swift in Sources */,
 				9C34E2CE1F184F33008372DC /* MainLobbyViewController.swift in Sources */,
@@ -510,7 +528,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TypeBattle/TypeBattle.entitlements;
-				DEVELOPMENT_TEAM = HCCWVL286N;
+				DEVELOPMENT_TEAM = 5GMBY6V284;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -530,7 +548,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TypeBattle/TypeBattle.entitlements;
-				DEVELOPMENT_TEAM = HCCWVL286N;
+				DEVELOPMENT_TEAM = 5GMBY6V284;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
