@@ -67,6 +67,9 @@ class MainMenuView: UIView {
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.gameFont(size: 30.0)
         button.layer.cornerRadius = 4.0
+        
+        button.addTarget(self, action: #selector(multiplayerSegue(sender:)), for: .touchUpInside)
+        
         return button
     }()
     
@@ -111,5 +114,19 @@ class MainMenuView: UIView {
                                       stack.centerXAnchor.constraint(equalTo: centerXAnchor),
                                       stack.widthAnchor.constraint(equalTo: nameIcon.widthAnchor, constant: 50.0)])
         super.updateConstraints()
+    }
+    
+    func multiplayerSegue(sender:UIButton!) {
+        let storyboard = UIStoryboard(name: "Multiplayer", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()
+        
+        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
+            return
+        }
+        while let next = top.presentedViewController {
+            top = next
+        }
+        
+        top.present(vc!, animated: true, completion: nil)
     }
 }
