@@ -34,6 +34,7 @@
 		FF889A391F16E9BC006955BB /* KeyboardTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */; };
 		FF889A3D1F18422E006955BB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A3C1F18422E006955BB /* RegisterViewController.swift */; };
 		FF889A3F1F18423C006955BB /* RegisterScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A3E1F18423C006955BB /* RegisterScreen.storyboard */; };
+		FF889A431F1861A2006955BB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A421F1861A2006955BB /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		FF889A3A1F180836006955BB /* TypeBattle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TypeBattle.entitlements; sourceTree = "<group>"; };
 		FF889A3C1F18422E006955BB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		FF889A3E1F18423C006955BB /* RegisterScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterScreen.storyboard; sourceTree = "<group>"; };
+		FF889A421F1861A2006955BB /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				431E7F351F181F9900B7B5CE /* MainMenuButton.swift */,
 				431E7F371F18220C00B7B5CE /* GameLabel.swift */,
 				438DC9631F180600005699C3 /* MainMenu.storyboard */,
+				FF889A421F1861A2006955BB /* NetworkManager.swift */,
 			);
 			path = TypeBattle;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF889A431F1861A2006955BB /* NetworkManager.swift in Sources */,
 				FF889A391F16E9BC006955BB /* KeyboardTestViewController.swift in Sources */,
 				431E7F361F181F9900B7B5CE /* MainMenuButton.swift in Sources */,
 				9C34E2C61F1746D5008372DC /* PlayerSession.swift in Sources */,

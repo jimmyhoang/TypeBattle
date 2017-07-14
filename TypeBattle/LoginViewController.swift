@@ -11,80 +11,53 @@ import Firebase
 import FacebookLogin
 import FacebookCore
 
-class LoginViewController: UIViewController, LoginButtonDelegate {
+class LoginViewController: UIViewController {
     
     //MARK: Properties
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var fireloginButton: UIButton!
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (AccessToken.current != nil)
-        {
-            performSegue(withIdentifier: "mainmenu", sender: self)
-        }
-        else
-        {
-            let loginButton = LoginButton(readPermissions: [.publicProfile, .email])
-            loginButton.delegate = self
-            loginView.addSubview(loginButton)
-            loginButton.translatesAutoresizingMaskIntoConstraints = false
-            loginButton.topAnchor.constraint(equalTo: fireloginButton.bottomAnchor, constant: 20.0).isActive = true
-            loginButton.centerXAnchor.constraint(equalTo: loginView.centerXAnchor).isActive                  = true
-        }
-
-    }
-    
-    // MARK: - FBLoginButtonDelegate
-    func loginButtonDidLogOut(_ loginButton: LoginButton) {
-        
-    }
-    
-    func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
-        switch result {
-        case .failed(let error):
-            print(error)
-        case .cancelled:
-            print("cancelled")
-        case .success(_, _,_):
-            let credential = FacebookAuthProvider.credential(withAccessToken: (AccessToken.current?.authenticationToken)!)
-            
-            Auth.auth().signIn(with: credential) { (user, error) in
-                guard error != nil else{return}
-                
-                self.performSegue(withIdentifier: "mainmenu", sender: self)
-            }
-        }
-        
+        if (AccessToken.current != nil) {performSegue(withIdentifier: "mainmenu", sender: self)}
     }
     
     // MARK: - Actions
     @IBAction func loginButton(_ sender: UIButton) {
-        Auth.auth().signIn(withEmail: usernameTextField.text!, password: passwordTextField.text!) { (user, error) in
+        let (success,error) = NetworkManager.login(email: emailTextField.text!, password: passwordTextField.text!)
+        
+        if success {
+            performSegue(withIdentifier: "mainmenu", sender: self)
+        } else {
+            let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
             
-            if error == nil {
-                
-                // TODO: Make segue
-                self.performSegue(withIdentifier: "mainmenu", sender: self)
-                
-            } else {
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertController.addAction(defaultAction)
-                
-                self.present(alertController, animated: true, completion: nil)
-            }
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            present(alertController, animated: true, completion: nil)
         }
     }
 
     @IBAction func registerButton(_ sender: UIButton) {
-        
-        // TODO: Make segue
         performSegue(withIdentifier: "registerscreen", sender: self)
+    }
+    @IBAction func facebookButton(_ sender: Any) {
+        let (success,error) = NetworkManager.facebookLogin()
+        
+        if success {
+            performSegue(withIdentifier: "mainmenu", sender: self)
+        } else {
+            let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+            
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }
+        
     }
     
 
