@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 import FacebookLogin
 import FacebookCore
+import Nuke
 
 class NetworkManager{
     
@@ -51,9 +52,11 @@ class NetworkManager{
     }
  
     class func facebookLogin(completion:@escaping (Bool?, String?) -> (Void)) {
-        let loginManager = LoginManager()
+        let loginManager     = LoginManager()
         var errorDescription = ""
-        var loginSuccess = false
+        var loginSuccess     = false
+        let ref              = Database.database().reference(withPath: "players")
+
         
         loginManager.logIn([ReadPermission.publicProfile, ReadPermission.email], viewController: nil) { (result) in
             switch result {
@@ -66,16 +69,51 @@ class NetworkManager{
                 
                 Auth.auth().signIn(with: credential, completion: { (user, error) in
                     if error == nil {
-//                        guard let name = UserProfile.current?.fullName else {return}
+                        let params = ["fields": "picture, name"]
+                        let graphRequest = GraphRequest(graphPath: "me", parameters: params, accessToken: AccessToken.current, httpMethod: GraphRequestHTTPMethod.GET, apiVersion: GraphAPIVersion.defaultVersion)
                         
                         
-                        
-                        loginSuccess = true
+                        graphRequest.start({ (urlResponse, graphResult) in
+                            switch graphResult {
+                            case .failed (let error):
+                                print(error)
+                            case .success (let graphResponse):
+                                
+                                guard let responseDictionary = graphResponse.dictionaryValue else {return}
+                                let photoDict                = responseDictionary["picture"] as! NSDictionary
+                                let dataDict                 = photoDict["data"] as! NSDictionary
+                                
+                                
+                                
+                                let name       = responseDictionary["name"] as! String
+                                guard let url  = dataDict["url"] else {return}
+                                
+                                guard let stringURL = URL(string: url as! String) else {return}
+                                
+                                guard let user = user else {return}
+                                let newPlayer  = Player(name: name, playerID: user.uid, avatarName: "")
+                                
+                                DispatchQueue.main.async {
+                                    downloadFBImage(url: stringURL, completion: { (image) -> (Void) in
+                                        newPlayer.avatar = image
+                                    })
+                                }
+                                
+                                let playerRef      = ref.child(user.uid.lowercased())
+                                let appDelegate    = UIApplication.shared.delegate as! AppDelegate
+                                appDelegate.player = newPlayer
+                                
+                                playerRef.setValue(newPlayer.toAnyObject())
+                                
+                                loginSuccess = true
+                                completion(loginSuccess,errorDescription)
+                            }
+                        })
                     } else {
-                        guard let error = error else {return}
+                        guard let error  = error else {return}
                         errorDescription = error.localizedDescription
+                        completion(loginSuccess,errorDescription)
                     }
-                    completion(loginSuccess,errorDescription)
                 })
             }
         }
@@ -107,8 +145,12 @@ class NetworkManager{
         })
     }
     
-    class func downloadFBImage() {
-        
+    class func downloadFBImage(url:URL, completion:@escaping (UIImage) -> (Void)) {
+        Cache.shared.removeAll()
+        Manager.shared.loadImage(with: url, completion: { (result) in
+            guard let image = result.value else {return}
+            completion(image)
+        })
     }
 
 }
