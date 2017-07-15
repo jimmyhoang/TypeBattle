@@ -66,6 +66,10 @@ class NetworkManager{
                 
                 Auth.auth().signIn(with: credential, completion: { (user, error) in
                     if error == nil {
+//                        guard let name = UserProfile.current?.fullName else {return}
+                        
+                        
+                        
                         loginSuccess = true
                     } else {
                         guard let error = error else {return}
@@ -103,7 +107,7 @@ class NetworkManager{
         })
     }
     
-    class func downloadAvatars() {
+    class func downloadFBImage() {
         
     }
 
