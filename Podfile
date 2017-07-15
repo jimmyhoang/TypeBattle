@@ -14,5 +14,6 @@ target 'TypeBattle' do
     pod 'SwiftyJSON'
     pod 'FacebookCore'
     pod 'FacebookLogin'
+    pod 'Nuke', '~> 5.1'
 
 end

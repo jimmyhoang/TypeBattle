@@ -29,6 +29,9 @@ class Player {
         self.playerID     = playerID
         self.name         = name
         self.avatarName   = avatarName
+        
+        guard let image = UIImage(named: avatarName) else {return}
+        avatar = image
     }
     
     func saveToFirebase() {
