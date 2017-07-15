@@ -18,12 +18,59 @@ class ProfilePageView: UIView {
     }
     */
     
+    var player:Player!
+    
+    private lazy var profilePicture:UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "knight/Idle (1)"))
+        
+        //uncomment the next line to init using the actual player avatar (hasn't been implemented yet)
+        //let imageView = UIImageView(image: self.player.avatar)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     private lazy var profileButton:MainMenuButton = {
         let button = self.createMenuButton(title: "Back")
         
         button.addTarget(self, action: #selector(backToMainMenu(sender:)), for: .touchUpInside)
 
         return button
+    }()
+    
+    private lazy var nameLabel:GameLabel = {
+        let label = GameLabel()
+        label.font = UIFont.gameFont(size: 25.0)
+        label.text = "Test Player"
+        //label.text = self.player.name
+        
+        return label
+    }()
+    
+    private lazy var levelLabel:GameLabel = {
+        let label = GameLabel()
+        label.font = UIFont.gameFont(size: 25.0)
+        label.text = "Level: 1"
+        //label.text = "Level: \(self.player.level)"
+        
+        return label
+    }()
+    
+    private lazy var matchesWonLabel:GameLabel = {
+        let label = GameLabel()
+        label.font = UIFont.gameFont(size: 25.0)
+        label.text = "Matches Won: 0"
+        //label.text = "Level: \(self.player.matchesWon)"
+        
+        return label
+    }()
+    
+    private lazy var matchesPlayedLabel:GameLabel = {
+        let label = GameLabel()
+        label.font = UIFont.gameFont(size: 25.0)
+        label.text = "Matches Played: 3"
+        //label.text = "Level: \(self.player.matchesPlayed)"
+        
+        return label
     }()
     
     private lazy var topHorizontalStack:UIStackView = {
@@ -36,11 +83,46 @@ class ProfilePageView: UIView {
         sv.spacing = 15
         return sv
     }()
+    private lazy var upperVerticalStack:UIStackView = {
+        let sv = UIStackView()
+        sv.alignment = UIStackViewAlignment.fill
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.isLayoutMarginsRelativeArrangement = true
+        sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        sv.axis = .vertical
+        sv.spacing = 5
+        return sv
+    }()
+    
+    private lazy var mainVerticalStack:UIStackView = {
+        let sv = UIStackView()
+        sv.alignment = UIStackViewAlignment.fill
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.isLayoutMarginsRelativeArrangement = true
+        sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        sv.axis = .vertical
+        sv.spacing = 10
+        return sv
+    }()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        player = delegate.player
+        
         self.backgroundColor = UIColor.background
+        
         self.addSubview(topHorizontalStack)
+        self.topHorizontalStack.addArrangedSubview(profilePicture)
+        self.topHorizontalStack.addArrangedSubview(upperVerticalStack)
+        self.upperVerticalStack.addArrangedSubview(nameLabel)
+        self.upperVerticalStack.addArrangedSubview(levelLabel)
+        
+        self.addSubview(mainVerticalStack)
+        self.mainVerticalStack.addArrangedSubview(matchesWonLabel)
+        self.mainVerticalStack.addArrangedSubview(matchesPlayedLabel)
+        
         self.addSubview(profileButton)
         
         self.setNeedsUpdateConstraints()
@@ -51,8 +133,15 @@ class ProfilePageView: UIView {
                                      topHorizontalStack.leadingAnchor.constraint(equalTo: leadingAnchor),
                                      topHorizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor),
                                      topHorizontalStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
-                                     profileButton.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor),
+                                     mainVerticalStack.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor, constant: 10.0),
+                                     mainVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
+                                     //mainVerticalStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
+                                     profileButton.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor),
                                      profileButton.centerXAnchor.constraint(equalTo: centerXAnchor)])
+        
+        //constraints for elements in the upper horizontal stack view
+        NSLayoutConstraint.activate([profilePicture.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, multiplier: 0.3),
+                                     upperVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, multiplier: 0.7)])
         super.updateConstraints()
     }
     
