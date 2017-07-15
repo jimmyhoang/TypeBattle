@@ -72,8 +72,7 @@ class NetworkManager{
                         let params = ["fields": "picture, name"]
                         let graphRequest = GraphRequest(graphPath: "me", parameters: params, accessToken: AccessToken.current, httpMethod: GraphRequestHTTPMethod.GET, apiVersion: GraphAPIVersion.defaultVersion)
                         
-                        
-                        graphRequest.start({ (urlResponse, graphResult) in
+                      graphRequest.start({ (urlResponse, graphResult) in
                             switch graphResult {
                             case .failed (let error):
                                 print(error)
@@ -82,8 +81,6 @@ class NetworkManager{
                                 guard let responseDictionary = graphResponse.dictionaryValue else {return}
                                 let photoDict                = responseDictionary["picture"] as! NSDictionary
                                 let dataDict                 = photoDict["data"] as! NSDictionary
-                                
-                                
                                 
                                 let name       = responseDictionary["name"] as! String
                                 guard let url  = dataDict["url"] else {return}
@@ -136,12 +133,12 @@ class NetworkManager{
             guard let matchesPlayed    = user.object(forKey: "matchesPlayed") as? Int else {return}
             guard let matchesWon       = user.object(forKey: "matchesWon") as? Int else {return}
             
-            let newPlayer = Player(name: name, playerID: "zmtbgb6fifvlpmp1hbjzg5saq7s2", avatarName: avatarName)
+            let newPlayer              = Player(name: name, playerID: "zmtbgb6fifvlpmp1hbjzg5saq7s2", avatarName: avatarName)
             newPlayer.level            = level
             newPlayer.levelProgression = levelProgression
             newPlayer.matchesPlayed    = matchesPlayed
             newPlayer.matchesWon       = matchesWon
-            appDelegate.player? = newPlayer
+            appDelegate.player?        = newPlayer
         })
     }
     
