@@ -23,7 +23,7 @@ class NetworkManager{
                         guard let user = user else {return}
                         
                         let newPlayer = Player(name: nickname, playerID: user.uid,avatarName: avatarName)
-                        let playerRef = ref.child(nickname.lowercased())
+                        let playerRef = ref.child(user.uid.lowercased())
                         
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
                         appDelegate.player = newPlayer
@@ -77,8 +77,30 @@ class NetworkManager{
         }
     }
     
-    class func fetchPlayerDetails(userUID:String) {
+    class func fetchPlayerDetails() {
+        let ref           = Database.database().reference(withPath: "players")
+        guard let userID  = Auth.auth().currentUser?.uid else {return}
+        let appDelegate   = UIApplication.shared.delegate as! AppDelegate
         
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if !snapshot.exists() {return}
+            
+            guard let players          = snapshot.value as? NSDictionary else {return}
+            guard let user             = players.object(forKey: userID) as? NSDictionary else {return}
+            guard let name             = user.object(forKey: "name") as? String else {return}
+            guard let avatarName       = user.object(forKey: "avatarName") as? String else {return}
+            guard let level            = user.object(forKey: "level") as? Int else {return}
+            guard let levelProgression = user.object(forKey: "levelProgression") as? Double else {return}
+            guard let matchesPlayed    = user.object(forKey: "matchesPlayed") as? Int else {return}
+            guard let matchesWon       = user.object(forKey: "matchesWon") as? Int else {return}
+            
+            let newPlayer = Player(name: name, playerID: "zmtbgb6fifvlpmp1hbjzg5saq7s2", avatarName: avatarName)
+            newPlayer.level            = level
+            newPlayer.levelProgression = levelProgression
+            newPlayer.matchesPlayed    = matchesPlayed
+            newPlayer.matchesWon       = matchesWon
+            appDelegate.player? = newPlayer
+        })
     }
     
     class func downloadAvatars() {

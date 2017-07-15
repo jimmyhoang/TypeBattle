@@ -21,17 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
        
-        var storyboard:UIStoryboard
-        
-        if player == nil {
-            storyboard = UIStoryboard.init(name: "Login", bundle: .main)
-        } else {
-            storyboard = UIStoryboard.init(name: "MainMenu", bundle: .main)
-        }
-        
-        let rootVC = storyboard.instantiateInitialViewController()
-        window?.rootViewController = rootVC
-        window?.makeKeyAndVisible()
+//        var storyboard:UIStoryboard
+//        
+//        if player == nil {
+//            storyboard = UIStoryboard.init(name: "Login", bundle: .main)
+//        } else {
+//            storyboard = UIStoryboard.init(name: "MainMenu", bundle: .main)
+//        }
+//        
+//        let rootVC = storyboard.instantiateInitialViewController()
+//        window?.rootViewController = rootVC
+//        window?.makeKeyAndVisible()
         
         return true
     }
