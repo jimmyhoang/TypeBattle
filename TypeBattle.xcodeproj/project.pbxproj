@@ -17,6 +17,9 @@
 		435913661F196B5100F59509 /* ProfilePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435913651F196B5100F59509 /* ProfilePageView.swift */; };
 		438DC9601F180476005699C3 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438DC95F1F180476005699C3 /* MainMenuView.swift */; };
 		438DC9641F180600005699C3 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438DC9631F180600005699C3 /* MainMenu.storyboard */; };
+		43D9BBCC1F1B51E100B0B4AC /* Leaderboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D9BBCB1F1B51E100B0B4AC /* Leaderboard.storyboard */; };
+		43D9BBCE1F1B51FC00B0B4AC /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9BBCD1F1B51FC00B0B4AC /* LeaderboardView.swift */; };
+		43D9BBD01F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9BBCF1F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift */; };
 		4AF075591F1888820056E013 /* CharacterAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF075581F1888820056E013 /* CharacterAnimation.swift */; };
 		4AF0755D1F18A9FC0056E013 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AF0755C1F18A9FC0056E013 /* GameScene.sks */; };
 		4AF075851F18E6790056E013 /* KeystrokeDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF075841F18E6790056E013 /* KeystrokeDetection.swift */; };
@@ -59,6 +62,9 @@
 		435913651F196B5100F59509 /* ProfilePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePageView.swift; sourceTree = "<group>"; };
 		438DC95F1F180476005699C3 /* MainMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		438DC9631F180600005699C3 /* MainMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
+		43D9BBCB1F1B51E100B0B4AC /* Leaderboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Leaderboard.storyboard; sourceTree = "<group>"; };
+		43D9BBCD1F1B51FC00B0B4AC /* LeaderboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		43D9BBCF1F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
 		4AF075521F16CE2B0056E013 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		4AF075581F1888820056E013 /* CharacterAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterAnimation.swift; sourceTree = "<group>"; };
 		4AF0755C1F18A9FC0056E013 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -205,6 +211,9 @@
 				431E7F351F181F9900B7B5CE /* MainMenuButton.swift */,
 				431E7F371F18220C00B7B5CE /* GameLabel.swift */,
 				438DC9631F180600005699C3 /* MainMenu.storyboard */,
+				43D9BBCD1F1B51FC00B0B4AC /* LeaderboardView.swift */,
+				43D9BBCF1F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift */,
+				43D9BBCB1F1B51E100B0B4AC /* Leaderboard.storyboard */,
 				435913631F196AD200F59509 /* ProfilePage.storyboard */,
 				435913651F196B5100F59509 /* ProfilePageView.swift */,
 				FF889A421F1861A2006955BB /* NetworkManager.swift */,
@@ -330,6 +339,7 @@
 				FF889A351F16E779006955BB /* GoogleService-Info.plist in Resources */,
 				438DC9641F180600005699C3 /* MainMenu.storyboard in Resources */,
 				FF889A161F169C3E006955BB /* Assets.xcassets in Resources */,
+				43D9BBCC1F1B51E100B0B4AC /* Leaderboard.storyboard in Resources */,
 				435913641F196AD200F59509 /* ProfilePage.storyboard in Resources */,
 				4AF0755D1F18A9FC0056E013 /* GameScene.sks in Resources */,
 				FF889A381F16E9BC006955BB /* KeyboardTestVC.storyboard in Resources */,
@@ -406,6 +416,7 @@
 				431E7F321F180EF300B7B5CE /* UIColor+CustomColors.swift in Sources */,
 				4340E6071F17F7BF003C0167 /* UIFont+CustomFonts.swift in Sources */,
 				FFF210461F194A3000E51644 /* AvatarPickerCollectionViewCell.swift in Sources */,
+				43D9BBD01F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift in Sources */,
 				9C34E2C01F173E07008372DC /* GameSession.swift in Sources */,
 				4AF075591F1888820056E013 /* CharacterAnimation.swift in Sources */,
 				FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */,
@@ -415,6 +426,7 @@
 				9C34E2D01F184F59008372DC /* CreateRoomViewController.swift in Sources */,
 				FF889A3D1F18422E006955BB /* RegisterViewController.swift in Sources */,
 				FF889A261F16BB94006955BB /* LoginViewController.swift in Sources */,
+				43D9BBCE1F1B51FC00B0B4AC /* LeaderboardView.swift in Sources */,
 				FF889A091F169C3E006955BB /* AppDelegate.swift in Sources */,
 				435913661F196B5100F59509 /* ProfilePageView.swift in Sources */,
 				9C34E2CE1F184F33008372DC /* MainLobbyViewController.swift in Sources */,
