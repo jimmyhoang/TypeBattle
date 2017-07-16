@@ -24,12 +24,12 @@ class ProfilePageView: UIView {
         let imageView = UIImageView(image: UIImage(named: "knight/Idle (1)"))
         
         //uncomment the next line to init using the actual player avatar (hasn't been implemented yet)
-        //let imageView = UIImageView(image: self.player.avatar)
+//        let imageView = UIImageView(image: self.player.avatar)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    private lazy var profileButton:MainMenuButton = {
+    private lazy var backButton:MainMenuButton = {
         let button = self.createMenuButton(title: "Back")
         
         button.addTarget(self, action: #selector(backToMainMenu(sender:)), for: .touchUpInside)
@@ -37,11 +37,19 @@ class ProfilePageView: UIView {
         return button
     }()
     
+    private lazy var editProfileButton:MainMenuButton = {
+        let button = self.createMenuButton(title: "Edit Profile")
+        
+        //button.addTarget(self, action: #selector(backToMainMenu(sender:)), for: .touchUpInside)
+        
+        return button
+    }()
+    
     private lazy var nameLabel:GameLabel = {
         let label = GameLabel()
         label.font = UIFont.gameFont(size: 25.0)
         label.text = "Test Player"
-        //label.text = self.player.name
+//        label.text = self.player.name
         
         return label
     }()
@@ -50,7 +58,7 @@ class ProfilePageView: UIView {
         let label = GameLabel()
         label.font = UIFont.gameFont(size: 25.0)
         label.text = "Level: 1"
-        //label.text = "Level: \(self.player.level)"
+//        label.text = "Level: \(self.player.level)"
         
         return label
     }()
@@ -59,7 +67,7 @@ class ProfilePageView: UIView {
         let label = GameLabel()
         label.font = UIFont.gameFont(size: 25.0)
         label.text = "Matches Won: 0"
-        //label.text = "Level: \(self.player.matchesWon)"
+//        label.text = "Matches Won: \(self.player.matchesWon)"
         
         return label
     }()
@@ -68,7 +76,7 @@ class ProfilePageView: UIView {
         let label = GameLabel()
         label.font = UIFont.gameFont(size: 25.0)
         label.text = "Matches Played: 3"
-        //label.text = "Level: \(self.player.matchesPlayed)"
+        //label.text = "Matches Played: \(self.player.matchesPlayed)"
         
         return label
     }()
@@ -77,12 +85,13 @@ class ProfilePageView: UIView {
         let sv = UIStackView()
         sv.alignment = UIStackViewAlignment.fill
         sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.isLayoutMarginsRelativeArrangement = true
-        sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        //sv.isLayoutMarginsRelativeArrangement = true
+        //sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         sv.axis = .horizontal
-        sv.spacing = 15
+        sv.spacing = 5
         return sv
     }()
+    
     private lazy var upperVerticalStack:UIStackView = {
         let sv = UIStackView()
         sv.alignment = UIStackViewAlignment.fill
@@ -105,6 +114,18 @@ class ProfilePageView: UIView {
         return sv
     }()
     
+    private lazy var bottomHorizontalStack:UIStackView = {
+        let sv = UIStackView()
+        sv.distribution = .fillEqually
+        sv.alignment = UIStackViewAlignment.fill
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.isLayoutMarginsRelativeArrangement = true
+        sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        sv.axis = .horizontal
+        sv.spacing = 5
+        return sv
+    }()
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -123,7 +144,9 @@ class ProfilePageView: UIView {
         self.mainVerticalStack.addArrangedSubview(matchesWonLabel)
         self.mainVerticalStack.addArrangedSubview(matchesPlayedLabel)
         
-        self.addSubview(profileButton)
+        self.addSubview(bottomHorizontalStack)
+        self.bottomHorizontalStack.addArrangedSubview(backButton)
+        self.bottomHorizontalStack.addArrangedSubview(editProfileButton)
         
         self.setNeedsUpdateConstraints()
     }
@@ -135,13 +158,16 @@ class ProfilePageView: UIView {
                                      topHorizontalStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
                                      mainVerticalStack.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor, constant: 10.0),
                                      mainVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
+                                     bottomHorizontalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
+                                     bottomHorizontalStack.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0)
                                      //mainVerticalStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
-                                     profileButton.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor),
-                                     profileButton.centerXAnchor.constraint(equalTo: centerXAnchor)])
+                                     //backButton.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor),
+                                     //backButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+            ])
         
         //constraints for elements in the upper horizontal stack view
         NSLayoutConstraint.activate([profilePicture.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, multiplier: 0.3),
-                                     upperVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, multiplier: 0.7)])
+                                     upperVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, multiplier: 0.65)])
         super.updateConstraints()
     }
     
