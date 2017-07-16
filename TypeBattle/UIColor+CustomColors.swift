@@ -40,4 +40,8 @@ extension UIColor {
         
     }
     
+    static var background: UIColor {
+        return UIColor(colorLiteralRed: 194.0/255.0, green: 217.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+    }
+    
 }
