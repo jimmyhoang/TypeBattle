@@ -56,7 +56,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(textField)
         textField.becomeFirstResponder()
         view.layoutIfNeeded()
-        print("triggered first")
     }
     
     func keyboardWillShow(notification:NSNotification) {
@@ -92,24 +91,5 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         gameView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         gameView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         gameView.heightAnchor.constraint(equalToConstant: gameViewHeight).isActive = true
-    }
-
-    
-    //MARK: KeystrokeDetection
-    let notificationCenter = NotificationCenter.default
-    let notification = Notification.init(name: Notification.Name("correctInput"))
-    var index = 0
-    
-    
-    
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        if string == textArray[index] {
-            notificationCenter.post(notification)
-            index += 1
-        }
-        
-        return true
     }
 }

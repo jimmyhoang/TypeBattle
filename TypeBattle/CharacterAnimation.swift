@@ -37,7 +37,6 @@ class CharacterAnimation {
     
     class func doAction(player: SKSpriteNode,char: GameCharacterType, action: actionType) {
         
-        
         //check which action it is
         func actionAnimated(selectedAction: actionType) {
             switch selectedAction{

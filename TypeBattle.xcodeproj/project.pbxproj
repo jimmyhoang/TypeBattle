@@ -21,7 +21,6 @@
 		43D9BBCE1F1B51FC00B0B4AC /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9BBCD1F1B51FC00B0B4AC /* LeaderboardView.swift */; };
 		43D9BBD01F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9BBCF1F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift */; };
 		4AF075591F1888820056E013 /* CharacterAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF075581F1888820056E013 /* CharacterAnimation.swift */; };
-		4AF075851F18E6790056E013 /* KeystrokeDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF075841F18E6790056E013 /* KeystrokeDetection.swift */; };
 		9C34E2BE1F173E00008372DC /* GameLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2BD1F173E00008372DC /* GameLobby.swift */; };
 		9C34E2C01F173E07008372DC /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2BF1F173E07008372DC /* GameSession.swift */; };
 		9C34E2C41F173EE0008372DC /* GameCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2C31F173EE0008372DC /* GameCharacter.swift */; };
@@ -64,7 +63,6 @@
 		43D9BBCD1F1B51FC00B0B4AC /* LeaderboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		43D9BBCF1F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
 		4AF075581F1888820056E013 /* CharacterAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterAnimation.swift; sourceTree = "<group>"; };
-		4AF075841F18E6790056E013 /* KeystrokeDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeystrokeDetection.swift; sourceTree = "<group>"; };
 		7E54337C874835B9BE8DB6A2 /* Pods-TypeBattle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeBattle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle.debug.xcconfig"; sourceTree = "<group>"; };
 		9C34E2BD1F173E00008372DC /* GameLobby.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLobby.swift; sourceTree = "<group>"; };
 		9C34E2BF1F173E07008372DC /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				FF889A0E1F169C3E006955BB /* GameScene.swift */,
-				4AF075841F18E6790056E013 /* KeystrokeDetection.swift */,
 				4AF075581F1888820056E013 /* CharacterAnimation.swift */,
 			);
 			name = GameScene;
@@ -396,7 +393,6 @@
 				FF889A431F1861A2006955BB /* NetworkManager.swift in Sources */,
 				9C34E2D21F184F64008372DC /* JoinRoomViewController.swift in Sources */,
 				431E7F361F181F9900B7B5CE /* MainMenuButton.swift in Sources */,
-				4AF075851F18E6790056E013 /* KeystrokeDetection.swift in Sources */,
 				9C34E2C61F1746D5008372DC /* PlayerSession.swift in Sources */,
 				FF889A231F16AFF6006955BB /* Player.swift in Sources */,
 				431E7F381F18220C00B7B5CE /* GameLabel.swift in Sources */,
