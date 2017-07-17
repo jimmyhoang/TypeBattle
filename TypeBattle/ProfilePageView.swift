@@ -21,10 +21,10 @@ class ProfilePageView: UIView {
     var player:Player!
     
     private lazy var profilePicture:UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "knight/Idle (1)"))
+        var imageView = UIImageView(image: UIImage(named: "knight/Idle (1)"))
         
         //uncomment the next line to init using the actual player avatar (hasn't been implemented yet)
-//        let imageView = UIImageView(image: self.player.avatar)
+//        imageView = UIImageView(image: self.player.avatar)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -40,7 +40,7 @@ class ProfilePageView: UIView {
     private lazy var editProfileButton:MainMenuButton = {
         let button = self.createMenuButton(title: "Edit Profile")
         
-        //button.addTarget(self, action: #selector(backToMainMenu(sender:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(backToMainMenu(sender:)), for: .touchUpInside)
         
         return button
     }()
@@ -49,7 +49,7 @@ class ProfilePageView: UIView {
         let label = GameLabel()
         label.font = UIFont.gameFont(size: 25.0)
         label.text = "Test Player"
-//        label.text = self.player.name
+        label.text = self.player.name
         
         return label
     }()
@@ -58,7 +58,7 @@ class ProfilePageView: UIView {
         let label = GameLabel()
         label.font = UIFont.gameFont(size: 25.0)
         label.text = "Level: 1"
-//        label.text = "Level: \(self.player.level)"
+        label.text = "Level: \(self.player.level)"
         
         return label
     }()
@@ -67,7 +67,7 @@ class ProfilePageView: UIView {
         let label = GameLabel()
         label.font = UIFont.gameFont(size: 25.0)
         label.text = "Matches Won: 0"
-//        label.text = "Matches Won: \(self.player.matchesWon)"
+        label.text = "Matches Won: \(self.player.matchesWon)"
         
         return label
     }()
@@ -76,7 +76,7 @@ class ProfilePageView: UIView {
         let label = GameLabel()
         label.font = UIFont.gameFont(size: 25.0)
         label.text = "Matches Played: 3"
-        //label.text = "Matches Played: \(self.player.matchesPlayed)"
+        label.text = "Matches Played: \(self.player.matchesPlayed)"
         
         return label
     }()
