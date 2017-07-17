@@ -59,7 +59,12 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         self.setNeedsUpdateConstraints()
         
-        loadPlayers()
+        NetworkManager.loadPlayers { (player) in
+            guard let player = player else {return}
+            
+            self.players.append(player)
+            self.table.reloadData()
+        }
     }
     
     override func updateConstraints() {
@@ -110,38 +115,6 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
         }
         
         top.dismiss(animated: true, completion: nil)
-    }
-    
-    //MARK: - helper methods
-    func loadPlayers() {
-        let ref = Database.database().reference(withPath: "players")
-        ref.queryOrdered(byChild: "matchesWon").observeSingleEvent(of: .value, with: {(snapshot) in
-            if !snapshot.exists() {
-                return
-            }
-            let rawPlayers = snapshot.value as! NSDictionary
-            
-            for key in rawPlayers.allKeys {
-                let rawPlayer = rawPlayers.object(forKey: key) as! NSDictionary
-                
-                guard let name = rawPlayer.object(forKey: "name") as? String else {
-                    continue
-                }
-                
-                guard let id = rawPlayer.object(forKey: "playerID") as? String else {
-                    continue
-                }
-                
-                guard let avatarName = rawPlayer.object(forKey: "avatarName") as? String else {
-                    continue
-                }
-                
-                let player = Player(name: name, playerID: id, avatarName: avatarName)
-                
-                self.players.append(player)
-            }
-            self.table.reloadData()
-        })
     }
     
     func createMenuButton(title:String!) -> MainMenuButton {

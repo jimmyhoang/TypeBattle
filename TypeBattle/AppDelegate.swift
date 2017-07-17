@@ -15,7 +15,7 @@ import FacebookCore
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var player:Player?
+    var player = Player()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -23,9 +23,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         var storyboard:UIStoryboard
         
+        let userDefaults = UserDefaults.standard
+        
+        if userDefaults.bool(forKey: "hasRunBefore") == false {
+            try! Auth.auth().signOut()
+            
+            userDefaults.set(true, forKey: "hasRunBefore")
+            userDefaults.synchronize() // Forces the app to update UserDefaults
+        }
+        
         if Auth.auth().currentUser?.uid == nil {
             storyboard = UIStoryboard.init(name: "Login", bundle: .main)
         } else {
+            NetworkManager.fetchPlayerDetails()
             storyboard = UIStoryboard.init(name: "MainMenu", bundle: .main)
         }
         

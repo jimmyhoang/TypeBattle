@@ -42,7 +42,10 @@ class NetworkManager{
         var errorDescription = ""
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            if error == nil {loginSuccess = true}
+            if error == nil {
+                fetchPlayerDetails()
+                loginSuccess = true
+            }
             else {
                 guard let error = error else {return}
                 errorDescription = error.localizedDescription
@@ -57,7 +60,6 @@ class NetworkManager{
         var loginSuccess     = false
         let ref              = Database.database().reference(withPath: "players")
 
-        
         loginManager.logIn([ReadPermission.publicProfile, ReadPermission.email], viewController: nil) { (result) in
             switch result {
             case .failed(let error):
@@ -118,14 +120,13 @@ class NetworkManager{
     
     class func fetchPlayerDetails() {
         let ref           = Database.database().reference(withPath: "players")
-        guard let userID  = Auth.auth().currentUser?.uid else {return}
+        guard let userID  = Auth.auth().currentUser?.uid.lowercased() else {return}
         let appDelegate   = UIApplication.shared.delegate as! AppDelegate
-        
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        let pRef          = ref.child(userID)
+        pRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if !snapshot.exists() {return}
             
-            guard let players          = snapshot.value as? NSDictionary else {return}
-            guard let user             = players.object(forKey: userID) as? NSDictionary else {return}
+            guard let user             = snapshot.value as? NSDictionary else {return}
             guard let name             = user.object(forKey: "name") as? String else {return}
             guard let avatarName       = user.object(forKey: "avatarName") as? String else {return}
             guard let level            = user.object(forKey: "level") as? Int else {return}
@@ -133,13 +134,14 @@ class NetworkManager{
             guard let matchesPlayed    = user.object(forKey: "matchesPlayed") as? Int else {return}
             guard let matchesWon       = user.object(forKey: "matchesWon") as? Int else {return}
             
-            let newPlayer              = Player(name: name, playerID: "zmtbgb6fifvlpmp1hbjzg5saq7s2", avatarName: avatarName)
+            let newPlayer              = Player(name: name, playerID: userID, avatarName: avatarName)
             newPlayer.level            = level
             newPlayer.levelProgression = levelProgression
             newPlayer.matchesPlayed    = matchesPlayed
             newPlayer.matchesWon       = matchesWon
-            appDelegate.player?        = newPlayer
+            appDelegate.player        = newPlayer
         })
+
     }
     
     class func downloadFBImage(url:URL, completion:@escaping (UIImage) -> (Void)) {
@@ -148,6 +150,33 @@ class NetworkManager{
             guard let image = result.value else {return}
             completion(image)
         })
+    }
+    
+    class func loadPlayers(completion:@escaping (Player?) -> ()) {
+        let ref = Database.database().reference(withPath: "players")
+        ref.queryOrdered(byChild: "matchesWon").observeSingleEvent(of: .value, with: {(snapshot) in
+            if !snapshot.exists() {
+                return
+            }
+            let rawPlayers = snapshot.value as! NSDictionary
+            
+            for key in rawPlayers.allKeys {
+                
+                let rawPlayer        = rawPlayers.object(forKey: key) as! NSDictionary
+                guard let name       = rawPlayer.object(forKey: "name") as? String else {continue}
+                guard let id         = rawPlayer.object(forKey: "playerID") as? String else {continue}
+                guard let avatarName = rawPlayer.object(forKey: "avatarName") as? String else {continue}
+                guard let matchesWon = rawPlayer.object(forKey: "matchesWon") as? Int else {continue}
+                let player           = Player(name: name, playerID: id, avatarName: avatarName)
+                player.matchesWon    = matchesWon
+                
+                completion(player)
+            }
+        })
+    }
+
+    class func getWords() {
+        
     }
 
 }

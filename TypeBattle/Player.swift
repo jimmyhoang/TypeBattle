@@ -20,11 +20,20 @@ class Player {
     var avatarName: String
     
     // Game/stats properties
-    var level = 0
+    var level = 1
     var levelProgression = 0.0
     var matchesWon = 0
     var matchesPlayed = 0
     
+    init() {
+        self.playerID     = ""
+        self.name         = ""
+        self.avatarName   = ""
+        
+        guard let image = UIImage(named: avatarName) else {return}
+        avatar = image
+    }
+
     init(name: String,playerID: String,avatarName: String) {
         self.playerID     = playerID
         self.name         = name
