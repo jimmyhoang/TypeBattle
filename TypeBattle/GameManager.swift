@@ -12,21 +12,18 @@ import FirebaseDatabase
 
 class GameManager {
     
-    func createGameLobby(name: String, keyword: String, maxCapacity: Int, location: CLLocation?) -> GameLobby {
+    func createGameLobby(name: String, keyword: String, maxCapacity: Int, location: CLLocation?, owner: Player) -> GameLobby {
         
-        //TODO: Get playerID from logged user
-        let ownerID = "OwnerID"
-        
-        return GameLobby(name: name, textCategory: keyword, capacity: maxCapacity, ownerID: ownerID, location: location)
+        return GameLobby(name: name, textCategory: keyword, capacity: maxCapacity, owner: owner, location: location)
     }
     
     
     func createGameSession(lobby: GameLobby) -> GameSession {
         
         // Use GameLobby data to create a GameSession
-        let session = GameSession(name: lobby.name, gameText: generateRamdomText(keyword: lobby.textCategory), capacity: lobby.capacity, ownerID: lobby.ownerID, location: lobby.location)
+        let session = GameSession(name: lobby.name, gameText: generateRamdomText(keyword: lobby.textCategory), capacity: lobby.capacity, ownerID: lobby.owner.playerID, location: lobby.location)
         
-        session.players.append(PlayerSession(playerID: "OwnerID", playerName: "OwnerName"))
+        session.players.append(PlayerSession(playerID: lobby.owner.playerID, playerName: lobby.owner.name))
         
         // Persist in Firebase
         session.saveToFirebase()
@@ -35,7 +32,7 @@ class GameManager {
     }
     
     
-    func addPlayerToGame (gameSessionID: String, playerID: String, playerName: String) {
+    func addPlayerToGame (gameSessionID: String, player: Player) {
         
         // add PlayerSession to Firebase
         let ref = Database.database().reference(withPath: "game_sessions")
@@ -51,7 +48,7 @@ class GameManager {
             }
             
             // create a playersession and add to the gamesession
-            let playerSession = PlayerSession(playerID: playerID, playerName: playerName)
+            let playerSession = PlayerSession(playerID: player.playerID, playerName: player.name)
             gameSession.players.append(playerSession)
             
             // persist in firebase

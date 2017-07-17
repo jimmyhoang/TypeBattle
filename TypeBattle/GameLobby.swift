@@ -15,14 +15,14 @@ class GameLobby {
     var name: String
     var capacity: Int
     var textCategory: String
-    var ownerID: String //PlayerID who created the room
+    var owner: Player // user who created the room
     var location: CLLocation?
     
-    init(name: String, textCategory: String, capacity: Int, ownerID: String, location: CLLocation?) {
+    init(name: String, textCategory: String, capacity: Int, owner: Player, location: CLLocation?) {
         self.name = name
         self.capacity = capacity
         self.textCategory = textCategory
-        self.ownerID = ownerID
+        self.owner = owner
         self.location = location
     }
     
