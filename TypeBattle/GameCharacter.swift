@@ -8,15 +8,37 @@
 
 import Foundation
 
-enum GameCharacterType {
-    case cat
-    case dog
-    case knight
-    case ninjaBoy
-    case ninjaGirl
-    case robot
-    case zombieBoy
-    case zombieGirl
+enum GameCharacterType: String {
+    case cat = "cat"
+    case dog = "dog"
+    case knight = "knight"
+    case ninjaBoy = "ninjaboy"
+    case ninjaGirl = "ninjagirl"
+    case robot = "robot"
+    case zombieBoy = "zombieboy"
+    case zombieGirl = "zombiegirl"
+    
+    static func stringToEnum(characterType: String) -> GameCharacterType {
+        
+        switch characterType {
+        case "cat":
+            return .cat
+        case "dog":
+            return .dog
+        case "knight":
+            return .knight
+        case "ninjaboy":
+            return .ninjaBoy
+        case "ninjagirl":
+            return .ninjaGirl
+        case "robot":
+            return .robot
+        case "zombieBoy":
+            return .zombieBoy
+        default:
+            return .zombieGirl
+        }
+    }
 }
 
 class GameCharacter {
@@ -30,5 +52,4 @@ class GameCharacter {
         self.typeDescription = typeDescription
         self.perkDescription = perkDescription
     }
-
 }
