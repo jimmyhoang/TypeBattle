@@ -18,7 +18,7 @@ class GameScene: SKScene {
 //    var mainPlayer: PlayerSession!
     
     //test
-    let mainPlayer = PlayerSession(playerID: "123", currentPosition: 1, gameCharacter: .cat)
+    let mainPlayer = PlayerSession(playerID: "123", playerName: "SAM")
     //
     //mainPlayer
     let mainPlayerNode = SKSpriteNode()

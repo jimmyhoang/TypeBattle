@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 // This class was created to hold a new game room settings. Doesn't need to be persisted in firebase. When a room is created, part of the data will be copied to GameSession object
 class GameLobby {
@@ -14,11 +15,15 @@ class GameLobby {
     var name: String
     var capacity: Int
     var textCategory: String
+    var ownerID: String //PlayerID who created the room
+    var location: CLLocation?
     
-    init(name: String, capacity: Int, textCategory: String) {
+    init(name: String, textCategory: String, capacity: Int, ownerID: String, location: CLLocation?) {
         self.name = name
         self.capacity = capacity
         self.textCategory = textCategory
+        self.ownerID = ownerID
+        self.location = location
     }
     
 }
