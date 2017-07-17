@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MULTIPLAYER GAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uF9-QH-d4m">
-                                <rect key="frame" x="38.666666666666657" y="36" width="336.66666666666663" height="47"/>
+                                <rect key="frame" x="39" y="36" width="336.66666666666669" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="yKj-Cf-NND"/>
                                 </constraints>
@@ -381,7 +381,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOBBY (1/8)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07q-rL-zA0">
-                                <rect key="frame" x="97.666666666666657" y="36" width="219.33333333333334" height="47"/>
+                                <rect key="frame" x="98" y="36" width="219.33333333333331" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="lwR-0F-CQN"/>
                                 </constraints>
@@ -401,6 +401,7 @@
                                     <color key="titleColor" red="0.76862745099999996" green="0.18823529410000001" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="backButtonPressed:" destination="D8C-2C-bsp" eventType="touchUpInside" id="eU4-mf-eiR"/>
                                     <segue destination="lSh-JV-T3Q" kind="presentation" identifier="cancel-join-room-segue" modalTransitionStyle="crossDissolve" id="Xzh-Ng-wRI"/>
                                 </connections>
                             </button>
@@ -618,6 +619,7 @@
                     <connections>
                         <outlet property="backButton" destination="PB7-1x-6uR" id="Aiz-63-CeE"/>
                         <outlet property="characterDescription" destination="Dge-KC-PnE" id="0Is-g3-Jd4"/>
+                        <outlet property="characterStackView" destination="He1-Sy-wc1" id="DrN-8n-ZRV"/>
                         <outlet property="perkDescription" destination="HQc-QR-mGr" id="KjW-n6-ND1"/>
                         <outlet property="readyButton" destination="b0e-fY-efZ" id="Nqv-hH-7ke"/>
                         <outlet property="startButton" destination="YTW-Uf-QWl" id="DcA-29-V42"/>

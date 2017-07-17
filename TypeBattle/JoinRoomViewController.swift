@@ -18,6 +18,7 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var readyButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var characterStackView: UIStackView!
     
     let gameManager = GameManager()
     var characters: [GameCharacter]!
@@ -80,34 +81,41 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK: Actions
     @IBAction func characterTapped(_ sender: UITapGestureRecognizer) {
         
-        // Unselect previous character
-        guard let previousImage = self.view.viewWithTag(self.selectedCharacterTag) else {
-            print("Unexpected error")
-            return
+        if (self.readyButton.isHidden == false) {
+            // Unselect previous character
+            guard let previousImage = self.view.viewWithTag(self.selectedCharacterTag) else {
+                print("Unexpected error")
+                return
+            }
+            previousImage.backgroundColor = UIColor.gameBlue
+            
+            // Select character
+            self.selectedCharacterTag = sender.view?.tag
+            
+            guard let characterImage = sender.view as? UIImageView else {
+                print("Unexpected error")
+                return
+            }
+            characterImage.backgroundColor = UIColor.gameRed
+            self.characterDescription.text = self.characters[self.selectedCharacterTag - 1].typeDescription
+            self.perkDescription.text = self.characters[self.selectedCharacterTag - 1].perkDescription
         }
-        previousImage.backgroundColor = UIColor.gameBlue
-        
-        // Select character
-        self.selectedCharacterTag = sender.view?.tag
-        
-        guard let characterImage = sender.view as? UIImageView else {
-            print("Unexpected error")
-            return
-        }
-        characterImage.backgroundColor = UIColor.gameRed
-        self.characterDescription.text = self.characters[self.selectedCharacterTag - 1].typeDescription
-        self.perkDescription.text = self.characters[self.selectedCharacterTag - 1].perkDescription
     }
     
     @IBAction func readyButtonPressed(_ sender: UIButton) {
         
         self.gameManager.setPlayerReady(gameSessionID: self.currentGameSession.gameSessionID, playerID: self.currentPlayer.playerID, characterType: self.characters[self.selectedCharacterTag - 1].type)
+        
+        // Hide ready button and disable character selection
         self.readyButton.isHidden = true
     }
 
     @IBAction func startButtonPressed(_ sender: UIButton) {
         
         self.gameManager.startGameSession(gameSessionID: self.currentGameSession.gameSessionID)
+    }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
     }
     
     // MARK: UITableViewDelegate, UITableViewDataSource
