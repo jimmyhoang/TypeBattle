@@ -17,6 +17,8 @@ class MainMenuView: UIView {
         // Drawing code
     }
     */
+    let leaderboardIconWidth:CGFloat = 64.0
+    
     private lazy var nameIcon:UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "TypeBattle3D"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,6 +35,20 @@ class MainMenuView: UIView {
         sv.axis = .vertical
         sv.spacing = 15
         return sv
+    }()
+    
+    private lazy var leaderboardButton:UIButton = {
+        let button = UIButton()
+        let icon = #imageLiteral(resourceName: "leaderboard_icon")
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(icon, for: .normal)
+        button.tintColor = UIColor.gameRed
+        button.backgroundColor = UIColor.clear
+        
+        button.addTarget(self, action: #selector(leaderboardSegue(sender:)), for: .touchUpInside)
+        
+        return button
     }()
     
     private lazy var singlePlayerButton:MainMenuButton = {
@@ -55,6 +71,9 @@ class MainMenuView: UIView {
     
     private lazy var profileButton:MainMenuButton = {
         let button = self.createMenuButton(title: "My Profile")
+        
+        button.addTarget(self, action: #selector(myProfileSegue(sender:)), for: .touchUpInside)
+        
         return button
     }()
     
@@ -68,7 +87,8 @@ class MainMenuView: UIView {
         super.init(coder: aDecoder)
         self.backgroundColor = UIColor(colorLiteralRed: 194.0/255.0, green: 217.0/255.0, blue: 241.0/255.0, alpha: 1.0)
         self.addSubview(nameIcon)
-
+        self.addSubview(leaderboardButton)
+        
         self.addSubview(stack)
         
         stack.addArrangedSubview(singlePlayerButton)
@@ -86,7 +106,12 @@ class MainMenuView: UIView {
                                       nameIcon.widthAnchor.constraint(equalTo: nameIcon.heightAnchor),
                                       stack.topAnchor.constraint(equalTo: nameIcon.bottomAnchor),
                                       stack.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                      stack.widthAnchor.constraint(equalTo: nameIcon.widthAnchor, constant: -25.0)])
+                                      stack.widthAnchor.constraint(equalTo: nameIcon.widthAnchor, constant: -25.0),
+                                      leaderboardButton.leadingAnchor.constraint(equalTo: nameIcon.leadingAnchor, constant: -20.0),
+                                      leaderboardButton.topAnchor.constraint(equalTo: topAnchor, constant: 15.0),
+                                      leaderboardButton.widthAnchor.constraint(equalToConstant: leaderboardIconWidth),
+                                      leaderboardButton.heightAnchor.constraint(equalTo: leaderboardButton.widthAnchor)
+                                      ])
         super.updateConstraints()
     }
     
@@ -102,8 +127,36 @@ class MainMenuView: UIView {
         return button
     }
     
+    func myProfileSegue(sender:UIButton!) {
+        let storyboard = UIStoryboard(name: "ProfilePage", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()
+        
+        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
+            return
+        }
+        while let next = top.presentedViewController {
+            top = next
+        }
+        
+        top.present(vc!, animated: true, completion: nil)
+    }
+    
     func multiplayerSegue(sender:UIButton!) {
         let storyboard = UIStoryboard(name: "Multiplayer", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()
+        
+        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
+            return
+        }
+        while let next = top.presentedViewController {
+            top = next
+        }
+        
+        top.present(vc!, animated: true, completion: nil)
+    }
+    
+    func leaderboardSegue(sender:UIButton!) {
+        let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
         let vc = storyboard.instantiateInitialViewController()
         
         guard var top = UIApplication.shared.keyWindow?.rootViewController else {

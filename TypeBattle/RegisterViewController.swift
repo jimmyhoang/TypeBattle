@@ -55,7 +55,6 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         if confirmPassword(password: password, confirm: confirm) {
             NetworkManager.registerUser(email: email, password: password, nickname: nickname, avatarName: selectedImage, completion: { () -> (Void) in
-                print("aaaaa")
                 self.performSegue(withIdentifier: "mainmenu", sender: self)
             })
         } else {

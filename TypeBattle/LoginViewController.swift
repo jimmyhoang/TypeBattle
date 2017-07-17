@@ -22,7 +22,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        NetworkManager.fetchPlayerDetails()
+        
     }
     
     // MARK: - Actions
