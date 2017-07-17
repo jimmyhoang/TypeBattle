@@ -11,6 +11,8 @@ import GameplayKit
 
 class GameScene: SKScene {
 
+    var sceneHeight: CGFloat!
+    var sceneWidth: CGFloat!
     
     var players: [PlayerSession]!
 //    var mainPlayer: PlayerSession!
@@ -18,19 +20,37 @@ class GameScene: SKScene {
     //test
     let mainPlayer = PlayerSession(playerID: "123", currentPosition: 1, gameCharacter: .cat)
     //
-    
+    //mainPlayer
     let mainPlayerNode = SKSpriteNode()
     let mainPlayerSize = CGSize(width: 150, height: 200)
     let mainPlayerPosition = CGPoint(x: 200, y: 200)
 
+    //Background
     var sky: SKSpriteNode!
     var ground: SKSpriteNode!
     
+    //Text
+    let textArray = ["a", "p", "p", "l", "e", " ", "h", "i","a", "p", "p", "l", "e", " ", "h", "i","a", "p", "p", "l", "e", " ", "h", "i"]
+    var textNode: SKLabelNode!
+    var textContainerNode: SKSpriteNode!
+    
+    //Camera
+    var cam: SKCameraNode!
+
+    
+    
     override func didMove(to view: SKView) {
         self.anchorPoint = CGPoint.zero
+        sceneHeight = self.frame.size.height
+        sceneWidth = self.frame.size.width
         setupBackground()
         setupMainPlayer()
+        setupCamera()
+        setupText()
+        addNotificationObserver()
         
+        
+
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -46,7 +66,11 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        moveText()
+        moveMainPlayer()
         
+        CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
+
         
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
@@ -66,14 +90,26 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
+//        cam.position.x = mainPlayerNode.position.x
+        
+//        cam.position = mainPlayerNode.position
+        
     }
     
-    //MARK: Main Player Setup
+    //MARK: Main Player
     
+    //Setup
     func setupMainPlayer() {
         addPlayer(player: mainPlayer, spriteNode: mainPlayerNode)
         mainPlayerNode.zPosition = 10
-        CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
+        CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .idle)
+    }
+    
+    //Move mainPlayer
+    func moveMainPlayer() {
+        let moveRight = SKAction.moveBy(x: 50, y: 0, duration: 0)
+        mainPlayerNode.run(moveRight)
     }
     
     
@@ -90,7 +126,9 @@ class GameScene: SKScene {
         self.addChild(spriteNode)
     }
     
-    //MARK: Background Setup
+    //MARK: Background
+    
+    //Setup
     func setupBackground() {
         backgroundColor = UIColor.gameBlue
         setupGround()
@@ -115,22 +153,95 @@ class GameScene: SKScene {
         addChild(sky)
     }
     
-}
-
-extension SKSpriteNode {
-
-func aspectFillToSize(fillSize: CGSize) {
+    //MARK: Text
     
-    if texture != nil {
-        self.size = texture!.size()
+    //Setup
+    func setupText() {
+        textContainerNode = SKSpriteNode()
+        textContainerNode.color = UIColor.gameTeal
+        textContainerNode.anchorPoint = CGPoint.zero
+//        textContainerNode.position = CGPoint(x: 0, y: self.sceneHeight - 150)
+//        textContainerNode.position = CGPoint(x: 0, y: cam.frame.size.height - 150)
+        textContainerNode.position = CGPoint(x: 0 - cam.position.x, y: 0 + cam.position.y - 150)
+
+        textContainerNode.zPosition = 10
+        cam.addChild(textContainerNode)
+
+        var space: CGFloat = 0
+        for char in textArray {
+            textNode = SKLabelNode(fontNamed: "Supersonic Rocketship")
+            textNode.text = char
+            textNode.fontSize = 40
+            textNode.fontColor = UIColor.gameRed
+            textNode.position = CGPoint(x: textNode.frame.width/2 + space, y: 0)
+            textNode.zPosition = 10
+            textContainerNode.addChild(textNode)
+            space += 50.0
+        }
         
-        let verticalRatio = fillSize.height / self.texture!.size().height
-        let horizontalRatio = fillSize.width /  self.texture!.size().width
+        textContainerNode.size = CGSize(width: CGFloat(textArray.count) * (textNode.frame.width/2 + 50.0), height: textNode.frame.height)
         
-        let scaleRatio = horizontalRatio > verticalRatio ? horizontalRatio : verticalRatio
+        //DEBUG
+        print(textContainerNode.position)
+    }
+    
+//    func adjustLabelFontSizeToFitRect(labelNode:SKLabelNode, rect:CGRect) {
+//        
+//        // Determine the font scaling factor that should let the label text fit in the given rectangle.
+//        let scalingFactor = min(rect.width / labelNode.frame.width, rect.height / labelNode.frame.height)
+//        
+//        // Change the fontSize.
+//        labelNode.fontSize *= scalingFactor
+//        
+//        // Optionally move the SKLabelNode to the center of the rectangle.
+//        labelNode.position = CGPoint(x: rect.midX, y: rect.midY - labelNode.frame.height / 2.0)
+//    }
+    
+    
+    //Moving Text
+    func moveText() {
+        let moveLeft = SKAction.moveBy(x: -50, y: 0, duration: 0)
+        textContainerNode.run(moveLeft)
+
+    }
+    
+    //MARK: Camera
+
+    //Setup
+    func setupCamera() {
         
-        self.setScale(scaleRatio)
+        cam = SKCameraNode()
+        
+        cam.position = CGPoint(x: self.anchorPoint.x + sceneWidth/2, y: self.anchorPoint.y + sceneHeight/2)
+        
+        self.camera = cam
+        addChild(cam)
+        
+        //DEBUG
+        print(cam.position)
+    }
+    
+    //MARK: Notification observer
+    
+    func addNotificationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(moveText), name: NSNotification.Name("correctInput"), object: nil)
     }
 }
 
+extension SKSpriteNode {
+    
+    func aspectFillToSize(fillSize: CGSize) {
+        
+        if texture != nil {
+            self.size = texture!.size()
+            
+            let verticalRatio = fillSize.height / self.texture!.size().height
+            let horizontalRatio = fillSize.width /  self.texture!.size().width
+            
+            let scaleRatio = horizontalRatio > verticalRatio ? horizontalRatio : verticalRatio
+            
+            self.setScale(scaleRatio)
+        }
+    }
+    
 }
