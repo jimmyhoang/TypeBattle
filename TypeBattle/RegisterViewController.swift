@@ -36,7 +36,7 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor.background
         avatarImages = defaultAvatars.allValues as! [UIImage]
 
         
