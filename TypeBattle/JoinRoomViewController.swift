@@ -23,6 +23,7 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     var characters: [GameCharacter]!
     var selectedCharacterTag: Int!
     var currentGameSession: GameSession!
+    var currentPlayer: Player!
 
     //MARK: ViewController life cycle
     override func viewDidLoad() {
@@ -43,6 +44,10 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
         self.selectedCharacterTag = 1
         self.characterDescription.text = self.characters[self.selectedCharacterTag - 1].typeDescription
         self.perkDescription.text = self.characters[self.selectedCharacterTag - 1].perkDescription
+        
+        // Get logged user
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        self.currentPlayer = delegate.player
         
         // Set up table view
         self.tableView.delegate = self
@@ -92,8 +97,8 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func readyButtonPressed(_ sender: UIButton) {
         
-        self.gameManager.setPlayerReady(gameSessionID: self.currentGameSession.gameSessionID, playerID: "OwnerID", characterType: self.characters[self.selectedCharacterTag - 1].type)
-        self.readyButton.isEnabled = false
+        self.gameManager.setPlayerReady(gameSessionID: self.currentGameSession.gameSessionID, playerID: self.currentPlayer.playerID, characterType: self.characters[self.selectedCharacterTag - 1].type)
+        self.readyButton.isHidden = true
     }
 
     @IBAction func startButtonPressed(_ sender: UIButton) {

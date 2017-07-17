@@ -18,6 +18,7 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
     var availableRooms = [GameSession]()
     var selectedRoom = 0
     var gameManager = GameManager()
+    var currentPlayer: Player!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,10 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
         createRoomButton.layer.cornerRadius = 4.0
         backButton.contentVerticalAlignment = .fill
         backButton.layer.cornerRadius = 4.0
+        
+        // Get logged user
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        self.currentPlayer = delegate.player
         
         // Disable row selection
         tableView.allowsSelection = false
@@ -71,6 +76,9 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
         case "join-room-segue":
             let controller = segue.destination as! JoinRoomViewController
             controller.currentGameSession = self.availableRooms[self.selectedRoom]
+            
+            // add player to room
+            gameManager.addPlayerToGame(gameSessionID: self.availableRooms[self.selectedRoom].gameSessionID, player: self.currentPlayer)
         default:
             return
         }

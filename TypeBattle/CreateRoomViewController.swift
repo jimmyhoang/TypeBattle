@@ -23,6 +23,7 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
     var currentLocation: CLLocation?
     var locationManager: CLLocationManager!
     var savedGameSession: GameSession!
+    var currentPlayer: Player!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,10 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         self.locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
+        
+        // Get logged user
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        self.currentPlayer = delegate.player
     }
 
     // MARK: Actions
@@ -74,13 +79,10 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         let manager = GameManager()
         
         // Create lobby
-        let lobby = manager.createGameLobby(name: roomName, keyword: category, maxCapacity: maxPlayers, location: self.currentLocation)
+        let lobby = manager.createGameLobby(name: roomName, keyword: category, maxCapacity: maxPlayers, location: self.currentLocation, owner: self.currentPlayer)
 
         // Create room with the creator as the first player
         self.savedGameSession = manager.createGameSession(lobby: lobby)
-        
-        // TODO: Add owner to room
-//        manager.addPlayerToGame(gameSessionID: self.savedGameSession.gameSessionID, playerID: "anyID", playerName: "anyName")
     }
 
     @IBAction func maxPlayersSegmentedControl(_ sender: UISlider) {
