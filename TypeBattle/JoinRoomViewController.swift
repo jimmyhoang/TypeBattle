@@ -49,6 +49,11 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
         let delegate = UIApplication.shared.delegate as! AppDelegate
         self.currentPlayer = delegate.player
         
+        // If lobby was created by the logged user, show Cancel instead of Back 
+        if (self.currentPlayer.playerID == self.currentGameSession.ownerID) {
+            self.backButton.setTitle("Cancel", for: .normal)
+        }
+        
         // Set up table view
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -72,7 +77,6 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-
     //MARK: Actions
     @IBAction func characterTapped(_ sender: UITapGestureRecognizer) {
         
