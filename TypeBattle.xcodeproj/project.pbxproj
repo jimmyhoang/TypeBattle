@@ -65,7 +65,6 @@
 		43D9BBCB1F1B51E100B0B4AC /* Leaderboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Leaderboard.storyboard; sourceTree = "<group>"; };
 		43D9BBCD1F1B51FC00B0B4AC /* LeaderboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		43D9BBCF1F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
-		4AF075521F16CE2B0056E013 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		4AF075581F1888820056E013 /* CharacterAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterAnimation.swift; sourceTree = "<group>"; };
 		4AF0755C1F18A9FC0056E013 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		4AF075841F18E6790056E013 /* KeystrokeDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeystrokeDetection.swift; sourceTree = "<group>"; };
@@ -225,7 +224,6 @@
 			isa = PBXGroup;
 			children = (
 				FF889A0E1F169C3E006955BB /* GameScene.swift */,
-				4AF075521F16CE2B0056E013 /* Character.swift */,
 				4AF075841F18E6790056E013 /* KeystrokeDetection.swift */,
 				4AF075581F1888820056E013 /* CharacterAnimation.swift */,
 				4AF0755C1F18A9FC0056E013 /* GameScene.sks */,
