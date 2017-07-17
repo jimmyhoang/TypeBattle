@@ -37,7 +37,8 @@ class GameManager {
         // add PlayerSession to Firebase
         let ref = Database.database().reference(withPath: "game_sessions")
         let gameRef = ref.child(gameSessionID)
-        gameRef.observe(.value, with: { (snapshot) in
+        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
+
             let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
             
             // try to parse dictionary to a GameSession object
