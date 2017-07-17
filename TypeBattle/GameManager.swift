@@ -59,44 +59,19 @@ class GameManager {
         })
     }
     
-    func setPlayerReady (gameSessionID: String, playerID: String) {
+    func setPlayerReady (gameSessionID: String, playerID: String, characterType: GameCharacterType) {
         
+        GameSession.setPlayerAsReady(gameSessionID: gameSessionID, playerID: playerID, characterType: characterType)
     }
     
     func startGameSession (gameSessionID: String) {
         
-        changeGameSessionStatus(gameSessionID: gameSessionID, status: .started)
+        GameSession.changeGameSessionStatus(gameSessionID: gameSessionID, status: .started)
     }
     
     func finishGameSession (gameSessionID: String) {
         
-        changeGameSessionStatus(gameSessionID: gameSessionID, status: .finished)
-    }
-    
-    private func changeGameSessionStatus (gameSessionID: String, status: GameSessionStatus) {
-        
-        // change game session status to Started
-        let ref = Database.database().reference(withPath: "game_sessions")
-        let gameRef = ref.child(gameSessionID)
-        gameRef.observe(.value, with: { (snapshot) in
-            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
-            
-            // try to parse dictionary to a GameSession object
-            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
-                else {
-                    print("Error getting GameSession")
-                    return
-            }
-            
-            // change status
-            gameSession.status = status
-            
-            // persist in firebase
-            gameRef.setValue(gameSession.createDictionary())
-            
-            gameRef.removeAllObservers()
-        })
-
+        GameSession.changeGameSessionStatus(gameSessionID: gameSessionID, status: .finished)
     }
     
     func listAvailableGameSessions(withCompletionBlock block: @escaping (GameSession) -> Swift.Void) {
@@ -117,6 +92,22 @@ class GameManager {
                 block(gameSession)
             }
         })
+        
+//        ref.observe(DataEventType.childChanged, with: { (snapshot) in
+//            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+//            
+//            // try to parse dictionary to a GameSession object
+//            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+//                else {
+//                    print("Error getting GameSession")
+//                    return
+//            }
+//            
+//            // check session status
+//            if(gameSession.status == .waitingForPlayers) {
+//                block(gameSession)
+//            }
+//        })
     
     }
     
@@ -133,36 +124,36 @@ class GameManager {
         var allTypes = Array<GameCharacter>()
         
         allTypes.append(GameCharacter(type: .cat,
-                                      typeDescription: "The cat can type really fast when it feels attacked",
-                                      perkDescription: "ACTIVE: Randomly changes next 10 letters between upper/lower case for all other players"))
+                                      typeDescription: "Cat is a cat, cat is a cat, cat is cat, cat is cat",
+                                      perkDescription: "ABILITY: Randomly changes next 10 letters between upper/lower case for all other players"))
         
         allTypes.append(GameCharacter(type: .dog,
-                                      typeDescription: "The dog is a natural typer. Good for beginners",
-                                      perkDescription: "ACTIVE: Randomly changes next 10 letters positions for all other players"))
+                                      typeDescription: "Dog ia dog, dog is a dog, dog is a dog, dog is a dog",
+                                      perkDescription: "ABILITY: Randomly changes next 10 letters positions for all other players"))
         
         allTypes.append(GameCharacter(type: .knight,
-                                      typeDescription: "Warrior typers are very dangerous and feared by all enemies",
-                                      perkDescription: "ACTIVE: Send all others players 5 positions back"))
+                                      typeDescription: "Warrior is a warrior. Warrior is a warrior. Warrior is a warrior. ",
+                                      perkDescription: "ABILITY: Send all others players 5 positions back"))
         
         allTypes.append(GameCharacter(type: .robot,
-                                      typeDescription: "Sometimes this robot can teleport and time travel",
-                                      perkDescription: "PASSIVE: Skip 8 letters"))
+                                      typeDescription: "Robot is a robot. Robot is a robot. Robot is a robot. ",
+                                      perkDescription: "ABILITY: Skip 8 letters"))
         
         allTypes.append(GameCharacter(type: .ninjaBoy,
-                                      typeDescription: "Ninja Boy. Where is he?",
-                                      perkDescription: "PASSIVE: Allows you to type uppercase letters as lowercase"))
+                                      typeDescription: "Ninja Boy is a Ninja. Ninja Boy is a Ninja. Ninja Boy is a Ninja. ",
+                                      perkDescription: "ABILITY: Allows you to type uppercase letters as lowercase"))
         
         allTypes.append(GameCharacter(type: .ninjaGirl,
-                                      typeDescription: "Never underestimate a Ninja Girl. Typing is her main weapon",
-                                      perkDescription: "PASSIVE: Allows you to skip spaces in the text"))
+                                      typeDescription: "Ninja Girl is a Ninja. Ninja Girl is a Ninja. Ninja Girl is a Ninja. ",
+                                      perkDescription: "ABILITY: Allows you to skip spaces in the text"))
         
         allTypes.append(GameCharacter(type: .zombieBoy,
-                                      typeDescription: "Typing Dead...",
-                                      perkDescription: "ACTIVE: Hide part of the text for all other players"))
+                                      typeDescription: "Zombie Boy is a Zombie. Zombie Boy is a Zombie. Zombie Boy is a Zombie. ",
+                                      perkDescription: "ABILITY: Hide part of the text for all other players"))
         
         allTypes.append(GameCharacter(type: .zombieGirl,
-                                      typeDescription: "Typing Dead...",
-                                      perkDescription: "PASSIVE: Skip 2 words"))
+                                      typeDescription: "Zombie Girl is a Zombie. Zombie Girl is a Zombie. Zombie Girl is a Zombie. ",
+                                      perkDescription: "ABILITY: Skip 2 words"))
         
         return allTypes
     }

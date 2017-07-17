@@ -28,6 +28,7 @@
 		9C34E2D01F184F59008372DC /* CreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2CF1F184F59008372DC /* CreateRoomViewController.swift */; };
 		9C34E2D21F184F64008372DC /* JoinRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2D11F184F64008372DC /* JoinRoomViewController.swift */; };
 		9C34E2D41F18B31F008372DC /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2D31F18B31F008372DC /* RoomTableViewCell.swift */; };
+		9C39A5961F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C39A5951F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift */; };
 		FF889A091F169C3E006955BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A081F169C3E006955BB /* AppDelegate.swift */; };
 		FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A0E1F169C3E006955BB /* GameScene.swift */; };
 		FF889A111F169C3E006955BB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A101F169C3E006955BB /* GameViewController.swift */; };
@@ -70,6 +71,7 @@
 		9C34E2CF1F184F59008372DC /* CreateRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRoomViewController.swift; sourceTree = "<group>"; };
 		9C34E2D11F184F64008372DC /* JoinRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinRoomViewController.swift; sourceTree = "<group>"; };
 		9C34E2D31F18B31F008372DC /* RoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
+		9C39A5951F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInLobbyTableViewCell.swift; sourceTree = "<group>"; };
 		B5D5DD2C2501F40C389C845E /* Pods_TypeBattle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypeBattle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF889A051F169C3E006955BB /* TypeBattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypeBattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF889A081F169C3E006955BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				9C34E2CF1F184F59008372DC /* CreateRoomViewController.swift */,
 				9C34E2D11F184F64008372DC /* JoinRoomViewController.swift */,
 				9C34E2D31F18B31F008372DC /* RoomTableViewCell.swift */,
+				9C39A5951F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift */,
 			);
 			name = Multiplayer;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */,
 				9C34E2C41F173EE0008372DC /* GameCharacter.swift in Sources */,
 				FF889A111F169C3E006955BB /* GameViewController.swift in Sources */,
+				9C39A5961F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift in Sources */,
 				438DC9601F180476005699C3 /* MainMenuView.swift in Sources */,
 				9C34E2D01F184F59008372DC /* CreateRoomViewController.swift in Sources */,
 				FF889A3D1F18422E006955BB /* RegisterViewController.swift in Sources */,
