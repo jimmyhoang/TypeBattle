@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         var storyboard:UIStoryboard
         
-        if player == nil {
+        if 1 == 2 {
             storyboard = UIStoryboard.init(name: "Login", bundle: .main)
         } else {
             storyboard = UIStoryboard.init(name: "MainMenu", bundle: .main)
