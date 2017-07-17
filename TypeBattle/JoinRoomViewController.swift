@@ -12,6 +12,7 @@ import FirebaseDatabase
 class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
  
     //MARK: Properties
+    @IBOutlet weak var lobbyLabel: UILabel!
     @IBOutlet weak var characterDescription: UILabel!
     @IBOutlet weak var perkDescription: UILabel!
     @IBOutlet weak var startButton: UIButton!
@@ -19,12 +20,14 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var characterStackView: UIStackView!
+    @IBOutlet weak var waitingForPlayerLabel: UILabel!
     
     let gameManager = GameManager()
     var characters: [GameCharacter]!
     var selectedCharacterTag: Int!
     var currentGameSession: GameSession!
     var currentPlayer: Player!
+    var timer: Timer!
 
     //MARK: ViewController life cycle
     override func viewDidLoad() {
@@ -55,6 +58,21 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             self.backButton.setTitle("Cancel", for: .normal)
         }
         
+        // Create a animated "Waiting for players" label
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: true, block: { (timer) in
+            
+            // Get current number of dots
+            let ellipsis = self.waitingForPlayerLabel.text?.replacingOccurrences(of: "Waiting for players", with: "", options: String.CompareOptions.caseInsensitive, range: nil)
+
+            var newEllipsis = ""
+            for _ in 0 ... (ellipsis!.characters.count % 3) {
+                newEllipsis += "."
+            }
+                
+            self.waitingForPlayerLabel.text = "Waiting for players\(newEllipsis)"
+            
+        })
+        
         // Set up table view
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -73,9 +91,20 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             }
             self.currentGameSession = gameSession
             
+            // Reload table view
             self.tableView.reloadData()
+            
+            // Change lobby title
+            self.lobbyLabel.text = "LOBBY (\(self.currentGameSession.players.count)/\(self.currentGameSession.capacity))"
         })
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // stop the "waiting for players" label animation
+        self.timer.invalidate()
     }
     
     //MARK: Actions

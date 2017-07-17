@@ -68,11 +68,11 @@
                                         <rect key="frame" x="0.0" y="28" width="374" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kih-Ib-73t" id="jbP-we-bdl">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="79.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRp-t7-5YU">
-                                                    <rect key="frame" x="16" y="16" width="119" height="28"/>
+                                                    <rect key="frame" x="16" y="16" width="135" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="fpL-Vz-G1F"/>
                                                     </constraints>
@@ -620,10 +620,12 @@
                         <outlet property="backButton" destination="PB7-1x-6uR" id="Aiz-63-CeE"/>
                         <outlet property="characterDescription" destination="Dge-KC-PnE" id="0Is-g3-Jd4"/>
                         <outlet property="characterStackView" destination="He1-Sy-wc1" id="DrN-8n-ZRV"/>
+                        <outlet property="lobbyLabel" destination="07q-rL-zA0" id="57Q-az-IUl"/>
                         <outlet property="perkDescription" destination="HQc-QR-mGr" id="KjW-n6-ND1"/>
                         <outlet property="readyButton" destination="b0e-fY-efZ" id="Nqv-hH-7ke"/>
                         <outlet property="startButton" destination="YTW-Uf-QWl" id="DcA-29-V42"/>
                         <outlet property="tableView" destination="YIH-PG-fJd" id="hOd-rc-Ax9"/>
+                        <outlet property="waitingForPlayerLabel" destination="ENG-Bx-XfD" id="2dy-fF-EGI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5SB-Mg-JSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
