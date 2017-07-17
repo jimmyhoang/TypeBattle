@@ -11,16 +11,19 @@ import GameplayKit
 
 class GameScene: SKScene {
 
+    //Scene
     var sceneHeight: CGFloat!
     var sceneWidth: CGFloat!
     
+    //
     var players: [PlayerSession]!
 //    var mainPlayer: PlayerSession!
     
-    //test
+    //test player
     let mainPlayer = PlayerSession(playerID: "123", playerName: "SAM")
     //
-    //mainPlayer
+    
+    //MainPlayer
     let mainPlayerNode = SKSpriteNode()
     let mainPlayerSize = CGSize(width: 150, height: 200)
     let mainPlayerPosition = CGPoint(x: 200, y: 200)
@@ -33,13 +36,16 @@ class GameScene: SKScene {
     let textArray = ["a", "p", "p", "l", "e", " ", "h", "i","a", "p", "p", "l", "e", " ", "h", "i","a", "p", "p", "l", "e", " ", "h", "i"]
     var textNode: SKLabelNode!
     var textContainerNode: SKSpriteNode!
-    
+    var arrayIndex = 0
+
     //Camera
     var cam: SKCameraNode!
-
-    
     
     override func didMove(to view: SKView) {
+        //test
+        mainPlayer.gameCharacter = .knight
+        //
+        
         self.anchorPoint = CGPoint.zero
         sceneHeight = self.frame.size.height
         sceneWidth = self.frame.size.width
@@ -47,10 +53,7 @@ class GameScene: SKScene {
         setupMainPlayer()
         setupCamera()
         setupText()
-        addNotificationObserver()
-        
-        
-
+        detectKeystroke()
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -66,12 +69,6 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        moveText()
-        moveMainPlayer()
-        
-        CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
-
-        
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
@@ -97,9 +94,9 @@ class GameScene: SKScene {
         
     }
     
-    //MARK: Main Player
+    //MARK: Players
     
-    //Setup
+    //Setup mainPlayer
     func setupMainPlayer() {
         addPlayer(player: mainPlayer, spriteNode: mainPlayerNode)
         mainPlayerNode.zPosition = 10
@@ -113,7 +110,7 @@ class GameScene: SKScene {
     }
     
     
-    //MARK: Add Player to Scene
+    //Add a player to scene
     func addPlayer(player: PlayerSession, spriteNode: SKSpriteNode) {
         //if mainPlayer
 //        let spriteSize = mainPlayerSize
@@ -135,6 +132,8 @@ class GameScene: SKScene {
         setupSky()
     }
     
+    
+    //Ground
     func setupGround() {
         ground = SKSpriteNode()
         ground.texture = SKTexture(imageNamed: "ground")
@@ -144,6 +143,8 @@ class GameScene: SKScene {
         addChild(ground)
     }
     
+    
+    //Sky
     func setupSky() {
         sky = SKSpriteNode()
         sky.texture = SKTexture(imageNamed: "sky")
@@ -160,8 +161,6 @@ class GameScene: SKScene {
         textContainerNode = SKSpriteNode()
         textContainerNode.color = UIColor.gameTeal
         textContainerNode.anchorPoint = CGPoint.zero
-//        textContainerNode.position = CGPoint(x: 0, y: self.sceneHeight - 150)
-//        textContainerNode.position = CGPoint(x: 0, y: cam.frame.size.height - 150)
         textContainerNode.position = CGPoint(x: 0 - cam.position.x, y: 0 + cam.position.y - 150)
 
         textContainerNode.zPosition = 10
@@ -202,7 +201,25 @@ class GameScene: SKScene {
     func moveText() {
         let moveLeft = SKAction.moveBy(x: -50, y: 0, duration: 0)
         textContainerNode.run(moveLeft)
-
+    }
+    
+    //Detect user entered text
+    func detectKeystroke() {
+        NotificationCenter.default.addObserver(self, selector: #selector(checkUserText(sender:)), name: NSNotification.Name.UITextFieldTextDidChange , object: nil)
+    }
+    
+    //Check user entered text with game text
+    func checkUserText(sender: Notification) {
+        let textField = sender.object as! UITextField
+        let lowerText = textField.text?.lowercased()
+        textField.text = ""
+        
+        if lowerText == textArray[arrayIndex] {
+            moveText()
+            moveMainPlayer()
+            CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
+            arrayIndex += 1
+        }
     }
     
     //MARK: Camera
@@ -219,12 +236,6 @@ class GameScene: SKScene {
         
         //DEBUG
         print(cam.position)
-    }
-    
-    //MARK: Notification observer
-    
-    func addNotificationObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(moveText), name: NSNotification.Name("correctInput"), object: nil)
     }
 }
 
