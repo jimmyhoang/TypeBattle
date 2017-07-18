@@ -114,10 +114,10 @@ class GameManager {
         GameSession.cancelGameSession(gameSessionID: gameSessionID)
     }
     
-    func listAvailableGameSessions(withCompletionBlock block: @escaping (GameSession) -> Swift.Void) {
+    func listAvailableGameSessions(withCompletionBlock block: @escaping (GameSession, String) -> Swift.Void) {
     
         let ref = Database.database().reference(withPath: "game_sessions")
-        ref.observe(DataEventType.childAdded, with: { (snapshot) in
+        ref.observe(.childAdded, with: { (snapshot) in
             let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
             
             // try to parse dictionary to a GameSession object
@@ -129,25 +129,42 @@ class GameManager {
             
             // check session status
             if(gameSession.status == .waitingForPlayers) {
-                block(gameSession)
+                block(gameSession, "added")
             }
         })
         
-//        ref.observe(DataEventType.childChanged, with: { (snapshot) in
-//            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
-//            
-//            // try to parse dictionary to a GameSession object
-//            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
-//                else {
-//                    print("Error getting GameSession")
-//                    return
-//            }
-//            
-//            // check session status
-//            if(gameSession.status == .waitingForPlayers) {
-//                block(gameSession)
-//            }
-//        })
+        ref.observe(.childChanged, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            // check session status
+            if(gameSession.status == .waitingForPlayers) {
+                block(gameSession, "updated")
+            }
+        })
+
+        ref.observe(.childRemoved, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            // check session status
+            if(gameSession.status == .waitingForPlayers) {
+                block(gameSession, "deleted")
+            }
+        })
+
     
     }
     

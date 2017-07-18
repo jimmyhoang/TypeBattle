@@ -37,11 +37,25 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.allowsSelection = false
         
         // Get available rooms
-        gameManager.listAvailableGameSessions { (session) in
-            self.availableRooms.append(session)
+        gameManager.listAvailableGameSessions { (session, event) in
             
-            self.tableView.delegate = self
-            self.tableView.dataSource = self
+            // remove current element from array in updated and deleted events
+            if (event == "updated" || event == "deleted") {
+                for i in 0..<self.availableRooms.count {
+                    if (self.availableRooms[i].gameSessionID == session.gameSessionID) {
+                        self.availableRooms.remove(at: i)
+                        break
+                    }
+                }
+            }
+            
+            // add new element in array in added and updated events
+            if(event == "updated" || event == "added") {
+                self.availableRooms.append(session)
+            }
+            
+            // sort array alphabetically
+            self.availableRooms = self.availableRooms.sorted(by: { $0.name < $1.name })
             self.tableView.reloadData()
         }
     }
@@ -56,7 +70,7 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let room = self.availableRooms[indexPath.row]
         cell.roomNameLabel.text = room.name
-        cell.playersInGameLabel.text = "0/\(room.capacity)"
+        cell.playersInGameLabel.text = "\(room.players.count)/\(room.capacity)"
         cell.joinButton.tag = indexPath.row
         cell.joinButton.addTarget(self, action: #selector(joinRoomPressed(sender:)), for: .touchUpInside)
         return cell
