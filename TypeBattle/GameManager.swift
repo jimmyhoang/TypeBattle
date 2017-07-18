@@ -109,11 +109,14 @@ class GameManager {
     
     }
     
-    func generateRamdomText(keyword: String) -> String {
-        
-        //TODO: Call NetworkManager and get random text from API
-        return "The quick brown fox jumps over the lazy dog The quick brown fox jumps over the lazy dog The quick brown fox jumps over the lazy dog"
-        
+    func generateRamdomText(keyword: String) -> [String] {
+        var characters:[String] = []
+        DispatchQueue.main.async {
+            NetworkManager.getWords(category: keyword) { (words) in
+                characters = words
+            }
+        }
+        return characters
     }
     
     func getAllCharacters() -> Array<GameCharacter> {

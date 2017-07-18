@@ -175,9 +175,9 @@ class NetworkManager{
         })
     }
 
-    class func getWords(category:String, completion:@escaping ([Character]) -> ()) {
+    class func getWords(category:String, completion:@escaping ([String]) -> ()) {
         var number            = 0
-        var words:[Character] = []
+        var words:[String]    = []
         let lowerCategory     = category.lowercased()
         
         switch lowerCategory {
@@ -205,7 +205,7 @@ class NetworkManager{
             let lowerCased = wordsString.lowercased()
             
             for element in lowerCased.characters {
-                words.append(element)
+                words.append(String(element))
             }
             completion(words)
         }
