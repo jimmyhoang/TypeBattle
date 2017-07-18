@@ -32,7 +32,6 @@ class GameScene: SKScene {
 
     //Background
     var ground: SKSpriteNode!
-
     var sky: SKSpriteNode!
     let skyYPos: CGFloat = 100.0
     var skyWidth: CGFloat!
@@ -105,10 +104,9 @@ class GameScene: SKScene {
             firstFrame = false
         }
         timerTime = currentTime - initialTime
+        updateTimer(time: timerTime)
         
         neverEndingSky(widthOfSky: skyWidth)
-        
-        updateTimer(time: timerTime)
     }
     
     //MARK: Players
@@ -151,7 +149,6 @@ class GameScene: SKScene {
     
     //Ground
     func setupGround() {
-//        let groundWidth: CGFloat = self.frame.size.width * 50
         let groundWidth: CGFloat = playerMovement * CGFloat(textArray.count) + self.frame.size.width
         let groundHeight: CGFloat = 100.0
         
@@ -165,13 +162,11 @@ class GameScene: SKScene {
     
     //Sky
     func setupSky() {
-        
         let skyPosition = CGPoint(x: 0.0, y: skyYPos)
-        
         makeSkyAtPos(pos: skyPosition)
     }
     
-    //make new sky
+    //Make new sky
     func makeSkyAtPos(pos: CGPoint) {
         skyWidth = self.frame.size.width * 2
         let skyHeight: CGFloat = 200.0
@@ -184,7 +179,7 @@ class GameScene: SKScene {
         addChild(sky)
     }
     
-    //spawn sky
+    //Spawn sky
     var framesOfSky: CGFloat = 1.0
 
     func neverEndingSky(widthOfSky: CGFloat) {
@@ -228,7 +223,6 @@ class GameScene: SKScene {
 
     //Moving Text
     func moveText() {
-//        let movement = textNodeWidth + spaceBetweenLetters
         let movement = spaceBetweenLetters
 
         let moveLeft = SKAction.moveBy(x: -(movement), y: 0, duration: 0)
