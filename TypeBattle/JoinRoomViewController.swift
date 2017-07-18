@@ -21,6 +21,7 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var characterStackView: UIStackView!
     @IBOutlet weak var waitingForPlayerLabel: UILabel!
+    @IBOutlet weak var readyButtonConstraint: NSLayoutConstraint!
     
     let gameManager = GameManager()
     var characters: [GameCharacter]!
@@ -53,9 +54,25 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
         let delegate = UIApplication.shared.delegate as! AppDelegate
         self.currentPlayer = delegate.player
         
-        // If lobby was created by the logged user, show Cancel instead of Back 
+        // Check if room was created by the logged user
         if (self.currentPlayer.playerID == self.currentGameSession.ownerID) {
+            
+            // Change Back button to Cancel (should remove the room)
             self.backButton.setTitle("Cancel", for: .normal)
+            
+            // Set button position
+            self.readyButtonConstraint.constant = -90
+            
+            // Show start only for creator
+            self.startButton.isHidden = false
+        }
+        else {
+            
+            // Set button position
+            self.readyButtonConstraint.constant = 0
+            
+            // Show start only for creator
+            self.startButton.isHidden = true
         }
         
         // Create a animated "Waiting for players" label
