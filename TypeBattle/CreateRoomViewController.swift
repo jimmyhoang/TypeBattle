@@ -76,6 +76,12 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
             return
         }
         
+        // check if room name have at least 3 characters
+        if (roomName.characters.count <= 3) {
+            roomNameTextField.placeholder = "Room name should have at least 3 characters"
+            return
+        }
+        
         let manager = GameManager()
         
         // Create lobby

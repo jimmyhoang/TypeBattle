@@ -47,6 +47,13 @@ class GameManager {
                     print("Error getting GameSession")
                     return
             }
+
+            // if the user is already in the game, does not add it again
+            for p in gameSession.players {
+                if(p.playerID == player.playerID) {
+                    return
+                }
+            }
             
             // create a playersession and add to the gamesession
             let playerSession = PlayerSession(playerID: player.playerID, playerName: player.name)
