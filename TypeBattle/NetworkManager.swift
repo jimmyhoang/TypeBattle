@@ -175,8 +175,41 @@ class NetworkManager{
         })
     }
 
-    class func getWords() {
+    class func getWords(category:String, completion:@escaping ([Character]) -> ()) {
+        var number            = 0
+        var words:[Character] = []
+        let lowerCategory     = category.lowercased()
         
+        switch lowerCategory {
+        case "poem":
+            number = Int(arc4random_uniform(20))
+        case "quote":
+            number = Int(arc4random_uniform(50))
+        default:
+            break
+        }
+     
+        var components  = URLComponents()
+        components.host = "http://typebattle.vapor.cloud"
+        components.path = "/\(lowerCategory)/\(number)"
+        
+        guard let url = components.url else {return}
+        let request   = URLRequest(url: url)
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
+            
+            guard let data = data else {return}
+            
+            guard let wordsString = String(data: data, encoding: String.Encoding.utf8) else {return}
+            
+            let lowerCased = wordsString.lowercased()
+            
+            for element in lowerCased.characters {
+                words.append(element)
+            }
+            completion(words)
+        }
+        task.resume()
     }
 
 }
