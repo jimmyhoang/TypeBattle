@@ -246,14 +246,13 @@ class GameManager {
     }
     
     func generateRamdomText(keyword: String) -> String {
-        var characters:[String] = []
+        var characters:String = ""
         DispatchQueue.main.async {
             NetworkManager.getWords(category: keyword) { (words) in
                 characters = words
             }
         }
-//        return characters
-        return "Hello world let's play type battle"
+        return characters
     }
     
     func getAllCharacters() -> Array<GameCharacter> {

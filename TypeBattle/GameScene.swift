@@ -22,11 +22,13 @@ class GameScene: SKScene {
     //test player
     let mainPlayer = PlayerSession(playerID: "123", playerName: "SAM")
     //
-    
+
     //MainPlayer
     let mainPlayerNode = SKSpriteNode()
     let mainPlayerSize = CGSize(width: 120, height: 150)
     let mainPlayerPosition = CGPoint(x: 100, y: 150)
+    let playerMovement: CGFloat = 20.0
+    var isIdle: Bool!
 
     //Background
     var ground: SKSpriteNode!
@@ -36,7 +38,7 @@ class GameScene: SKScene {
     var skyWidth: CGFloat!
     
     //Text
-    let textArray = ["a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a"]
+    let textArray = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a" ]
     var textNode: SKLabelNode!
     var textContainerNode: SKSpriteNode!
     var arrayIndex = 0
@@ -45,6 +47,12 @@ class GameScene: SKScene {
 
     //Camera
     var cam: SKCameraNode!
+    
+    //Timer
+    var timerTextNode: SKLabelNode!
+    var initialTime: TimeInterval!
+    var timerTime: TimeInterval!
+    var firstFrame = true
     
     override func didMove(to view: SKView) {
         //test
@@ -59,6 +67,7 @@ class GameScene: SKScene {
         setupCamera()
         setupText()
         detectKeystroke()
+        setupTimer()
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -91,13 +100,15 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        if firstFrame == true {
+            initialTime = currentTime
+            firstFrame = false
+        }
+        timerTime = currentTime - initialTime
         
         neverEndingSky(widthOfSky: skyWidth)
         
-//        cam.position.x = mainPlayerNode.position.x
-        
-//        cam.position = mainPlayerNode.position
-        
+        updateTimer(time: timerTime)
     }
     
     //MARK: Players
@@ -106,17 +117,20 @@ class GameScene: SKScene {
         addPlayer(spriteNode: mainPlayerNode, size: mainPlayerSize, position: mainPlayerPosition)
         mainPlayerNode.zPosition = 10
         CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .idle)
+        isIdle = true
     }
     
     //Move mainPlayer
     func moveMainPlayer() {
+        if isIdle {
+            CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
+            isIdle = false
+        }
+        cam.position.x += playerMovement
         
-        let movement: CGFloat = 50.0
-
-        cam.position.x += movement
-        
-        let moveRight = SKAction.moveBy(x: movement, y: 0, duration: 0)
+        let moveRight = SKAction.moveBy(x: playerMovement, y: 0, duration: 0)
         mainPlayerNode.run(moveRight)
+        
     }
     
     //Add a player to scene
@@ -137,7 +151,8 @@ class GameScene: SKScene {
     
     //Ground
     func setupGround() {
-        let groundWidth: CGFloat = self.frame.size.width * 50
+//        let groundWidth: CGFloat = self.frame.size.width * 50
+        let groundWidth: CGFloat = playerMovement * CGFloat(textArray.count) + self.frame.size.width
         let groundHeight: CGFloat = 100.0
         
         ground = SKSpriteNode()
@@ -185,14 +200,15 @@ class GameScene: SKScene {
     //MARK: Text
     //Setup
     func setupText() {
+        //textContainer
         textContainerNode = SKSpriteNode()
         textContainerNode.color = UIColor.gameTeal
         textContainerNode.anchorPoint = CGPoint.zero
         textContainerNode.position = CGPoint(x: 0 - cam.position.x + 100, y: 0 + cam.position.y - 150)
-
         textContainerNode.zPosition = 10
         cam.addChild(textContainerNode)
 
+        //each text node
         var space: CGFloat = 0
         
         for char in textArray {
@@ -207,9 +223,7 @@ class GameScene: SKScene {
             space += spaceBetweenLetters
         }
         
-        textNodeWidth = textNode.frame.size.width
-
-        textContainerNode.size = CGSize(width: CGFloat(textArray.count) * (textNode.frame.width/2 + spaceBetweenLetters), height: textNode.frame.height)
+        textContainerNode.size = CGSize(width: CGFloat(textArray.count) * spaceBetweenLetters, height: textNode.frame.height)
     }
 
     //Moving Text
@@ -232,12 +246,13 @@ class GameScene: SKScene {
         let lowerText = textField.text?.lowercased()
         textField.text = ""
         
-        if lowerText == textArray[arrayIndex] {
-            moveText()
-            moveMainPlayer()
-            changeCurrentTextColor(index: arrayIndex)
-            CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
-            arrayIndex += 1
+        if arrayIndex < textArray.count {
+            if lowerText == textArray[arrayIndex] {
+                moveText()
+                moveMainPlayer()
+                changeCurrentTextColor(index: arrayIndex)
+                arrayIndex += 1
+            }
         }
     }
     
@@ -257,6 +272,26 @@ class GameScene: SKScene {
         
         self.camera = cam
         addChild(cam)
+    }
+    
+    //MARK: Timer
+    //Setup
+    func setupTimer() {
+        timerTextNode = SKLabelNode(fontNamed: "Supersonic Rocketship")
+        timerTextNode.fontSize = 40
+        timerTextNode.fontColor = UIColor.black
+        timerTextNode.text = "0.000"
+        
+        let timerXPos = cam.position.x + cam.frame.size.width/2 - timerTextNode.frame.size.width
+        let timerYPos = cam.position.y + cam.frame.size.height/2 - timerTextNode.frame.size.height
+
+        timerTextNode.position = CGPoint(x: timerXPos, y: timerYPos)
+        cam.addChild(timerTextNode)
+    }
+    
+    //update time
+    func updateTimer(time: Double) {
+        timerTextNode.text = String(format: "%.3f", time)
     }
 }
 
