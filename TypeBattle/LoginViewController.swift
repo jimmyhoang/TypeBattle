@@ -12,7 +12,7 @@ import FirebaseAuth
 import FacebookLogin
 import FacebookCore
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Properties
     @IBOutlet weak var loginView: UIView!
@@ -22,10 +22,18 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate    = self
+        passwordTextField.delegate = self
         
         NetworkManager.fetchPlayerDetails()
         
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     
     // MARK: - Actions
     @IBAction func loginButton(_ sender: UIButton) {
@@ -46,7 +54,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
-
+    
     @IBAction func registerButton(_ sender: UIButton) {
         performSegue(withIdentifier: "registerscreen", sender: self)
     }
@@ -64,4 +72,17 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func screenTapped(_ sender: Any) {
+        
+        if emailTextField.canResignFirstResponder {
+            emailTextField.resignFirstResponder()
+        }
+        
+        if passwordTextField.canResignFirstResponder {
+            passwordTextField.resignFirstResponder()
+        }
+        
+    }
 }
+
