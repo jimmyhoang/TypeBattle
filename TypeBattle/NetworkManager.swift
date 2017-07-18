@@ -175,9 +175,8 @@ class NetworkManager{
         })
     }
 
-    class func getWords(category:String, completion:@escaping ([String]) -> ()) {
+    class func getWords(category:String, completion:@escaping (String) -> ()) {
         var number            = 0
-        var words:[String]    = []
         let lowerCategory     = category.lowercased()
         
         switch lowerCategory {
@@ -212,17 +211,21 @@ class NetworkManager{
             
             guard let text = json[lowerCategory] else {return}
             let lowerCased = text.lowercased()
-            
-            for element in lowerCased.characters {
-                words.append(String(element))
-            }
-            print(words)
-            completion(words)
+        
+            completion(lowerCased)
         }
         task.resume()
     }
-
-
+    
+    class func parseWords(words:String) -> [String] {
+        var parsedWords:[String] = []
+        
+        for element in words.characters {
+            parsedWords.append(String(element))
+        }
+        
+        return parsedWords
+    }
 }
 
 
