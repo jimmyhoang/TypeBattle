@@ -111,10 +111,18 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
             
             // disable button until location is returned, show message
             self.createButton.isEnabled = false
+            self.createButton.alpha = 0.5
             self.getLocationLabel.isHidden = false
         }
         else {
+            locationManager.stopUpdatingLocation()
+            
+            // enable buttons again
+            self.createButton.isEnabled = true
+            self.createButton.alpha = 1.0
+            self.getLocationLabel.isHidden = true
             self.currentLocation = nil
+            
         }
     }
     
@@ -157,6 +165,7 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
 
         // enable button
         self.createButton.isEnabled = true
+        self.createButton.alpha = 1.0
         self.getLocationLabel.isHidden = true
         
         guard let currentLocation = locations.first else {
