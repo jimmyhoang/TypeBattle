@@ -165,7 +165,7 @@ class GameManager {
                     
                     // populate PlayerSession data with initial position
                     let playerRef = playersRef.child(p.playerID)
-                    let playerDict = ["nm": p.playerName, "ix": p.currentIndex, "pct": p.currentIndex/gameSession.capacity] as [String : Any]
+                    let playerDict = ["nm": p.playerName, "ix": p.currentIndex, "pct": p.currentIndex/gameSession.gameText.characters.count] as [String : Any]
                     playerRef.setValue(playerDict)
                 }
             }
@@ -180,9 +180,15 @@ class GameManager {
         Database.database().reference(withPath: "game_sessions").child(gameSessionID).removeValue()
     }
     
-    func incrementPosition (gameSessionID: String, playerID: String, index: Int) {
+    func incrementPosition (gameSessionID: String, player: Player, index: Int, progress: Double) {
         
+        let ref = Database.database().reference(withPath: "players_sessions").child(gameSessionID).child(player.playerID)
         
+        let dictionary = ["nm": player.name,
+                          "ix": index,
+                          "pct": progress] as [String : Any]
+        
+        ref.setValue(dictionary)
     }
     
     func listAvailableGameSessions(withCompletionBlock block: @escaping (GameSession, String) -> Swift.Void) {
@@ -239,14 +245,15 @@ class GameManager {
     
     }
     
-    func generateRamdomText(keyword: String) -> [String] {
+    func generateRamdomText(keyword: String) -> String {
         var characters:[String] = []
         DispatchQueue.main.async {
             NetworkManager.getWords(category: keyword) { (words) in
                 characters = words
             }
         }
-        return characters
+//        return characters
+        return "Hello world let's play type battle"
     }
     
     func getAllCharacters() -> Array<GameCharacter> {
