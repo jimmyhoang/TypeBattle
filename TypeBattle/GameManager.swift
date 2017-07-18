@@ -114,6 +114,11 @@ class GameManager {
         GameSession.cancelGameSession(gameSessionID: gameSessionID)
     }
     
+    func incrementPosition (gameSessionID: String, playerID: String, index: Int) {
+        
+        
+    }
+    
     func listAvailableGameSessions(withCompletionBlock block: @escaping (GameSession, String) -> Swift.Void) {
     
         let ref = Database.database().reference(withPath: "game_sessions")

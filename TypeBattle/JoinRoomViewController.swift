@@ -118,6 +118,11 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             
             // Change lobby title
             self.lobbyLabel.text = "LOBBY (\(self.currentGameSession.players.count)/\(self.currentGameSession.capacity))"
+            
+            // If game was started by creator send to game scene
+            if (self.currentGameSession.status == .started) {
+                self.performSegue(withIdentifier: "start-game-segue", sender: self)
+            }
         })
         
     }
@@ -184,6 +189,14 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             self.gameManager.removePlayerOfGame (gameSessionID: self.currentGameSession.gameSessionID, player: self.currentPlayer)
         }
         
+    }
+    
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier! ==  "start-game-segue") {
+            let controller = segue.destination as! SimGameViewController
+            controller.gameSession = self.currentGameSession
+        }
     }
     
     // MARK: UITableViewDelegate, UITableViewDataSource
