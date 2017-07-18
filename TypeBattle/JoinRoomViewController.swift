@@ -100,7 +100,14 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             // try to parse dictionary to a GameSession object
             guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
                 else {
-                    print("Error getting GameSession")
+                    print("This room no longer exists.")
+//                    DispatchQueue.main.async(execute: {
+//                        let alert = UIAlertController(title: "An error has occurred", message: "This room does not exists anymore. Maybe the creator might have deleted it.", preferredStyle: UIAlertControllerStyle.alert)
+//                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+//                            
+//                        }))
+//                    })
+                    self.performSegue(withIdentifier: "cancel-join-room-segue", sender: self)
                     return
             }
             self.currentGameSession = gameSession
