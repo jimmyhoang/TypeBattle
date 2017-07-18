@@ -93,7 +93,6 @@ class GameManager {
         })
     }
 
-    
     func setPlayerReady (gameSessionID: String, playerID: String, characterType: GameCharacterType, isReady: Bool) {
         
         // change game session status to Started
@@ -151,10 +150,23 @@ class GameManager {
             // change status
             gameSession.status = status
             
-            // change every player to Ready status
+            
+            
             if(status == .started) {
+                
+                // create "light" struct to control players data during game (for performance)
+                let ref2 = Database.database().reference(withPath: "players_sessions")
+                let playersRef = ref2.child(gameSessionID)
+                
                 for p in gameSession.players {
+                    
+                    // change every player to Ready status
                     p.isReady = true
+                    
+                    // populate PlayerSession data with initial position
+                    let playerRef = playersRef.child(p.playerID)
+                    let playerDict = ["nm": p.playerName, "ix": p.currentIndex, "pct": p.currentIndex/gameSession.capacity] as [String : Any]
+                    playerRef.setValue(playerDict)
                 }
             }
             
