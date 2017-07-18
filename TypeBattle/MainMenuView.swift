@@ -53,6 +53,7 @@ class MainMenuView: UIView {
     
     private lazy var singlePlayerButton:MainMenuButton = {
         let button = self.createMenuButton(title: "Single Player")
+        button.addTarget(self, action: #selector(trainingSegue(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -125,6 +126,20 @@ class MainMenuView: UIView {
         button.titleLabel?.font = UIFont.gameFont(size: 30.0)
         button.layer.cornerRadius = 4.0
         return button
+    }
+    
+    func trainingSegue(sender:UIButton!) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()
+        
+        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
+            return
+        }
+        while let next = top.presentedViewController {
+            top = next
+        }
+        
+        top.present(vc!, animated: true, completion: nil)
     }
     
     func myProfileSegue(sender:UIButton!) {
