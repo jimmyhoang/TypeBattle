@@ -152,6 +152,13 @@ class GameSession {
             // change status
             gameSession.status = status
             
+            // change every player to Ready status
+            if(status == .started) {
+                for p in gameSession.players {
+                    p.isReady = true
+                }
+            }
+            
             // persist in firebase
             gameRef.setValue(gameSession.createDictionary())
         })
