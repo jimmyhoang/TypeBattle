@@ -109,8 +109,8 @@ class GameManager {
     
     }
     
-    func generateRamdomText(keyword: String) -> [String] {
-        var characters:[String] = []
+    func generateRamdomText(keyword: String) -> String {
+        var characters:String = ""
         DispatchQueue.main.async {
             NetworkManager.getWords(category: keyword) { (words) in
                 characters = words
