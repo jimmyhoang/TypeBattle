@@ -18,6 +18,8 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     let screenSize = UIScreen.main.bounds
     var gameViewHeight: CGFloat!
     
+    var scene: GameScene!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,7 +77,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         
         let gameView = SKView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: gameViewHeight))
         
-        let scene = GameScene(size: gameView.frame.size)
+        scene = GameScene(size: gameView.frame.size)
         scene.scaleMode = .aspectFit
         
         gameView.translatesAutoresizingMaskIntoConstraints = false
