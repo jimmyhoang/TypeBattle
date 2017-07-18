@@ -21,8 +21,6 @@
 		43D9BBCE1F1B51FC00B0B4AC /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9BBCD1F1B51FC00B0B4AC /* LeaderboardView.swift */; };
 		43D9BBD01F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9BBCF1F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift */; };
 		4AF075591F1888820056E013 /* CharacterAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF075581F1888820056E013 /* CharacterAnimation.swift */; };
-		4AF0755D1F18A9FC0056E013 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AF0755C1F18A9FC0056E013 /* GameScene.sks */; };
-		4AF075851F18E6790056E013 /* KeystrokeDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF075841F18E6790056E013 /* KeystrokeDetection.swift */; };
 		9C34E2BE1F173E00008372DC /* GameLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2BD1F173E00008372DC /* GameLobby.swift */; };
 		9C34E2C01F173E07008372DC /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2BF1F173E07008372DC /* GameSession.swift */; };
 		9C34E2C41F173EE0008372DC /* GameCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2C31F173EE0008372DC /* GameCharacter.swift */; };
@@ -44,8 +42,6 @@
 		FF889A261F16BB94006955BB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A251F16BB94006955BB /* LoginViewController.swift */; };
 		FF889A281F16BBA9006955BB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A271F16BBA9006955BB /* Login.storyboard */; };
 		FF889A351F16E779006955BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF889A341F16E779006955BB /* GoogleService-Info.plist */; };
-		FF889A381F16E9BC006955BB /* KeyboardTestVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */; };
-		FF889A391F16E9BC006955BB /* KeyboardTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */; };
 		FF889A3D1F18422E006955BB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A3C1F18422E006955BB /* RegisterViewController.swift */; };
 		FF889A3F1F18423C006955BB /* RegisterScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A3E1F18423C006955BB /* RegisterScreen.storyboard */; };
 		FF889A431F1861A2006955BB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A421F1861A2006955BB /* NetworkManager.swift */; };
@@ -67,8 +63,6 @@
 		43D9BBCD1F1B51FC00B0B4AC /* LeaderboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		43D9BBCF1F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
 		4AF075581F1888820056E013 /* CharacterAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterAnimation.swift; sourceTree = "<group>"; };
-		4AF0755C1F18A9FC0056E013 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		4AF075841F18E6790056E013 /* KeystrokeDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeystrokeDetection.swift; sourceTree = "<group>"; };
 		7E54337C874835B9BE8DB6A2 /* Pods-TypeBattle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeBattle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle.debug.xcconfig"; sourceTree = "<group>"; };
 		9C34E2BD1F173E00008372DC /* GameLobby.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLobby.swift; sourceTree = "<group>"; };
 		9C34E2BF1F173E07008372DC /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
@@ -94,8 +88,6 @@
 		FF889A251F16BB94006955BB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FF889A271F16BBA9006955BB /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		FF889A341F16E779006955BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KeyboardTestVC.storyboard; sourceTree = "<group>"; };
-		FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTestViewController.swift; sourceTree = "<group>"; };
 		FF889A3A1F180836006955BB /* TypeBattle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TypeBattle.entitlements; sourceTree = "<group>"; };
 		FF889A3C1F18422E006955BB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		FF889A3E1F18423C006955BB /* RegisterScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterScreen.storyboard; sourceTree = "<group>"; };
@@ -194,8 +186,6 @@
 				FF889A3A1F180836006955BB /* TypeBattle.entitlements */,
 				4340E6081F17F84C003C0167 /* Fonts */,
 				4340E6051F17F7A6003C0167 /* Extensions */,
-				FF889A361F16E9BC006955BB /* KeyboardTestVC.storyboard */,
-				FF889A371F16E9BC006955BB /* KeyboardTestViewController.swift */,
 				FF889A3B1F18421C006955BB /* Register */,
 				FF889A241F16BB79006955BB /* Login */,
 				FF889A211F16AFE9006955BB /* Models */,
@@ -227,9 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				FF889A0E1F169C3E006955BB /* GameScene.swift */,
-				4AF075841F18E6790056E013 /* KeystrokeDetection.swift */,
 				4AF075581F1888820056E013 /* CharacterAnimation.swift */,
-				4AF0755C1F18A9FC0056E013 /* GameScene.sks */,
 			);
 			name = GameScene;
 			sourceTree = "<group>";
@@ -342,8 +330,6 @@
 				FF889A161F169C3E006955BB /* Assets.xcassets in Resources */,
 				43D9BBCC1F1B51E100B0B4AC /* Leaderboard.storyboard in Resources */,
 				435913641F196AD200F59509 /* ProfilePage.storyboard in Resources */,
-				4AF0755D1F18A9FC0056E013 /* GameScene.sks in Resources */,
-				FF889A381F16E9BC006955BB /* KeyboardTestVC.storyboard in Resources */,
 				FF889A191F169C3E006955BB /* LaunchScreen.storyboard in Resources */,
 				FF889A3F1F18423C006955BB /* RegisterScreen.storyboard in Resources */,
 			);
@@ -406,9 +392,7 @@
 			files = (
 				FF889A431F1861A2006955BB /* NetworkManager.swift in Sources */,
 				9C34E2D21F184F64008372DC /* JoinRoomViewController.swift in Sources */,
-				FF889A391F16E9BC006955BB /* KeyboardTestViewController.swift in Sources */,
 				431E7F361F181F9900B7B5CE /* MainMenuButton.swift in Sources */,
-				4AF075851F18E6790056E013 /* KeystrokeDetection.swift in Sources */,
 				9C34E2C61F1746D5008372DC /* PlayerSession.swift in Sources */,
 				FF889A231F16AFF6006955BB /* Player.swift in Sources */,
 				431E7F381F18220C00B7B5CE /* GameLabel.swift in Sources */,
