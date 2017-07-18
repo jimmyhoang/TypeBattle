@@ -38,7 +38,7 @@ class GameScene: SKScene {
     var skyWidth: CGFloat!
     
     //Text
-    let textArray = ["a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a","a" ]
+    var textArray: [String]!
     var textNode: SKLabelNode!
     var textContainerNode: SKSpriteNode!
     var arrayIndex = 0
