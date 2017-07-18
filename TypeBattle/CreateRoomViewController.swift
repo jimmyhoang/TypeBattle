@@ -78,6 +78,7 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         
         // check if room name have at least 3 characters
         if (roomName.characters.count <= 3) {
+            roomNameTextField.text = ""
             roomNameTextField.placeholder = "Name required (min 3 characters)"
             return
         }
