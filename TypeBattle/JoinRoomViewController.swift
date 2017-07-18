@@ -90,9 +90,6 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             
         })
         
-        // Set up table view
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
         
         // Set observer to update table when changes occurr
         let ref = Database.database().reference(withPath: "game_sessions")

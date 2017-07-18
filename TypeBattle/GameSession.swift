@@ -131,8 +131,6 @@ class GameSession {
             
             // persist in firebase
             gameRef.setValue(gameSession.createDictionary())
-            
-            gameRef.removeAllObservers()
         })
 
     }
@@ -156,8 +154,6 @@ class GameSession {
             
             // persist in firebase
             gameRef.setValue(gameSession.createDictionary())
-            
-            gameRef.removeAllObservers()
         })
 
     }

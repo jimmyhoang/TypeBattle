@@ -564,6 +564,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="D8C-2C-bsp" id="a5w-HL-oJ6"/>
+                                    <outlet property="delegate" destination="D8C-2C-bsp" id="sPX-aP-6HC"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0e-fY-efZ">
                                 <rect key="frame" x="204" y="656" width="100" height="60"/>
