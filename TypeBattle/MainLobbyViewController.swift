@@ -71,8 +71,18 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
         let room = self.availableRooms[indexPath.row]
         cell.roomNameLabel.text = room.name
         cell.playersInGameLabel.text = "\(room.players.count)/\(room.capacity)"
-        cell.joinButton.tag = indexPath.row
-        cell.joinButton.addTarget(self, action: #selector(joinRoomPressed(sender:)), for: .touchUpInside)
+        
+        if(room.players.count == room.capacity) {
+            cell.joinButton.alpha = 0.5
+            cell.joinButton.isEnabled = false
+        }
+        else {
+            cell.joinButton.alpha = 1.0
+            cell.joinButton.isEnabled = true
+            cell.joinButton.tag = indexPath.row
+            cell.joinButton.addTarget(self, action: #selector(joinRoomPressed(sender:)), for: .touchUpInside)
+        }
+
         return cell
     }
     
