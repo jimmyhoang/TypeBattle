@@ -96,22 +96,76 @@ class GameManager {
     
     func setPlayerReady (gameSessionID: String, playerID: String, characterType: GameCharacterType, isReady: Bool) {
         
-        GameSession.setPlayerAsReady(gameSessionID: gameSessionID, playerID: playerID, characterType: characterType, isReady: isReady)
+        // change game session status to Started
+        let ref = Database.database().reference(withPath: "game_sessions")
+        let gameRef = ref.child(gameSessionID)
+        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            // change status for player
+            for player in gameSession.players {
+                
+                if(player.playerID == playerID) {
+                    
+                    player.isReady = isReady
+                    player.gameCharacter = characterType
+                }
+            }
+            
+            // persist in firebase
+            gameRef.setValue(gameSession.createDictionary())
+        })
     }
     
     func startGameSession (gameSessionID: String) {
         
-        GameSession.changeGameSessionStatus(gameSessionID: gameSessionID, status: .started)
+        self.changeGameSessionStatus(gameSessionID: gameSessionID, status: .started)
     }
     
     func finishGameSession (gameSessionID: String) {
         
-        GameSession.changeGameSessionStatus(gameSessionID: gameSessionID, status: .finished)
+        self.changeGameSessionStatus(gameSessionID: gameSessionID, status: .finished)
     }
     
+    private func changeGameSessionStatus(gameSessionID: String, status: GameSessionStatus) {
+        // change game session status to Started
+        let ref = Database.database().reference(withPath: "game_sessions")
+        let gameRef = ref.child(gameSessionID)
+        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            // change status
+            gameSession.status = status
+            
+            // change every player to Ready status
+            if(status == .started) {
+                for p in gameSession.players {
+                    p.isReady = true
+                }
+            }
+            
+            // persist in firebase
+            gameRef.setValue(gameSession.createDictionary())
+        })        
+    }
+
     func cancelGameSession (gameSessionID: String) {
         
-        GameSession.cancelGameSession(gameSessionID: gameSessionID)
+        Database.database().reference(withPath: "game_sessions").child(gameSessionID).removeValue()
     }
     
     func incrementPosition (gameSessionID: String, playerID: String, index: Int) {
