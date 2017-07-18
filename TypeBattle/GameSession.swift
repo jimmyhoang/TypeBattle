@@ -104,64 +104,6 @@ class GameSession {
         return array
     }
     
-    class func setPlayerAsReady (gameSessionID: String, playerID: String, characterType: GameCharacterType) {
-        
-        // change game session status to Started
-        let ref = Database.database().reference(withPath: "game_sessions")
-        let gameRef = ref.child(gameSessionID)
-        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
-            
-            // try to parse dictionary to a GameSession object
-            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
-                else {
-                    print("Error getting GameSession")
-                    return
-            }
-            
-            // change status for player
-            for player in gameSession.players {
-                
-                if(player.playerID == playerID) {
-                    
-                    player.isReady = true
-                    player.gameCharacter = characterType
-                }
-            }
-            
-            // persist in firebase
-            gameRef.setValue(gameSession.createDictionary())
-            
-            gameRef.removeAllObservers()
-        })
-
-    }
-    
-    class func changeGameSessionStatus(gameSessionID: String, status: GameSessionStatus) {
-        // change game session status to Started
-        let ref = Database.database().reference(withPath: "game_sessions")
-        let gameRef = ref.child(gameSessionID)
-        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
-            
-            // try to parse dictionary to a GameSession object
-            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
-                else {
-                    print("Error getting GameSession")
-                    return
-            }
-            
-            // change status
-            gameSession.status = status
-            
-            // persist in firebase
-            gameRef.setValue(gameSession.createDictionary())
-            
-            gameRef.removeAllObservers()
-        })
-
-    }
-    
     // Convert data from Firebase
     class func convertToGameSession(dictionary: Dictionary<String, Any>) -> GameSession? {
         

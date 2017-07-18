@@ -76,6 +76,13 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
             return
         }
         
+        // check if room name have at least 3 characters
+        if (roomName.characters.count <= 3) {
+            roomNameTextField.text = ""
+            roomNameTextField.placeholder = "Name required (min 3 characters)"
+            return
+        }
+        
         let manager = GameManager()
         
         // Create lobby
@@ -104,10 +111,18 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
             
             // disable button until location is returned, show message
             self.createButton.isEnabled = false
+            self.createButton.alpha = 0.5
             self.getLocationLabel.isHidden = false
         }
         else {
+            locationManager.stopUpdatingLocation()
+            
+            // enable buttons again
+            self.createButton.isEnabled = true
+            self.createButton.alpha = 1.0
+            self.getLocationLabel.isHidden = true
             self.currentLocation = nil
+            
         }
     }
     
@@ -122,6 +137,20 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         }
     }
 
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        switch identifier {
+        case "goto-lobby-segue":
+            // check if room name have at least 3 characters
+            if ((roomNameTextField.text?.characters.count)! <= 3) {
+                return false
+            }
+            else {
+                return true
+            }
+        default:
+            return true
+        }
+    }
     
     // MARK: UITextField delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -136,6 +165,7 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
 
         // enable button
         self.createButton.isEnabled = true
+        self.createButton.alpha = 1.0
         self.getLocationLabel.isHidden = true
         
         guard let currentLocation = locations.first else {
