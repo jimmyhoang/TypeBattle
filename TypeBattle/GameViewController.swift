@@ -19,13 +19,13 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     var gameViewHeight: CGFloat!
     
     var scene: GameScene!
-    var tempTextArray: [String]!
+    var gameTextString: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addTextField()
-        scene.textArray = self.tempTextArray
+        scene.textArray = NetworkManager.parseWords(words: gameTextString)
     }
     
     override var shouldAutorotate: Bool {
