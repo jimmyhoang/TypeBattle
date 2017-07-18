@@ -104,7 +104,7 @@ class GameSession {
         return array
     }
     
-    class func setPlayerAsReady (gameSessionID: String, playerID: String, characterType: GameCharacterType) {
+    class func setPlayerAsReady (gameSessionID: String, playerID: String, characterType: GameCharacterType, isReady: Bool) {
         
         // change game session status to Started
         let ref = Database.database().reference(withPath: "game_sessions")
@@ -124,7 +124,7 @@ class GameSession {
                 
                 if(player.playerID == playerID) {
                     
-                    player.isReady = true
+                    player.isReady = isReady
                     player.gameCharacter = characterType
                 }
             }

@@ -64,9 +64,39 @@ class GameManager {
         })
     }
     
-    func setPlayerReady (gameSessionID: String, playerID: String, characterType: GameCharacterType) {
+    func removePlayerOfGame (gameSessionID: String, player: Player) {
         
-        GameSession.setPlayerAsReady(gameSessionID: gameSessionID, playerID: playerID, characterType: characterType)
+        // add PlayerSession to Firebase
+        let ref = Database.database().reference(withPath: "game_sessions")
+        let gameRef = ref.child(gameSessionID)
+        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            // if the user is already in the game, does not add it again
+            for i in 0...gameSession.players.count {
+                if(gameSession.players[i].playerID == player.playerID) {
+                    gameSession.players.remove(at: i)
+                    break
+                }
+            }
+            
+            // persist in firebase
+            gameRef.setValue(gameSession.createDictionary())
+        })
+    }
+
+    
+    func setPlayerReady (gameSessionID: String, playerID: String, characterType: GameCharacterType, isReady: Bool) {
+        
+        GameSession.setPlayerAsReady(gameSessionID: gameSessionID, playerID: playerID, characterType: characterType, isReady: isReady)
     }
     
     func startGameSession (gameSessionID: String) {

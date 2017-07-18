@@ -110,7 +110,7 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK: Actions
     @IBAction func characterTapped(_ sender: UITapGestureRecognizer) {
         
-        if (self.readyButton.isHidden == false) {
+        if(self.readyButton.currentTitle?.lowercased() == "ready") {
             // Unselect previous character
             guard let previousImage = self.view.viewWithTag(self.selectedCharacterTag) else {
                 print("Unexpected error")
@@ -133,10 +133,19 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func readyButtonPressed(_ sender: UIButton) {
         
-        self.gameManager.setPlayerReady(gameSessionID: self.currentGameSession.gameSessionID, playerID: self.currentPlayer.playerID, characterType: self.characters[self.selectedCharacterTag - 1].type)
+        var isReady: Bool
+        if(self.readyButton.currentTitle?.lowercased() == "unready") {
+            
+            isReady = false
+            self.readyButton.setTitle("Ready", for: .normal)
+        }
+        else {
+            
+            isReady = true
+            self.readyButton.setTitle("Unready", for: .normal)
+        }
         
-        // Hide ready button and disable character selection
-        self.readyButton.isHidden = true
+        self.gameManager.setPlayerReady(gameSessionID: self.currentGameSession.gameSessionID, playerID: self.currentPlayer.playerID, characterType: self.characters[self.selectedCharacterTag - 1].type, isReady: isReady)
     }
 
     @IBAction func startButtonPressed(_ sender: UIButton) {
@@ -145,6 +154,8 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
+        
+        self.gameManager.removePlayerOfGame (gameSessionID: self.currentGameSession.gameSessionID, player: self.currentPlayer)
     }
     
     // MARK: UITableViewDelegate, UITableViewDataSource
