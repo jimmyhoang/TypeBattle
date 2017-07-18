@@ -22,7 +22,7 @@ class GameScene: SKScene {
     //test player
     let mainPlayer = PlayerSession(playerID: "123", playerName: "SAM")
     //
-    
+
     //MainPlayer
     let mainPlayerNode = SKSpriteNode()
     let mainPlayerSize = CGSize(width: 120, height: 150)
@@ -46,6 +46,12 @@ class GameScene: SKScene {
     //Camera
     var cam: SKCameraNode!
     
+    //Timer
+    var timerTextNode: SKLabelNode!
+    var initialTime: TimeInterval!
+    var timerTime: TimeInterval!
+    var firstFrame = true
+    
     override func didMove(to view: SKView) {
         //test
         mainPlayer.gameCharacter = .knight
@@ -59,6 +65,7 @@ class GameScene: SKScene {
         setupCamera()
         setupText()
         detectKeystroke()
+        setupTimer()
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -91,13 +98,15 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        if firstFrame == true {
+            initialTime = currentTime
+            firstFrame = false
+        }
+        timerTime = currentTime - initialTime
         
         neverEndingSky(widthOfSky: skyWidth)
         
-//        cam.position.x = mainPlayerNode.position.x
-        
-//        cam.position = mainPlayerNode.position
-        
+        updateTimer(time: timerTime)
     }
     
     //MARK: Players
@@ -257,6 +266,25 @@ class GameScene: SKScene {
         
         self.camera = cam
         addChild(cam)
+    }
+    
+    //MARK: Timer
+    //Setup
+    func setupTimer() {
+        timerTextNode = SKLabelNode(fontNamed: "Supersonic Rocketship")
+        timerTextNode.fontSize = 40
+        timerTextNode.fontColor = UIColor.black
+        timerTextNode.text = "0.000"
+        
+        let timerXPos = cam.position.x + cam.frame.size.width/2 - timerTextNode.frame.size.width
+        let timerYPos = cam.position.y + cam.frame.size.height/2 - timerTextNode.frame.size.height
+
+        timerTextNode.position = CGPoint(x: timerXPos, y: timerYPos)
+        cam.addChild(timerTextNode)
+    }
+    
+    func updateTimer(time: Double) {
+        timerTextNode.text = String(format: "%.3f", time)
     }
 }
 
