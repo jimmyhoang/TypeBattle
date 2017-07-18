@@ -195,7 +195,7 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier! ==  "start-game-segue") {
             let controller = segue.destination as! SimGameViewController
-            controller.gameSession = self.currentGameSession
+            controller.gameSessionID = self.currentGameSession.gameSessionID
         }
     }
     

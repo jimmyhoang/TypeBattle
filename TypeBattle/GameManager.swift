@@ -17,7 +17,6 @@ class GameManager {
         return GameLobby(name: name, textCategory: keyword, capacity: maxCapacity, owner: owner, location: location)
     }
     
-    
     func createGameSession(lobby: GameLobby) -> GameSession {
         
         // Use GameLobby data to create a GameSession
@@ -30,7 +29,6 @@ class GameManager {
         
         return session
     }
-    
     
     func addPlayerToGame (gameSessionID: String, player: Player) {
         
@@ -165,7 +163,7 @@ class GameManager {
                     
                     // populate PlayerSession data with initial position
                     let playerRef = playersRef.child(p.playerID)
-                    let playerDict = ["nm": p.playerName, "ix": p.currentIndex, "pct": p.currentIndex/gameSession.gameText.characters.count] as [String : Any]
+                    let playerDict = ["nm": p.playerName, "ix": 0, "pct": 0.0] as [String : Any]
                     playerRef.setValue(playerDict)
                 }
             }
@@ -252,7 +250,34 @@ class GameManager {
                 characters = words
             }
         }
-        return characters
+        return "Hello world"
+    }
+    
+    func observeLeaderboardChanges(gameSessionID: String, withCompletionBlock block: @escaping (Array<Array<Any>>) -> Swift.Void) {
+        
+        let ref = Database.database().reference(withPath: "players_sessions").child(gameSessionID)
+        ref.observe(.value, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            var playersArray = Array<Array<Any>>()
+            var playerArray = Array<Any>()
+            
+            for key in sessionDictionary.keys {
+                
+                let playerID = key
+                
+                let subDictionary = sessionDictionary[playerID] as? [String: Any] ?? [:]
+                playerArray.append(playerID)
+                playerArray.append(subDictionary["nm"] as! String)
+                playerArray.append(subDictionary["ix"] as! Int)
+                playerArray.append(subDictionary["pct"] as! Double)
+                
+                playersArray.append(playerArray)
+            }
+            
+            block(playersArray)
+        })
+
     }
     
     func getAllCharacters() -> Array<GameCharacter> {
