@@ -175,9 +175,8 @@ class NetworkManager{
         })
     }
 
-    class func getWords(category:String, completion:@escaping ([String]) -> ()) {
+    class func getWords(category:String, completion:@escaping (String) -> ()) {
         var number            = 0
-        var words:[String]    = []
         let lowerCategory     = category.lowercased()
         
         switch lowerCategory {
@@ -188,30 +187,45 @@ class NetworkManager{
         default:
             break
         }
-     
-        var components  = URLComponents()
-        components.host = "http://typebattle.vapor.cloud"
-        components.path = "/\(lowerCategory)/\(number)"
         
-        guard let url = components.url else {return}
-        let request   = URLRequest(url: url)
+        var components  = URLComponents()
+        components.scheme = "http"
+        components.host = "typebattle.vapor.cloud"
+        components.path = "/\(lowerCategory)/\(number)"
+        print(components)
+        
+        let url = components.url
+        let request   = URLRequest(url: url!)
         
         let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
             
-            guard let data = data else {return}
-            
-            guard let wordsString = String(data: data, encoding: String.Encoding.utf8) else {return}
-            
-            let lowerCased = wordsString.lowercased()
-            
-            for element in lowerCased.characters {
-                words.append(String(element))
+            guard let data = data else {
+                print("data is nil")
+                return
             }
-            completion(words)
+            
+            guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as! Dictionary<String,String> else {
+                print("data returned not json")
+                return
+            }
+            
+            guard let text = json[lowerCategory] else {return}
+            let lowerCased = text.lowercased()
+        
+            completion(lowerCased)
         }
         task.resume()
     }
-
+    
+    class func parseWords(words:String) -> [String] {
+        var parsedWords:[String] = []
+        
+        for element in words.characters {
+            parsedWords.append(String(element))
+        }
+        
+        return parsedWords
+    }
 }
 
 
