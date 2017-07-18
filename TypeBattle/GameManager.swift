@@ -109,6 +109,11 @@ class GameManager {
         GameSession.changeGameSessionStatus(gameSessionID: gameSessionID, status: .finished)
     }
     
+    func cancelGameSession (gameSessionID: String) {
+        
+        GameSession.cancelGameSession(gameSessionID: gameSessionID)
+    }
+    
     func listAvailableGameSessions(withCompletionBlock block: @escaping (GameSession) -> Swift.Void) {
     
         let ref = Database.database().reference(withPath: "game_sessions")

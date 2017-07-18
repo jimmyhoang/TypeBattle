@@ -101,13 +101,14 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
                 else {
                     print("This room no longer exists.")
-//                    DispatchQueue.main.async(execute: {
-//                        let alert = UIAlertController(title: "An error has occurred", message: "This room does not exists anymore. Maybe the creator might have deleted it.", preferredStyle: UIAlertControllerStyle.alert)
-//                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-//                            
-//                        }))
-//                    })
-                    self.performSegue(withIdentifier: "cancel-join-room-segue", sender: self)
+                    DispatchQueue.main.async(execute: {
+                        let alert = UIAlertController(title: "Room deleted", message: "The player who created left the game. Please choose another room.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                            self.GoToMainLobby()
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    })
+                    
                     return
             }
             self.currentGameSession = gameSession
@@ -176,7 +177,13 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         
-        self.gameManager.removePlayerOfGame (gameSessionID: self.currentGameSession.gameSessionID, player: self.currentPlayer)
+        if(self.currentPlayer.playerID == self.currentGameSession.ownerID) {
+            self.gameManager.cancelGameSession(gameSessionID: self.currentGameSession.gameSessionID)
+        }
+        else {
+            self.gameManager.removePlayerOfGame (gameSessionID: self.currentGameSession.gameSessionID, player: self.currentPlayer)
+        }
+        
     }
     
     // MARK: UITableViewDelegate, UITableViewDataSource
@@ -191,5 +198,10 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
         cell.playerNameLabel.text = self.currentGameSession.players[indexPath.row].playerName
         cell.statusLabel.text = self.currentGameSession.players[indexPath.row].isReady ? "Ready" : "Not ready"
         return cell
+    }
+    
+    // MARK: Private Methods
+    func GoToMainLobby() {
+        self.performSegue(withIdentifier: "cancel-join-room-segue", sender: self)
     }
 }

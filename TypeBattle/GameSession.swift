@@ -158,6 +158,11 @@ class GameSession {
 
     }
     
+    class func cancelGameSession(gameSessionID: String) {
+        
+        Database.database().reference(withPath: "game_sessions").child(gameSessionID).removeValue()
+    }
+    
     // Convert data from Firebase
     class func convertToGameSession(dictionary: Dictionary<String, Any>) -> GameSession? {
         
