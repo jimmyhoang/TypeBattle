@@ -25,18 +25,23 @@ class GameScene: SKScene {
     
     //MainPlayer
     let mainPlayerNode = SKSpriteNode()
-    let mainPlayerSize = CGSize(width: 150, height: 200)
-    let mainPlayerPosition = CGPoint(x: 200, y: 200)
+    let mainPlayerSize = CGSize(width: 120, height: 150)
+    let mainPlayerPosition = CGPoint(x: 100, y: 150)
 
     //Background
-    var sky: SKSpriteNode!
     var ground: SKSpriteNode!
+
+    var sky: SKSpriteNode!
+    let skyYPos: CGFloat = 100.0
+    var skyWidth: CGFloat!
     
     //Text
-    let textArray = ["a", "p", "p", "l", "e", " ", "h", "i","a", "p", "p", "l", "e", " ", "h", "i","a", "p", "p", "l", "e", " ", "h", "i"]
+    let textArray = ["a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a","a", "a","a","a","a","a"]
     var textNode: SKLabelNode!
     var textContainerNode: SKSpriteNode!
     var arrayIndex = 0
+    let spaceBetweenLetters: CGFloat = 25
+    var textNodeWidth: CGFloat!
 
     //Camera
     var cam: SKCameraNode!
@@ -84,9 +89,10 @@ class GameScene: SKScene {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
+        neverEndingSky(widthOfSky: skyWidth)
         
 //        cam.position.x = mainPlayerNode.position.x
         
@@ -95,36 +101,33 @@ class GameScene: SKScene {
     }
     
     //MARK: Players
-    
     //Setup mainPlayer
     func setupMainPlayer() {
-        addPlayer(player: mainPlayer, spriteNode: mainPlayerNode)
+        addPlayer(spriteNode: mainPlayerNode, size: mainPlayerSize, position: mainPlayerPosition)
         mainPlayerNode.zPosition = 10
         CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .idle)
     }
     
     //Move mainPlayer
     func moveMainPlayer() {
-        let moveRight = SKAction.moveBy(x: 50, y: 0, duration: 0)
+        
+        let movement: CGFloat = 50.0
+
+        cam.position.x += movement
+        
+        let moveRight = SKAction.moveBy(x: movement, y: 0, duration: 0)
         mainPlayerNode.run(moveRight)
     }
     
-    
     //Add a player to scene
-    func addPlayer(player: PlayerSession, spriteNode: SKSpriteNode) {
-        //if mainPlayer
-//        let spriteSize = mainPlayerSize
-//        spriteNode.aspectFillToSize(fillSize: spriteSize)
-        spriteNode.size = mainPlayerSize
-        spriteNode.position = mainPlayerPosition
-        //else other players
-        //otherplayer sizes
+    func addPlayer(spriteNode: SKSpriteNode, size: CGSize, position: CGPoint) {
+        spriteNode.size = size
+        spriteNode.position = position
 
         self.addChild(spriteNode)
     }
     
     //MARK: Background
-    
     //Setup
     func setupBackground() {
         backgroundColor = UIColor.gameBlue
@@ -132,80 +135,95 @@ class GameScene: SKScene {
         setupSky()
     }
     
-    
     //Ground
     func setupGround() {
+        let groundWidth: CGFloat = self.frame.size.width * 50
+        let groundHeight: CGFloat = 100.0
+        
         ground = SKSpriteNode()
         ground.texture = SKTexture(imageNamed: "ground")
         ground.anchorPoint = CGPoint.zero
         ground.position = CGPoint.zero
-        ground.size = CGSize(width: self.frame.size.width , height: 200)
+        ground.size = CGSize(width: groundWidth, height: groundHeight)
         addChild(ground)
     }
     
-    
     //Sky
     func setupSky() {
+        
+        let skyPosition = CGPoint(x: 0.0, y: skyYPos)
+        
+        makeSkyAtPos(pos: skyPosition)
+    }
+    
+    //make new sky
+    func makeSkyAtPos(pos: CGPoint) {
+        skyWidth = self.frame.size.width * 2
+        let skyHeight: CGFloat = 200.0
+        
         sky = SKSpriteNode()
         sky.texture = SKTexture(imageNamed: "sky")
         sky.anchorPoint = CGPoint.zero
-        sky.position = CGPoint(x: 0, y: 200)
-        sky.size = CGSize(width: self.frame.size.width * 2, height: 400)
+        sky.position = pos
+        sky.size = CGSize(width: skyWidth, height: skyHeight)
         addChild(sky)
     }
     
-    //MARK: Text
+    //spawn sky
+    var framesOfSky: CGFloat = 1.0
+
+    func neverEndingSky(widthOfSky: CGFloat) {
+        let skyXPos = widthOfSky * framesOfSky
+        let newSkyOrigin = widthOfSky * 0.75 * framesOfSky
+        
+        if cam.position.x >= newSkyOrigin {
+            makeSkyAtPos(pos: CGPoint(x: skyXPos, y: skyYPos))
+            framesOfSky += 1.0
+        }
+    }
     
+    //MARK: Text
     //Setup
     func setupText() {
         textContainerNode = SKSpriteNode()
         textContainerNode.color = UIColor.gameTeal
         textContainerNode.anchorPoint = CGPoint.zero
-        textContainerNode.position = CGPoint(x: 0 - cam.position.x, y: 0 + cam.position.y - 150)
+        textContainerNode.position = CGPoint(x: 0 - cam.position.x + 100, y: 0 + cam.position.y - 150)
 
         textContainerNode.zPosition = 10
         cam.addChild(textContainerNode)
 
         var space: CGFloat = 0
+        
         for char in textArray {
             textNode = SKLabelNode(fontNamed: "Supersonic Rocketship")
             textNode.text = char
+            textNode.horizontalAlignmentMode = .right
             textNode.fontSize = 40
             textNode.fontColor = UIColor.gameRed
-            textNode.position = CGPoint(x: textNode.frame.width/2 + space, y: 0)
+            textNode.position = CGPoint(x: textNode.frame.width + space, y: 0)
             textNode.zPosition = 10
             textContainerNode.addChild(textNode)
-            space += 50.0
+            space += spaceBetweenLetters
         }
         
-        textContainerNode.size = CGSize(width: CGFloat(textArray.count) * (textNode.frame.width/2 + 50.0), height: textNode.frame.height)
-        
-        //DEBUG
-        print(textContainerNode.position)
+        textNodeWidth = textNode.frame.size.width
+
+        textContainerNode.size = CGSize(width: CGFloat(textArray.count) * (textNode.frame.width/2 + spaceBetweenLetters), height: textNode.frame.height)
     }
-    
-//    func adjustLabelFontSizeToFitRect(labelNode:SKLabelNode, rect:CGRect) {
-//        
-//        // Determine the font scaling factor that should let the label text fit in the given rectangle.
-//        let scalingFactor = min(rect.width / labelNode.frame.width, rect.height / labelNode.frame.height)
-//        
-//        // Change the fontSize.
-//        labelNode.fontSize *= scalingFactor
-//        
-//        // Optionally move the SKLabelNode to the center of the rectangle.
-//        labelNode.position = CGPoint(x: rect.midX, y: rect.midY - labelNode.frame.height / 2.0)
-//    }
-    
-    
+
     //Moving Text
     func moveText() {
-        let moveLeft = SKAction.moveBy(x: -50, y: 0, duration: 0)
+//        let movement = textNodeWidth + spaceBetweenLetters
+        let movement = spaceBetweenLetters
+
+        let moveLeft = SKAction.moveBy(x: -(movement), y: 0, duration: 0)
         textContainerNode.run(moveLeft)
     }
     
     //Detect user entered text
     func detectKeystroke() {
-        NotificationCenter.default.addObserver(self, selector: #selector(checkUserText(sender:)), name: NSNotification.Name.UITextFieldTextDidChange , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkUserText(sender:)), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
     }
     
     //Check user entered text with game text
@@ -217,13 +235,19 @@ class GameScene: SKScene {
         if lowerText == textArray[arrayIndex] {
             moveText()
             moveMainPlayer()
+            changeCurrentTextColor(index: arrayIndex)
             CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
             arrayIndex += 1
         }
     }
     
+    //Change current letter and typed letters' color
+    func changeCurrentTextColor(index: Int) {
+        let currentText = textContainerNode.children[index] as! SKLabelNode
+        currentText.fontColor = UIColor.blue
+    }
+    
     //MARK: Camera
-
     //Setup
     func setupCamera() {
         
@@ -233,9 +257,6 @@ class GameScene: SKScene {
         
         self.camera = cam
         addChild(cam)
-        
-        //DEBUG
-        print(cam.position)
     }
 }
 

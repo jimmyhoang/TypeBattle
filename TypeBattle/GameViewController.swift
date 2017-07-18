@@ -12,8 +12,6 @@ import GameplayKit
 
 class GameViewController: UIViewController, UITextFieldDelegate {
     
-    let textArray = ["a", "p", "p", "l", "e", " ", "h", "i","a", "p", "p", "l", "e", " ", "h", "i","a", "p", "p", "l", "e", " ", "h", "i"]
-    
     var keyboardHeight:CGFloat!
     var textField:UITextField!
     
@@ -54,6 +52,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         textField = UITextField(frame: CGRect.zero)
         
         view.addSubview(textField)
+        textField.autocorrectionType = .no
         textField.becomeFirstResponder()
         view.layoutIfNeeded()
     }
