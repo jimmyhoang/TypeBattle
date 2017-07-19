@@ -29,7 +29,7 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         "zombieGirl/Idle (1)" : UIImage(named: "zombieGirl/Idle (1)")!
     ]
     
-    var selectedImage = ""
+    var selectedImage          = ""
     var avatarImages:[UIImage] = []
     var checkmarkImageView:UIImageView!
 
@@ -68,7 +68,7 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         } else {
             let alertController = UIAlertController(title: "Error", message: "Passwords do not match!", preferredStyle: .alert)
             
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            let defaultAction   = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             
             self.present(alertController, animated: true, completion: nil)
