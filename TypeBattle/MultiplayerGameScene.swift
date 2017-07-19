@@ -69,15 +69,16 @@ class MultiplayerGameScene: SKScene {
         self.anchorPoint = CGPoint.zero
         sceneHeight = self.frame.size.height
         sceneWidth = self.frame.size.width
-        setupBackground()
 //        setupMainPlayer()
         setupCamera()
+        setupPlayers()
         setupText()
+        setupBackground()
         detectKeystroke()
         setupTimer()
-        setupPlayers()
     }
     
+    //MARK: Init
     override init(size: CGSize) {
         super.init(size: size)
     }
@@ -156,12 +157,13 @@ class MultiplayerGameScene: SKScene {
     
     //Setup other players
     func setupPlayers() {
-        //first(main) player position
+        //first player position
         var playerXPos: CGFloat = 10.0
         var playerYPos: CGFloat = 17.5
         var playerZPos: CGFloat = 20.0
         numberOfPlayers = gameSession.capacity
         
+        //create playerNodes
         for index in 0..<numberOfPlayers {
             playerNode = SKSpriteNode()
             
@@ -274,7 +276,9 @@ class MultiplayerGameScene: SKScene {
         textContainerNode.zPosition = 10
         cam.addChild(textContainerNode)
         
-        //each text node
+        //parse gameText into textArray
+        textArray = NetworkManager.parseWords(words: gameSession.gameText)
+        //make a labelNode for each letter in textArray
         var space: CGFloat = 0
         
         for char in textArray {
@@ -288,7 +292,6 @@ class MultiplayerGameScene: SKScene {
             textContainerNode.addChild(textNode)
             space += spaceBetweenLetters
         }
-        
         textContainerNode.size = CGSize(width: CGFloat(textArray.count) * spaceBetweenLetters, height: textNode.frame.height)
     }
     

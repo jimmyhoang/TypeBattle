@@ -51,6 +51,7 @@ class GameScene: SKScene {
     var timerTime: TimeInterval!
     var firstFrame = true
     
+    //MARK: Scene DidMove
     override func didMove(to view: SKView) {
         //test
         mainPlayer.gameCharacter = .knight
@@ -67,6 +68,7 @@ class GameScene: SKScene {
         setupTimer()
     }
     
+    //MARK: Init
     override init(size: CGSize) {
         super.init()
     }
