@@ -87,6 +87,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func registerButton(_ sender: UIButton) {
+        NotificationCenter.default.post(name: "startAnimation", object: self)
         performSegue(withIdentifier: "registerscreen", sender: self)
     }
     @IBAction func facebookButton(_ sender: Any) {
