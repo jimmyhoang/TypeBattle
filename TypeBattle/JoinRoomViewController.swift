@@ -28,7 +28,9 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     var selectedCharacterTag: Int!
     var currentGameSession: GameSession!
     var currentPlayer: Player!
-    var timer: Timer!
+    var lobbytimer: Timer! // just for basic "Waiting for players..." animation
+    var gameTimer: Timer! // game about to start warning
+    var gameTimerCounter = 8 // counter to control start of the game when creator press enter
 
     //MARK: ViewController life cycle
     override func viewDidLoad() {
@@ -76,7 +78,7 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         // Create a animated "Waiting for players" label
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: true, block: { (timer) in
+        self.lobbytimer = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: true, block: { (timer) in
             
             // Get current number of dots
             let ellipsis = self.waitingForPlayerLabel.text?.replacingOccurrences(of: "Waiting for players", with: "", options: String.CompareOptions.caseInsensitive, range: nil)
@@ -89,7 +91,6 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             self.waitingForPlayerLabel.text = "Waiting for players\(newEllipsis)"
             
         })
-        
         
         // Set observer to update table when changes occurr
         let ref = Database.database().reference(withPath: "game_sessions")
@@ -121,7 +122,8 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             
             // If game was started by creator send to game scene
             if (self.currentGameSession.status == .started) {
-                self.performSegue(withIdentifier: "start-game-segue", sender: self)
+                self.readyButton.setTitle("unready", for: .normal)
+                self.startGameTimer()
             }
         })
         
@@ -131,7 +133,8 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillDisappear(animated)
         
         // stop the "waiting for players" label animation
-        self.timer.invalidate()
+        self.lobbytimer.invalidate()
+        self.gameTimer.invalidate()
     }
     
     //MARK: Actions
@@ -216,5 +219,25 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: Private Methods
     func GoToMainLobby() {
         self.performSegue(withIdentifier: "cancel-join-room-segue", sender: self)
+    }
+    
+    func startGameTimer() {
+        self.lobbytimer.invalidate()
+        
+        // Create a animated "Waiting for players" label
+        self.gameTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
+            
+            self.waitingForPlayerLabel.textColor = (self.waitingForPlayerLabel.textColor == UIColor.yellow) ? UIColor.white : UIColor.yellow
+            self.waitingForPlayerLabel.text = "Game will start in \(self.gameTimerCounter)"
+            
+            self.gameTimerCounter -= 1
+            
+            if(self.gameTimerCounter == -1) {
+                self.gameTimer.invalidate()
+                
+                self.performSegue(withIdentifier: "start-game-segue", sender: self)
+            }
+            
+        })
     }
 }
