@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import FirebaseDatabase //DELETE
 
 class GameViewController: UIViewController, UITextFieldDelegate {
     
@@ -19,17 +20,33 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     var gameViewHeight: CGFloat!
     
     var scene: SKScene!
-    var gameTextString: String!
     
     var gameSession: GameSession!
+    let gameManager = GameManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        gameSession = GameSession(name: "asdf", gameText: "asdfadsfasdfa", capacity: 4, ownerID: "123", location: nil)
-//        let playerSession = PlayerSession(playerID: "123", playerName: "abc")
-//        gameSession.players = [playerSession]
-        addTextField()
+        let ref = Database.database().reference(withPath: "game_sessions")
+        let gameRef = ref.child("-KpRMhh0FpMKP-vt_VY5")
+        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            self.gameSession = gameSession
+            self.addTextFieldAndScene()
+        })
+        
+        
+//        gameManager.observeLeaderboardChanges(gameSessionID: "-KpRMhh0FpMKP-vt_VY5") { (arrayOfArrays) in
+//            print("other player changed position")
+//        }
     }
     
     override var shouldAutorotate: Bool {
@@ -55,7 +72,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Keyboard
     
-    func addTextField() {
+    func addTextFieldAndScene() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         textField = UITextField(frame: CGRect.zero)
         
@@ -85,9 +102,9 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         
         //check to present singlePlayer or multiPlayer
         if gameSession.players.count == 1 {
-            scene = GameScene(size: gameView.frame.size)
+            scene = GameScene(size: gameView.frame.size, gameSesh: gameSession)
         }else {
-            scene = MultiplayerGameScene(size: gameView.frame.size)
+            scene = MultiplayerGameScene(size: gameView.frame.size, gameSesh: gameSession)
         }
         scene.scaleMode = .aspectFit
         

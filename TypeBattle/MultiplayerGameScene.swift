@@ -14,24 +14,23 @@ class MultiplayerGameScene: SKScene {
     var sceneHeight: CGFloat!
     var sceneWidth: CGFloat!
     
-    //
-    var playerSessions: [PlayerSession]!
-    //    var mainPlayer: PlayerSession!
-    
-    var numberOfPlayers = 8
+    //GameSession
+    var gameSession: GameSession!
+    var numberOfPlayers: Int!
     
     //test player
-    let mainPlayer = PlayerSession(playerID: "123", playerName: "SAM")
+//    let mainPlayer = PlayerSession(playerID: "123", playerName: "SAM")
     //
     
     //MainPlayer
-    let mainPlayerNode = SKSpriteNode()
-    let mainPlayerSize = CGSize(width: 100, height: 120)
-    let mainPlayerPosition = CGPoint(x: 100, y: 17.5)
+//    let mainPlayerNode = SKSpriteNode()
+//    let mainPlayerPosition = CGPoint(x: 100, y: 17.5)
+
+    //Players
+    var playerNode: SKSpriteNode!
+    let playerSize = CGSize(width: 100, height: 120)
     let playerMovement: CGFloat = 20.0
     var isIdle: Bool!
-    //otherPlayers
-    var playerNode: SKSpriteNode!
     
     //Background
     var ground: SKSpriteNode!
@@ -59,22 +58,37 @@ class MultiplayerGameScene: SKScene {
     var timerTime: TimeInterval!
     var firstFrame = true
     
+    
+    //MARK: Scene DidMove
     override func didMove(to view: SKView) {
         //test
-        mainPlayer.gameCharacter = .knight
-        textArray = ["a", "a","a", "a","a", "a"]
+//        mainPlayer.gameCharacter = .knight
+//        textArray = ["a", "a","a", "a","a", "a"]
         //
         
         self.anchorPoint = CGPoint.zero
         sceneHeight = self.frame.size.height
         sceneWidth = self.frame.size.width
         setupBackground()
-        setupMainPlayer()
+//        setupMainPlayer()
         setupCamera()
         setupText()
         detectKeystroke()
         setupTimer()
-        setupOtherPlayers(/*players: playerSessions*/)
+        setupPlayers()
+    }
+    
+    override init(size: CGSize) {
+        super.init(size: size)
+    }
+    
+    convenience init(size: CGSize, gameSesh: GameSession) {
+        self.init(size: size)
+        gameSession = gameSesh
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -119,38 +133,40 @@ class MultiplayerGameScene: SKScene {
     
     //MARK: Players
     //Setup mainPlayer
-    func setupMainPlayer() {
-        addPlayer(spriteNode: mainPlayerNode, size: mainPlayerSize, position: mainPlayerPosition)
-        mainPlayerNode.zPosition = 20
-        mainPlayerNode.anchorPoint = CGPoint.zero
-        CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .idle)
-        isIdle = true
-    }
-    
-    //Move mainPlayer
-    func moveMainPlayer() {
-        if isIdle {
-            CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
-            isIdle = false
-        }
-        cam.position.x += playerMovement
-        
-        let moveRight = SKAction.moveBy(x: playerMovement, y: 0, duration: 0)
-        mainPlayerNode.run(moveRight)
-        
-    }
+//    func setupMainPlayer() {
+//        addPlayer(spriteNode: mainPlayerNode, size: mainPlayerSize, position: mainPlayerPosition)
+//        mainPlayerNode.zPosition = 20
+//        mainPlayerNode.anchorPoint = CGPoint.zero
+//        CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .idle)
+//        isIdle = true
+//    }
+//    
+//    //Move mainPlayer
+//    func moveMainPlayer() {
+//        if isIdle {
+//            CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
+//            isIdle = false
+//        }
+//        cam.position.x += playerMovement
+//        
+//        let moveRight = SKAction.moveBy(x: playerMovement, y: 0, duration: 0)
+//        mainPlayerNode.run(moveRight)
+//        
+//    }
     
     //Setup other players
-    func setupOtherPlayers(/*players: [PlayerSession]*/) {
-        var playerXPos: CGFloat = 0.0
-        var playerYPos: CGFloat = 0.0
-        var playerZPos: CGFloat = 19.0
+    func setupPlayers() {
+        //first(main) player position
+        var playerXPos: CGFloat = 10.0
+        var playerYPos: CGFloat = 17.5
+        var playerZPos: CGFloat = 20.0
+        numberOfPlayers = gameSession.capacity
         
-        for index in 0..<numberOfPlayers-1 {
+        for index in 0..<numberOfPlayers {
             playerNode = SKSpriteNode()
             
             playerNode.anchorPoint = CGPoint.zero
-            playerNode.size = mainPlayerSize
+            playerNode.size = playerSize
             playerNode.position = CGPoint(x: playerXPos, y: playerYPos)
             playerNode.zPosition = playerZPos
             playerXPos += 10.0
@@ -158,7 +174,8 @@ class MultiplayerGameScene: SKScene {
             playerZPos -= 1.0
             
             addChild(playerNode)
-            CharacterAnimation.doAction(player: playerNode, char: .cat/*players[index].gameCharacter*/ , action: .idle)
+            CharacterAnimation.doAction(player: playerNode, char: gameSession.players[index].gameCharacter, action: .idle)
+            isIdle = true
         }
     }
     
@@ -297,7 +314,7 @@ class MultiplayerGameScene: SKScene {
         if arrayIndex < textArray.count {
             if lowerText == textArray[arrayIndex] {
                 moveText()
-                moveMainPlayer()
+//                moveMainPlayer()
                 changeCurrentTextColor(index: arrayIndex)
                 arrayIndex += 1
             }

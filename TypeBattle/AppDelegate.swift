@@ -21,27 +21,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
        
-//        var storyboard:UIStoryboard
-//        
-//        let userDefaults = UserDefaults.standard
-//        
-//        if userDefaults.bool(forKey: "hasRunBefore") == false {
-//            try! Auth.auth().signOut()
-//            
-//            userDefaults.set(true, forKey: "hasRunBefore")
-//            userDefaults.synchronize() // Forces the app to update UserDefaults
-//        }
-//        
-//        if Auth.auth().currentUser?.uid == nil {
-//            storyboard = UIStoryboard.init(name: "Login", bundle: .main)
-//        } else {
-//            NetworkManager.fetchPlayerDetails()
-//            storyboard = UIStoryboard.init(name: "MainMenu", bundle: .main)
-//        }
-//        
-//        let rootVC = storyboard.instantiateInitialViewController()
-//        window?.rootViewController = rootVC
-//        window?.makeKeyAndVisible()
+        var storyboard:UIStoryboard
+        
+        let userDefaults = UserDefaults.standard
+        
+        if userDefaults.bool(forKey: "hasRunBefore") == false {
+            try! Auth.auth().signOut()
+            
+            userDefaults.set(true, forKey: "hasRunBefore")
+            userDefaults.synchronize() // Forces the app to update UserDefaults
+        }
+        
+        if Auth.auth().currentUser?.uid == nil {
+            storyboard = UIStoryboard.init(name: "Login", bundle: .main)
+        } else {
+            NetworkManager.fetchPlayerDetails()
+            storyboard = UIStoryboard.init(name: "MainMenu", bundle: .main)
+        }
+        
+        let rootVC = storyboard.instantiateInitialViewController()
+        window?.rootViewController = rootVC
+        window?.makeKeyAndVisible()
         
         return true
     }
