@@ -11,6 +11,7 @@
 		431E7F321F180EF300B7B5CE /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431E7F311F180EF300B7B5CE /* UIColor+CustomColors.swift */; };
 		431E7F361F181F9900B7B5CE /* MainMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431E7F351F181F9900B7B5CE /* MainMenuButton.swift */; };
 		431E7F381F18220C00B7B5CE /* GameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431E7F371F18220C00B7B5CE /* GameLabel.swift */; };
+		432041CC1F1FD83E009E3771 /* BackgroundScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432041CB1F1FD83E009E3771 /* BackgroundScene.swift */; };
 		4340E6071F17F7BF003C0167 /* UIFont+CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340E6061F17F7BF003C0167 /* UIFont+CustomFonts.swift */; };
 		4340E60A1F17F862003C0167 /* Supersonic Rocketship.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4340E6091F17F862003C0167 /* Supersonic Rocketship.ttf */; };
 		435913641F196AD200F59509 /* ProfilePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 435913631F196AD200F59509 /* ProfilePage.storyboard */; };
@@ -55,6 +56,7 @@
 		431E7F311F180EF300B7B5CE /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		431E7F351F181F9900B7B5CE /* MainMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuButton.swift; sourceTree = "<group>"; };
 		431E7F371F18220C00B7B5CE /* GameLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLabel.swift; sourceTree = "<group>"; };
+		432041CB1F1FD83E009E3771 /* BackgroundScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundScene.swift; sourceTree = "<group>"; };
 		4340E6061F17F7BF003C0167 /* UIFont+CustomFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFonts.swift"; sourceTree = "<group>"; };
 		4340E6091F17F862003C0167 /* Supersonic Rocketship.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Supersonic Rocketship.ttf"; sourceTree = "<group>"; };
 		435913631F196AD200F59509 /* ProfilePage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfilePage.storyboard; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				435913631F196AD200F59509 /* ProfilePage.storyboard */,
 				435913651F196B5100F59509 /* ProfilePageView.swift */,
 				FF889A421F1861A2006955BB /* NetworkManager.swift */,
+				432041CB1F1FD83E009E3771 /* BackgroundScene.swift */,
 			);
 			path = TypeBattle;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				435913661F196B5100F59509 /* ProfilePageView.swift in Sources */,
 				9C34E2CE1F184F33008372DC /* MainLobbyViewController.swift in Sources */,
 				9C34E2BE1F173E00008372DC /* GameLobby.swift in Sources */,
+				432041CC1F1FD83E009E3771 /* BackgroundScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
