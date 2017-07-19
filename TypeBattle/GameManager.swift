@@ -17,11 +17,10 @@ class GameManager {
         return GameLobby(name: name, textCategory: keyword, capacity: maxCapacity, owner: owner, location: location)
     }
     
-    
-    func createGameSession(lobby: GameLobby) -> GameSession {
+    func createGameSession(lobby: GameLobby, someRandomText: String) -> GameSession {
         
         // Use GameLobby data to create a GameSession
-        let session = GameSession(name: lobby.name, gameText: generateRamdomText(keyword: lobby.textCategory), capacity: lobby.capacity, ownerID: lobby.owner.playerID, location: lobby.location)
+        let session = GameSession(name: lobby.name, gameText: someRandomText, capacity: lobby.capacity, ownerID: lobby.owner.playerID, location: lobby.location)
         
         session.players.append(PlayerSession(playerID: lobby.owner.playerID, playerName: lobby.owner.name))
         
@@ -30,7 +29,6 @@ class GameManager {
         
         return session
     }
-    
     
     func addPlayerToGame (gameSessionID: String, player: Player) {
         
@@ -47,6 +45,13 @@ class GameManager {
                     print("Error getting GameSession")
                     return
             }
+
+            // if the user is already in the game, does not add it again
+            for p in gameSession.players {
+                if(p.playerID == player.playerID) {
+                    return
+                }
+            }
             
             // create a playersession and add to the gamesession
             let playerSession = PlayerSession(playerID: player.playerID, playerName: player.name)
@@ -57,25 +62,137 @@ class GameManager {
         })
     }
     
-    func setPlayerReady (gameSessionID: String, playerID: String, characterType: GameCharacterType) {
+    func removePlayerOfGame (gameSessionID: String, player: Player) {
         
-        GameSession.setPlayerAsReady(gameSessionID: gameSessionID, playerID: playerID, characterType: characterType)
+        // add PlayerSession to Firebase
+        let ref = Database.database().reference(withPath: "game_sessions")
+        let gameRef = ref.child(gameSessionID)
+        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            // if the user is already in the game, does not add it again
+            for i in 0...gameSession.players.count {
+                if(gameSession.players[i].playerID == player.playerID) {
+                    gameSession.players.remove(at: i)
+                    break
+                }
+            }
+            
+            // persist in firebase
+            gameRef.setValue(gameSession.createDictionary())
+        })
+    }
+
+    func setPlayerReady (gameSessionID: String, playerID: String, characterType: GameCharacterType, isReady: Bool) {
+        
+        // change game session status to Started
+        let ref = Database.database().reference(withPath: "game_sessions")
+        let gameRef = ref.child(gameSessionID)
+        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            // change status for player
+            for player in gameSession.players {
+                
+                if(player.playerID == playerID) {
+                    
+                    player.isReady = isReady
+                    player.gameCharacter = characterType
+                }
+            }
+            
+            // persist in firebase
+            gameRef.setValue(gameSession.createDictionary())
+        })
     }
     
     func startGameSession (gameSessionID: String) {
         
-        GameSession.changeGameSessionStatus(gameSessionID: gameSessionID, status: .started)
+        self.changeGameSessionStatus(gameSessionID: gameSessionID, status: .started)
     }
     
     func finishGameSession (gameSessionID: String) {
         
-        GameSession.changeGameSessionStatus(gameSessionID: gameSessionID, status: .finished)
+        self.changeGameSessionStatus(gameSessionID: gameSessionID, status: .finished)
     }
     
-    func listAvailableGameSessions(withCompletionBlock block: @escaping (GameSession) -> Swift.Void) {
+    private func changeGameSessionStatus(gameSessionID: String, status: GameSessionStatus) {
+        // change game session status to Started
+        let ref = Database.database().reference(withPath: "game_sessions")
+        let gameRef = ref.child(gameSessionID)
+        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            // change status
+            gameSession.status = status
+            
+            
+            
+            if(status == .started) {
+                
+                // create "light" struct to control players data during game (for performance)
+                let ref2 = Database.database().reference(withPath: "players_sessions")
+                let playersRef = ref2.child(gameSessionID)
+                
+                for p in gameSession.players {
+                    
+                    // change every player to Ready status
+                    p.isReady = true
+                    
+                    // populate PlayerSession data with initial position
+                    let playerRef = playersRef.child(p.playerID)
+                    let playerDict = ["nm": p.playerName, "ix": 0, "pct": 0.0] as [String : Any]
+                    playerRef.setValue(playerDict)
+                }
+            }
+            
+            // persist in firebase
+            gameRef.setValue(gameSession.createDictionary())
+        })        
+    }
+
+    func cancelGameSession (gameSessionID: String) {
+        
+        Database.database().reference(withPath: "game_sessions").child(gameSessionID).removeValue()
+    }
+    
+    func incrementPosition (gameSessionID: String, player: Player, index: Int, progress: Double) {
+        
+        let ref = Database.database().reference(withPath: "players_sessions").child(gameSessionID).child(player.playerID)
+        
+        let dictionary = ["nm": player.name,
+                          "ix": index,
+                          "pct": progress] as [String : Any]
+        
+        ref.setValue(dictionary)
+    }
+    
+    func listAvailableGameSessions(withCompletionBlock block: @escaping (GameSession, String) -> Swift.Void) {
     
         let ref = Database.database().reference(withPath: "game_sessions")
-        ref.observe(DataEventType.childAdded, with: { (snapshot) in
+        ref.observe(.childAdded, with: { (snapshot) in
             let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
             
             // try to parse dictionary to a GameSession object
@@ -87,36 +204,68 @@ class GameManager {
             
             // check session status
             if(gameSession.status == .waitingForPlayers) {
-                block(gameSession)
+                block(gameSession, "added")
             }
         })
         
-//        ref.observe(DataEventType.childChanged, with: { (snapshot) in
-//            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
-//            
-//            // try to parse dictionary to a GameSession object
-//            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
-//                else {
-//                    print("Error getting GameSession")
-//                    return
-//            }
-//            
-//            // check session status
-//            if(gameSession.status == .waitingForPlayers) {
-//                block(gameSession)
-//            }
-//        })
+        ref.observe(.childChanged, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            // check session status
+            if(gameSession.status == .waitingForPlayers) {
+                block(gameSession, "updated")
+            }
+        })
+
+        ref.observe(.childRemoved, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            // check session status
+            if(gameSession.status == .waitingForPlayers) {
+                block(gameSession, "deleted")
+            }
+        })
+
     
     }
     
-    func generateRamdomText(keyword: String) -> String {
-        var characters:String = ""
-        DispatchQueue.main.async {
-            NetworkManager.getWords(category: keyword) { (words) in
-                characters = words
+    func observeLeaderboardChanges(gameSessionID: String, withCompletionBlock block: @escaping (Array<Array<Any>>) -> Swift.Void) {
+        
+        let ref = Database.database().reference(withPath: "players_sessions").child(gameSessionID)
+        ref.observe(.value, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            var playersArray = Array<Array<Any>>()
+            
+            for key in sessionDictionary.keys {
+                
+                let playerID = key //PlayerID
+                
+                let subDictionary = sessionDictionary[playerID] as? [String: Any] ?? [:]
+                let name = subDictionary["nm"] as! String
+                let index = subDictionary["ix"] as! Int
+                let percentage = subDictionary["pct"] as! Double
+                
+                playersArray.append([playerID, name, index, percentage])
             }
-        }
-        return characters
+            
+            block(playersArray)
+        })
+
     }
     
     func getAllCharacters() -> Array<GameCharacter> {

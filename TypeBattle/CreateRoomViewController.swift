@@ -14,11 +14,11 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
     @IBOutlet weak var maxPlayersLabel: UILabel!
     @IBOutlet weak var maxPlayersSegmentedControl: UISlider!
     @IBOutlet weak var roomNameTextField: UITextField!
-    @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var locationSwitch: UISwitch!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var getLocationLabel: UILabel!
+    @IBOutlet weak var categorySegmentedControl: UISegmentedControl!
     
     var currentLocation: CLLocation?
     var locationManager: CLLocationManager!
@@ -38,13 +38,17 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         
         // Set textview delegates
         self.roomNameTextField.delegate = self
-        self.categoryTextField.delegate = self
         
         // Set up buttons
         self.cancelButton.contentVerticalAlignment = .fill
         self.cancelButton.layer.cornerRadius = 4.0
         self.createButton.contentVerticalAlignment = .fill
         self.createButton.layer.cornerRadius = 4.0
+        
+        // Set up segmented control
+        let font = UIFont.gameFont(size: 17)
+        self.categorySegmentedControl.contentVerticalAlignment = .bottom
+        self.categorySegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
         
         // Set up location manager
         self.locationManager = CLLocationManager()
@@ -58,13 +62,9 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
 
     // MARK: Actions
     @IBAction func createRoom(_ sender: UIButton) {
-       
+        
         guard let roomName = roomNameTextField.text else {
             print("Error getting room name")
-            return
-        }
-        guard let category = categoryTextField.text else {
-            print("Error getting category")
             return
         }
         guard let maxPlayersString = maxPlayersLabel.text else {
@@ -76,13 +76,30 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
             return
         }
         
+        // check if room name have at least 3 characters
+        if (roomName.characters.count <= 3) {
+            roomNameTextField.text = ""
+            roomNameTextField.placeholder = "Name required (min 3 characters)"
+            return
+        }
+        
         let manager = GameManager()
         
         // Create lobby
+        let category = self.categorySegmentedControl.selectedSegmentIndex == 0 ? "quote" : "poem"
         let lobby = manager.createGameLobby(name: roomName, keyword: category, maxCapacity: maxPlayers, location: self.currentLocation, owner: self.currentPlayer)
-
-        // Create room with the creator as the first player
-        self.savedGameSession = manager.createGameSession(lobby: lobby)
+        
+        // Create session
+        NetworkManager.getWords(category: category) { (someRandomText) in
+            
+            DispatchQueue.main.async {
+                // Create room with the creator as the first player
+                self.savedGameSession = manager.createGameSession(lobby: lobby, someRandomText: someRandomText)
+                
+                self.performSegue(withIdentifier: "goto-lobby-segue", sender: self)
+            }
+        }
+        
     }
 
     @IBAction func maxPlayersSegmentedControl(_ sender: UISlider) {
@@ -104,10 +121,18 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
             
             // disable button until location is returned, show message
             self.createButton.isEnabled = false
+            self.createButton.alpha = 0.5
             self.getLocationLabel.isHidden = false
         }
         else {
+            locationManager.stopUpdatingLocation()
+            
+            // enable buttons again
+            self.createButton.isEnabled = true
+            self.createButton.alpha = 1.0
+            self.getLocationLabel.isHidden = true
             self.currentLocation = nil
+            
         }
     }
     
@@ -122,6 +147,20 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         }
     }
 
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        switch identifier {
+        case "goto-lobby-segue":
+            // check if room name have at least 3 characters
+            if ((roomNameTextField.text?.characters.count)! <= 3) {
+                return false
+            }
+            else {
+                return true
+            }
+        default:
+            return true
+        }
+    }
     
     // MARK: UITextField delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -136,6 +175,7 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
 
         // enable button
         self.createButton.isEnabled = true
+        self.createButton.alpha = 1.0
         self.getLocationLabel.isHidden = true
         
         guard let currentLocation = locations.first else {
