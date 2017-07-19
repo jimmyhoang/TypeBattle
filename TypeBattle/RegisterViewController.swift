@@ -7,7 +7,7 @@
 //
 import UIKit
 import Firebase
-
+import SpriteKit
 class RegisterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // MARK: Properties
@@ -17,7 +17,8 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-
+    @IBOutlet weak var cancelButton: UIButton!
+    
     var defaultAvatars: NSDictionary = [
         "cat/Idle (1)"        : UIImage(named: "cat/Idle (1)")!,
         "dog/Idle (1)"        : UIImage(named: "dog/Idle (1)")!,
@@ -33,14 +34,51 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     var avatarImages:[UIImage] = []
     var checkmarkImageView:UIImageView!
 
+    let screenSize = UIScreen.main.bounds
+    var background: BackgroundScene!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.background
+        
+        setupBackground()
+        self.background.backgroundColor = UIColor.background
+        
         avatarImages              = defaultAvatars.allValues as! [UIImage]
 
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.setupBackground()
+        self.background.backgroundColor = UIColor.background
+    }
+    
+    func setupBackground() {
+        
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        //gameViewHeight = screenHeight - keyboardHeight
+        
+        let gameView = SKView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        
+        background = BackgroundScene(size: gameView.frame.size)
+        background.scaleMode = .aspectFit
+        
+        gameView.translatesAutoresizingMaskIntoConstraints = false
+        gameView.presentScene(background)
+        gameView.ignoresSiblingOrder = true
+        gameView.showsFPS = true
+        gameView.showsNodeCount = true
+        
+        self.view.insertSubview(gameView, belowSubview: cancelButton)
+        
+        gameView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        gameView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        gameView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        gameView.heightAnchor.constraint(equalToConstant: screenHeight).isActive = true
+        
     }
     
     override func didReceiveMemoryWarning() {

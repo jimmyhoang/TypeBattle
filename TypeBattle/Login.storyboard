@@ -28,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVE-S7-oyc">
-                                <rect key="frame" x="0.0" y="28" width="375" height="477.5"/>
+                                <rect key="frame" x="0.0" y="95" width="375" height="410.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TypeBattle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhB-IJ-Ti0" customClass="GameLabel" customModule="TypeBattle" customModuleProvider="target">
                                         <rect key="frame" x="36" y="0.0" width="303" height="36"/>
@@ -138,7 +138,7 @@
                         <color key="backgroundColor" red="0.16470588235294117" green="0.80000000000000004" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KVE-S7-oyc" firstAttribute="top" secondItem="woM-91-GX8" secondAttribute="bottom" constant="8" id="2z6-uM-RhU"/>
+                            <constraint firstItem="KVE-S7-oyc" firstAttribute="top" secondItem="woM-91-GX8" secondAttribute="bottom" constant="75" id="2z6-uM-RhU"/>
                             <constraint firstItem="66I-XL-tFs" firstAttribute="top" secondItem="NPC-Jm-S7L" secondAttribute="bottom" constant="8" id="69r-Vi-DXW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NPC-Jm-S7L" secondAttribute="trailing" constant="8" id="LOG-A6-gZm"/>
                             <constraint firstItem="NPC-Jm-S7L" firstAttribute="leading" secondItem="dXc-rh-LYs" secondAttribute="leadingMargin" constant="8" id="RGR-UD-fBd"/>
@@ -155,7 +155,7 @@
                         <outlet property="loginView" destination="KVE-S7-oyc" id="Xzu-x9-AF9"/>
                         <outlet property="passwordTextField" destination="Git-wR-80p" id="0F3-gb-Svc"/>
                         <segue destination="ecP-u5-fy7" kind="showDetail" identifier="mainmenu" action="showViewController:sender:" id="gO3-nU-BAs"/>
-                        <segue destination="c2s-vo-nov" kind="show" identifier="registerscreen" id="saG-qH-ncS"/>
+                        <segue destination="c2s-vo-nov" kind="showDetail" identifier="registerscreen" action="showViewController:sender:" id="saG-qH-ncS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z3u-p0-ldB" userLabel="First Responder" sceneMemberID="firstResponder"/>

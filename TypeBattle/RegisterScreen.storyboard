@@ -19,7 +19,7 @@
         <!--Register View Controller-->
         <scene sceneID="7vn-Jj-KQH">
             <objects>
-                <viewController id="0Y0-Ey-bIB" customClass="RegisterViewController" customModule="TypeBattle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="0Y0-Ey-bIB" customClass="RegisterViewController" customModule="TypeBattle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gon-zp-wGi"/>
                         <viewControllerLayoutGuide type="bottom" id="Q3o-AI-hcx"/>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TypeBattle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgk-tb-6H0" customClass="GameLabel" customModule="TypeBattle" customModuleProvider="target">
-                                <rect key="frame" x="108.5" y="70" width="159" height="27.5"/>
+                                <rect key="frame" x="108" y="70" width="159" height="27.5"/>
                                 <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -130,6 +130,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="5GC-li-S1U" id="Kzf-EH-I5f"/>
                         <outlet property="collectionView" destination="Upt-an-4JD" id="wKT-NI-t7u"/>
                         <outlet property="confirmPasswordTextField" destination="Rl3-3a-d5C" id="nRw-QJ-CU1"/>
                         <outlet property="emailTextField" destination="JR7-zq-cyT" id="DHm-lz-w5N"/>
