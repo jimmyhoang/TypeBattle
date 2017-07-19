@@ -11,6 +11,7 @@ import Firebase
 import FacebookLogin
 import FacebookCore
 import Nuke
+import SwiftyJSON
 
 class NetworkManager{
     
@@ -188,13 +189,13 @@ class NetworkManager{
             break
         }
         
-        var components  = URLComponents()
+        var components    = URLComponents()
         components.scheme = "https"
-        components.host = "typebattle.vapor.cloud"
-        components.path = "/\(lowerCategory)/\(number)"
+        components.host   = "typebattle.vapor.cloud"
+        components.path   = "/\(lowerCategory)/\(number)"
         print(components)
         
-        let url = components.url
+        let url       = components.url
         let request   = URLRequest(url: url!)
         
         let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
@@ -204,15 +205,12 @@ class NetworkManager{
                 return
             }
             
-            guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as! Dictionary<String,String> else {
-                print("data returned not json")
-                return
+            let json = JSON(data: data)
+
+            if let text = json[lowerCategory].string {
+                let lowerCased = text.lowercased()
+                completion(lowerCased)
             }
-            
-            guard let text = json[lowerCategory] else {return}
-            let lowerCased = text.lowercased()
-        
-            completion(lowerCased)
         }
         task.resume()
     }
