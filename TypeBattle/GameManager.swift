@@ -260,19 +260,17 @@ class GameManager {
             let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
             
             var playersArray = Array<Array<Any>>()
-            var playerArray = Array<Any>()
             
             for key in sessionDictionary.keys {
                 
-                let playerID = key
+                let playerID = key //PlayerID
                 
                 let subDictionary = sessionDictionary[playerID] as? [String: Any] ?? [:]
-                playerArray.append(playerID)
-                playerArray.append(subDictionary["nm"] as! String)
-                playerArray.append(subDictionary["ix"] as! Int)
-                playerArray.append(subDictionary["pct"] as! Double)
+                let name = subDictionary["nm"] as! String
+                let index = subDictionary["ix"] as! Int
+                let percentage = subDictionary["pct"] as! Double
                 
-                playersArray.append(playerArray)
+                playersArray.append([playerID, name, index, percentage])
             }
             
             block(playersArray)
