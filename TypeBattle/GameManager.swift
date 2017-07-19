@@ -203,7 +203,7 @@ class GameManager {
             }
             
             // check session status
-            if(gameSession.status == .waitingForPlayers) {
+            if(gameSession.status == .waitingForPlayers && gameSession.capacity > 1) {
                 block(gameSession, "added")
             }
         })
@@ -219,7 +219,7 @@ class GameManager {
             }
             
             // check session status
-            if(gameSession.status == .waitingForPlayers) {
+            if(gameSession.status == .waitingForPlayers && gameSession.capacity > 1) {
                 block(gameSession, "updated")
             }
         })
@@ -235,7 +235,7 @@ class GameManager {
             }
             
             // check session status
-            if(gameSession.status == .waitingForPlayers) {
+            if(gameSession.status == .waitingForPlayers && gameSession.capacity > 1) {
                 block(gameSession, "deleted")
             }
         })

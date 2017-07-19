@@ -18,6 +18,9 @@ class MainMenuView: UIView {
     }
     */
     let leaderboardIconWidth:CGFloat = 64.0
+    var gameManager = GameManager()
+    var currentPlayer: Player!
+    var gameSession: GameSession?
     
     private lazy var nameIcon:UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "TypeBattle3D"))
@@ -97,6 +100,10 @@ class MainMenuView: UIView {
         stack.addArrangedSubview(profileButton)
         stack.addArrangedSubview(settingsButton)
         
+        // Get logged user
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        self.currentPlayer = delegate.player
+        
         self.setNeedsUpdateConstraints()
     }
     
@@ -129,17 +136,38 @@ class MainMenuView: UIView {
     }
     
     func trainingSegue(sender:UIButton!) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController()
         
-        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-            return
-        }
-        while let next = top.presentedViewController {
-            top = next
-        }
+        // Create lobby
+        let category = arc4random_uniform(2) == 1 ? "quote" : "poem"
+        let lobby = gameManager.createGameLobby(name: "TRAINING", keyword: category, maxCapacity: 1, location: nil, owner: self.currentPlayer)
         
-        top.present(vc!, animated: true, completion: nil)
+        // Create session
+        NetworkManager.getWords(category: category) { (someRandomText) in
+            
+            DispatchQueue.main.async {
+                // Create room with the creator as the first player
+                self.gameSession = self.gameManager.createGameSession(lobby: lobby, someRandomText: someRandomText)
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateInitialViewController()
+                
+                guard var top = UIApplication.shared.keyWindow?.rootViewController else {
+                    return
+                }
+                while let next = top.presentedViewController {
+                    top = next
+                }
+                
+                guard let gameVC = vc as? GameViewController else {
+                    print("Not able to segue to game view controller")
+                    return
+                }
+                
+                gameVC.gameSession = self.gameSession
+                
+                top.present(vc!, animated: true, completion: nil)
+            }
+        }
     }
     
     func myProfileSegue(sender:UIButton!) {
