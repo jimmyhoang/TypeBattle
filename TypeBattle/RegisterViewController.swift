@@ -53,6 +53,14 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         guard let password = passwordTextField.text, let confirm = confirmPasswordTextField.text, let nickname = nicknameTextField.text, let email = emailTextField.text else {return}
         
+        if password.characters.count < 6 {
+            let alertController = UIAlertController(title: "Error", message: "Password must be min 6 characters", preferredStyle: .alert)
+            let defaultAction   = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
         if confirmPassword(password: password, confirm: confirm) {
             NetworkManager.registerUser(email: email, password: password, nickname: nickname, avatarName: selectedImage, completion: { () -> (Void) in
                 self.performSegue(withIdentifier: "mainmenu", sender: self)
