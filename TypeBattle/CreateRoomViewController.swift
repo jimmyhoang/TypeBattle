@@ -14,11 +14,11 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
     @IBOutlet weak var maxPlayersLabel: UILabel!
     @IBOutlet weak var maxPlayersSegmentedControl: UISlider!
     @IBOutlet weak var roomNameTextField: UITextField!
-    @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var locationSwitch: UISwitch!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var createButton: UIButton!
     @IBOutlet weak var getLocationLabel: UILabel!
+    @IBOutlet weak var categorySegmentedControl: UISegmentedControl!
     
     var currentLocation: CLLocation?
     var locationManager: CLLocationManager!
@@ -38,13 +38,17 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         
         // Set textview delegates
         self.roomNameTextField.delegate = self
-        self.categoryTextField.delegate = self
         
         // Set up buttons
         self.cancelButton.contentVerticalAlignment = .fill
         self.cancelButton.layer.cornerRadius = 4.0
         self.createButton.contentVerticalAlignment = .fill
         self.createButton.layer.cornerRadius = 4.0
+        
+        // Set up segmented control
+        let font = UIFont.gameFont(size: 17)
+        self.categorySegmentedControl.contentVerticalAlignment = .bottom
+        self.categorySegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
         
         // Set up location manager
         self.locationManager = CLLocationManager()
@@ -61,10 +65,6 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
        
         guard let roomName = roomNameTextField.text else {
             print("Error getting room name")
-            return
-        }
-        guard let category = categoryTextField.text else {
-            print("Error getting category")
             return
         }
         guard let maxPlayersString = maxPlayersLabel.text else {
@@ -86,7 +86,7 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         let manager = GameManager()
         
         // Create lobby
-        let lobby = manager.createGameLobby(name: roomName, keyword: category, maxCapacity: maxPlayers, location: self.currentLocation, owner: self.currentPlayer)
+        let lobby = manager.createGameLobby(name: roomName, keyword: self.categorySegmentedControl.selectedSegmentIndex == 0 ? "quote" : "poem", maxCapacity: maxPlayers, location: self.currentLocation, owner: self.currentPlayer)
 
         // Create room with the creator as the first player
         self.savedGameSession = manager.createGameSession(lobby: lobby)

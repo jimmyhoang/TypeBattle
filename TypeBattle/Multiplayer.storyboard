@@ -211,15 +211,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gqA-9m-dFD">
-                                <rect key="frame" x="20" y="269" width="374" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="BXG-A8-9Hu"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMr-sp-naT">
                                 <rect key="frame" x="20" y="656" width="100" height="60"/>
                                 <color key="backgroundColor" red="0.1647058824" green="0.80000000000000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -314,23 +305,35 @@
                                 <color key="textColor" red="0.1647058824" green="0.80000000000000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jJB-lp-gjy">
+                                <rect key="frame" x="20" y="269" width="374" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="fc5-xP-cz1"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Random Quotes"/>
+                                    <segment title="Random Poems"/>
+                                </segments>
+                                <color key="tintColor" red="0.1647058824" green="0.80000000000000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.99215686274509807" green="0.32156862745098036" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="GfO-0l-PIc" firstAttribute="top" secondItem="bKd-QJ-Ppp" secondAttribute="bottom" constant="32" id="2a8-sJ-tdG"/>
-                            <constraint firstItem="HMr-sp-naT" firstAttribute="leading" secondItem="gqA-9m-dFD" secondAttribute="leading" id="6QO-No-dYJ"/>
+                            <constraint firstItem="hKE-As-x5T" firstAttribute="top" secondItem="jJB-lp-gjy" secondAttribute="bottom" constant="40" id="7LW-RR-ymy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qnc-zG-nj5" secondAttribute="trailing" constant="8" id="8G6-uL-Hvs"/>
                             <constraint firstItem="bKd-QJ-Ppp" firstAttribute="centerX" secondItem="j29-Wr-HZh" secondAttribute="centerX" id="92q-hW-IMw"/>
                             <constraint firstItem="9Cb-Z7-oRY" firstAttribute="top" secondItem="GfO-0l-PIc" secondAttribute="bottom" constant="8" id="AY0-Ww-dkd"/>
+                            <constraint firstItem="HMr-sp-naT" firstAttribute="leading" secondItem="j29-Wr-HZh" secondAttribute="leadingMargin" id="Cdi-ZK-Awn"/>
                             <constraint firstItem="hKE-As-x5T" firstAttribute="leading" secondItem="j29-Wr-HZh" secondAttribute="leadingMargin" constant="8" id="I6E-5E-RWa"/>
-                            <constraint firstItem="gqA-9m-dFD" firstAttribute="leading" secondItem="j29-Wr-HZh" secondAttribute="leadingMargin" id="LBQ-WB-NhN"/>
                             <constraint firstItem="Nhr-xD-7BK" firstAttribute="leading" secondItem="j29-Wr-HZh" secondAttribute="leadingMargin" id="OQ4-rm-KZi"/>
+                            <constraint firstItem="jJB-lp-gjy" firstAttribute="top" secondItem="4G6-bM-O5a" secondAttribute="bottom" constant="8" id="SJy-9W-CCQ"/>
                             <constraint firstItem="4G6-bM-O5a" firstAttribute="leading" secondItem="j29-Wr-HZh" secondAttribute="leadingMargin" constant="8" id="TbB-ov-cuq"/>
-                            <constraint firstItem="gqA-9m-dFD" firstAttribute="top" secondItem="4G6-bM-O5a" secondAttribute="bottom" constant="8" id="Tge-o7-HD3"/>
                             <constraint firstItem="3pN-sF-71g" firstAttribute="trailing" secondItem="j29-Wr-HZh" secondAttribute="trailingMargin" constant="-8" id="XDW-vZ-Elm"/>
                             <constraint firstItem="GfO-0l-PIc" firstAttribute="leading" secondItem="j29-Wr-HZh" secondAttribute="leadingMargin" constant="8" id="YIa-cY-VLy"/>
                             <constraint firstItem="qnc-zG-nj5" firstAttribute="top" secondItem="NZN-oh-Oea" secondAttribute="bottom" constant="8" id="ayj-Dd-Evt"/>
+                            <constraint firstItem="jJB-lp-gjy" firstAttribute="trailing" secondItem="j29-Wr-HZh" secondAttribute="trailingMargin" id="bEU-ub-OKo"/>
                             <constraint firstItem="Oy9-ax-xlZ" firstAttribute="trailing" secondItem="j29-Wr-HZh" secondAttribute="trailingMargin" id="cf2-pE-Mcg"/>
                             <constraint firstItem="bKd-QJ-Ppp" firstAttribute="top" secondItem="Ldv-PI-Ge5" secondAttribute="bottom" constant="16" id="d5d-l1-6Wu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NZN-oh-Oea" secondAttribute="trailing" constant="8" id="gNt-FA-AXS"/>
@@ -338,15 +341,14 @@
                             <constraint firstItem="Nhr-xD-7BK" firstAttribute="trailing" secondItem="j29-Wr-HZh" secondAttribute="trailingMargin" id="idW-qE-ggc"/>
                             <constraint firstItem="RND-5l-4xF" firstAttribute="top" secondItem="Nhr-xD-7BK" secondAttribute="bottom" constant="40" id="jMS-pM-wWa"/>
                             <constraint firstItem="Oy9-ax-xlZ" firstAttribute="baseline" secondItem="HMr-sp-naT" secondAttribute="baseline" id="kYm-oo-zzM"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gqA-9m-dFD" secondAttribute="trailing" id="kpe-o9-GLd"/>
                             <constraint firstAttribute="bottom" secondItem="HMr-sp-naT" secondAttribute="bottom" constant="20" symbolic="YES" id="l3b-Mc-SME"/>
                             <constraint firstItem="9Cb-Z7-oRY" firstAttribute="leading" secondItem="j29-Wr-HZh" secondAttribute="leadingMargin" id="qaP-JO-WK6"/>
                             <constraint firstItem="9Cb-Z7-oRY" firstAttribute="trailing" secondItem="j29-Wr-HZh" secondAttribute="trailingMargin" id="qtx-ut-m6L"/>
                             <constraint firstItem="3pN-sF-71g" firstAttribute="bottom" secondItem="hKE-As-x5T" secondAttribute="bottom" id="t3Q-oi-lf0"/>
                             <constraint firstItem="RND-5l-4xF" firstAttribute="leading" secondItem="j29-Wr-HZh" secondAttribute="leadingMargin" constant="8" id="t9C-C1-9Cd"/>
+                            <constraint firstItem="jJB-lp-gjy" firstAttribute="leading" secondItem="j29-Wr-HZh" secondAttribute="leadingMargin" id="uK1-Yd-Z51"/>
                             <constraint firstItem="4G6-bM-O5a" firstAttribute="top" secondItem="9Cb-Z7-oRY" secondAttribute="bottom" constant="40" id="vY2-OV-PBm"/>
                             <constraint firstItem="NZN-oh-Oea" firstAttribute="bottom" secondItem="RND-5l-4xF" secondAttribute="bottom" id="wMv-Co-0OW"/>
-                            <constraint firstItem="hKE-As-x5T" firstAttribute="top" secondItem="gqA-9m-dFD" secondAttribute="bottom" constant="40" id="yTC-K2-NBI"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="7qf-OW-eNH" appends="YES" id="DHg-T9-GT9"/>
@@ -354,7 +356,7 @@
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="HMr-sp-naT" id="v67-gD-NIT"/>
-                        <outlet property="categoryTextField" destination="gqA-9m-dFD" id="Dn2-JG-zS1"/>
+                        <outlet property="categorySegmentedControl" destination="jJB-lp-gjy" id="Dvb-Fz-OWc"/>
                         <outlet property="createButton" destination="Oy9-ax-xlZ" id="SGD-lM-uPH"/>
                         <outlet property="getLocationLabel" destination="qnc-zG-nj5" id="GUW-fb-jQh"/>
                         <outlet property="locationSwitch" destination="NZN-oh-Oea" id="7oW-c7-qB5"/>
@@ -370,7 +372,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-3020" y="260"/>
+            <point key="canvasLocation" x="-3020.289855072464" y="259.23913043478262"/>
         </scene>
         <!--Join Room View Controller-->
         <scene sceneID="9hV-5N-D0v">
@@ -773,7 +775,7 @@
         <image name="zombieGirl/Idle (1)" width="521" height="576"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Xzh-Ng-wRI"/>
-        <segue reference="ozR-nN-e9y"/>
+        <segue reference="TkF-W7-Lye"/>
+        <segue reference="Ojc-EO-zKy"/>
     </inferredMetricsTieBreakers>
 </document>
