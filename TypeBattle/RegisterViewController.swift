@@ -37,7 +37,7 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.background
-        avatarImages = defaultAvatars.allValues as! [UIImage]
+        avatarImages              = defaultAvatars.allValues as! [UIImage]
 
         
         // Do any additional setup after loading the view.
@@ -80,7 +80,7 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     // MARK: UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "avatarCell", for: indexPath) as! AvatarPickerCollectionViewCell
+        let cell               = collectionView.dequeueReusableCell(withReuseIdentifier: "avatarCell", for: indexPath) as! AvatarPickerCollectionViewCell
         cell.avatarImage.image = avatarImages[indexPath.item]
         
         return cell
@@ -95,11 +95,12 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! AvatarPickerCollectionViewCell
+        let cell        = collectionView.cellForItem(at: indexPath) as! AvatarPickerCollectionViewCell
+        let image       = cell.avatarImage.image
         cell.isSelected = true
+
         blueCheckmark(cell: cell)
-        let image = cell.avatarImage.image
-        
+
         for (key,value) in defaultAvatars {
             if value as? UIImage == image {
                 selectedImage = key as! String
@@ -120,9 +121,10 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         if checkmarkImageView == nil {
             checkmarkImageView = UIImageView(image: UIImage(named: "blue_checkmark"))
             cell.addSubview(checkmarkImageView)
+            
             checkmarkImageView.translatesAutoresizingMaskIntoConstraints = false
-            checkmarkImageView.contentMode = .scaleAspectFill
-            checkmarkImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            checkmarkImageView.contentMode                               = .scaleAspectFill
+            checkmarkImageView.frame                                     = CGRect(x: 0, y: 0, width: 50, height: 50)
             checkmarkImageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
             checkmarkImageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
         }
