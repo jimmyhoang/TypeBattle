@@ -17,10 +17,10 @@ class GameManager {
         return GameLobby(name: name, textCategory: keyword, capacity: maxCapacity, owner: owner, location: location)
     }
     
-    func createGameSession(lobby: GameLobby) -> GameSession {
+    func createGameSession(lobby: GameLobby, someRandomText: String) -> GameSession {
         
         // Use GameLobby data to create a GameSession
-        let session = GameSession(name: lobby.name, gameText: generateRamdomText(keyword: lobby.textCategory), capacity: lobby.capacity, ownerID: lobby.owner.playerID, location: lobby.location)
+        let session = GameSession(name: lobby.name, gameText: someRandomText, capacity: lobby.capacity, ownerID: lobby.owner.playerID, location: lobby.location)
         
         session.players.append(PlayerSession(playerID: lobby.owner.playerID, playerName: lobby.owner.name))
         
@@ -243,16 +243,6 @@ class GameManager {
     
     }
     
-    func generateRamdomText(keyword: String) -> String {
-        var characters:String = ""
-        DispatchQueue.main.async {
-            NetworkManager.getWords(category: keyword) { (words) in
-                characters = words
-            }
-        }
-        return "Hello world"
-    }
-    
     func observeLeaderboardChanges(gameSessionID: String, withCompletionBlock block: @escaping (Array<Array<Any>>) -> Swift.Void) {
         
         let ref = Database.database().reference(withPath: "players_sessions").child(gameSessionID)
@@ -260,19 +250,17 @@ class GameManager {
             let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
             
             var playersArray = Array<Array<Any>>()
-            var playerArray = Array<Any>()
             
             for key in sessionDictionary.keys {
                 
-                let playerID = key
+                let playerID = key //PlayerID
                 
                 let subDictionary = sessionDictionary[playerID] as? [String: Any] ?? [:]
-                playerArray.append(playerID)
-                playerArray.append(subDictionary["nm"] as! String)
-                playerArray.append(subDictionary["ix"] as! Int)
-                playerArray.append(subDictionary["pct"] as! Double)
+                let name = subDictionary["nm"] as! String
+                let index = subDictionary["ix"] as! Int
+                let percentage = subDictionary["pct"] as! Double
                 
-                playersArray.append(playerArray)
+                playersArray.append([playerID, name, index, percentage])
             }
             
             block(playersArray)

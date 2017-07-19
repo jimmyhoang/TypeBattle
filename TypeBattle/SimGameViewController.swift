@@ -63,7 +63,8 @@ class SimGameViewController: UIViewController, UITableViewDelegate, UITableViewD
         let name = player[1] as! String
         let index = player[2] as! Int
         
-        cell.textLabel?.text = "Name: \(name) - current index \(index)"
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.text = "Name: \(name) \nCurrent Index \(index)"
         return cell
     }
 }
