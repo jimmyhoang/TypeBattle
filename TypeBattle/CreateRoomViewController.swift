@@ -50,11 +50,6 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         self.categorySegmentedControl.contentVerticalAlignment = .bottom
         self.categorySegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
         
-        // Set up location manager
-        self.locationManager = CLLocationManager()
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.delegate = self
-        
         // Get logged user
         let delegate = UIApplication.shared.delegate as! AppDelegate
         self.currentPlayer = delegate.player
@@ -116,7 +111,10 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
     @IBAction func useLocationSwitched(_ sender: UISwitch) {
         if(sender.isOn) {
             
-            // set up location manager
+            // Set up location manager
+            self.locationManager = CLLocationManager()
+            self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.delegate = self
             locationManager.requestLocation()
             
             // disable button until location is returned, show message
@@ -125,7 +123,8 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
             self.getLocationLabel.isHidden = false
         }
         else {
-            locationManager.stopUpdatingLocation()
+            
+            self.locationManager.stopUpdatingLocation()
             
             // enable buttons again
             self.createButton.isEnabled = true
