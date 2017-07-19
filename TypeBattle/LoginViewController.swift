@@ -24,13 +24,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var background: BackgroundScene!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupBackground()
-        self.background.backgroundColor = UIColor.background
+        
         emailTextField.delegate    = self
         passwordTextField.delegate = self
         
         NetworkManager.fetchPlayerDetails()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
+    }
+    
+    func 🚶🏿💯(sender:Notification) {
+        performSegue(withIdentifier: "registerscreen", sender: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.setupBackground()
+        self.background.backgroundColor = UIColor.background
     }
     
     func setupBackground() {
@@ -87,8 +95,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func registerButton(_ sender: UIButton) {
-        NotificationCenter.default.post(name: "startAnimation", object: self)
-        performSegue(withIdentifier: "registerscreen", sender: self)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
+        
     }
     @IBAction func facebookButton(_ sender: Any) {
         NetworkManager.facebookLogin { (success, error) -> (Void) in

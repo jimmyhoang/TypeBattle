@@ -129,7 +129,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No account? Register with:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvi-gb-3Ct" customClass="GameLabel" customModule="TypeBattle" customModuleProvider="target">
-                                <rect key="frame" x="82.5" y="555.5" width="211" height="15.5"/>
+                                <rect key="frame" x="82" y="555.5" width="211" height="15.5"/>
                                 <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -155,7 +155,7 @@
                         <outlet property="loginView" destination="KVE-S7-oyc" id="Xzu-x9-AF9"/>
                         <outlet property="passwordTextField" destination="Git-wR-80p" id="0F3-gb-Svc"/>
                         <segue destination="ecP-u5-fy7" kind="showDetail" identifier="mainmenu" action="showViewController:sender:" id="gO3-nU-BAs"/>
-                        <segue destination="c2s-vo-nov" kind="show" identifier="registerscreen" id="saG-qH-ncS"/>
+                        <segue destination="c2s-vo-nov" kind="showDetail" identifier="registerscreen" action="showViewController:sender:" id="saG-qH-ncS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z3u-p0-ldB" userLabel="First Responder" sceneMemberID="firstResponder"/>
