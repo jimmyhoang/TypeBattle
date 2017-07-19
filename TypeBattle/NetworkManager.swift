@@ -189,7 +189,7 @@ class NetworkManager{
         
         var components    = URLComponents()
         components.scheme = "https"
-        components.host   = "typebattle.vapor.cloud"
+        components.host   = "typeiama.vapor.cloud"
         components.path   = "/\(lowerCategory)/\(number)"
         print(components)
         
