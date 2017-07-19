@@ -11,6 +11,7 @@ import Firebase
 import FacebookLogin
 import FacebookCore
 import Nuke
+import SwiftyJSON
 
 class NetworkManager{
     
@@ -26,7 +27,7 @@ class NetworkManager{
                         let newPlayer = Player(name: nickname, playerID: user.uid,avatarName: avatarName)
                         let playerRef = ref.child(user.uid.lowercased())
                         
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        let appDelegate    = UIApplication.shared.delegate as! AppDelegate
                         appDelegate.player = newPlayer
                         
                         playerRef.setValue(newPlayer.toAnyObject())
@@ -38,7 +39,7 @@ class NetworkManager{
     }
     
     class func login(email: String, password: String, completion:@escaping (Bool?, String?) -> (Void)){
-        var loginSuccess = false
+        var loginSuccess     = false
         var errorDescription = ""
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
@@ -47,7 +48,7 @@ class NetworkManager{
                 loginSuccess = true
             }
             else {
-                guard let error = error else {return}
+                guard let error  = error else {return}
                 errorDescription = error.localizedDescription
             }
             completion(loginSuccess, errorDescription)
@@ -67,7 +68,7 @@ class NetworkManager{
             case .cancelled:
                 errorDescription = "Facebook connect cancelled!"
             case .success(_,_,_):
-                let credential = FacebookAuthProvider.credential(withAccessToken: (AccessToken.current?.authenticationToken)!)
+                let credential   = FacebookAuthProvider.credential(withAccessToken: (AccessToken.current?.authenticationToken)!)
                 
                 Auth.auth().signIn(with: credential, completion: { (user, error) in
                     if error == nil {
@@ -84,13 +85,11 @@ class NetworkManager{
                                 let photoDict                = responseDictionary["picture"] as! NSDictionary
                                 let dataDict                 = photoDict["data"] as! NSDictionary
                                 
-                                let name       = responseDictionary["name"] as! String
-                                guard let url  = dataDict["url"] else {return}
-                                
+                                let name            = responseDictionary["name"] as! String
+                                guard let url       = dataDict["url"] else {return}
                                 guard let stringURL = URL(string: url as! String) else {return}
-                                
-                                guard let user = user else {return}
-                                let newPlayer  = Player(name: name, playerID: user.uid, avatarName: "")
+                                guard let user      = user else {return}
+                                let newPlayer       = Player(name: name, playerID: user.uid, avatarName: "")
                                 
                                 DispatchQueue.main.async {
                                     downloadFBImage(url: stringURL, completion: { (image) -> (Void) in
@@ -139,7 +138,7 @@ class NetworkManager{
             newPlayer.levelProgression = levelProgression
             newPlayer.matchesPlayed    = matchesPlayed
             newPlayer.matchesWon       = matchesWon
-            appDelegate.player        = newPlayer
+            appDelegate.player         = newPlayer
         })
 
     }
@@ -188,13 +187,13 @@ class NetworkManager{
             break
         }
         
-        var components  = URLComponents()
+        var components    = URLComponents()
         components.scheme = "https"
-        components.host = "typebattle.vapor.cloud"
-        components.path = "/\(lowerCategory)/\(number)"
+        components.host   = "typebattle.vapor.cloud"
+        components.path   = "/\(lowerCategory)/\(number)"
         print(components)
         
-        let url = components.url
+        let url       = components.url
         let request   = URLRequest(url: url!)
         
         let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
@@ -204,15 +203,12 @@ class NetworkManager{
                 return
             }
             
-            guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as! Dictionary<String,String> else {
-                print("data returned not json")
-                return
+            let json = JSON(data: data)
+
+            if let text = json[lowerCategory].string {
+                let lowerCased = text.lowercased()
+                completion(lowerCased)
             }
-            
-            guard let text = json[lowerCategory] else {return}
-            let lowerCased = text.lowercased()
-        
-            completion(lowerCased)
         }
         task.resume()
     }
