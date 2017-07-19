@@ -114,25 +114,6 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             }
             self.currentGameSession = gameSession
             
-            // user not in players collection (for example, pressed the home button), sent to mainscreen
-            var isInGame = false
-            for p in self.currentGameSession.players {
-                if (p.playerID == self.currentPlayer.playerID) {
-                    isInGame = true
-                    break
-                }
-            }
-            if (!isInGame) {
-                DispatchQueue.main.async(execute: {
-                    let alert = UIAlertController(title: "Player not in room", message: "You are not in this room anymore. Please join again or choose another room", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                        self.GoToMainLobby()
-                    }))
-                    self.present(alert, animated: true, completion: nil)
-                })
-                return
-            }
-            
             // Reload table view
             self.tableView.reloadData()
             
@@ -214,8 +195,8 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier! ==  "start-game-segue") {
-            let controller = segue.destination as! SimGameViewController
-            controller.gameSessionID = self.currentGameSession.gameSessionID
+            let controller = segue.destination as! GameViewController
+            controller.gameSession = self.currentGameSession
         }
     }
     

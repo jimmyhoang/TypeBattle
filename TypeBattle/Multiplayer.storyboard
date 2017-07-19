@@ -387,7 +387,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOBBY (1/8)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07q-rL-zA0">
-                                <rect key="frame" x="97" y="36" width="220" height="47"/>
+                                <rect key="frame" x="90" y="36" width="235" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="lwR-0F-CQN"/>
                                 </constraints>
@@ -637,7 +637,8 @@
                         <outlet property="startButton" destination="YTW-Uf-QWl" id="DcA-29-V42"/>
                         <outlet property="tableView" destination="YIH-PG-fJd" id="hOd-rc-Ax9"/>
                         <outlet property="waitingForPlayerLabel" destination="ENG-Bx-XfD" id="2dy-fF-EGI"/>
-                        <segue destination="oZG-qI-bEd" kind="presentation" identifier="start-game-segue" modalTransitionStyle="crossDissolve" id="4dY-PA-Bhb"/>
+                        <segue destination="oZG-qI-bEd" kind="presentation" identifier="not-being-used" modalTransitionStyle="crossDissolve" id="4dY-PA-Bhb"/>
+                        <segue destination="02d-hR-JqX" kind="presentation" identifier="start-game-segue" modalTransitionStyle="crossDissolve" id="XRa-GZ-fMO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5SB-Mg-JSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -762,6 +763,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Bj-QI-6hI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1746" y="1034"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="Q79-6Z-sAQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="02d-hR-JqX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PTd-bF-7EB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2117" y="1458"/>
         </scene>
     </scenes>
     <resources>
