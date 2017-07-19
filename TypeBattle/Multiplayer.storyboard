@@ -239,7 +239,6 @@
                                 </state>
                                 <connections>
                                     <action selector="createRoom:" destination="gnh-pT-LaC" eventType="touchUpInside" id="dzl-3A-kLq"/>
-                                    <segue destination="D8C-2C-bsp" kind="presentation" identifier="goto-lobby-segue" modalTransitionStyle="crossDissolve" id="Ojc-EO-zKy"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Room Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfO-0l-PIc">
@@ -363,6 +362,7 @@
                         <outlet property="maxPlayersLabel" destination="3pN-sF-71g" id="gHP-gS-fg3"/>
                         <outlet property="maxPlayersSegmentedControl" destination="Nhr-xD-7BK" id="v65-Q3-sYB"/>
                         <outlet property="roomNameTextField" destination="9Cb-Z7-oRY" id="RAI-jR-vdv"/>
+                        <segue destination="D8C-2C-bsp" kind="presentation" identifier="goto-lobby-segue" modalTransitionStyle="crossDissolve" id="lxy-RV-lua"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uf4-gI-g41" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -776,6 +776,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TkF-W7-Lye"/>
-        <segue reference="Ojc-EO-zKy"/>
+        <segue reference="lxy-RV-lua"/>
     </inferredMetricsTieBreakers>
 </document>

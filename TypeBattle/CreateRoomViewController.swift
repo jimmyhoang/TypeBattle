@@ -62,7 +62,7 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
 
     // MARK: Actions
     @IBAction func createRoom(_ sender: UIButton) {
-       
+        
         guard let roomName = roomNameTextField.text else {
             print("Error getting room name")
             return
@@ -86,10 +86,20 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         let manager = GameManager()
         
         // Create lobby
-        let lobby = manager.createGameLobby(name: roomName, keyword: self.categorySegmentedControl.selectedSegmentIndex == 0 ? "quote" : "poem", maxCapacity: maxPlayers, location: self.currentLocation, owner: self.currentPlayer)
-
-        // Create room with the creator as the first player
-        self.savedGameSession = manager.createGameSession(lobby: lobby)
+        let category = self.categorySegmentedControl.selectedSegmentIndex == 0 ? "quote" : "poem"
+        let lobby = manager.createGameLobby(name: roomName, keyword: category, maxCapacity: maxPlayers, location: self.currentLocation, owner: self.currentPlayer)
+        
+        // Create session
+        NetworkManager.getWords(category: category) { (someRandomText) in
+            
+            DispatchQueue.main.async {
+                // Create room with the creator as the first player
+                self.savedGameSession = manager.createGameSession(lobby: lobby, someRandomText: someRandomText)
+                
+                self.performSegue(withIdentifier: "goto-lobby-segue", sender: self)
+            }
+        }
+        
     }
 
     @IBAction func maxPlayersSegmentedControl(_ sender: UISlider) {
