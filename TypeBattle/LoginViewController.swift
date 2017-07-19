@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FacebookLogin
 import FacebookCore
-
+import SpriteKit
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Properties
@@ -20,13 +20,44 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    let screenSize = UIScreen.main.bounds
+    var background: BackgroundScene!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupBackground()
+        self.background.backgroundColor = UIColor.background
         emailTextField.delegate    = self
         passwordTextField.delegate = self
         
         NetworkManager.fetchPlayerDetails()
         
+    }
+    
+    func setupBackground() {
+        
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        //gameViewHeight = screenHeight - keyboardHeight
+        
+        let gameView = SKView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        
+        background = BackgroundScene(size: gameView.frame.size)
+        background.scaleMode = .aspectFit
+        
+        gameView.translatesAutoresizingMaskIntoConstraints = false
+        gameView.presentScene(background)
+        gameView.ignoresSiblingOrder = true
+        gameView.showsFPS = true
+        gameView.showsNodeCount = true
+        
+        self.view.insertSubview(gameView, belowSubview: loginView)
+        
+        gameView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        gameView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        gameView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        gameView.heightAnchor.constraint(equalToConstant: screenHeight).isActive = true
+    
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
