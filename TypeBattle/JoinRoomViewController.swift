@@ -103,7 +103,7 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
                 else {
                     print("This room no longer exists.")
                     DispatchQueue.main.async(execute: {
-                        let alert = UIAlertController(title: "Room deleted", message: "The player who created left the game. Please choose another room.", preferredStyle: UIAlertControllerStyle.alert)
+                        let alert = UIAlertController(title: "Room does not exists", message: "The creator of this room left the game. Please join another room.", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                             self.GoToMainLobby()
                         }))
@@ -134,7 +134,10 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
         
         // stop the "waiting for players" label animation
         self.lobbytimer.invalidate()
-        self.gameTimer.invalidate()
+        
+        if let gt = self.gameTimer {
+            gt.invalidate()
+        }
     }
     
     //MARK: Actions
@@ -185,12 +188,7 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         
-        if(self.currentPlayer.playerID == self.currentGameSession.ownerID) {
-            self.gameManager.cancelGameSession(gameSessionID: self.currentGameSession.gameSessionID)
-        }
-        else {
-            self.gameManager.removePlayerOfGame (gameSessionID: self.currentGameSession.gameSessionID, player: self.currentPlayer)
-        }
+        self.userLeftLobby()
         
     }
     
@@ -239,5 +237,14 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             }
             
         })
+    }
+    
+    func userLeftLobby() {
+        if(self.currentPlayer.playerID == self.currentGameSession.ownerID) {
+            self.gameManager.cancelGameSession(gameSessionID: self.currentGameSession.gameSessionID)
+        }
+        else {
+            self.gameManager.removePlayerOfGame (gameSessionID: self.currentGameSession.gameSessionID, player: self.currentPlayer)
+        }
     }
 }
