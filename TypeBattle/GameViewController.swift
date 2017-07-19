@@ -18,14 +18,18 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     let screenSize = UIScreen.main.bounds
     var gameViewHeight: CGFloat!
     
-    var scene: GameScene!
+    var scene: SKScene!
     var gameTextString: String!
+    
+    var gameSession: GameSession!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        gameSession = GameSession(name: "asdf", gameText: "asdfadsfasdfa", capacity: 4, ownerID: "123", location: nil)
+//        let playerSession = PlayerSession(playerID: "123", playerName: "abc")
+//        gameSession.players = [playerSession]
         addTextField()
-        scene.textArray = NetworkManager.parseWords(words: gameTextString)
     }
     
     override var shouldAutorotate: Bool {
@@ -79,7 +83,12 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         
         let gameView = SKView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: gameViewHeight))
         
-        scene = GameScene(size: gameView.frame.size)
+        //check to present singlePlayer or multiPlayer
+        if gameSession.players.count == 1 {
+            scene = GameScene(size: gameView.frame.size)
+        }else {
+            scene = MultiplayerGameScene(size: gameView.frame.size)
+        }
         scene.scaleMode = .aspectFit
         
         gameView.translatesAutoresizingMaskIntoConstraints = false
@@ -90,6 +99,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         
         self.view.addSubview(gameView)
         
+        //constraints
         gameView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         gameView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         gameView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true

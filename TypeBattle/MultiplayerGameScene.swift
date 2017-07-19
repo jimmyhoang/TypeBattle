@@ -1,35 +1,43 @@
 //
-//  GameScene.swift
+//  MultiplayerGameScene.swift
 //  TypeBattle
 //
-//  Created by Jimmy Hoang on 2017-07-12.
+//  Created by Harry Li on 2017-07-18.
 //  Copyright © 2017 Jimmy Hoang. All rights reserved.
 //
 
 import SpriteKit
 
-class GameScene: SKScene {
-
+class MultiplayerGameScene: SKScene {
+    
     //Scene
     var sceneHeight: CGFloat!
     var sceneWidth: CGFloat!
     
-    //GameSession
-    var gameSession: GameSession!
+    //
+    var playerSessions: [PlayerSession]!
+    //    var mainPlayer: PlayerSession!
+    
+    var numberOfPlayers = 8
     
     //test player
     let mainPlayer = PlayerSession(playerID: "123", playerName: "SAM")
     //
-
+    
     //MainPlayer
     let mainPlayerNode = SKSpriteNode()
-    let mainPlayerSize = CGSize(width: 120, height: 150)
-    let mainPlayerPosition = CGPoint(x: 100, y: 150)
+    let mainPlayerSize = CGSize(width: 100, height: 120)
+    let mainPlayerPosition = CGPoint(x: 100, y: 17.5)
     let playerMovement: CGFloat = 20.0
     var isIdle: Bool!
-
+    //otherPlayers
+    var playerNode: SKSpriteNode!
+    
     //Background
     var ground: SKSpriteNode!
+    var groundContainer: SKSpriteNode!
+    var groundContainerHeight: CGFloat!
+    
     var sky: SKSpriteNode!
     let skyYPos: CGFloat = 100.0
     var skyWidth: CGFloat!
@@ -41,7 +49,7 @@ class GameScene: SKScene {
     var arrayIndex = 0
     let spaceBetweenLetters: CGFloat = 25
     var textNodeWidth: CGFloat!
-
+    
     //Camera
     var cam: SKCameraNode!
     
@@ -54,6 +62,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         //test
         mainPlayer.gameCharacter = .knight
+        textArray = ["a", "a","a", "a","a", "a"]
         //
         
         self.anchorPoint = CGPoint.zero
@@ -65,19 +74,7 @@ class GameScene: SKScene {
         setupText()
         detectKeystroke()
         setupTimer()
-    }
-    
-    override init(size: CGSize) {
-        super.init()
-    }
-    
-    convenience init(size: CGSize, gameSesh: GameSession) {
-        self.init(size: size)
-        gameSession = gameSesh
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        setupOtherPlayers(/*players: playerSessions*/)
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -124,7 +121,8 @@ class GameScene: SKScene {
     //Setup mainPlayer
     func setupMainPlayer() {
         addPlayer(spriteNode: mainPlayerNode, size: mainPlayerSize, position: mainPlayerPosition)
-        mainPlayerNode.zPosition = 10
+        mainPlayerNode.zPosition = 20
+        mainPlayerNode.anchorPoint = CGPoint.zero
         CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .idle)
         isIdle = true
     }
@@ -142,11 +140,33 @@ class GameScene: SKScene {
         
     }
     
+    //Setup other players
+    func setupOtherPlayers(/*players: [PlayerSession]*/) {
+        var playerXPos: CGFloat = 0.0
+        var playerYPos: CGFloat = 0.0
+        var playerZPos: CGFloat = 19.0
+        
+        for index in 0..<numberOfPlayers-1 {
+            playerNode = SKSpriteNode()
+            
+            playerNode.anchorPoint = CGPoint.zero
+            playerNode.size = mainPlayerSize
+            playerNode.position = CGPoint(x: playerXPos, y: playerYPos)
+            playerNode.zPosition = playerZPos
+            playerXPos += 10.0
+            playerYPos += 30.0
+            playerZPos -= 1.0
+            
+            addChild(playerNode)
+            CharacterAnimation.doAction(player: playerNode, char: .cat/*players[index].gameCharacter*/ , action: .idle)
+        }
+    }
+    
     //Add a player to scene
     func addPlayer(spriteNode: SKSpriteNode, size: CGSize, position: CGPoint) {
         spriteNode.size = size
         spriteNode.position = position
-
+        
         self.addChild(spriteNode)
     }
     
@@ -160,20 +180,43 @@ class GameScene: SKScene {
     
     //Ground
     func setupGround() {
-        let groundWidth: CGFloat = playerMovement * CGFloat(textArray.count) + self.frame.size.width
-        let groundHeight: CGFloat = 100.0
+        //groundContainer
+        let groundContainerWidth: CGFloat = playerMovement * CGFloat(textArray.count) + self.frame.size.width
+        groundContainer = SKSpriteNode()
+        groundContainer.anchorPoint = CGPoint.zero
+        groundContainer.position = CGPoint.zero
         
-        ground = SKSpriteNode()
-        ground.texture = SKTexture(imageNamed: "ground")
-        ground.anchorPoint = CGPoint.zero
-        ground.position = CGPoint.zero
-        ground.size = CGSize(width: groundWidth, height: groundHeight)
-        addChild(ground)
+        addChild(groundContainer)
+        
+        //dirt ground
+        let groundWidth = groundContainerWidth
+        let groundHeight: CGFloat = 35.0
+        
+        var groundLaneYPos: CGFloat = 0.0
+        let groundLaneIncrement: CGFloat = 30.0
+        var groundLaneZPos: CGFloat = 10.0
+        
+        for _ in 0..<numberOfPlayers {
+            ground = SKSpriteNode()
+            ground.texture = SKTexture(imageNamed: "dirtGround")
+            ground.anchorPoint = CGPoint.zero
+            ground.size = CGSize(width: groundWidth, height: groundHeight)
+            ground.position = CGPoint(x: 0, y: groundLaneYPos)
+            ground.zPosition = groundLaneZPos
+            groundContainer.addChild(ground)
+            
+            groundLaneYPos += groundLaneIncrement
+            groundLaneZPos -= 1
+        }
+        
+        groundContainerHeight = groundHeight + groundLaneIncrement * CGFloat(numberOfPlayers - 1)
+        groundContainer.size = CGSize(width: groundContainerWidth, height: groundContainerHeight)
+        
     }
     
     //Sky
     func setupSky() {
-        let skyPosition = CGPoint(x: 0.0, y: skyYPos)
+        let skyPosition = CGPoint(x: 0.0, y: groundContainerHeight)
         makeSkyAtPos(pos: skyPosition)
     }
     
@@ -192,7 +235,7 @@ class GameScene: SKScene {
     
     //Spawn sky
     var framesOfSky: CGFloat = 1.0
-
+    
     func neverEndingSky(widthOfSky: CGFloat) {
         let skyXPos = widthOfSky * framesOfSky
         let newSkyOrigin = widthOfSky * 0.75 * framesOfSky
@@ -213,10 +256,8 @@ class GameScene: SKScene {
         textContainerNode.position = CGPoint(x: 0 - cam.position.x + 100, y: 0 + cam.position.y - 150)
         textContainerNode.zPosition = 10
         cam.addChild(textContainerNode)
-
-        //parse gameText into textArray
-        textArray = NetworkManager.parseWords(words: gameSession.gameText)
-        //make a labelNode for each letter in textArray
+        
+        //each text node
         var space: CGFloat = 0
         
         for char in textArray {
@@ -230,13 +271,14 @@ class GameScene: SKScene {
             textContainerNode.addChild(textNode)
             space += spaceBetweenLetters
         }
+        
         textContainerNode.size = CGSize(width: CGFloat(textArray.count) * spaceBetweenLetters, height: textNode.frame.height)
     }
-
+    
     //Moving Text
     func moveText() {
         let movement = spaceBetweenLetters
-
+        
         let moveLeft = SKAction.moveBy(x: -(movement), y: 0, duration: 0)
         textContainerNode.run(moveLeft)
     }
@@ -290,7 +332,7 @@ class GameScene: SKScene {
         
         let timerXPos = cam.position.x + cam.frame.size.width/2 - timerTextNode.frame.size.width
         let timerYPos = cam.position.y + cam.frame.size.height/2 - timerTextNode.frame.size.height
-
+        
         timerTextNode.position = CGPoint(x: timerXPos, y: timerYPos)
         cam.addChild(timerTextNode)
     }
