@@ -134,7 +134,7 @@ class MultiplayerGameScene: SKScene {
         var playerXPos: CGFloat = 10.0
         var playerYPos: CGFloat = 17.5
         var playerZPos: CGFloat = 20.0
-        numberOfPlayers = gameSession.capacity
+        numberOfPlayers = gameSession.players.count
         
         //create playerNodes
         for index in 0..<numberOfPlayers {
