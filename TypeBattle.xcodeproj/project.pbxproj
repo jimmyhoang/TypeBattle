@@ -35,6 +35,7 @@
 		9C34E2D41F18B31F008372DC /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2D31F18B31F008372DC /* RoomTableViewCell.swift */; };
 		9C39A5961F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C39A5951F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift */; };
 		9C9DE0251F1E92DD006B6FEE /* SimGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9DE0241F1E92DD006B6FEE /* SimGameViewController.swift */; };
+		9CA0393C1F208F3800657190 /* buttonSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CA0393B1F208F3800657190 /* buttonSound.mp3 */; };
 		FF889A091F169C3E006955BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A081F169C3E006955BB /* AppDelegate.swift */; };
 		FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A0E1F169C3E006955BB /* GameScene.swift */; };
 		FF889A111F169C3E006955BB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A101F169C3E006955BB /* GameViewController.swift */; };
@@ -81,6 +82,7 @@
 		9C34E2D31F18B31F008372DC /* RoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
 		9C39A5951F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInLobbyTableViewCell.swift; sourceTree = "<group>"; };
 		9C9DE0241F1E92DD006B6FEE /* SimGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimGameViewController.swift; sourceTree = "<group>"; };
+		9CA0393B1F208F3800657190 /* buttonSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonSound.mp3; sourceTree = "<group>"; };
 		B5D5DD2C2501F40C389C845E /* Pods_TypeBattle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypeBattle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF889A051F169C3E006955BB /* TypeBattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypeBattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF889A081F169C3E006955BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +180,14 @@
 			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
+		9CA0393D1F208F3D00657190 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9CA0393B1F208F3800657190 /* buttonSound.mp3 */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		ACB5CF4443A36FDC846EA8E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				FF889A071F169C3E006955BB /* TypeBattle */,
+				9CA0393D1F208F3D00657190 /* Sounds */,
 				FF889A061F169C3E006955BB /* Products */,
 				871B9D7CFCF815F4E6047EE4 /* Pods */,
 				ACB5CF4443A36FDC846EA8E8 /* Frameworks */,
@@ -356,6 +367,7 @@
 				43D9BBCC1F1B51E100B0B4AC /* Leaderboard.storyboard in Resources */,
 				435913641F196AD200F59509 /* ProfilePage.storyboard in Resources */,
 				FF889A191F169C3E006955BB /* LaunchScreen.storyboard in Resources */,
+				9CA0393C1F208F3800657190 /* buttonSound.mp3 in Resources */,
 				FF889A3F1F18423C006955BB /* RegisterScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
