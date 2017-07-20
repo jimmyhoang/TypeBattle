@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainMenuView: UIView {
 
@@ -21,6 +22,9 @@ class MainMenuView: UIView {
     var gameManager = GameManager()
     var currentPlayer: Player!
     var gameSession: GameSession?
+    
+    var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
+    var audioPlayer = AVAudioPlayer()
     
     private lazy var nameIcon:UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "TypeBattle3D"))
@@ -55,7 +59,7 @@ class MainMenuView: UIView {
     }()
     
     private lazy var singlePlayerButton:MainMenuButton = {
-        let button = self.createMenuButton(title: "Single Player")
+        let button = self.createMenuButton(title: "Training")
         button.addTarget(self, action: #selector(trainingSegue(sender:)), for: .touchUpInside)
         return button
     }()
@@ -105,6 +109,15 @@ class MainMenuView: UIView {
         self.currentPlayer = delegate.player
         
         self.setNeedsUpdateConstraints()
+        
+        // Prepare audio button
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)
+        }
+        catch {
+            print("Error playing sound")
+        }
+        audioPlayer.prepareToPlay()
     }
     
     override func updateConstraints() {
@@ -136,6 +149,9 @@ class MainMenuView: UIView {
     }
     
     func trainingSegue(sender:UIButton!) {
+        
+        // Play sound
+        self.audioPlayer.play()
         
         // Create lobby
         let category = arc4random_uniform(2) == 1 ? "quote" : "poem"
@@ -171,6 +187,10 @@ class MainMenuView: UIView {
     }
     
     func myProfileSegue(sender:UIButton!) {
+        
+        // Play sound
+        self.audioPlayer.play()
+        
         let storyboard = UIStoryboard(name: "ProfilePage", bundle: nil)
         let vc = storyboard.instantiateInitialViewController()
         
@@ -185,6 +205,10 @@ class MainMenuView: UIView {
     }
     
     func multiplayerSegue(sender:UIButton!) {
+        
+        // Play sound
+        self.audioPlayer.play()
+        
         let storyboard = UIStoryboard(name: "Multiplayer", bundle: nil)
         let vc = storyboard.instantiateInitialViewController()
         
@@ -199,6 +223,9 @@ class MainMenuView: UIView {
     }
     
     func leaderboardSegue(sender:UIButton!) {
+        // Play sound
+        self.audioPlayer.play()
+        
         let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
         let vc = storyboard.instantiateInitialViewController()
         
