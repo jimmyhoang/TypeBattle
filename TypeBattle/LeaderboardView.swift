@@ -8,12 +8,17 @@
 
 import UIKit
 import Firebase
-
+import AVFoundation
+import SpriteKit
 class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
 
     //MARK: - properties
+    let screenSize = UIScreen.main.bounds
+    var background: BackgroundScene!
     var players:[Player]! = []
-    
+    var audioPlayer = AVAudioPlayer()
+    var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
+
     private lazy var backButton:MainMenuButton = {
         let button = self.createMenuButton(title: "Back")
         
@@ -45,8 +50,18 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
     //MARK: - UIView methods
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.setupBackground()
+        self.background.backgroundColor = UIColor.background
+        //self.backgroundColor = UIColor.background
         
-        self.backgroundColor = UIColor.background
+        // Prepare audio button
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)
+        }
+        catch {
+            print("Error playing sound")
+        }
+        audioPlayer.prepareToPlay()
         
         self.addSubview(leaderboardLabel)
         
@@ -65,6 +80,7 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
             self.players.append(player)
             self.table.reloadData()
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
     
     override func updateConstraints() {
@@ -106,15 +122,24 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = UIColor.gameRed
     }
     
-    func backToMainMenu(sender:UIButton!) {
+    func 🚶🏿💯(sender:Notification) {
         guard var top = UIApplication.shared.keyWindow?.rootViewController else {
             return
         }
         while let next = top.presentedViewController {
             top = next
         }
+        guard let vc = top as? LeaderboardViewController else {return}
+        vc.performSegue(withIdentifier: "mainMenuSegue", sender: vc)
+        //top.dismiss(animated: true, completion: nil)
+    }
+    
+    func backToMainMenu(sender:UIButton!) {
+        // Play sound
+        self.audioPlayer.play()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
         
-        top.dismiss(animated: true, completion: nil)
+        //top.dismiss(animated: true, completion: nil)
     }
     
     func createMenuButton(title:String!) -> MainMenuButton {
@@ -127,5 +152,32 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
         button.titleLabel?.font = UIFont.gameFont(size: 30.0)
         button.layer.cornerRadius = 4.0
         return button
+    }
+    
+    func setupBackground() {
+        
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        //gameViewHeight = screenHeight - keyboardHeight
+        
+        let gameView = SKView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        
+        background = BackgroundScene(size: gameView.frame.size)
+        background.scaleMode = .aspectFit
+        
+        gameView.translatesAutoresizingMaskIntoConstraints = false
+        gameView.presentScene(background)
+        gameView.ignoresSiblingOrder = true
+        gameView.showsFPS = true
+        gameView.showsNodeCount = true
+        
+        self.insertSubview(gameView, belowSubview: leaderboardLabel)
+        
+        gameView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        gameView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        gameView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        gameView.heightAnchor.constraint(equalToConstant: screenHeight).isActive = true
+        
     }
 }

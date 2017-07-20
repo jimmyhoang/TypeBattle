@@ -17,6 +17,7 @@
 		435913641F196AD200F59509 /* ProfilePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 435913631F196AD200F59509 /* ProfilePage.storyboard */; };
 		435913661F196B5100F59509 /* ProfilePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435913651F196B5100F59509 /* ProfilePageView.swift */; };
 		436D73811F21281500CA301A /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436D73801F21281500CA301A /* ProfilePageViewController.swift */; };
+		436D73831F21342000CA301A /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436D73821F21342000CA301A /* LeaderboardViewController.swift */; };
 		438DC9601F180476005699C3 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438DC95F1F180476005699C3 /* MainMenuView.swift */; };
 		438DC9641F180600005699C3 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438DC9631F180600005699C3 /* MainMenu.storyboard */; };
 		43D9BBCC1F1B51E100B0B4AC /* Leaderboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D9BBCB1F1B51E100B0B4AC /* Leaderboard.storyboard */; };
@@ -64,6 +65,7 @@
 		435913631F196AD200F59509 /* ProfilePage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfilePage.storyboard; sourceTree = "<group>"; };
 		435913651F196B5100F59509 /* ProfilePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePageView.swift; sourceTree = "<group>"; };
 		436D73801F21281500CA301A /* ProfilePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
+		436D73821F21342000CA301A /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		438DC95F1F180476005699C3 /* MainMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		438DC9631F180600005699C3 /* MainMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
 		43D9BBCB1F1B51E100B0B4AC /* Leaderboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Leaderboard.storyboard; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				431E7F371F18220C00B7B5CE /* GameLabel.swift */,
 				438DC9631F180600005699C3 /* MainMenu.storyboard */,
 				43D9BBCD1F1B51FC00B0B4AC /* LeaderboardView.swift */,
+				436D73821F21342000CA301A /* LeaderboardViewController.swift */,
 				43D9BBCF1F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift */,
 				43D9BBCB1F1B51E100B0B4AC /* Leaderboard.storyboard */,
 				435913631F196AD200F59509 /* ProfilePage.storyboard */,
@@ -444,6 +447,7 @@
 				43D9BBD01F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift in Sources */,
 				9C34E2C01F173E07008372DC /* GameSession.swift in Sources */,
 				4AF075591F1888820056E013 /* CharacterAnimation.swift in Sources */,
+				436D73831F21342000CA301A /* LeaderboardViewController.swift in Sources */,
 				9C9DE0251F1E92DD006B6FEE /* SimGameViewController.swift in Sources */,
 				FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */,
 				9C34E2C41F173EE0008372DC /* GameCharacter.swift in Sources */,
