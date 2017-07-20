@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SpriteKit
 class ProfilePageView: UIView {
 
     /*
@@ -17,7 +17,8 @@ class ProfilePageView: UIView {
         // Drawing code
     }
     */
-    
+    let screenSize = UIScreen.main.bounds
+    var background: BackgroundScene!
     var player:Player!
     
     private lazy var profilePicture:UIImageView = {
@@ -114,7 +115,7 @@ class ProfilePageView: UIView {
         return sv
     }()
     
-    private lazy var bottomHorizontalStack:UIStackView = {
+    /*private lazy var bottomHorizontalStack:UIStackView = {
         let sv = UIStackView()
         sv.distribution = .fillEqually
         sv.alignment = UIStackViewAlignment.fill
@@ -124,15 +125,15 @@ class ProfilePageView: UIView {
         sv.axis = .horizontal
         sv.spacing = 5
         return sv
-    }()
+    }()*/
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         let delegate = UIApplication.shared.delegate as! AppDelegate
         player = delegate.player
-        
-        self.backgroundColor = UIColor.background
+        self.setupBackground()
+        self.background.backgroundColor = UIColor.background
         
         self.addSubview(topHorizontalStack)
         self.topHorizontalStack.addArrangedSubview(profilePicture)
@@ -144,10 +145,11 @@ class ProfilePageView: UIView {
         self.mainVerticalStack.addArrangedSubview(matchesWonLabel)
         self.mainVerticalStack.addArrangedSubview(matchesPlayedLabel)
         
-        self.addSubview(bottomHorizontalStack)
-        self.bottomHorizontalStack.addArrangedSubview(backButton)
-        self.bottomHorizontalStack.addArrangedSubview(editProfileButton)
-        
+        self.addSubview(backButton)
+        //self.addSubview(bottomHorizontalStack)
+        //self.bottomHorizontalStack.addArrangedSubview(backButton)
+        //self.bottomHorizontalStack.addArrangedSubview(editProfileButton)
+        NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
         self.setNeedsUpdateConstraints()
     }
     
@@ -158,8 +160,10 @@ class ProfilePageView: UIView {
                                      topHorizontalStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
                                      mainVerticalStack.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor, constant: 10.0),
                                      mainVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
-                                     bottomHorizontalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
-                                     bottomHorizontalStack.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0)
+                                     backButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+                                     backButton.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0)
+                                     //bottomHorizontalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
+                                     //bottomHorizontalStack.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0)
                                      //mainVerticalStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
                                      //backButton.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor),
                                      //backButton.centerXAnchor.constraint(equalTo: centerXAnchor)
@@ -171,7 +175,7 @@ class ProfilePageView: UIView {
         super.updateConstraints()
     }
     
-    func backToMainMenu(sender:UIButton!) {
+    func 🚶🏿💯(sender:Notification) {
         guard var top = UIApplication.shared.keyWindow?.rootViewController else {
             return
         }
@@ -180,6 +184,10 @@ class ProfilePageView: UIView {
         }
         
         top.dismiss(animated: true, completion: nil)
+    }
+    
+    func backToMainMenu(sender:UIButton!) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
 
     func createMenuButton(title:String!) -> MainMenuButton {
@@ -192,6 +200,33 @@ class ProfilePageView: UIView {
         button.titleLabel?.font = UIFont.gameFont(size: 30.0)
         button.layer.cornerRadius = 4.0
         return button
+    }
+    
+    func setupBackground() {
+        
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        //gameViewHeight = screenHeight - keyboardHeight
+        
+        let gameView = SKView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        
+        background = BackgroundScene(size: gameView.frame.size)
+        background.scaleMode = .aspectFit
+        
+        gameView.translatesAutoresizingMaskIntoConstraints = false
+        gameView.presentScene(background)
+        gameView.ignoresSiblingOrder = true
+        gameView.showsFPS = true
+        gameView.showsNodeCount = true
+        
+        self.insertSubview(gameView, belowSubview: topHorizontalStack)
+        
+        gameView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        gameView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        gameView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        gameView.heightAnchor.constraint(equalToConstant: screenHeight).isActive = true
+        
     }
     
 }

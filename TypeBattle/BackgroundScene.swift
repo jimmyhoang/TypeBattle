@@ -28,7 +28,7 @@ class BackgroundScene: SKScene {
     let mainPlayerNode = SKSpriteNode()
     let mainPlayerSize = CGSize(width: 120, height: 150)
     let mainPlayerPosition = CGPoint(x: 50, y: 150)
-    let playerMovement: CGFloat = 20.0
+    var playerMovement: CGFloat = 20.0
     var isIdle: Bool!
     
     //Background
@@ -55,6 +55,18 @@ class BackgroundScene: SKScene {
     var timerTime: TimeInterval!
     var firstFrame = true
     
+    override func sceneDidLoad() {
+        playerMovement = self.frame.size.width+50.0
+        NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿🔥(sender:)), name: NSNotification.Name(rawValue:"startAnimation"), object: nil)
+    }
+    
+    func 🚶🏿🔥 (sender: Notification) {
+        let moveRight = SKAction.moveBy(x: playerMovement, y: 0, duration: 1.0)
+        mainPlayerNode.run(moveRight, completion: {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
+        })
+    }
+    
     override func didMove(to view: SKView) {
         //test
         mainPlayer.gameCharacter = .knight
@@ -65,6 +77,9 @@ class BackgroundScene: SKScene {
         sceneWidth = self.frame.size.width
         setupBackground()
         setupMainPlayer()
+        
+        let moveToPosition = SKAction.moveBy(x: 100, y: 0, duration: 1.0)
+        mainPlayerNode.run(moveToPosition)
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -102,13 +117,12 @@ class BackgroundScene: SKScene {
             firstFrame = false
         }
         timerTime = currentTime - initialTime
-        
     }
     
     //MARK: Players
     //Setup mainPlayer
     func setupMainPlayer() {
-        addPlayer(spriteNode: mainPlayerNode, size: mainPlayerSize, position: mainPlayerPosition)
+        addPlayer(spriteNode: mainPlayerNode, size: mainPlayerSize, position: CGPoint(x: -50, y: 150))
         mainPlayerNode.zPosition = 10
         CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
         isIdle = false
