@@ -19,6 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var fireloginButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailButton: MainMenuButton!
     
     let screenSize = UIScreen.main.bounds
     var background: BackgroundScene!
@@ -76,7 +77,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Actions
     @IBAction func loginButton(_ sender: UIButton) {
-        
         guard let email    = emailTextField.text else {return}
         guard let password = passwordTextField.text else {return}
         
@@ -96,7 +96,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func registerButton(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
-        
     }
     @IBAction func facebookButton(_ sender: Any) {
         NetworkManager.facebookLogin { (success, error) -> (Void) in

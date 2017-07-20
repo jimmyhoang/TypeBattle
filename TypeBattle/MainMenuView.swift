@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SpriteKit
 
 class MainMenuView: UIView {
 
@@ -21,6 +22,9 @@ class MainMenuView: UIView {
     var gameManager = GameManager()
     var currentPlayer: Player!
     var gameSession: GameSession?
+    let screenSize = UIScreen.main.bounds
+    var background: BackgroundScene!
+    var buttonTag  = 0
     
     private lazy var nameIcon:UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "TypeBattle3D"))
@@ -42,50 +46,49 @@ class MainMenuView: UIView {
     
     private lazy var leaderboardButton:UIButton = {
         let button = UIButton()
-        let icon = #imageLiteral(resourceName: "leaderboard_icon")
+        button.tag = 5
+        let icon   = #imageLiteral(resourceName: "leaderboard_icon")
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(icon, for: .normal)
         button.tintColor = UIColor.gameRed
         button.backgroundColor = UIColor.clear
         
-        button.addTarget(self, action: #selector(leaderboardSegue(sender:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(lbButtonTapped(sender:)), for: .touchUpInside)
         
         return button
     }()
     
     private lazy var singlePlayerButton:MainMenuButton = {
         let button = self.createMenuButton(title: "Single Player")
-        button.addTarget(self, action: #selector(trainingSegue(sender:)), for: .touchUpInside)
+        button.tag = 1
+        button.addTarget(self, action: #selector(spButtonTapped(sender:)), for: .touchUpInside)
         return button
     }()
     
     private lazy var multiPlayerButton:MainMenuButton = {
         let button = self.createMenuButton(title: "Multiplayer")
+        button.tag = 2
         
-        button.addTarget(self, action: #selector(multiplayerSegue(sender:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(mpButtonTapped(sender:)), for: .touchUpInside)
         
         return button
     }()
     
     private lazy var settingsButton:MainMenuButton = {
         let button = self.createMenuButton(title: "Settings")
+        button.tag = 3
         return button
     }()
     
     private lazy var profileButton:MainMenuButton = {
         let button = self.createMenuButton(title: "My Profile")
+        button.tag = 4
         
-        button.addTarget(self, action: #selector(myProfileSegue(sender:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(profileButtonTapped(sender:)), for: .touchUpInside)
         
         return button
     }()
-    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        self.addSubview(nameLabel)
-//        self.setNeedsUpdateConstraints()
-//    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -104,7 +107,82 @@ class MainMenuView: UIView {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         self.currentPlayer = delegate.player
         
+        setupBackground()
+        background.backgroundColor = UIColor.background
+        
         self.setNeedsUpdateConstraints()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
+    }
+    
+    func 🚶🏿💯(sender:Notification) {
+        
+        switch buttonTag {
+        case 1:
+            trainingSegue()
+        case 2:
+            multiplayerSegue()
+        case 3:
+            break
+        case 4:
+            myProfileSegue()
+        case 5:
+            leaderboardSegue()
+        default:
+            break
+        }
+    }
+    
+    func spButtonTapped(sender: UIButton) {
+        buttonTag = 1
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
+    }
+    
+    func lbButtonTapped(sender: UIButton) {
+        buttonTag = 5
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
+    }
+    
+    func mpButtonTapped(sender: UIButton) {
+        buttonTag = 2
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
+    }
+    
+    func settingsButtonTapped(sender: UIButton) {
+        buttonTag = 3
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
+    }
+    
+    func profileButtonTapped(sender: UIButton) {
+        buttonTag = 4
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
+    }
+    
+    func setupBackground() {
+        
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        //gameViewHeight = screenHeight - keyboardHeight
+        
+        let gameView = SKView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
+        
+        background = BackgroundScene(size: gameView.frame.size)
+        background.scaleMode = .aspectFit
+        
+        gameView.translatesAutoresizingMaskIntoConstraints = false
+        gameView.presentScene(background)
+        gameView.ignoresSiblingOrder = true
+        gameView.showsFPS = true
+        gameView.showsNodeCount = true
+        
+        self.insertSubview(gameView, belowSubview: nameIcon)
+        
+        gameView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        gameView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        gameView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        gameView.heightAnchor.constraint(equalToConstant: screenHeight).isActive = true
+        
     }
     
     override func updateConstraints() {
@@ -135,11 +213,10 @@ class MainMenuView: UIView {
         return button
     }
     
-    func trainingSegue(sender:UIButton!) {
-        
+    func trainingSegue() {
         // Create lobby
         let category = arc4random_uniform(2) == 1 ? "quote" : "poem"
-        let lobby = gameManager.createGameLobby(name: "TRAINING", keyword: category, maxCapacity: 1, location: nil, owner: self.currentPlayer)
+        let lobby    = gameManager.createGameLobby(name: "TRAINING", keyword: category, maxCapacity: 1, location: nil, owner: self.currentPlayer)
         
         // Create session
         NetworkManager.getWords(category: category) { (someRandomText) in
@@ -170,9 +247,9 @@ class MainMenuView: UIView {
         }
     }
     
-    func myProfileSegue(sender:UIButton!) {
+    func myProfileSegue() {
         let storyboard = UIStoryboard(name: "ProfilePage", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController()
+        let vc         = storyboard.instantiateInitialViewController()
         
         guard var top = UIApplication.shared.keyWindow?.rootViewController else {
             return
@@ -184,9 +261,9 @@ class MainMenuView: UIView {
         top.present(vc!, animated: true, completion: nil)
     }
     
-    func multiplayerSegue(sender:UIButton!) {
+    func multiplayerSegue() {
         let storyboard = UIStoryboard(name: "Multiplayer", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController()
+        let vc         = storyboard.instantiateInitialViewController()
         
         guard var top = UIApplication.shared.keyWindow?.rootViewController else {
             return
@@ -198,9 +275,9 @@ class MainMenuView: UIView {
         top.present(vc!, animated: true, completion: nil)
     }
     
-    func leaderboardSegue(sender:UIButton!) {
+    func leaderboardSegue() {
         let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
-        let vc = storyboard.instantiateInitialViewController()
+        let vc         = storyboard.instantiateInitialViewController()
         
         guard var top = UIApplication.shared.keyWindow?.rootViewController else {
             return
