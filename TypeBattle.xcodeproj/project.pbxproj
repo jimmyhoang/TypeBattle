@@ -18,6 +18,7 @@
 		435913661F196B5100F59509 /* ProfilePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435913651F196B5100F59509 /* ProfilePageView.swift */; };
 		436D73811F21281500CA301A /* ProfilePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436D73801F21281500CA301A /* ProfilePageViewController.swift */; };
 		436D73831F21342000CA301A /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436D73821F21342000CA301A /* LeaderboardViewController.swift */; };
+		436D73851F21391700CA301A /* betsy flanagan.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 436D73841F21391700CA301A /* betsy flanagan.ttf */; };
 		438DC9601F180476005699C3 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438DC95F1F180476005699C3 /* MainMenuView.swift */; };
 		438DC9641F180600005699C3 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438DC9631F180600005699C3 /* MainMenu.storyboard */; };
 		43D9BBCC1F1B51E100B0B4AC /* Leaderboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43D9BBCB1F1B51E100B0B4AC /* Leaderboard.storyboard */; };
@@ -66,6 +67,7 @@
 		435913651F196B5100F59509 /* ProfilePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePageView.swift; sourceTree = "<group>"; };
 		436D73801F21281500CA301A /* ProfilePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
 		436D73821F21342000CA301A /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		436D73841F21391700CA301A /* betsy flanagan.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "betsy flanagan.ttf"; sourceTree = "<group>"; };
 		438DC95F1F180476005699C3 /* MainMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		438DC9631F180600005699C3 /* MainMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
 		43D9BBCB1F1B51E100B0B4AC /* Leaderboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Leaderboard.storyboard; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				4340E6091F17F862003C0167 /* Supersonic Rocketship.ttf */,
+				436D73841F21391700CA301A /* betsy flanagan.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				4340E60A1F17F862003C0167 /* Supersonic Rocketship.ttf in Resources */,
 				FF889A351F16E779006955BB /* GoogleService-Info.plist in Resources */,
 				438DC9641F180600005699C3 /* MainMenu.storyboard in Resources */,
+				436D73851F21391700CA301A /* betsy flanagan.ttf in Resources */,
 				FF889A161F169C3E006955BB /* Assets.xcassets in Resources */,
 				43D9BBCC1F1B51E100B0B4AC /* Leaderboard.storyboard in Resources */,
 				435913641F196AD200F59509 /* ProfilePage.storyboard in Resources */,
