@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import AVFoundation
 
 class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
 
@@ -24,6 +25,9 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
     var locationManager: CLLocationManager!
     var savedGameSession: GameSession!
     var currentPlayer: Player!
+    
+    var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
+    var audioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,15 +49,19 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         self.createButton.contentVerticalAlignment = .fill
         self.createButton.layer.cornerRadius = 4.0
         
+        // Prepare audio button
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)
+        }
+        catch {
+            print("Error playing sound")
+        }
+        audioPlayer.prepareToPlay()
+        
         // Set up segmented control
         let font = UIFont.gameFont(size: 17)
         self.categorySegmentedControl.contentVerticalAlignment = .bottom
         self.categorySegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
-        
-        // Set up location manager
-        self.locationManager = CLLocationManager()
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.delegate = self
         
         // Get logged user
         let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -62,6 +70,9 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
 
     // MARK: Actions
     @IBAction func createRoom(_ sender: UIButton) {
+        
+        // Play sound
+        self.audioPlayer.play()
         
         guard let roomName = roomNameTextField.text else {
             print("Error getting room name")
@@ -114,9 +125,16 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
     }
     
     @IBAction func useLocationSwitched(_ sender: UISwitch) {
+        
+        // Play sound
+        self.audioPlayer.play()
+        
         if(sender.isOn) {
             
-            // set up location manager
+            // Set up location manager
+            self.locationManager = CLLocationManager()
+            self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.delegate = self
             locationManager.requestLocation()
             
             // disable button until location is returned, show message
@@ -125,7 +143,8 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
             self.getLocationLabel.isHidden = false
         }
         else {
-            locationManager.stopUpdatingLocation()
+            
+            self.locationManager.stopUpdatingLocation()
             
             // enable buttons again
             self.createButton.isEnabled = true
@@ -139,6 +158,9 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier! {
+        case "cancel-create-room-segue":
+            // Play sound
+            self.audioPlayer.play()
         case "goto-lobby-segue":
             let controller = segue.destination as! JoinRoomViewController
             controller.currentGameSession = self.savedGameSession
