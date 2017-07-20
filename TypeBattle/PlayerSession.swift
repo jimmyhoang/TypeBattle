@@ -16,6 +16,7 @@ class PlayerSession {
     var gameCharacter: GameCharacterType
     var totalTime: Int
     var isReady: Bool
+    var finalPosition: Int?
     
     init(playerID: String, playerName: String) {
         self.playerID = playerID
