@@ -182,8 +182,9 @@ class ProfilePageView: UIView {
         while let next = top.presentedViewController {
             top = next
         }
-        
-        top.dismiss(animated: true, completion: nil)
+        guard let vc = top as? ProfilePageViewController else {return}
+        vc.performSegue(withIdentifier: "mainMenuSegue", sender: vc)
+        //top.dismiss(animated: true, completion: nil)
     }
     
     func backToMainMenu(sender:UIButton!) {
