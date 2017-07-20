@@ -154,26 +154,45 @@ class MainMenuView: UIView {
     }
     
     func spButtonTapped(sender: UIButton) {
+        
+        // Play sound
+        self.audioPlayer.play()
+        
         buttonTag = 1
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
     func lbButtonTapped(sender: UIButton) {
+        
+        // Play sound
+        self.audioPlayer.play()
+        
         buttonTag = 5
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
     func mpButtonTapped(sender: UIButton) {
+        
+        // Play sound
+        self.audioPlayer.play()
+        
         buttonTag = 2
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
     func settingsButtonTapped(sender: UIButton) {
+        
+        // Play sound
+        self.audioPlayer.play()
+        
         buttonTag = 3
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
     func profileButtonTapped(sender: UIButton) {
+        // Play sound
+        self.audioPlayer.play()
+        
         buttonTag = 4
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
@@ -234,9 +253,6 @@ class MainMenuView: UIView {
     }
     
     func trainingSegue() {
-
-        // Play sound
-        self.audioPlayer.play()
         
         // Create lobby
         let category = arc4random_uniform(2) == 1 ? "quote" : "poem"
@@ -273,8 +289,6 @@ class MainMenuView: UIView {
     
     func myProfileSegue() {
         
-        // Play sound
-        self.audioPlayer.play()
         
         let storyboard = UIStoryboard(name: "ProfilePage", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
@@ -290,9 +304,6 @@ class MainMenuView: UIView {
     }
     
     func multiplayerSegue() {
-        
-        // Play sound
-        self.audioPlayer.play()
 
         let storyboard = UIStoryboard(name: "Multiplayer", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
@@ -308,9 +319,7 @@ class MainMenuView: UIView {
     }
     
     func leaderboardSegue() {
-        // Play sound
-        self.audioPlayer.play()
-        
+            
         let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         
