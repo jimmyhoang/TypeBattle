@@ -7,18 +7,24 @@
 //
 
 import UIKit
+import CoreLocation
 
-class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
     //MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var createRoomButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var nearbySwitch: UISwitch!
+    @IBOutlet weak var reloadingView: UIView!
     
     var availableRooms = [GameSession]()
+    var availableRoomsByLocation = [GameSession]()
     var selectedRoom = 0
     var gameManager = GameManager()
     var currentPlayer: Player!
+    var locationManager: CLLocationManager!
+    var currentLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +34,7 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
         createRoomButton.layer.cornerRadius = 4.0
         backButton.contentVerticalAlignment = .fill
         backButton.layer.cornerRadius = 4.0
+        reloadingView.layer.cornerRadius = 4.0
         
         // Get logged user
         let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -62,13 +69,26 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //MARK: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.availableRooms.count
+        if (self.nearbySwitch.isOn) {
+            return self.availableRoomsByLocation.count
+        }
+        else {
+            return self.availableRooms.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "room-cell", for: indexPath) as! RoomTableViewCell
         
-        let room = self.availableRooms[indexPath.row]
+        let room: GameSession!
+        if (self.nearbySwitch.isOn) {
+            room = self.availableRoomsByLocation[indexPath.row]
+        }
+        else {
+            room = self.availableRooms[indexPath.row]
+        }
+        
+        
         cell.roomNameLabel.text = room.name
         cell.playersInGameLabel.text = "\(room.players.count)/\(room.capacity)"
         
@@ -93,6 +113,24 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
         self.performSegue(withIdentifier: "join-room-segue", sender: self)
     }
     
+    @IBAction func nearbySwitchChanged(_ sender: UISwitch) {
+        if(sender.isOn) {
+            
+            // Show loading panel
+            self.reloadingView.isHidden = false
+            
+            // Set up location manager
+            self.locationManager = CLLocationManager()
+            self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.delegate = self
+            self.locationManager.requestLocation()
+        }
+        else {
+            self.locationManager.stopUpdatingLocation()
+            self.tableView.reloadData()
+        }
+    }
+    
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -109,4 +147,47 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
 
+    // MARK: CLLocationManagerDelegate
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        guard let currentLocation = locations.first else {
+            print("Unable to get current location")
+            return
+        }
+        
+        // set current location
+        self.currentLocation = currentLocation
+        self.locationManager.stopUpdatingLocation()
+        
+        // list only available rooms nearby location
+        guard let lat = self.currentLocation?.coordinate.latitude, let long = self.currentLocation?.coordinate.longitude else {
+            print("Error in MainLobbyVC. Not able to get location")
+            return
+        }
+        
+        for i in 0..<self.availableRooms.count {
+            
+            if let roomLocation = self.availableRooms[i].location {
+                
+                let range = 5.0
+                let minLat = roomLocation.coordinate.latitude.adding(range * -1.0)
+                let maxLat = roomLocation.coordinate.latitude.adding(range)
+                let minLong = roomLocation.coordinate.longitude.adding(range * -1.0)
+                let maxLong = roomLocation.coordinate.longitude.adding(range)
+                
+                if (minLat < lat && maxLat > lat && minLong < long && maxLong > long) {
+                    self.availableRoomsByLocation.append(self.availableRooms[i])
+                }
+            }
+        }
+        
+        self.tableView.reloadData()
+        
+        // hide loading panel
+        self.reloadingView.isHidden = true
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Unable to get current location")
+    }
 }
