@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 import SpriteKit
-class RegisterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class RegisterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var confirmPasswordTextField: UITextField!
@@ -39,6 +39,11 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        confirmPasswordTextField.delegate = self
+        nicknameTextField.delegate        = self
+        passwordTextField.delegate        = self
+        emailTextField.delegate           = self
         
         setupBackground()
         self.background.backgroundColor = UIColor.background
@@ -87,6 +92,26 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     // MARK: - Actions
+    @IBAction func screenTapped(_ sender: Any) {
+        
+        if emailTextField.canResignFirstResponder {
+            emailTextField.resignFirstResponder()
+        }
+        
+        if passwordTextField.canResignFirstResponder {
+            passwordTextField.resignFirstResponder()
+        }
+        
+        if nicknameTextField.canResignFirstResponder {
+            nicknameTextField.resignFirstResponder()
+        }
+        
+        if confirmPasswordTextField.canResignFirstResponder {
+            confirmPasswordTextField.resignFirstResponder()
+        }
+        
+    }
+    
     @IBAction func registerButton(_ sender: UIButton) {
         
         guard let password = passwordTextField.text, let confirm = confirmPasswordTextField.text, let nickname = nicknameTextField.text, let email = emailTextField.text else {return}
@@ -146,6 +171,12 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    // MARK: - TextfieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     // MARK: - Helpers
     func confirmPassword(password:String,confirm:String) -> Bool {
         if password == confirm {
@@ -167,5 +198,6 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
             checkmarkImageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
         }
     }
+    
     
 }
