@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Y0-Ey-bIB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Y0-Ey-bIB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TypeBattle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgk-tb-6H0" customClass="GameLabel" customModule="TypeBattle" customModuleProvider="target">
-                                <rect key="frame" x="108" y="70" width="159" height="27.5"/>
+                                <rect key="frame" x="108.5" y="70" width="159" height="27.5"/>
                                 <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -115,6 +115,7 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.48627450979999998" green="0.91764705879999997" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ToG-qh-Wsy" firstAttribute="width" secondItem="ILm-aX-s5P" secondAttribute="width" multiplier="0.6" id="2gQ-d0-mPH"/>
                             <constraint firstItem="fgk-tb-6H0" firstAttribute="top" secondItem="Gon-zp-wGi" secondAttribute="bottom" constant="50" id="Ddi-Fr-hiV"/>
@@ -128,6 +129,9 @@
                             <constraint firstItem="ToG-qh-Wsy" firstAttribute="centerX" secondItem="ILm-aX-s5P" secondAttribute="centerX" id="umK-Nh-iU5"/>
                             <constraint firstItem="ToG-qh-Wsy" firstAttribute="height" secondItem="ILm-aX-s5P" secondAttribute="height" multiplier="0.5" id="wAn-7S-bEi"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="mdN-aS-iZP" appends="YES" id="xtF-hC-Xdv"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="5GC-li-S1U" id="Kzf-EH-I5f"/>
@@ -141,6 +145,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sGQ-Fu-Saw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="mdN-aS-iZP">
+                    <connections>
+                        <action selector="screenTapped:" destination="0Y0-Ey-bIB" id="muZ-p7-Lap"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-108" y="11.244377811094454"/>
         </scene>
