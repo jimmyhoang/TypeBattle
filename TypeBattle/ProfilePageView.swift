@@ -114,7 +114,7 @@ class ProfilePageView: UIView {
         return sv
     }()
     
-    private lazy var bottomHorizontalStack:UIStackView = {
+    /*private lazy var bottomHorizontalStack:UIStackView = {
         let sv = UIStackView()
         sv.distribution = .fillEqually
         sv.alignment = UIStackViewAlignment.fill
@@ -124,7 +124,7 @@ class ProfilePageView: UIView {
         sv.axis = .horizontal
         sv.spacing = 5
         return sv
-    }()
+    }()*/
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -144,9 +144,10 @@ class ProfilePageView: UIView {
         self.mainVerticalStack.addArrangedSubview(matchesWonLabel)
         self.mainVerticalStack.addArrangedSubview(matchesPlayedLabel)
         
-        self.addSubview(bottomHorizontalStack)
-        self.bottomHorizontalStack.addArrangedSubview(backButton)
-        self.bottomHorizontalStack.addArrangedSubview(editProfileButton)
+        self.addSubview(backButton)
+        //self.addSubview(bottomHorizontalStack)
+        //self.bottomHorizontalStack.addArrangedSubview(backButton)
+        //self.bottomHorizontalStack.addArrangedSubview(editProfileButton)
         
         self.setNeedsUpdateConstraints()
     }
@@ -158,8 +159,10 @@ class ProfilePageView: UIView {
                                      topHorizontalStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
                                      mainVerticalStack.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor, constant: 10.0),
                                      mainVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
-                                     bottomHorizontalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
-                                     bottomHorizontalStack.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0)
+                                     backButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+                                     backButton.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0)
+                                     //bottomHorizontalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
+                                     //bottomHorizontalStack.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0)
                                      //mainVerticalStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
                                      //backButton.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor),
                                      //backButton.centerXAnchor.constraint(equalTo: centerXAnchor)
