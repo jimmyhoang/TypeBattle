@@ -85,11 +85,13 @@ class NetworkManager{
                                 let photoDict                = responseDictionary["picture"] as! NSDictionary
                                 let dataDict                 = photoDict["data"] as! NSDictionary
                                 
-                                let name            = responseDictionary["name"] as! String
-                                guard let url       = dataDict["url"] else {return}
-                                guard let stringURL = URL(string: url as! String) else {return}
-                                guard let user      = user else {return}
-                                let newPlayer       = Player(name: name, playerID: user.uid, avatarName: "")
+                                let name             = responseDictionary["name"] as! String
+                                guard let url        = dataDict["url"] as? String else {return}
+                                guard let stringURL  = URL(string: url) else {return}
+                                guard let user       = user else {return}
+                                let newPlayer        = Player(name: name, playerID: user.uid, avatarName: "")
+                                newPlayer.avatarName = "facebook"
+                                newPlayer.fbPicURL   = url
                                 
                                 DispatchQueue.main.async {
                                     downloadFBImage(url: stringURL, completion: { (image) -> (Void) in
@@ -132,13 +134,23 @@ class NetworkManager{
             guard let levelProgression = user.object(forKey: "levelProgression") as? Double else {return}
             guard let matchesPlayed    = user.object(forKey: "matchesPlayed") as? Int else {return}
             guard let matchesWon       = user.object(forKey: "matchesWon") as? Int else {return}
+            guard let fbPicURL         = user.object(forKey: "fbPicURL") as? String else {return}
             
             let newPlayer              = Player(name: name, playerID: userID, avatarName: avatarName)
+
+            newPlayer.fbPicURL         = fbPicURL
             newPlayer.level            = level
             newPlayer.levelProgression = levelProgression
             newPlayer.matchesPlayed    = matchesPlayed
             newPlayer.matchesWon       = matchesWon
-            appDelegate.player         = newPlayer
+
+            if avatarName == "facebook" {
+                downloadFBImage(url: URL(string:newPlayer.fbPicURL!)!, completion: { (image) -> (Void) in
+                    newPlayer.avatar = image
+                })
+            }
+            
+            appDelegate.player = newPlayer
         })
 
     }
