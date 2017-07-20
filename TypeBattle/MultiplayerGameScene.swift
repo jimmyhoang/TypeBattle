@@ -17,20 +17,19 @@ class MultiplayerGameScene: SKScene {
     //GameSession
     var gameSession: GameSession!
     var numberOfPlayers: Int!
-    
-    //test player
-//    let mainPlayer = PlayerSession(playerID: "123", playerName: "SAM")
-    //
-    
-    //MainPlayer
-//    let mainPlayerNode = SKSpriteNode()
-//    let mainPlayerPosition = CGPoint(x: 100, y: 17.5)
 
     //Players
     var playerNode: SKSpriteNode!
+    var playerNodesInGame: [SKSpriteNode] = []
+    var playerProgress: Double = 0.0
     let playerSize = CGSize(width: 100, height: 120)
     let playerMovement: CGFloat = 20.0
     var isIdle: Bool!
+    
+    var playerNameLabelNode: SKLabelNode!
+    
+    var mainPlayer: PlayerSession!
+    var mainPlayerNode: SKSpriteNode!
     
     //Background
     var ground: SKSpriteNode!
@@ -58,18 +57,12 @@ class MultiplayerGameScene: SKScene {
     var timerTime: TimeInterval!
     var firstFrame = true
     
-    
     //MARK: Scene DidMove
     override func didMove(to view: SKView) {
-        //test
-//        mainPlayer.gameCharacter = .knight
-//        textArray = ["a", "a","a", "a","a", "a"]
-        //
         
         self.anchorPoint = CGPoint.zero
         sceneHeight = self.frame.size.height
         sceneWidth = self.frame.size.width
-//        setupMainPlayer()
         setupCamera()
         setupPlayers()
         setupText()
@@ -92,6 +85,7 @@ class MultiplayerGameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Touch Events
     func touchDown(atPoint pos : CGPoint) {
         
     }
@@ -130,32 +124,11 @@ class MultiplayerGameScene: SKScene {
         updateTimer(time: timerTime)
         
         neverEndingSky(widthOfSky: skyWidth)
+        updatePlayerProgressText()
     }
     
     //MARK: Players
-    //Setup mainPlayer
-//    func setupMainPlayer() {
-//        addPlayer(spriteNode: mainPlayerNode, size: mainPlayerSize, position: mainPlayerPosition)
-//        mainPlayerNode.zPosition = 20
-//        mainPlayerNode.anchorPoint = CGPoint.zero
-//        CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .idle)
-//        isIdle = true
-//    }
-//    
-//    //Move mainPlayer
-//    func moveMainPlayer() {
-//        if isIdle {
-//            CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
-//            isIdle = false
-//        }
-//        cam.position.x += playerMovement
-//        
-//        let moveRight = SKAction.moveBy(x: playerMovement, y: 0, duration: 0)
-//        mainPlayerNode.run(moveRight)
-//        
-//    }
-    
-    //Setup other players
+    //Setup players
     func setupPlayers() {
         //first player position
         var playerXPos: CGFloat = 10.0
@@ -166,7 +139,6 @@ class MultiplayerGameScene: SKScene {
         //create playerNodes
         for index in 0..<numberOfPlayers {
             playerNode = SKSpriteNode()
-            
             playerNode.anchorPoint = CGPoint.zero
             playerNode.size = playerSize
             playerNode.position = CGPoint(x: playerXPos, y: playerYPos)
@@ -178,7 +150,20 @@ class MultiplayerGameScene: SKScene {
             addChild(playerNode)
             CharacterAnimation.doAction(player: playerNode, char: gameSession.players[index].gameCharacter, action: .idle)
             isIdle = true
+            playerNodesInGame.append(playerNode)
+            
+            //Add namePlate for each player
+            playerNameLabelNode = SKLabelNode(fontNamed: "Supersonic Rocketship")
+            playerNameLabelNode.horizontalAlignmentMode = .left
+            playerNameLabelNode.position = CGPoint(x: playerSize.width , y: 0)
+            playerNameLabelNode.fontSize = 15
+            playerNameLabelNode.name = "namePlate"
+            playerNameLabelNode.text = "\(gameSession.players[index].playerName) >>> \(playerProgress)%"
+            playerNode.addChild(playerNameLabelNode)
+            
         }
+        mainPlayer = gameSession.players[0]
+        mainPlayerNode = playerNodesInGame[0]
     }
     
     //Add a player to scene
@@ -187,6 +172,26 @@ class MultiplayerGameScene: SKScene {
         spriteNode.position = position
         
         self.addChild(spriteNode)
+    }
+    
+    //Move mainPlayer
+    func moveMainPlayer() {
+        if isIdle {
+            CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
+            isIdle = false
+        }
+        cam.position.x += playerMovement
+        
+        let moveRight = SKAction.moveBy(x: playerMovement, y: 0, duration: 0)
+        mainPlayerNode.run(moveRight)
+    }
+    
+    //Update playerProgress text
+    func updatePlayerProgressText() {
+        for index in 0..<numberOfPlayers{
+            let textNode = playerNodesInGame[index].childNode(withName: "namePlate") as! SKLabelNode
+            textNode.text = "\(gameSession.players[index].playerName) >>> \(playerProgress)%"
+        }
     }
     
     //MARK: Background
@@ -260,12 +265,12 @@ class MultiplayerGameScene: SKScene {
         let newSkyOrigin = widthOfSky * 0.75 * framesOfSky
         
         if cam.position.x >= newSkyOrigin {
-            makeSkyAtPos(pos: CGPoint(x: skyXPos, y: skyYPos))
+            makeSkyAtPos(pos: CGPoint(x: skyXPos, y: groundContainerHeight))
             framesOfSky += 1.0
         }
     }
     
-    //MARK: Text
+    //MARK: Game Text
     //Setup
     func setupText() {
         //textContainer
@@ -317,9 +322,10 @@ class MultiplayerGameScene: SKScene {
         if arrayIndex < textArray.count {
             if lowerText == textArray[arrayIndex] {
                 moveText()
-//                moveMainPlayer()
+                moveMainPlayer()
                 changeCurrentTextColor(index: arrayIndex)
                 arrayIndex += 1
+                playerProgress = round(Double(arrayIndex)/Double(textArray.count) * 100 * 100) / 100
             }
         }
     }

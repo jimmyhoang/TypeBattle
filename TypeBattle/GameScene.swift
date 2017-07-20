@@ -16,13 +16,10 @@ class GameScene: SKScene {
     
     //GameSession
     var gameSession: GameSession!
-    
-    //test player
-    let mainPlayer = PlayerSession(playerID: "123", playerName: "SAM")
-    //
 
     //MainPlayer
-    let mainPlayerNode = SKSpriteNode()
+    var mainPlayer: PlayerSession!
+    var mainPlayerNode: SKSpriteNode!
     let mainPlayerSize = CGSize(width: 120, height: 150)
     let mainPlayerPosition = CGPoint(x: 100, y: 150)
     let playerMovement: CGFloat = 20.0
@@ -53,24 +50,21 @@ class GameScene: SKScene {
     
     //MARK: Scene DidMove
     override func didMove(to view: SKView) {
-        //test
-        mainPlayer.gameCharacter = .knight
-        //
-        
+
         self.anchorPoint = CGPoint.zero
         sceneHeight = self.frame.size.height
         sceneWidth = self.frame.size.width
-        setupBackground()
-        setupMainPlayer()
         setupCamera()
         setupText()
+        setupBackground()
+        setupMainPlayer()
         detectKeystroke()
         setupTimer()
     }
     
     //MARK: Init
     override init(size: CGSize) {
-        super.init()
+        super.init(size: size)
     }
     
     convenience init(size: CGSize, gameSesh: GameSession) {
@@ -125,6 +119,8 @@ class GameScene: SKScene {
     //MARK: Players
     //Setup mainPlayer
     func setupMainPlayer() {
+        mainPlayer = gameSession.players[0]
+        mainPlayerNode = SKSpriteNode()
         addPlayer(spriteNode: mainPlayerNode, size: mainPlayerSize, position: mainPlayerPosition)
         mainPlayerNode.zPosition = 10
         CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .idle)
