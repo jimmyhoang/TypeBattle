@@ -120,14 +120,18 @@ class MainMenuView: UIView {
         switch buttonTag {
         case 1:
             trainingSegue()
+            buttonTag = 0
         case 2:
             multiplayerSegue()
+            buttonTag = 0
         case 3:
             break
         case 4:
             myProfileSegue()
+            buttonTag = 0
         case 5:
             leaderboardSegue()
+            buttonTag = 0
         default:
             break
         }
