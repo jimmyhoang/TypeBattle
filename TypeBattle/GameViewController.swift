@@ -27,21 +27,21 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let ref = Database.database().reference(withPath: "game_sessions")
-//        let gameRef = ref.child("-KpRMhh0FpMKP-vt_VY5")
-//        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
-//            
-//            // try to parse dictionary to a GameSession object
-//            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
-//                else {
-//                    print("Error getting GameSession")
-//                    return
-//            }
-//        
-//            self.gameSession = gameSession
+        let ref = Database.database().reference(withPath: "game_sessions")
+        let gameRef = ref.child("-KpXRbcJjYlgcF6TcQUK")
+        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+        
+            self.gameSession = gameSession
             self.addTextFieldAndScene()
-//        })
+        })
     
         
 //        gameManager.observeLeaderboardChanges(gameSessionID: "-KpRMhh0FpMKP-vt_VY5") { (arrayOfArrays) in

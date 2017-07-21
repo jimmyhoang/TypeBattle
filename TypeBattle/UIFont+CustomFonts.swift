@@ -13,4 +13,9 @@ extension UIFont {
         
         return UIFont(name: "Supersonic Rocketship", size: size)!
     }
+    
+    static func inGameFont(size:CGFloat) -> UIFont {
+        
+        return UIFont(name: "betsy flanagan", size: size)!
+    }
 }
