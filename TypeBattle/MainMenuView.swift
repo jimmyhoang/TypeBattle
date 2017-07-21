@@ -29,6 +29,7 @@ class MainMenuView: UIView {
     private lazy var nameIcon:UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "TypeBattle3D"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -209,7 +210,7 @@ class MainMenuView: UIView {
                                       stack.topAnchor.constraint(equalTo: nameIcon.bottomAnchor),
                                       stack.centerXAnchor.constraint(equalTo: centerXAnchor),
                                       stack.widthAnchor.constraint(equalTo: nameIcon.widthAnchor, constant: -25.0),
-                                      leaderboardButton.leadingAnchor.constraint(equalTo: nameIcon.leadingAnchor, constant: -20.0),
+                                      leaderboardButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10.0),
                                       leaderboardButton.topAnchor.constraint(equalTo: topAnchor, constant: 15.0),
                                       leaderboardButton.widthAnchor.constraint(equalToConstant: leaderboardIconWidth),
                                       leaderboardButton.heightAnchor.constraint(equalTo: leaderboardButton.widthAnchor)
