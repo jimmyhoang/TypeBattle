@@ -150,7 +150,7 @@ class GameManager {
                 
                 // populate PlayerSession data with initial position
                 let playerRef = playersRef.child(p.playerID)
-                let playerDict = ["nm": p.playerName, "ix": 0, "pct": 0.0, "pos": 0] as [String : Any]
+                let playerDict = ["nm": p.playerName, "ix": 0, "pct": 0.0] as [String : Any]
                 playerRef.setValue(playerDict)
             }
             
