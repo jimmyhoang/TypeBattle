@@ -134,11 +134,14 @@ class NetworkManager{
             guard let levelProgression = user.object(forKey: "levelProgression") as? Double else {return}
             guard let matchesPlayed    = user.object(forKey: "matchesPlayed") as? Int else {return}
             guard let matchesWon       = user.object(forKey: "matchesWon") as? Int else {return}
-            guard let fbPicURL         = user.object(forKey: "fbPicURL") as? String else {return}
+
             
             let newPlayer              = Player(name: name, playerID: userID, avatarName: avatarName)
 
-            newPlayer.fbPicURL         = fbPicURL
+            if let fbPicURL         = user.object(forKey: "fbPicURL") as? String {
+                newPlayer.fbPicURL         = fbPicURL
+            }
+            
             newPlayer.level            = level
             newPlayer.levelProgression = levelProgression
             newPlayer.matchesPlayed    = matchesPlayed

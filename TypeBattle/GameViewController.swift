@@ -28,7 +28,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
 //        let ref = Database.database().reference(withPath: "game_sessions")
-//        let gameRef = ref.child("-KpRMhh0FpMKP-vt_VY5")
+//        let gameRef = ref.child("-KpXRbcJjYlgcF6TcQUK")
 //        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
 //            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
 //            
