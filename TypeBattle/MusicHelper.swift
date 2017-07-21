@@ -10,17 +10,18 @@ import AVFoundation
 
 class MusicHelper {
     static let sharedHelper = MusicHelper()
-    var audioPlayer: AVAudioPlayer?
+    var backgroundPlayer: AVAudioPlayer?
+    var buttonPlayer: AVAudioPlayer?
     
-    
+
     func playBackgroundMusic() {
 
         let aSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgmusic", ofType: "mp3")!)
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf:aSound as URL)
-            audioPlayer!.numberOfLoops = -1
-            audioPlayer!.prepareToPlay()
-            audioPlayer!.play()
+            backgroundPlayer = try AVAudioPlayer(contentsOf:aSound as URL)
+            backgroundPlayer!.numberOfLoops = -1
+            backgroundPlayer!.prepareToPlay()
+            backgroundPlayer!.play()
         } catch {
             print("Cannot play the file")
         }
@@ -28,18 +29,19 @@ class MusicHelper {
     }
     
     func stopBackgroundMusic() {
-        audioPlayer?.stop()
+        backgroundPlayer?.stop()
     }
     
     func playButtonSound() {
         let buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)
-            audioPlayer?.play()
+            buttonPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)
+            buttonPlayer?.play()
         }
         catch {
             print("Error playing sound")
         }
     }
+
 }
 
