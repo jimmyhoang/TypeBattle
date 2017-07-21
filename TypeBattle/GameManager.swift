@@ -171,19 +171,23 @@ class GameManager {
         gameRef.setValue(gameSession.createDictionary())
         
         // increment matches won/played for each player
-//        let playersRef = Database.database().reference(withPath: "players")
-//        for p in gameSession.players {
-//            let playerRef = playersRef.child(p.playerID)
-//            playerRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//                
-//                guard let dictionary = snapshot as? Dictionary<String, Any> else {
-//                    print("Error in GameManager. Not able to convert Firebase data to Dictionary")
-//                    return
-//                }
-//                
-//                
-//            })
-//        }
+        for ps in gameSession.players {
+        
+            NetworkManager.fetchPlayerDetails(playerID: ps.playerID, withCompletionBlock: { (pl) in
+                pl.matchesPlayed += 1
+                
+                if(ps.finalPosition == 1) {
+                    pl.matchesWon += 1
+                    
+                    var needed = 0
+                    for i in 0...pl.level {
+                        needed += i
+                    }
+                    
+                    pl.level = (pl.matchesWon == needed ) ? pl.level + 1: pl.level
+                }
+            })
+        }
     }
     
     private func changeGameSessionStatus(gameSessionID: String, status: GameSessionStatus) {
