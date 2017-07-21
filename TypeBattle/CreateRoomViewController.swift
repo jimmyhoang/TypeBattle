@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import AVFoundation
 
 class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
 
@@ -27,7 +26,6 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
     var currentPlayer: Player!
     
     var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
-    var audioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,15 +47,6 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         self.createButton.contentVerticalAlignment = .fill
         self.createButton.layer.cornerRadius = 4.0
         
-        // Prepare audio button
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)
-        }
-        catch {
-            print("Error playing sound")
-        }
-        audioPlayer.prepareToPlay()
-        
         // Set up segmented control
         let font = UIFont.gameFont(size: 17)
         self.categorySegmentedControl.contentVerticalAlignment = .bottom
@@ -72,7 +61,7 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
     @IBAction func createRoom(_ sender: UIButton) {
         
         // Play sound
-        self.audioPlayer.play()
+        MusicHelper.sharedHelper.playButtonSound()
         
         guard let roomName = roomNameTextField.text else {
             print("Error getting room name")
@@ -127,7 +116,7 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
     @IBAction func useLocationSwitched(_ sender: UISwitch) {
         
         // Play sound
-        self.audioPlayer.play()
+        MusicHelper.sharedHelper.playButtonSound()
         
         if(sender.isOn) {
             
@@ -160,7 +149,7 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         switch segue.identifier! {
         case "cancel-create-room-segue":
             // Play sound
-            self.audioPlayer.play()
+            MusicHelper.sharedHelper.playButtonSound()
         case "goto-lobby-segue":
             let controller = segue.destination as! JoinRoomViewController
             controller.currentGameSession = self.savedGameSession

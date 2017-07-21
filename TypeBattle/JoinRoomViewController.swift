@@ -8,7 +8,6 @@
 
 import UIKit
 import FirebaseDatabase
-import AVFoundation
 
 class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
  
@@ -34,7 +33,6 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     var gameTimerCounter = 8 // counter to control start of the game when creator press enter
     
     var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
-    var audioPlayer = AVAudioPlayer()
 
     //MARK: ViewController life cycle
     override func viewDidLoad() {
@@ -52,15 +50,6 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Load character information
         self.characters = self.gameManager.getAllCharacters()
-        
-        // Prepare audio button
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)
-        }
-        catch {
-            print("Error playing sound")
-        }
-        audioPlayer.prepareToPlay()
 
         // Select default character
         self.selectedCharacterTag = 1
@@ -191,7 +180,7 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func readyButtonPressed(_ sender: UIButton) {
         
         // Play sound
-        self.audioPlayer.play()
+        MusicHelper.sharedHelper.playButtonSound()
         
         var isReady: Bool
         if(self.readyButton.currentTitle?.lowercased() == "unready") {
@@ -211,7 +200,7 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func startButtonPressed(_ sender: UIButton) {
         
         // Play sound
-        self.audioPlayer.play()
+        MusicHelper.sharedHelper.playButtonSound()
         
         self.gameManager.startGameSession(gameSessionID: self.currentGameSession.gameSessionID)
     }
@@ -219,7 +208,7 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func backButtonPressed(_ sender: UIButton) {
         
         // Play sound
-        self.audioPlayer.play()
+        MusicHelper.sharedHelper.playButtonSound()
         
         self.userLeftLobby()
         

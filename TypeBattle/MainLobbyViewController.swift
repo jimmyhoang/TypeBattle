@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import AVFoundation
 
 class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
@@ -28,7 +27,6 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
     var currentLocation: CLLocation?
     
     var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
-    var audioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,15 +44,6 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Disable row selection
         tableView.allowsSelection = false
-        
-        // Prepare audio button
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)
-        }
-        catch {
-            print("Error playing sound")
-        }
-        audioPlayer.prepareToPlay()
         
         // Get available rooms
         gameManager.listAvailableGameSessions { (session, event) in
@@ -123,7 +112,7 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
     func joinRoomPressed(sender: UIButton) {
         
         // Play sound
-        self.audioPlayer.play()
+        MusicHelper.sharedHelper.playButtonSound()
         
         self.selectedRoom = sender.tag
         
@@ -133,7 +122,7 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func nearbySwitchChanged(_ sender: UISwitch) {
         
         // Play sound
-        self.audioPlayer.play()
+        MusicHelper.sharedHelper.playButtonSound()
         
         if(sender.isOn) {
             
@@ -158,10 +147,10 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
         switch segue.identifier ?? "" {
         case "create-room-segue":
             // Play sound
-            self.audioPlayer.play()
+            MusicHelper.sharedHelper.playButtonSound()
         case "back-to-main-segue":
             // Play sound
-            self.audioPlayer.play()
+            MusicHelper.sharedHelper.playButtonSound()
         case "join-room-segue":
             let controller = segue.destination as! JoinRoomViewController
             controller.currentGameSession = self.availableRooms[self.selectedRoom]
