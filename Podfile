@@ -6,7 +6,6 @@ target 'TypeBattle' do
   use_frameworks!
 
   # Pods for TypeBattle
-    pod 'RealmSwift'
     pod 'Firebase'
     pod 'Firebase/Core'
     pod 'Firebase/Database'
