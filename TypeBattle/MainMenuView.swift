@@ -240,7 +240,7 @@ class MainMenuView: UIView {
             
             DispatchQueue.main.async {
                 // Create room with the creator as the first player
-                self.gameSession = self.gameManager.createGameSession(lobby: lobby, someRandomText: someRandomText)
+                self.gameSession = self.gameManager.createGameSession(lobby: lobby, someRandomText: someRandomText, persistInFirebase: false)
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateInitialViewController()
