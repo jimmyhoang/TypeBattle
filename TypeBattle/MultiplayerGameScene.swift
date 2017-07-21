@@ -60,8 +60,13 @@ class MultiplayerGameScene: SKScene {
     let spaceBetweenLetters: CGFloat = 25
     var textNodeWidth: CGFloat!
     
+    let inGameFontName = "betsy flanagan"
+    
     //Camera
     var cam: SKCameraNode!
+    
+    //Position Label
+    var positionLabelNode: SKLabelNode!
     
     //Timer
     var timerTextNode: SKLabelNode!
@@ -173,7 +178,7 @@ class MultiplayerGameScene: SKScene {
             playerDict.updateValue(gameDict, forKey: key)
             
             //Add namePlate for each player
-            playerNameLabelNode = SKLabelNode(fontNamed: "Supersonic Rocketship")
+            playerNameLabelNode = SKLabelNode(fontNamed: inGameFontName)
             playerNameLabelNode.horizontalAlignmentMode = .left
             playerNameLabelNode.position = CGPoint(x: playerSize.width , y: 0)
             playerNameLabelNode.fontSize = 15
@@ -318,7 +323,7 @@ class MultiplayerGameScene: SKScene {
         var space: CGFloat = 0
         
         for char in textArray {
-            textNode = SKLabelNode(fontNamed: "Supersonic Rocketship")
+            textNode = SKLabelNode(fontNamed: inGameFontName)
             textNode.text = char
             textNode.horizontalAlignmentMode = .right
             textNode.fontSize = 40
@@ -381,8 +386,8 @@ class MultiplayerGameScene: SKScene {
         addChild(cam)
     }
     
-    //MARK: Timer
-    //Setup
+    //MARK: On Camera Nodes
+    //Setup timer
     func setupTimer() {
         timerTextNode = SKLabelNode(fontNamed: "Supersonic Rocketship")
         timerTextNode.fontSize = 40
@@ -398,8 +403,28 @@ class MultiplayerGameScene: SKScene {
     
     //update time
     func updateTimer(time: Double) {
-        timerTextNode.text = String(format: "%.3f", time)
+        timerTextNode.text = String(format: "%.2f", time)
     }
+    
+    //Setup position label
+    func setupPositionLabel() {
+        positionLabelNode = SKLabelNode(fontNamed: inGameFontName)
+        positionLabelNode.horizontalAlignmentMode = .left
+        positionLabelNode.verticalAlignmentMode = .bottom
+        positionLabelNode.fontSize = 40
+        positionLabelNode.position = CGPoint(x: 0, y: sceneHeight - positionLabelNode.frame.size.height)
+        cam.addChild(positionLabelNode)
+    }
+    
+//    func updatePositionNode() {
+//        for index in 0..<numberOfPlayers {
+//            
+//        }
+//    }
+//    
+//    func getMainPlayerPosition() {
+//        
+//    }
     
     //MARK: Leaderboard Observer
     func observePlayerPosition() {
@@ -413,7 +438,7 @@ class MultiplayerGameScene: SKScene {
                     aPlayer.currentIndex = playerStatus[index][2] as! Int
                     
                     
-                    self.otherPlayerProgress = (round(Double(aPlayer.currentIndex)/Double(self.gameTextLength) * 100 * 100) / 100)
+                    self.otherPlayerProgress = round(Double(aPlayer.currentIndex)/Double(self.gameTextLength) * 100 * 100) / 100
                     let aPlayerNode = playerInfo["playerNode"] as! SKSpriteNode
                     let textNode = aPlayerNode.childNode(withName: "namePlate") as! SKLabelNode
                     textNode.text = "\(aPlayer.playerName) >>> \(self.otherPlayerProgress)%"
