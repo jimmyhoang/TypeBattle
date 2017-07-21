@@ -47,6 +47,8 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
         self.readyButton.layer.cornerRadius = 4.0
         self.startButton.contentVerticalAlignment = .fill
         self.startButton.layer.cornerRadius = 4.0
+        self.startButton.alpha = 0.5
+        self.startButton.isEnabled = false
         
         // Load character information
         self.characters = self.gameManager.getAllCharacters()
@@ -129,6 +131,15 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             
             // Reload table view
             self.tableView.reloadData()
+            
+            // Enable start button if more than 1 player is in the lobby
+            if (self.currentGameSession.players.count > 1) {
+                self.startButton.alpha = 1.0
+                self.startButton.isEnabled = true
+            } else {
+                self.startButton.alpha = 0.5
+                self.startButton.isEnabled = false
+            }
             
             // Change lobby title
             self.lobbyLabel.text = "LOBBY (\(self.currentGameSession.players.count)/\(self.currentGameSession.capacity))"
