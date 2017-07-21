@@ -111,15 +111,18 @@ class SettingsView: UIView {
     }
     
     func 🚶🏿💯(sender:Notification) {
-        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-            return
-        }
-        while let next = top.presentedViewController {
-            top = next
-        }
-        guard let vc = top as? SettingsViewController else {return}
-        vc.performSegue(withIdentifier: "mainMenuSegue", sender: vc)
-        //top.dismiss(animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
+        let vc         = storyboard.instantiateInitialViewController()
+        
+        let window = UIApplication.shared.windows[0] as UIWindow;
+        UIView.transition(from:(window.rootViewController?.view)!,
+                          to: (vc?.view)!,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          completion: {
+                            finished in window.rootViewController = vc
+        })
+        
     }
     
     func backToMainMenu(sender:UIButton!) {
