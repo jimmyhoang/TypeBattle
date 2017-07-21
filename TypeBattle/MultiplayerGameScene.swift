@@ -17,6 +17,7 @@ class MultiplayerGameScene: SKScene {
     //GameSession
     var gameSession: GameSession!
     var numberOfPlayers: Int!
+    var gameTextLength: Int!
     
     //GameManager
     var gameManager: GameManager!
@@ -40,6 +41,7 @@ class MultiplayerGameScene: SKScene {
     var isIdle: Bool!
     
     var playerNameLabelNode: SKLabelNode!
+    var otherPlayerProgress: Double = 0.0
     
     //Background
     var ground: SKSpriteNode!
@@ -80,6 +82,8 @@ class MultiplayerGameScene: SKScene {
         setupBackground()
         detectKeystroke()
         setupTimer()
+        observePlayerPosition()
+
     }
     
     //MARK: Init
@@ -135,8 +139,6 @@ class MultiplayerGameScene: SKScene {
         updateTimer(time: timerTime)
         
         neverEndingSky(widthOfSky: skyWidth)
-        updatePlayerProgressText()
-        observePlayerPosition()
     }
     
     //MARK: Players
@@ -205,12 +207,21 @@ class MultiplayerGameScene: SKScene {
         mainPlayerNode.run(moveRight)
     }
     
-    //Update playerProgress text
-    func updatePlayerProgressText() {
-        for index in 0..<numberOfPlayers{
-            let textNode = playerNodesInGame[index].childNode(withName: "namePlate") as! SKLabelNode
-            textNode.text = "\(gameSession.players[index].playerName) >>> \(playerProgress)%"
+    //Move otherPlayers
+    func moveOtherPlayer(player: PlayerSession, playerNode: SKSpriteNode, diff: Int) {
+        if isIdle {
+            CharacterAnimation.doAction(player: playerNode, char: player.gameCharacter, action: .run)
+            isIdle = false
         }
+        
+        let moveRight = SKAction.moveBy(x: playerMovement * CGFloat(diff), y: 0, duration: 0)
+        playerNode.run(moveRight)
+    }
+    
+    //Update mainPlayerProgress text
+    func updateMainPlayerProgressText() {
+        let textNode = mainPlayerNode.childNode(withName: "namePlate") as! SKLabelNode
+        textNode.text = "\(currentPlayer.name) >>> \(playerProgress)%"
     }
     
     //MARK: Background
@@ -302,6 +313,7 @@ class MultiplayerGameScene: SKScene {
         
         //parse gameText into textArray
         textArray = NetworkManager.parseWords(words: gameSession.gameText)
+        gameTextLength = textArray.count
         //make a labelNode for each letter in textArray
         var space: CGFloat = 0
         
@@ -346,6 +358,7 @@ class MultiplayerGameScene: SKScene {
                 arrayIndex += 1
                 playerProgress = round(Double(arrayIndex)/Double(textArray.count) * 100 * 100) / 100
                 gameManager.incrementPosition(gameSessionID: gameSession.gameSessionID, player: currentPlayer, index: arrayIndex, progress: playerProgress)
+                updateMainPlayerProgressText()
             }
         }
     }
@@ -396,7 +409,19 @@ class MultiplayerGameScene: SKScene {
                     let playerID = playerStatus[index][0] as! String
                     let playerInfo = self.playerDict[playerID] as! Dictionary<String, Any>
                     let aPlayer = playerInfo["player"] as! PlayerSession
+                    let oldIndex = aPlayer.currentIndex
                     aPlayer.currentIndex = playerStatus[index][2] as! Int
+                    
+                    
+                    self.otherPlayerProgress = (round(Double(aPlayer.currentIndex)/Double(self.gameTextLength) * 100 * 100) / 100)
+                    let aPlayerNode = playerInfo["playerNode"] as! SKSpriteNode
+                    let textNode = aPlayerNode.childNode(withName: "namePlate") as! SKLabelNode
+                    textNode.text = "\(aPlayer.playerName) >>> \(self.otherPlayerProgress)%"
+                    
+                    if oldIndex != aPlayer.currentIndex {
+                        let indexDiff = aPlayer.currentIndex - oldIndex
+                        self.moveOtherPlayer(player: aPlayer, playerNode: aPlayerNode, diff: indexDiff)
+                    }
                 }
             }
         }
