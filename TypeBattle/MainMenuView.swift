@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
 import SpriteKit
 
 class MainMenuView: UIView {
@@ -26,10 +25,7 @@ class MainMenuView: UIView {
     let screenSize = UIScreen.main.bounds
     var background: BackgroundScene!
     var buttonTag  = 0
-    
-    var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
-    var audioPlayer = AVAudioPlayer()
-    
+
     private lazy var nameIcon:UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "TypeBattle3D"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -117,16 +113,6 @@ class MainMenuView: UIView {
         background.backgroundColor = UIColor.background
         
         self.setNeedsUpdateConstraints()
-        
-
-        // Prepare audio button
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)
-        }
-        catch {
-            print("Error playing sound")
-        }
-        audioPlayer.prepareToPlay()
 
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
@@ -154,45 +140,31 @@ class MainMenuView: UIView {
     }
     
     func spButtonTapped(sender: UIButton) {
-        
-        // Play sound
-        self.audioPlayer.play()
-        
+        MusicHelper.sharedHelper.playButtonSound()
         buttonTag = 1
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
     func lbButtonTapped(sender: UIButton) {
-        
-        // Play sound
-        self.audioPlayer.play()
-        
+        MusicHelper.sharedHelper.playButtonSound()
         buttonTag = 5
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
     func mpButtonTapped(sender: UIButton) {
-        
-        // Play sound
-        self.audioPlayer.play()
-        
+        MusicHelper.sharedHelper.playButtonSound()
         buttonTag = 2
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
     func settingsButtonTapped(sender: UIButton) {
-        
-        // Play sound
-        self.audioPlayer.play()
-        
+        MusicHelper.sharedHelper.playButtonSound()
         buttonTag = 3
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
     func profileButtonTapped(sender: UIButton) {
-        // Play sound
-        self.audioPlayer.play()
-        
+        MusicHelper.sharedHelper.playButtonSound()
         buttonTag = 4
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }

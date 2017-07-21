@@ -39,6 +39,8 @@
 		9C39A5961F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C39A5951F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift */; };
 		9C9DE0251F1E92DD006B6FEE /* SimGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9DE0241F1E92DD006B6FEE /* SimGameViewController.swift */; };
 		9CA0393C1F208F3800657190 /* buttonSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CA0393B1F208F3800657190 /* buttonSound.mp3 */; };
+		FF7B2D8E1F217B750064B63E /* bgmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7B2D8D1F217B750064B63E /* bgmusic.mp3 */; };
+		FF7B2D901F217BA40064B63E /* MusicHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7B2D8F1F217BA40064B63E /* MusicHelper.swift */; };
 		FF889A091F169C3E006955BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A081F169C3E006955BB /* AppDelegate.swift */; };
 		FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A0E1F169C3E006955BB /* GameScene.swift */; };
 		FF889A111F169C3E006955BB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A101F169C3E006955BB /* GameViewController.swift */; };
@@ -90,6 +92,8 @@
 		9C9DE0241F1E92DD006B6FEE /* SimGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimGameViewController.swift; sourceTree = "<group>"; };
 		9CA0393B1F208F3800657190 /* buttonSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonSound.mp3; sourceTree = "<group>"; };
 		B5D5DD2C2501F40C389C845E /* Pods_TypeBattle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypeBattle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF7B2D8D1F217B750064B63E /* bgmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgmusic.mp3; sourceTree = "<group>"; };
+		FF7B2D8F1F217BA40064B63E /* MusicHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicHelper.swift; sourceTree = "<group>"; };
 		FF889A051F169C3E006955BB /* TypeBattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypeBattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF889A081F169C3E006955BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF889A0E1F169C3E006955BB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 		9CA0393D1F208F3D00657190 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				FF7B2D8D1F217B750064B63E /* bgmusic.mp3 */,
 				9CA0393B1F208F3800657190 /* buttonSound.mp3 */,
 			);
 			name = Sounds;
@@ -253,6 +258,7 @@
 				436D73801F21281500CA301A /* ProfilePageViewController.swift */,
 				FF889A421F1861A2006955BB /* NetworkManager.swift */,
 				432041CB1F1FD83E009E3771 /* BackgroundScene.swift */,
+				FF7B2D8F1F217BA40064B63E /* MusicHelper.swift */,
 			);
 			path = TypeBattle;
 			sourceTree = "<group>";
@@ -370,6 +376,7 @@
 				9C34E2CB1F184EE6008372DC /* Multiplayer.storyboard in Resources */,
 				4340E60A1F17F862003C0167 /* Supersonic Rocketship.ttf in Resources */,
 				FF889A351F16E779006955BB /* GoogleService-Info.plist in Resources */,
+				FF7B2D8E1F217B750064B63E /* bgmusic.mp3 in Resources */,
 				438DC9641F180600005699C3 /* MainMenu.storyboard in Resources */,
 				436D73851F21391700CA301A /* betsy flanagan.ttf in Resources */,
 				FF889A161F169C3E006955BB /* Assets.xcassets in Resources */,
@@ -445,6 +452,7 @@
 				9C34E2D41F18B31F008372DC /* RoomTableViewCell.swift in Sources */,
 				9C34E2C81F17489B008372DC /* GameManager.swift in Sources */,
 				431E7F321F180EF300B7B5CE /* UIColor+CustomColors.swift in Sources */,
+				FF7B2D901F217BA40064B63E /* MusicHelper.swift in Sources */,
 				4340E6071F17F7BF003C0167 /* UIFont+CustomFonts.swift in Sources */,
 				FFF210461F194A3000E51644 /* AvatarPickerCollectionViewCell.swift in Sources */,
 				43D9BBD01F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift in Sources */,
