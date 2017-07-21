@@ -17,7 +17,20 @@ class MultiplayerGameScene: SKScene {
     //GameSession
     var gameSession: GameSession!
     var numberOfPlayers: Int!
+    
+    //GameManager
+    var gameManager: GameManager!
+    
+    //Dictionary
+    var gameDict = Dictionary<String, Any>()
+    var playerDict = Dictionary<String, Any>()
 
+    //Current Player
+    var currentPlayer: Player!
+    var mainPlayerInDict: Dictionary<String, Any>!
+    var mainPlayerNode: SKSpriteNode!
+    var mainPlayer: PlayerSession!
+    
     //Players
     var playerNode: SKSpriteNode!
     var playerNodesInGame: [SKSpriteNode] = []
@@ -27,9 +40,6 @@ class MultiplayerGameScene: SKScene {
     var isIdle: Bool!
     
     var playerNameLabelNode: SKLabelNode!
-    
-    var mainPlayer: PlayerSession!
-    var mainPlayerNode: SKSpriteNode!
     
     //Background
     var ground: SKSpriteNode!
@@ -60,6 +70,7 @@ class MultiplayerGameScene: SKScene {
     //MARK: Scene DidMove
     override func didMove(to view: SKView) {
         
+        gameManager = GameManager()
         self.anchorPoint = CGPoint.zero
         sceneHeight = self.frame.size.height
         sceneWidth = self.frame.size.width
@@ -125,11 +136,13 @@ class MultiplayerGameScene: SKScene {
         
         neverEndingSky(widthOfSky: skyWidth)
         updatePlayerProgressText()
+        observePlayerPosition()
     }
     
     //MARK: Players
     //Setup players
     func setupPlayers() {
+        setMainUser()
         //first player position
         var playerXPos: CGFloat = 10.0
         var playerYPos: CGFloat = 17.5
@@ -152,6 +165,11 @@ class MultiplayerGameScene: SKScene {
             isIdle = true
             playerNodesInGame.append(playerNode)
             
+            //create playerDict containing player-specific information
+            gameDict = ["player": gameSession.players[index], "playerNode": playerNode, "endTime": 0.0]
+            let key = gameSession.players[index].playerID
+            playerDict.updateValue(gameDict, forKey: key)
+            
             //Add namePlate for each player
             playerNameLabelNode = SKLabelNode(fontNamed: "Supersonic Rocketship")
             playerNameLabelNode.horizontalAlignmentMode = .left
@@ -160,10 +178,11 @@ class MultiplayerGameScene: SKScene {
             playerNameLabelNode.name = "namePlate"
             playerNameLabelNode.text = "\(gameSession.players[index].playerName) >>> \(playerProgress)%"
             playerNode.addChild(playerNameLabelNode)
-            
         }
-        mainPlayer = gameSession.players[0]
-        mainPlayerNode = playerNodesInGame[0]
+        
+        mainPlayerInDict = playerDict[currentPlayer.playerID] as! Dictionary<String, Any>
+        mainPlayerNode = mainPlayerInDict["playerNode"] as! SKSpriteNode
+        mainPlayer = mainPlayerInDict["player"] as! PlayerSession
     }
     
     //Add a player to scene
@@ -326,6 +345,7 @@ class MultiplayerGameScene: SKScene {
                 changeCurrentTextColor(index: arrayIndex)
                 arrayIndex += 1
                 playerProgress = round(Double(arrayIndex)/Double(textArray.count) * 100 * 100) / 100
+                gameManager.incrementPosition(gameSessionID: gameSession.gameSessionID, player: currentPlayer, index: arrayIndex, progress: playerProgress)
             }
         }
     }
@@ -366,5 +386,25 @@ class MultiplayerGameScene: SKScene {
     //update time
     func updateTimer(time: Double) {
         timerTextNode.text = String(format: "%.3f", time)
+    }
+    
+    //MARK: Leaderboard Observer
+    func observePlayerPosition() {
+        gameManager.observeLeaderboardChanges(gameSessionID: gameSession.gameSessionID) { (playerStatus) in
+            for index in 0 ..< playerStatus.count {
+                if self.currentPlayer.playerID != playerStatus[index][0] as! String {
+                    let playerID = playerStatus[index][0] as! String
+                    let playerInfo = self.playerDict[playerID] as! Dictionary<String, Any>
+                    let aPlayer = playerInfo["player"] as! PlayerSession
+                    aPlayer.currentIndex = playerStatus[index][2] as! Int
+                }
+            }
+        }
+    }
+    
+    //MARK: Get Logged User
+    func setMainUser() {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        currentPlayer = delegate.player
     }
 }
