@@ -333,7 +333,6 @@
 				TargetAttributes = {
 					FF889A041F169C3E006955BB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = FJL385PM79;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -594,14 +593,14 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TypeBattle/TypeBattle.entitlements;
-				DEVELOPMENT_TEAM = FJL385PM79;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TypeBattle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fernandojinzenji.TypeBattle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harryl.TypeBattle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -614,14 +613,14 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TypeBattle/TypeBattle.entitlements;
-				DEVELOPMENT_TEAM = FJL385PM79;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TypeBattle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fernandojinzenji.TypeBattle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harryl.TypeBattle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
