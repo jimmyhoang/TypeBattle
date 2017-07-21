@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VgI-AH-1q6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VgI-AH-1q6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -129,7 +129,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No account? Register with:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvi-gb-3Ct" customClass="GameLabel" customModule="TypeBattle" customModuleProvider="target">
-                                <rect key="frame" x="82.5" y="555.5" width="211" height="15.5"/>
+                                <rect key="frame" x="82" y="555.5" width="211" height="15.5"/>
                                 <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -137,6 +137,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.16470588235294117" green="0.80000000000000004" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="KVE-S7-oyc" firstAttribute="top" secondItem="woM-91-GX8" secondAttribute="bottom" constant="75" id="2z6-uM-RhU"/>
                             <constraint firstItem="66I-XL-tFs" firstAttribute="top" secondItem="NPC-Jm-S7L" secondAttribute="bottom" constant="8" id="69r-Vi-DXW"/>
@@ -148,6 +149,9 @@
                             <constraint firstItem="KVE-S7-oyc" firstAttribute="width" secondItem="dXc-rh-LYs" secondAttribute="width" id="hBg-Mc-827"/>
                             <constraint firstItem="mvi-gb-3Ct" firstAttribute="bottom" secondItem="NPC-Jm-S7L" secondAttribute="top" constant="-8" id="rYU-CI-OXO"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="dt7-eu-dTS" appends="YES" id="srA-hY-Ro0"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="emailButton" destination="5xK-4b-8Kh" id="l9F-F5-Eww"/>
@@ -160,6 +164,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z3u-p0-ldB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="dt7-eu-dTS">
+                    <connections>
+                        <action selector="screenTapped:" destination="VgI-AH-1q6" id="mnV-xY-Qcf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-116" y="138.98050974512745"/>
         </scene>

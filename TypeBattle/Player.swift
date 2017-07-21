@@ -18,6 +18,7 @@ class Player {
     // Additional profile properties
     var avatar: UIImage = UIImage()
     var avatarName: String
+    var fbPicURL: String?
     
     // Game/stats properties
     var level = 1
@@ -57,7 +58,8 @@ class Player {
             "levelProgression" : levelProgression,
             "matchesWon"       : matchesWon,
             "matchesPlayed"    : matchesPlayed,
-            "avatarName"       : avatarName
+            "avatarName"       : avatarName,
+            "fbPicURL"         : fbPicURL ?? "n/a"
         ]
     }
     

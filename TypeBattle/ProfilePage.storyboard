@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Profile Page View Controller-->
         <scene sceneID="ZMm-c9-Pj5">
             <objects>
-                <viewController id="zkw-Y1-KoK" sceneMemberID="viewController">
+                <viewController id="zkw-Y1-KoK" customClass="ProfilePageViewController" customModule="TypeBattle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SKg-sK-qrb"/>
                         <viewControllerLayoutGuide type="bottom" id="jfe-cJ-cqr"/>
@@ -22,10 +22,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="ecm-m3-3uc" kind="showDetail" identifier="mainMenuSegue" action="showViewController:sender:" id="l3h-2I-iRU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qvQ-DH-eEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-191" y="-62"/>
+        </scene>
+        <!--MainMenu-->
+        <scene sceneID="Jsh-sg-9Te">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="MainMenu" storyboardName="MainMenu" id="ecm-m3-3uc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tBs-Hg-rzf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="484" y="-60"/>
         </scene>
     </scenes>
 </document>
