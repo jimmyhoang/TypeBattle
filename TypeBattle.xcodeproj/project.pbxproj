@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3DB1505180634A8C93552B4E /* Pods_TypeBattle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D5DD2C2501F40C389C845E /* Pods_TypeBattle.framework */; };
+		43193A711F22A6E400DBF720 /* origami-mommy.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43193A701F22A6E400DBF720 /* origami-mommy.regular.ttf */; };
 		431E7F321F180EF300B7B5CE /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431E7F311F180EF300B7B5CE /* UIColor+CustomColors.swift */; };
 		431E7F361F181F9900B7B5CE /* MainMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431E7F351F181F9900B7B5CE /* MainMenuButton.swift */; };
 		431E7F381F18220C00B7B5CE /* GameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431E7F371F18220C00B7B5CE /* GameLabel.swift */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		3029A304BE1D7F9A3D6C520B /* Pods-TypeBattle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeBattle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle.release.xcconfig"; sourceTree = "<group>"; };
+		43193A701F22A6E400DBF720 /* origami-mommy.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "origami-mommy.regular.ttf"; sourceTree = "<group>"; };
 		431E7F311F180EF300B7B5CE /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		431E7F351F181F9900B7B5CE /* MainMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuButton.swift; sourceTree = "<group>"; };
 		431E7F371F18220C00B7B5CE /* GameLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLabel.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		4340E6081F17F84C003C0167 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				43193A701F22A6E400DBF720 /* origami-mommy.regular.ttf */,
 				4340E6091F17F862003C0167 /* Supersonic Rocketship.ttf */,
 				436D73841F21391700CA301A /* betsy flanagan.ttf */,
 			);
@@ -392,6 +395,7 @@
 				438DC9641F180600005699C3 /* MainMenu.storyboard in Resources */,
 				436D73851F21391700CA301A /* betsy flanagan.ttf in Resources */,
 				FF889A161F169C3E006955BB /* Assets.xcassets in Resources */,
+				43193A711F22A6E400DBF720 /* origami-mommy.regular.ttf in Resources */,
 				436D738D1F21902900CA301A /* Settings.storyboard in Resources */,
 				43D9BBCC1F1B51E100B0B4AC /* Leaderboard.storyboard in Resources */,
 				435913641F196AD200F59509 /* ProfilePage.storyboard in Resources */,
