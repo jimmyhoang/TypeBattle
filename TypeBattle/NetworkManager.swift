@@ -119,11 +119,9 @@ class NetworkManager{
         }
     }
     
-    class func fetchPlayerDetails() {
+    class func fetchPlayerDetails(playerID: String, withCompletionBlock block: @escaping (Player) -> Swift.Void) {
         let ref           = Database.database().reference(withPath: "players")
-        guard let userID  = Auth.auth().currentUser?.uid.lowercased() else {return}
-        let appDelegate   = UIApplication.shared.delegate as! AppDelegate
-        let pRef          = ref.child(userID)
+        let pRef          = ref.child(playerID)
         pRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if !snapshot.exists() {return}
             
@@ -136,7 +134,7 @@ class NetworkManager{
             guard let matchesWon       = user.object(forKey: "matchesWon") as? Int else {return}
 
             
-            let newPlayer              = Player(name: name, playerID: userID, avatarName: avatarName)
+            let newPlayer              = Player(name: name, playerID: playerID, avatarName: avatarName)
 
             if let fbPicURL         = user.object(forKey: "fbPicURL") as? String {
                 newPlayer.fbPicURL         = fbPicURL
@@ -153,11 +151,22 @@ class NetworkManager{
                 })
             }
             
-            appDelegate.player = newPlayer
+            block(newPlayer)
         })
 
     }
     
+    class func fetchPlayerDetails() {
+       
+        guard let userID  = Auth.auth().currentUser?.uid.lowercased() else {return}
+        let appDelegate   = UIApplication.shared.delegate as! AppDelegate
+        
+        self.fetchPlayerDetails(playerID: userID) { (player) in
+            appDelegate.player = player
+        }
+        
+    }
+
     class func downloadFBImage(url:URL, completion:@escaping (UIImage) -> (Void)) {
         Cache.shared.removeAll()
         Manager.shared.loadImage(with: url, completion: { (result) in
@@ -206,7 +215,6 @@ class NetworkManager{
         components.scheme = "https"
         components.host   = "typeiama.vapor.cloud"
         components.path   = "/\(lowerCategory)/\(number)"
-        print(components)
         
         let url       = components.url
         let request   = URLRequest(url: url!)

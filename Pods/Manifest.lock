@@ -60,11 +60,6 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Nuke (5.1.1)
-  - Realm (2.8.3):
-    - Realm/Headers (= 2.8.3)
-  - Realm/Headers (2.8.3)
-  - RealmSwift (2.8.3):
-    - Realm (= 2.8.3)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
@@ -75,7 +70,6 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Nuke (~> 5.1)
-  - RealmSwift
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -94,10 +88,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   nanopb: 22bc080fa3955e2116b6ff3ee6c2cb3c15ab97cb
   Nuke: 0a2ddb4bd13d75782964bf598a159ca2a836d826
-  Realm: 3601ef091c8c499a31101d8563b991e75546cdce
-  RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 2dcc83631b80b0a324aca4919964fe067cc91e01
+PODFILE CHECKSUM: a1b41198b93b97fa67676b632e7f5f1a6c9aad7c
 
 COCOAPODS: 1.2.1

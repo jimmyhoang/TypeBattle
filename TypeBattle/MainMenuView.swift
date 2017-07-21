@@ -243,71 +243,67 @@ class MainMenuView: UIView {
                 self.gameSession = self.gameManager.createGameSession(lobby: lobby, someRandomText: someRandomText)
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateInitialViewController()
+                let vc         = storyboard.instantiateInitialViewController() as! GameViewController
+                vc.gameSession = self.gameSession
                 
-                guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-                    return
-                }
-                while let next = top.presentedViewController {
-                    top = next
-                }
+                let window = UIApplication.shared.windows[0] as UIWindow;
+                UIView.transition(from:(window.rootViewController?.view)!,
+                                  to: (vc.view)!,
+                                  duration: 0.5,
+                                  options: .transitionCrossDissolve,
+                                  completion: {
+                                    finished in window.rootViewController = vc
+                })
                 
-                guard let gameVC = vc as? GameViewController else {
-                    print("Not able to segue to game view controller")
-                    return
-                }
-                
-                gameVC.gameSession = self.gameSession
-                
-                top.present(vc!, animated: true, completion: nil)
             }
         }
     }
     
     func myProfileSegue() {
         
-        
         let storyboard = UIStoryboard(name: "ProfilePage", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         
-        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-            return
-        }
-        while let next = top.presentedViewController {
-            top = next
-        }
+        let window = UIApplication.shared.windows[0] as UIWindow;
+        UIView.transition(from:(window.rootViewController?.view)!,
+                          to: (vc?.view)!,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          completion: {
+                            finished in window.rootViewController = vc
+        })
         
-        top.present(vc!, animated: true, completion: nil)
     }
     
     func multiplayerSegue() {
-
+        
         let storyboard = UIStoryboard(name: "Multiplayer", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         
-        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-            return
-        }
-        while let next = top.presentedViewController {
-            top = next
-        }
-        
-        top.present(vc!, animated: true, completion: nil)
+        let window = UIApplication.shared.windows[0] as UIWindow;
+        UIView.transition(from:(window.rootViewController?.view)!,
+                          to: (vc?.view)!,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          completion: {
+                            finished in window.rootViewController = vc
+        })
+
     }
     
     func leaderboardSegue() {
-            
+
         let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         
-        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-            return
-        }
-        while let next = top.presentedViewController {
-            top = next
-        }
-        
-        top.present(vc!, animated: true, completion: nil)
+        let window = UIApplication.shared.windows[0] as UIWindow;
+        UIView.transition(from:(window.rootViewController?.view)!,
+            to: (vc?.view)!,
+            duration: 0.5,
+            options: .transitionCrossDissolve,
+            completion: {
+                finished in window.rootViewController = vc
+        })
     }
     
     func settingsSegue() {
@@ -315,13 +311,14 @@ class MainMenuView: UIView {
         let storyboard = UIStoryboard(name: "Settings", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         
-        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-            return
-        }
-        while let next = top.presentedViewController {
-            top = next
-        }
+        let window = UIApplication.shared.windows[0] as UIWindow;
+        UIView.transition(from:(window.rootViewController?.view)!,
+                          to: (vc?.view)!,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          completion: {
+                            finished in window.rootViewController = vc
+        })
         
-        top.present(vc!, animated: true, completion: nil)
     }
 }

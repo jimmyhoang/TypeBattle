@@ -171,19 +171,23 @@ class GameManager {
         gameRef.setValue(gameSession.createDictionary())
         
         // increment matches won/played for each player
-//        let playersRef = Database.database().reference(withPath: "players")
-//        for p in gameSession.players {
-//            let playerRef = playersRef.child(p.playerID)
-//            playerRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//                
-//                guard let dictionary = snapshot as? Dictionary<String, Any> else {
-//                    print("Error in GameManager. Not able to convert Firebase data to Dictionary")
-//                    return
-//                }
-//                
-//                
-//            })
-//        }
+        for ps in gameSession.players {
+        
+            NetworkManager.fetchPlayerDetails(playerID: ps.playerID, withCompletionBlock: { (pl) in
+                pl.matchesPlayed += 1
+                
+                if(ps.finalPosition == 1) {
+                    pl.matchesWon += 1
+                    
+                    var needed = 0
+                    for i in 0...pl.level {
+                        needed += i
+                    }
+                    
+                    pl.level = (pl.matchesWon == needed ) ? pl.level + 1: pl.level
+                }
+            })
+        }
     }
     
     private func changeGameSessionStatus(gameSessionID: String, status: GameSessionStatus) {
@@ -327,35 +331,35 @@ class GameManager {
         var allTypes = Array<GameCharacter>()
         
         allTypes.append(GameCharacter(type: .cat,
-                                      typeDescription: "Cat is a cat, cat is a cat, cat is cat, cat is cat",
+                                      typeDescription: "Cat comes from a family of dogs.",
                                       perkDescription: "ABILITY: Randomly changes next 10 letters between upper/lower case for all other players"))
         
         allTypes.append(GameCharacter(type: .dog,
-                                      typeDescription: "Dog ia dog, dog is a dog, dog is a dog, dog is a dog",
+                                      typeDescription: "Dog comes from a family of cats.",
                                       perkDescription: "ABILITY: Randomly changes next 10 letters positions for all other players"))
         
         allTypes.append(GameCharacter(type: .knight,
-                                      typeDescription: "Warrior is a warrior. Warrior is a warrior. Warrior is a warrior. ",
+                                      typeDescription: "The warrior has battled through multiple wars to defend the origami mommy.",
                                       perkDescription: "ABILITY: Send all others players 5 positions back"))
         
         allTypes.append(GameCharacter(type: .robot,
-                                      typeDescription: "Robot is a robot. Robot is a robot. Robot is a robot. ",
+                                      typeDescription: "Robot comes from the year 3678 in search of the origami mommy. ",
                                       perkDescription: "ABILITY: Skip 8 letters"))
         
         allTypes.append(GameCharacter(type: .ninjaBoy,
-                                      typeDescription: "Ninja Boy is a Ninja. Ninja Boy is a Ninja. Ninja Boy is a Ninja. ",
+                                      typeDescription: "Ninja Boy is a ninja, but a boy.",
                                       perkDescription: "ABILITY: Allows you to type uppercase letters as lowercase"))
         
         allTypes.append(GameCharacter(type: .ninjaGirl,
-                                      typeDescription: "Ninja Girl is a Ninja. Ninja Girl is a Ninja. Ninja Girl is a Ninja. ",
+                                      typeDescription: "Ninja Girl is a ninja, but a girl.",
                                       perkDescription: "ABILITY: Allows you to skip spaces in the text"))
         
         allTypes.append(GameCharacter(type: .zombieBoy,
-                                      typeDescription: "Zombie Boy is a Zombie. Zombie Boy is a Zombie. Zombie Boy is a Zombie. ",
+                                      typeDescription: "Zombie Boy is a zombie who was a boy.",
                                       perkDescription: "ABILITY: Hide part of the text for all other players"))
         
         allTypes.append(GameCharacter(type: .zombieGirl,
-                                      typeDescription: "Zombie Girl is a Zombie. Zombie Girl is a Zombie. Zombie Girl is a Zombie. ",
+                                      typeDescription: "Zombie Girl is a zombie who was a girl.",
                                       perkDescription: "ABILITY: Skip 2 words"))
         
         return allTypes
