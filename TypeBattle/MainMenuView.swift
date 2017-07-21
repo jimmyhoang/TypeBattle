@@ -243,11 +243,12 @@ class MainMenuView: UIView {
                 self.gameSession = self.gameManager.createGameSession(lobby: lobby, someRandomText: someRandomText)
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc         = storyboard.instantiateInitialViewController()
+                let vc         = storyboard.instantiateInitialViewController() as! GameViewController
+                vc.gameSession = self.gameSession
                 
                 let window = UIApplication.shared.windows[0] as UIWindow;
                 UIView.transition(from:(window.rootViewController?.view)!,
-                                  to: (vc?.view)!,
+                                  to: (vc.view)!,
                                   duration: 0.5,
                                   options: .transitionCrossDissolve,
                                   completion: {
