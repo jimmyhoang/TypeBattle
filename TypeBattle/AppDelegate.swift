@@ -21,17 +21,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
 
-        MusicHelper.sharedHelper.playBackgroundMusic()
+//        MusicHelper.sharedHelper.playBackgroundMusic()
        
         var storyboard:UIStoryboard
         
         let userDefaults = UserDefaults.standard
         
+        if userDefaults.value(forKey: "backgroundMusicStatus") as? String == "On" {
+            MusicHelper.sharedHelper.playBackgroundMusic()
+        }
+        
         if userDefaults.bool(forKey: "hasRunBefore") == false {
             try! Auth.auth().signOut()
             
             userDefaults.set(true, forKey: "hasRunBefore")
+            userDefaults.set("On", forKey: "backgroundMusicStatus")
             userDefaults.synchronize() // Forces the app to update UserDefaults
+            MusicHelper.sharedHelper.playBackgroundMusic()
         }
         
         if Auth.auth().currentUser?.uid == nil {
@@ -87,7 +93,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         AppEventsLogger.activate(application)
-        MusicHelper.sharedHelper.playBackgroundMusic()
+        let userDefaults = UserDefaults.standard
+        
+        if userDefaults.value(forKey: "backgroundMusicStatus") as? String == "On" {
+            MusicHelper.sharedHelper.playBackgroundMusic()
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

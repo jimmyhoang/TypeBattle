@@ -80,6 +80,9 @@ class MainMenuView: UIView {
     private lazy var settingsButton:MainMenuButton = {
         let button = self.createMenuButton(title: "Settings")
         button.tag = 3
+        
+        button.addTarget(self, action: #selector(settingsButtonTapped(sender:)), for: .touchUpInside)
+        
         return button
     }()
     
@@ -127,6 +130,8 @@ class MainMenuView: UIView {
             multiplayerSegue()
             buttonTag = 0
         case 3:
+            settingsSegue()
+            buttonTag = 0
             break
         case 4:
             myProfileSegue()
@@ -293,6 +298,21 @@ class MainMenuView: UIView {
     func leaderboardSegue() {
             
         let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
+        let vc         = storyboard.instantiateInitialViewController()
+        
+        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
+            return
+        }
+        while let next = top.presentedViewController {
+            top = next
+        }
+        
+        top.present(vc!, animated: true, completion: nil)
+    }
+    
+    func settingsSegue() {
+        
+        let storyboard = UIStoryboard(name: "Settings", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         
         guard var top = UIApplication.shared.keyWindow?.rootViewController else {
