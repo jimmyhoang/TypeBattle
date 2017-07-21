@@ -150,7 +150,7 @@ class GameManager {
                 
                 // populate PlayerSession data with initial position
                 let playerRef = playersRef.child(p.playerID)
-                let playerDict = ["nm": p.playerName, "ix": 0, "pct": 0.0] as [String : Any]
+                let playerDict = ["nm": p.playerName, "ix": 0, "pct": 0.0, "pos": 0] as [String : Any]
                 playerRef.setValue(playerDict)
             }
             
@@ -190,46 +190,6 @@ class GameManager {
         }
     }
     
-    private func changeGameSessionStatus(gameSessionID: String, status: GameSessionStatus) {
-        // change game session status to Started
-        let ref = Database.database().reference(withPath: "game_sessions")
-        let gameRef = ref.child(gameSessionID)
-        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
-            
-            // try to parse dictionary to a GameSession object
-            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
-                else {
-                    print("Error getting GameSession")
-                    return
-            }
-            
-            // change status
-            gameSession.status = status
-            
-            if(status == .started) {
-                
-                // create "light" struct to control players data during game (for performance)
-                let ref2 = Database.database().reference(withPath: "players_sessions")
-                let playersRef = ref2.child(gameSessionID)
-                
-                for p in gameSession.players {
-                    
-                    // change every player to Ready status
-                    p.isReady = true
-                    
-                    // populate PlayerSession data with initial position
-                    let playerRef = playersRef.child(p.playerID)
-                    let playerDict = ["nm": p.playerName, "ix": 0, "pct": 0.0] as [String : Any]
-                    playerRef.setValue(playerDict)
-                }
-            }
-            
-            // persist in firebase
-            gameRef.setValue(gameSession.createDictionary())
-        })        
-    }
-
     func cancelGameSession (gameSessionID: String) {
         
         Database.database().reference(withPath: "game_sessions").child(gameSessionID).removeValue()
