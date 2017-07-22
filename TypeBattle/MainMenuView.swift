@@ -116,8 +116,16 @@ class MainMenuView: UIView {
         setupBackground()
         background.backgroundColor = UIColor.background
         
+//        let playerSessions = [PlayerSession(playerID: "100", playerName: "alex")]
+//        playerSessions[0].totalTime = 50
+//        playerSessions[0].finalPosition = 1
+//        let frameOfKeyboard = CGRect(x: 0.0, y: 50.0, width: self.frame.width, height: 200.0)
+//        let endgame = Bundle.main.loadNibNamed("EndGameView", owner: self, options: nil)?.first as! EndGameView
+//        endgame.frame = frameOfKeyboard
+//        endgame.players = playerSessions
+//        self.addSubview(endgame)
         self.setNeedsUpdateConstraints()
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
     
@@ -231,6 +239,9 @@ class MainMenuView: UIView {
     }
     
     func trainingSegue() {
+        guard var top  = UIApplication.shared.keyWindow?.rootViewController else {return}
+        while let next = top.presentedViewController {top = next}
+        guard let vc   = top as? MainMenuViewController else {return}
         
         // Create lobby
         let category = arc4random_uniform(2) == 1 ? "quote" : "poem"
@@ -238,7 +249,6 @@ class MainMenuView: UIView {
         
         // Create session
         NetworkManager.getWords(category: category) { (someRandomText) in
-            
             DispatchQueue.main.async {
                 // Create room with the creator as the first player
                 self.gameSession = self.gameManager.createGameSession(lobby: lobby, someRandomText: someRandomText, persistInFirebase: false)
@@ -247,22 +257,11 @@ class MainMenuView: UIView {
                 let randomCharacterIndex = Int(arc4random_uniform(8))
                 self.gameSession?.players[0].gameCharacter = characterArray[randomCharacterIndex].type
                 
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc         = storyboard.instantiateInitialViewController() as! GameViewController
                 vc.gameSession = self.gameSession
-                
-                let window = UIApplication.shared.windows[0] as UIWindow;
-                UIView.transition(from:(window.rootViewController?.view)!,
-                                  to: (vc.view)!,
-                                  duration: 0.5,
-                                  options: .transitionCrossDissolve,
-                                  completion: {
-                                    finished in window.rootViewController = vc
-                })
-                
+                vc.performSegue(withIdentifier: "toTraining", sender: vc)
             }
         }
-    }
+   }
     
     func myProfileSegue() {
         
