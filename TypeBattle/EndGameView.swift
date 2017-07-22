@@ -25,11 +25,17 @@ class EndGameView: UIView, UITableViewDelegate, UITableViewDataSource {
     init(withPlayers:[PlayerSession], andFrame: CGRect) {
         super.init(frame: andFrame)
         players = withPlayers
+        //configureView()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
         configureView()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        //fatalError("init(coder:) has not been implemented")
     }
     
     func configureView() {

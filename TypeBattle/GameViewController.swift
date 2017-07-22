@@ -113,7 +113,12 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
     
     //MARK: Delegate
     func gameDidEnd(playerSessions: [PlayerSession]) {
-        let endView = EndGameView(withPlayers: playerSessions, andFrame: frameOfKeyboard)
+        //let endView = EndGameView(withPlayers: playerSessions, andFrame: frameOfKeyboard)
+        
+        let endView = Bundle.main.loadNibNamed("EndGameView", owner: self, options: nil)?.first as! EndGameView
+        endView.players = playerSessions
+        endView.frame = frameOfKeyboard
+        
         textField.resignFirstResponder()
         
         endView.translatesAutoresizingMaskIntoConstraints = false

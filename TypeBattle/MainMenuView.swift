@@ -116,8 +116,16 @@ class MainMenuView: UIView {
         setupBackground()
         background.backgroundColor = UIColor.background
         
+//        let playerSessions = [PlayerSession(playerID: "100", playerName: "alex")]
+//        playerSessions[0].totalTime = 50
+//        playerSessions[0].finalPosition = 1
+//        let frameOfKeyboard = CGRect(x: 0.0, y: 50.0, width: self.frame.width, height: 200.0)
+//        let endgame = Bundle.main.loadNibNamed("EndGameView", owner: self, options: nil)?.first as! EndGameView
+//        endgame.frame = frameOfKeyboard
+//        endgame.players = playerSessions
+//        self.addSubview(endgame)
         self.setNeedsUpdateConstraints()
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
     
