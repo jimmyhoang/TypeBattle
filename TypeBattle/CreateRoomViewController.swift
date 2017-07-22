@@ -94,7 +94,7 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
             
             DispatchQueue.main.async {
                 // Create room with the creator as the first player
-                self.savedGameSession = manager.createGameSession(lobby: lobby, someRandomText: someRandomText)
+                self.savedGameSession = manager.createGameSession(lobby: lobby, someRandomText: someRandomText, persistInFirebase: true)
                 
                 self.performSegue(withIdentifier: "goto-lobby-segue", sender: self)
             }

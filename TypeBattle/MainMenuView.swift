@@ -29,6 +29,7 @@ class MainMenuView: UIView {
     private lazy var nameIcon:UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "TypeBattle3D"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -209,7 +210,7 @@ class MainMenuView: UIView {
                                       stack.topAnchor.constraint(equalTo: nameIcon.bottomAnchor),
                                       stack.centerXAnchor.constraint(equalTo: centerXAnchor),
                                       stack.widthAnchor.constraint(equalTo: nameIcon.widthAnchor, constant: -25.0),
-                                      leaderboardButton.leadingAnchor.constraint(equalTo: nameIcon.leadingAnchor, constant: -20.0),
+                                      leaderboardButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10.0),
                                       leaderboardButton.topAnchor.constraint(equalTo: topAnchor, constant: 15.0),
                                       leaderboardButton.widthAnchor.constraint(equalToConstant: leaderboardIconWidth),
                                       leaderboardButton.heightAnchor.constraint(equalTo: leaderboardButton.widthAnchor)
@@ -230,6 +231,9 @@ class MainMenuView: UIView {
     }
     
     func trainingSegue() {
+        guard var top  = UIApplication.shared.keyWindow?.rootViewController else {return}
+        while let next = top.presentedViewController {top = next}
+        guard let vc   = top as? MainMenuViewController else {return}
         
         // Create lobby
         let category = arc4random_uniform(2) == 1 ? "quote" : "poem"
@@ -237,27 +241,19 @@ class MainMenuView: UIView {
         
         // Create session
         NetworkManager.getWords(category: category) { (someRandomText) in
-            
             DispatchQueue.main.async {
                 // Create room with the creator as the first player
-                self.gameSession = self.gameManager.createGameSession(lobby: lobby, someRandomText: someRandomText)
+                self.gameSession = self.gameManager.createGameSession(lobby: lobby, someRandomText: someRandomText, persistInFirebase: false)
                 
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc         = storyboard.instantiateInitialViewController() as! GameViewController
+                let characterArray = self.gameManager.getAllCharacters()
+                let randomCharacterIndex = Int(arc4random_uniform(8))
+                self.gameSession?.players[0].gameCharacter = characterArray[randomCharacterIndex].type
+                
                 vc.gameSession = self.gameSession
-                
-                let window = UIApplication.shared.windows[0] as UIWindow;
-                UIView.transition(from:(window.rootViewController?.view)!,
-                                  to: (vc.view)!,
-                                  duration: 0.5,
-                                  options: .transitionCrossDissolve,
-                                  completion: {
-                                    finished in window.rootViewController = vc
-                })
-                
+                vc.performSegue(withIdentifier: "toTraining", sender: vc)
             }
         }
-    }
+   }
     
     func myProfileSegue() {
         
