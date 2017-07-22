@@ -9,44 +9,28 @@
 import UIKit
 import SpriteKit
 import GameplayKit
-import FirebaseDatabase //DELETE
 
-class GameViewController: UIViewController, UITextFieldDelegate {
+class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerSceneDelegate {
     
     var keyboardHeight:CGFloat!
+    var frameOfKeyboard:CGRect!
     var textField:UITextField!
     
     let screenSize = UIScreen.main.bounds
     var gameViewHeight: CGFloat!
     
     var scene: SKScene!
+    var gameView: SKView!
     
     var gameSession: GameSession!
     let gameManager = GameManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let ref = Database.database().reference(withPath: "game_sessions")
-//        let gameRef = ref.child("-KpXRbcJjYlgcF6TcQUK")
-//        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
-//            
-//            // try to parse dictionary to a GameSession object
-//            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
-//                else {
-//                    print("Error getting GameSession")
-//                    return
-//            }
-//        
-//            self.gameSession = gameSession
-            self.addTextFieldAndScene()
-//        })
+    }
     
-        
-//        gameManager.observeLeaderboardChanges(gameSessionID: "-KpRMhh0FpMKP-vt_VY5") { (arrayOfArrays) in
-//            print("other player changed position")
-//        }
+    override func viewWillAppear(_ animated: Bool) {
+        self.addTextFieldAndScene()
     }
     
     override var shouldAutorotate: Bool {
@@ -79,6 +63,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(textField)
         textField.autocorrectionType = .no
         textField.becomeFirstResponder()
+        textField.isSecureTextEntry = true
         view.layoutIfNeeded()
     }
     
@@ -86,6 +71,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         let userInfo:NSDictionary = notification.userInfo! as NSDictionary
         let keyboardFrame:NSValue = userInfo.value(forKey:UIKeyboardFrameEndUserInfoKey) as! NSValue
         let keyboardRectangle = keyboardFrame.cgRectValue
+        frameOfKeyboard = keyboardRectangle
         keyboardHeight = keyboardRectangle.height
         setupGameScene()
     }
@@ -98,13 +84,15 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         
         gameViewHeight = screenHeight - keyboardHeight
         
-        let gameView = SKView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: gameViewHeight))
+        gameView = SKView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: gameViewHeight))
         
         //check to present singlePlayer or multiPlayer
         if gameSession.players.count == 1 {
             scene = GameScene(size: gameView.frame.size, gameSesh: gameSession)
         }else {
             scene = MultiplayerGameScene(size: gameView.frame.size, gameSesh: gameSession)
+            let mpScene = scene as! MultiplayerGameScene
+            mpScene.mpDelegate = self
         }
         scene.scaleMode = .aspectFit
         
@@ -121,5 +109,20 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         gameView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         gameView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         gameView.heightAnchor.constraint(equalToConstant: gameViewHeight).isActive = true
+    }
+    
+    //MARK: Delegate
+    func gameDidEnd(playerSessions: [PlayerSession]) {
+        let endView = EndGameView(withPlayers: playerSessions, andFrame: frameOfKeyboard)
+        textField.resignFirstResponder()
+        
+        endView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(endView)
+        
+        //constraints
+        endView.topAnchor.constraint(equalTo: gameView.bottomAnchor).isActive = true
+        endView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        endView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        endView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
 }

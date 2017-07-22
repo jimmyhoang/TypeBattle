@@ -38,7 +38,7 @@ class GameScene: SKScene {
     var arrayIndex = 0
     let spaceBetweenLetters: CGFloat = 25
     var textNodeWidth: CGFloat!
-    let inGameTextFontName = "betsy flanagan"
+    let inGameTextFontName = "Origami Mommy"
     let textFontSize: CGFloat = 40
 
     //Camera
