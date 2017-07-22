@@ -14,26 +14,28 @@ class PlayerSession {
     var playerName: String
     var currentIndex: Int
     var gameCharacter: GameCharacterType
-    var totalTime: Int
+    var totalTime: Double
     var isReady: Bool
-    var finalPosition: Int?
+    var finalPosition: Int
     
     init(playerID: String, playerName: String) {
         self.playerID = playerID
         self.playerName = playerName
         self.currentIndex = 0
         self.gameCharacter = .cat
-        self.totalTime = 0
+        self.totalTime = 0.0
         self.isReady = false
+        self.finalPosition = 0
     }
     
-    init(playerID: String, playerName: String, currentIndex: Int, gameCharacter: GameCharacterType, isReady: Bool) {
+    init(playerID: String, playerName: String, currentIndex: Int, gameCharacter: GameCharacterType, totalTime: Double, isReady: Bool, finalPosition: Int) {
         self.playerID = playerID
         self.playerName = playerName
         self.currentIndex = currentIndex
         self.gameCharacter = gameCharacter
-        self.totalTime = 0
+        self.totalTime = 0.0
         self.isReady = isReady
+        self.finalPosition = finalPosition
     }
     
     func createDictionary() -> Dictionary<String, Any> {
@@ -44,7 +46,9 @@ class PlayerSession {
         dictionary["nm"] = self.playerName
         dictionary["ix"] = self.currentIndex
         dictionary["ch"] = self.gameCharacter.rawValue
+        dictionary["tt"] = self.totalTime
         dictionary["st"] = self.isReady
+        dictionary["fp"] = self.finalPosition
         
         return dictionary
         
@@ -57,12 +61,14 @@ class PlayerSession {
                 let playerName = dictionary["nm"] as? String,
                 let currentIndex = dictionary["ix"] as? Int,
                 let gameCharacter = dictionary["ch"] as? String,
-                let isReady = dictionary["st"] as? Bool else {
+                let totalTime = dictionary["tt"] as? Double,
+                let isReady = dictionary["st"] as? Bool,
+                let finalPosition = dictionary["fp"] as? Int else {
             print("Error parsing dictionary to PlayerSession")
             return nil
         }
         
-        return PlayerSession(playerID: playerID, playerName: playerName, currentIndex: currentIndex, gameCharacter: GameCharacterType.stringToEnum(characterType: gameCharacter), isReady: isReady)
+        return PlayerSession(playerID: playerID, playerName: playerName, currentIndex: currentIndex, gameCharacter: GameCharacterType.stringToEnum(characterType: gameCharacter), totalTime: totalTime, isReady: isReady, finalPosition: finalPosition)
     }
 
 }

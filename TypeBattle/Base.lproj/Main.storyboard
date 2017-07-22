@@ -6,8 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Supersonic Rocketship.ttf">
+            <string>SupersonicRocketship</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -26,6 +32,199 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="136.28185907046478"/>
+        </scene>
+        <!--Game Over View Controller-->
+        <scene sceneID="rQi-OZ-ExA">
+            <objects>
+                <viewController id="zeX-z2-TOo" customClass="GameOverViewController" customModule="TypeBattle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bmZ-3c-7la"/>
+                        <viewControllerLayoutGuide type="bottom" id="QkZ-cG-mWp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zRv-Ka-0K4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME OVER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXY-z1-g7q">
+                                <rect key="frame" x="85" y="36" width="204" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="IjR-ed-0uI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="42"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1st" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ym0-hv-90e">
+                                <rect key="frame" x="163.5" y="123" width="48" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="7gX-Og-Ndx"/>
+                                    <constraint firstAttribute="height" constant="53" id="Sg8-12-DcH"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="atU-fg-04I"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="30"/>
+                                <color key="textColor" red="0.76862745099999996" green="0.18823529410000001" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your position:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kI-Ro-Hf7">
+                                <rect key="frame" x="131" y="97" width="114" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="sKi-mp-oF3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="18"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FINAL LEADERBOARD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMW-2d-7Mt">
+                                <rect key="frame" x="16" y="271" width="154.5" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="hNo-M8-YSy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="18"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:07:45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wab-Ou-iIF">
+                                <rect key="frame" x="142.5" y="210" width="90" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="VPU-WQ-SSH"/>
+                                    <constraint firstAttribute="height" constant="53" id="hJC-fD-EoO"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="vzC-Wg-EHb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="30"/>
+                                <color key="textColor" red="0.76862745099999996" green="0.18823529410000001" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your total time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2T7-Bx-CaO">
+                                <rect key="frame" x="120" y="184" width="134" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="p1w-Rq-ln8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="18"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8Q-kX-peQ">
+                                <rect key="frame" x="148" y="587" width="80" height="60"/>
+                                <color key="backgroundColor" red="0.99215686270000003" green="0.32156862749999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="1tg-y3-T7K"/>
+                                    <constraint firstAttribute="width" constant="80" id="yIv-3x-27j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="21"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="MlG-xO-Xyf" kind="presentation" modalTransitionStyle="crossDissolve" id="BZe-3B-NAf"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="34" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="k64-xd-XoQ">
+                                <rect key="frame" x="16" y="299" width="343" height="272"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="lb-cell" rowHeight="34" id="rUV-VV-CHL" customClass="FinalLeaderboardTableViewCell" customModule="TypeBattle" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="34"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rUV-VV-CHL" id="F99-Bk-Pri">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="33.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUr-Uf-Iia">
+                                                    <rect key="frame" x="8" y="0.0" width="327" height="33.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1st" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geD-ux-nGT">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="33.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="f89-YM-8Is"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.1647058824" green="0.80000000000000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4J-hP-VrE">
+                                                            <rect key="frame" x="50" y="0.0" width="212" height="33.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dv6-tc-v2S">
+                                                            <rect key="frame" x="262" y="0.0" width="65" height="33.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="65" id="Ozm-D3-glz"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.1647058824" green="0.80000000000000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="c4J-hP-VrE" firstAttribute="leading" secondItem="geD-ux-nGT" secondAttribute="trailing" id="3yu-f2-U83"/>
+                                                        <constraint firstItem="dv6-tc-v2S" firstAttribute="leading" secondItem="c4J-hP-VrE" secondAttribute="trailing" id="a72-DU-d5P"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KUr-Uf-Iia" firstAttribute="top" secondItem="F99-Bk-Pri" secondAttribute="top" id="5mr-ha-1Mb"/>
+                                                <constraint firstAttribute="bottom" secondItem="KUr-Uf-Iia" secondAttribute="bottom" id="C7O-Ac-MVn"/>
+                                                <constraint firstItem="KUr-Uf-Iia" firstAttribute="leading" secondItem="F99-Bk-Pri" secondAttribute="leading" constant="8" id="Oi7-Qv-eh1"/>
+                                                <constraint firstAttribute="trailing" secondItem="KUr-Uf-Iia" secondAttribute="trailing" constant="8" id="t0U-Vg-arX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="c4J-hP-VrE" id="rUn-xi-uME"/>
+                                            <outlet property="positionLabel" destination="geD-ux-nGT" id="kzr-Gs-JZd"/>
+                                            <outlet property="stackView" destination="KUr-Uf-Iia" id="3Ft-Zy-FcG"/>
+                                            <outlet property="timeLabel" destination="dv6-tc-v2S" id="FCz-Kf-Wkr"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zeX-z2-TOo" id="ZXf-KP-8AI"/>
+                                    <outlet property="delegate" destination="zeX-z2-TOo" id="c75-9P-wmp"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="G8Q-kX-peQ" firstAttribute="centerX" secondItem="zRv-Ka-0K4" secondAttribute="centerX" id="77h-8m-gd5"/>
+                            <constraint firstItem="k64-xd-XoQ" firstAttribute="top" secondItem="sMW-2d-7Mt" secondAttribute="bottom" constant="2" id="7v7-kp-Th8"/>
+                            <constraint firstItem="QkZ-cG-mWp" firstAttribute="top" secondItem="G8Q-kX-peQ" secondAttribute="bottom" constant="20" id="7yJ-ZX-vbe"/>
+                            <constraint firstItem="sMW-2d-7Mt" firstAttribute="leading" secondItem="zRv-Ka-0K4" secondAttribute="leadingMargin" id="BE5-8J-C7j"/>
+                            <constraint firstItem="ZXY-z1-g7q" firstAttribute="centerX" secondItem="zRv-Ka-0K4" secondAttribute="centerX" id="BhV-iS-EOX"/>
+                            <constraint firstItem="k64-xd-XoQ" firstAttribute="leading" secondItem="zRv-Ka-0K4" secondAttribute="leadingMargin" id="Hxl-07-i15"/>
+                            <constraint firstItem="ZXY-z1-g7q" firstAttribute="top" secondItem="bmZ-3c-7la" secondAttribute="bottom" constant="16" id="JJ1-ya-cXm"/>
+                            <constraint firstItem="ym0-hv-90e" firstAttribute="top" secondItem="6kI-Ro-Hf7" secondAttribute="bottom" id="MXI-bh-Vtv"/>
+                            <constraint firstItem="wab-Ou-iIF" firstAttribute="top" secondItem="2T7-Bx-CaO" secondAttribute="bottom" id="MxG-Jz-dXf"/>
+                            <constraint firstItem="sMW-2d-7Mt" firstAttribute="top" secondItem="wab-Ou-iIF" secondAttribute="bottom" constant="8" id="Tsf-Yh-wea"/>
+                            <constraint firstItem="6kI-Ro-Hf7" firstAttribute="top" secondItem="ZXY-z1-g7q" secondAttribute="bottom" constant="8" id="YQf-vc-LRO"/>
+                            <constraint firstItem="G8Q-kX-peQ" firstAttribute="top" secondItem="k64-xd-XoQ" secondAttribute="bottom" constant="16" id="duu-mN-XhN"/>
+                            <constraint firstItem="wab-Ou-iIF" firstAttribute="centerX" secondItem="zRv-Ka-0K4" secondAttribute="centerX" id="eUH-jD-zgE"/>
+                            <constraint firstItem="ym0-hv-90e" firstAttribute="centerX" secondItem="zRv-Ka-0K4" secondAttribute="centerX" id="hPM-fB-NCt"/>
+                            <constraint firstItem="2T7-Bx-CaO" firstAttribute="centerX" secondItem="zRv-Ka-0K4" secondAttribute="centerX" id="lJg-VR-nbR"/>
+                            <constraint firstItem="6kI-Ro-Hf7" firstAttribute="centerX" secondItem="zRv-Ka-0K4" secondAttribute="centerX" id="qiB-mC-Z7U"/>
+                            <constraint firstItem="k64-xd-XoQ" firstAttribute="trailing" secondItem="zRv-Ka-0K4" secondAttribute="trailingMargin" id="tSs-DX-ROr"/>
+                            <constraint firstItem="2T7-Bx-CaO" firstAttribute="top" secondItem="ym0-hv-90e" secondAttribute="bottom" constant="8" id="zWL-8U-JvO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="G8Q-kX-peQ" id="sfR-ea-fvk"/>
+                        <outlet property="finalPositionLabel" destination="ym0-hv-90e" id="dst-Ol-Ndy"/>
+                        <outlet property="tableView" destination="k64-xd-XoQ" id="N2m-ET-kHU"/>
+                        <outlet property="totalTimeLabel" destination="wab-Ou-iIF" id="1a2-RL-dxL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pxg-tQ-LyQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137" y="927"/>
+        </scene>
+        <!--Multiplayer-->
+        <scene sceneID="cnv-al-ued">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Multiplayer" id="MlG-xO-Xyf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QaF-Id-wTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-272" y="1420"/>
         </scene>
     </scenes>
 </document>

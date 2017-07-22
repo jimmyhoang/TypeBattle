@@ -34,6 +34,8 @@
 		4AE6177B1F22E6A6005C01F8 /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE617781F22E6A6005C01F8 /* EndGameView.swift */; };
 		4AE6177C1F22E6A6005C01F8 /* EndGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE617791F22E6A6005C01F8 /* EndGameView.xib */; };
 		4AF075591F1888820056E013 /* CharacterAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF075581F1888820056E013 /* CharacterAnimation.swift */; };
+		9C1BCADC1F23E1C100429BB3 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1BCADB1F23E1C100429BB3 /* GameOverViewController.swift */; };
+		9C1BCADE1F23E1E400429BB3 /* FinalLeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1BCADD1F23E1E400429BB3 /* FinalLeaderboardTableViewCell.swift */; };
 		9C34E2BE1F173E00008372DC /* GameLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2BD1F173E00008372DC /* GameLobby.swift */; };
 		9C34E2C01F173E07008372DC /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2BF1F173E07008372DC /* GameSession.swift */; };
 		9C34E2C41F173EE0008372DC /* GameCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2C31F173EE0008372DC /* GameCharacter.swift */; };
@@ -94,6 +96,8 @@
 		4AE617791F22E6A6005C01F8 /* EndGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndGameView.xib; sourceTree = "<group>"; };
 		4AF075581F1888820056E013 /* CharacterAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterAnimation.swift; sourceTree = "<group>"; };
 		7E54337C874835B9BE8DB6A2 /* Pods-TypeBattle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeBattle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle.debug.xcconfig"; sourceTree = "<group>"; };
+		9C1BCADB1F23E1C100429BB3 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
+		9C1BCADD1F23E1E400429BB3 /* FinalLeaderboardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalLeaderboardTableViewCell.swift; sourceTree = "<group>"; };
 		9C34E2BD1F173E00008372DC /* GameLobby.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLobby.swift; sourceTree = "<group>"; };
 		9C34E2BF1F173E07008372DC /* GameSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		9C34E2C31F173EE0008372DC /* GameCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCharacter.swift; sourceTree = "<group>"; };
@@ -179,6 +183,14 @@
 				3029A304BE1D7F9A3D6C520B /* Pods-TypeBattle.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9C1BCADF1F23E1E900429BB3 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9C1BCADD1F23E1E400429BB3 /* FinalLeaderboardTableViewCell.swift */,
+			);
+			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
 		9C34E2C91F17489E008372DC /* Controllers */ = {
@@ -293,6 +305,8 @@
 				FF889A0E1F169C3E006955BB /* GameScene.swift */,
 				4A434C121F1EC5CE00CE8701 /* MultiplayerGameScene.swift */,
 				4AF075581F1888820056E013 /* CharacterAnimation.swift */,
+				9C1BCADB1F23E1C100429BB3 /* GameOverViewController.swift */,
+				9C1BCADF1F23E1E900429BB3 /* Custom Cells */,
 			);
 			name = GameScene;
 			sourceTree = "<group>";
@@ -478,6 +492,7 @@
 				FF889A231F16AFF6006955BB /* Player.swift in Sources */,
 				436D738F1F21903800CA301A /* SettingsView.swift in Sources */,
 				431E7F381F18220C00B7B5CE /* GameLabel.swift in Sources */,
+				9C1BCADE1F23E1E400429BB3 /* FinalLeaderboardTableViewCell.swift in Sources */,
 				9C34E2D41F18B31F008372DC /* RoomTableViewCell.swift in Sources */,
 				9C34E2C81F17489B008372DC /* GameManager.swift in Sources */,
 				431E7F321F180EF300B7B5CE /* UIColor+CustomColors.swift in Sources */,
@@ -508,6 +523,7 @@
 				4AE6177A1F22E6A6005C01F8 /* EndGameTableViewCell.swift in Sources */,
 				9C34E2BE1F173E00008372DC /* GameLobby.swift in Sources */,
 				432041CC1F1FD83E009E3771 /* BackgroundScene.swift in Sources */,
+				9C1BCADC1F23E1C100429BB3 /* GameOverViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
