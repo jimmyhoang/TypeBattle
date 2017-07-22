@@ -38,6 +38,8 @@ class GameScene: SKScene {
     var arrayIndex = 0
     let spaceBetweenLetters: CGFloat = 25
     var textNodeWidth: CGFloat!
+    let inGameTextFontName = "Origami Mommy"
+    let textFontSize: CGFloat = 40
 
     //Camera
     var cam: SKCameraNode!
@@ -218,10 +220,10 @@ class GameScene: SKScene {
         var space: CGFloat = 0
         
         for char in textArray {
-            textNode = SKLabelNode(fontNamed: "Supersonic Rocketship")
+            textNode = SKLabelNode(fontNamed: inGameTextFontName)
             textNode.text = char
             textNode.horizontalAlignmentMode = .right
-            textNode.fontSize = 40
+            textNode.fontSize = textFontSize
             textNode.fontColor = UIColor.gameRed
             textNode.position = CGPoint(x: textNode.frame.width + space, y: 0)
             textNode.zPosition = 10
@@ -281,10 +283,10 @@ class GameScene: SKScene {
     //MARK: Timer
     //Setup
     func setupTimer() {
-        timerTextNode = SKLabelNode(fontNamed: "Supersonic Rocketship")
-        timerTextNode.fontSize = 40
+        timerTextNode = SKLabelNode(fontNamed: inGameTextFontName)
+        timerTextNode.fontSize = textFontSize
         timerTextNode.fontColor = UIColor.black
-        timerTextNode.text = "0.000"
+        timerTextNode.text = "0.00"
         
         let timerXPos = cam.position.x + cam.frame.size.width/2 - timerTextNode.frame.size.width
         let timerYPos = cam.position.y + cam.frame.size.height/2 - timerTextNode.frame.size.height
@@ -295,6 +297,6 @@ class GameScene: SKScene {
     
     //update time
     func updateTimer(time: Double) {
-        timerTextNode.text = String(format: "%.3f", time)
+        timerTextNode.text = String(format: "%.2f", time)
     }
 }
