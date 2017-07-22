@@ -81,6 +81,8 @@ class MultiplayerGameScene: SKScene {
     var initialTime: TimeInterval!
     var timerTime: TimeInterval!
     var firstFrame = true
+    var timerXPos: CGFloat!
+    var timerYPos: CGFloat!
     
     //Countdown
     var countdownNode: SKLabelNode!
@@ -95,8 +97,10 @@ class MultiplayerGameScene: SKScene {
         
         gameManager = GameManager()
         self.anchorPoint = CGPoint.zero
+
         sceneHeight = self.frame.size.height
         sceneWidth = self.frame.size.width
+        
         setupCamera()
         setupPlayers()
         setupText()
@@ -329,7 +333,11 @@ class MultiplayerGameScene: SKScene {
         textContainerNode = SKSpriteNode()
         textContainerNode.color = UIColor.gameTeal
         textContainerNode.anchorPoint = CGPoint.zero
-        textContainerNode.position = CGPoint(x: 0 - cam.position.x + 100, y: 0 + cam.position.y - 150)
+        
+        let textContainerXPos = -100
+        let textContainerYPos = 50
+        
+        textContainerNode.position = CGPoint(x: textContainerXPos, y: textContainerYPos)
         textContainerNode.zPosition = 10
         cam.addChild(textContainerNode)
         
@@ -372,14 +380,14 @@ class MultiplayerGameScene: SKScene {
         let lowerText = textField.text?.lowercased()
         textField.text = ""
         
-        if arrayIndex < textArray.count {
-            if lowerText == textArray[arrayIndex] {
+        if mainPlayer.currentIndex < textArray.count {
+            if lowerText == textArray[mainPlayer.currentIndex] {
                 moveText()
                 moveMainPlayer()
-                changeCurrentTextColor(index: arrayIndex)
-                arrayIndex += 1
-                playerProgress = round(Double(arrayIndex)/Double(textArray.count) * 100 * 100) / 100
-                gameManager.incrementPosition(gameSessionID: gameSession.gameSessionID, player: currentPlayer, index: arrayIndex, progress: playerProgress)
+                changeCurrentTextColor(index: mainPlayer.currentIndex)
+                mainPlayer.currentIndex += 1
+                playerProgress = round(Double(mainPlayer.currentIndex)/Double(textArray.count) * 100 * 100) / 100
+                gameManager.incrementPosition(gameSessionID: gameSession.gameSessionID, player: currentPlayer, index: mainPlayer.currentIndex, progress: playerProgress)
                 updateMainPlayerProgressText()
             }
         }
@@ -408,11 +416,13 @@ class MultiplayerGameScene: SKScene {
     func setupTimer() {
         timerTextNode = SKLabelNode(fontNamed: inGameFontName)
         timerTextNode.fontSize = 40
+        timerTextNode.horizontalAlignmentMode = .center
+        timerTextNode.verticalAlignmentMode = .bottom
         timerTextNode.fontColor = UIColor.black
-        timerTextNode.text = "00:00.00"
+        timerTextNode.text = "0:00.00"
         
-        let timerXPos = cam.position.x + cam.frame.size.width/2 - timerTextNode.frame.size.width
-        let timerYPos = cam.position.y + cam.frame.size.height/2 - timerTextNode.frame.size.height
+        timerXPos = 0
+        timerYPos = sceneHeight/2 - timerTextNode.frame.size.height
         
         timerTextNode.position = CGPoint(x: timerXPos, y: timerYPos)
         cam.addChild(timerTextNode)
@@ -429,14 +439,15 @@ class MultiplayerGameScene: SKScene {
     //Setup position label
     func setupPositionLabel() {
         positionLabelNode = SKLabelNode(fontNamed: inGameFontName)
-        positionLabelNode.horizontalAlignmentMode = .left
+        positionLabelNode.horizontalAlignmentMode = .center
         positionLabelNode.verticalAlignmentMode = .bottom
         positionLabelNode.fontSize = 40
+        positionLabelNode.text = "1st"
         
-        let positionXPos = cam.position.x - cam.frame.size.width/2
-        let positionYPos = cam.position.y + cam.frame.size.height/2 - positionLabelNode.frame.size.height
+        let positionLabelXPos = sceneHeight/2 - positionLabelNode.frame.size.width
+        let positionLabelYPos = sceneWidth/2 - positionLabelNode.frame.size.height
         
-        positionLabelNode.position = CGPoint(x: positionXPos, y: positionYPos)
+        positionLabelNode.position = CGPoint(x: positionLabelXPos, y: positionLabelYPos)
         cam.addChild(positionLabelNode)
     }
 
@@ -461,11 +472,16 @@ class MultiplayerGameScene: SKScene {
     
     //Set initial countdownNode properties
     func setupEndCountdownNode() {
-        countdownNode = SKLabelNode()
-        countdownNode.fontName = inGameFontName
-        countdownNode.fontSize = 40
+        countdownNode = SKLabelNode(fontNamed: inGameFontName)
+        countdownNode.fontSize = 20
+        countdownNode.horizontalAlignmentMode = .center
+        countdownNode.verticalAlignmentMode = .bottom
         countdownNode.name = "coundownTimer"
-        countdownNode.position = CGPoint(x: textContainerNode.position.x + self.frame.size.width/2, y: textContainerNode.position.y + textContainerNode.size.height + countdownNode.frame.size.height)
+        
+        let countdownTimerXPos: CGFloat = 0
+        let countdownTimerYPos = timerYPos - countdownNode.frame.size.height
+        
+        countdownNode.position = CGPoint(x: countdownTimerXPos, y: countdownTimerYPos)
         cam.addChild(countdownNode)
     }
     
@@ -501,7 +517,13 @@ class MultiplayerGameScene: SKScene {
                     
                     //check my position
                     if self.mainPlayer.currentIndex < aPlayer.currentIndex {
-                        self.myPosition += 1
+                        var tempPosition = 1
+                        tempPosition += 1
+                        self.myPosition = tempPosition
+                    } else if self.mainPlayer.currentIndex > aPlayer.currentIndex {
+                        var tempPosition = playerStatus.count
+                        tempPosition -= 1
+                        self.myPosition = tempPosition
                     }
                 } else {
                     if self.gameEnding == false {
