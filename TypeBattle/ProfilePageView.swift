@@ -8,7 +8,6 @@
 
 import UIKit
 import SpriteKit
-import AVFoundation
 class ProfilePageView: UIView {
 
     /*
@@ -21,7 +20,6 @@ class ProfilePageView: UIView {
     let screenSize = UIScreen.main.bounds
     var background: BackgroundScene!
     var player:Player!
-    var audioPlayer = AVAudioPlayer()
     var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
     
     private lazy var profilePicture:UIImageView = {
@@ -138,15 +136,6 @@ class ProfilePageView: UIView {
         self.setupBackground()
         self.background.backgroundColor = UIColor.background
         
-        // Prepare audio button
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)
-        }
-        catch {
-            print("Error playing sound")
-        }
-        audioPlayer.prepareToPlay()
-        
         self.addSubview(topHorizontalStack)
         self.topHorizontalStack.addArrangedSubview(profilePicture)
         self.topHorizontalStack.addArrangedSubview(upperVerticalStack)
@@ -204,7 +193,8 @@ class ProfilePageView: UIView {
     
     func backToMainMenu(sender:UIButton!) {
         // Play sound
-        self.audioPlayer.play()
+        MusicHelper.sharedHelper.playButtonSound()
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
 
