@@ -243,7 +243,12 @@ class MainMenuView: UIView {
         NetworkManager.getWords(category: category) { (someRandomText) in
             DispatchQueue.main.async {
                 // Create room with the creator as the first player
-                self.gameSession = self.gameManager.createGameSession(lobby: lobby, someRandomText: someRandomText)
+                self.gameSession = self.gameManager.createGameSession(lobby: lobby, someRandomText: someRandomText, persistInFirebase: false)
+                
+                let characterArray = self.gameManager.getAllCharacters()
+                let randomCharacterIndex = Int(arc4random_uniform(8))
+                self.gameSession?.players[0].gameCharacter = characterArray[randomCharacterIndex].type
+                
                 vc.gameSession = self.gameSession
                 vc.performSegue(withIdentifier: "toTraining", sender: vc)
             }
