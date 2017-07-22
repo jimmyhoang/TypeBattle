@@ -432,7 +432,11 @@ class MultiplayerGameScene: SKScene {
         positionLabelNode.horizontalAlignmentMode = .left
         positionLabelNode.verticalAlignmentMode = .bottom
         positionLabelNode.fontSize = 40
-        positionLabelNode.position = CGPoint(x: 0, y: sceneHeight - positionLabelNode.frame.size.height)
+        
+        let positionXPos = cam.position.x - cam.frame.size.width/2
+        let positionYPos = cam.position.y + cam.frame.size.height/2 - positionLabelNode.frame.size.height
+        
+        positionLabelNode.position = CGPoint(x: positionXPos, y: positionYPos)
         cam.addChild(positionLabelNode)
     }
 
