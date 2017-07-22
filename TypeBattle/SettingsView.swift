@@ -8,7 +8,6 @@
 
 import UIKit
 import SpriteKit
-import AVFoundation
 class SettingsView: UIView {
 
     /*
@@ -22,7 +21,6 @@ class SettingsView: UIView {
     let screenSize = UIScreen.main.bounds
     var background: BackgroundScene!
     var player:Player!
-    var audioPlayer = AVAudioPlayer()
     var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
     let userDefaults = UserDefaults.standard
     
@@ -69,16 +67,6 @@ class SettingsView: UIView {
         
         self.setupBackground()
         self.background.backgroundColor = UIColor.background
-        
-        // Prepare audio button
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)
-        }
-        catch {
-            print("Error playing sound")
-        }
-        audioPlayer.prepareToPlay()
-
         
         self.addSubview(backButton)
         
@@ -127,7 +115,8 @@ class SettingsView: UIView {
     
     func backToMainMenu(sender:UIButton!) {
         // Play sound
-        self.audioPlayer.play()
+        MusicHelper.sharedHelper.playButtonSound()
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     

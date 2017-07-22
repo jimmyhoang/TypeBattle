@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import AVFoundation
 import SpriteKit
 class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
 
@@ -16,7 +15,6 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
     let screenSize = UIScreen.main.bounds
     var background: BackgroundScene!
     var players:[Player]! = []
-    var audioPlayer = AVAudioPlayer()
     var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
 
     private lazy var backButton:MainMenuButton = {
@@ -53,15 +51,6 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.setupBackground()
         self.background.backgroundColor = UIColor.background
         //self.backgroundColor = UIColor.background
-        
-        // Prepare audio button
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)
-        }
-        catch {
-            print("Error playing sound")
-        }
-        audioPlayer.prepareToPlay()
         
         self.addSubview(leaderboardLabel)
         
@@ -140,7 +129,8 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     func backToMainMenu(sender:UIButton!) {
         // Play sound
-        self.audioPlayer.play()
+        MusicHelper.sharedHelper.playButtonSound()
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
         
         //top.dismiss(animated: true, completion: nil)
