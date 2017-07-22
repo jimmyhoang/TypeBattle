@@ -15,7 +15,7 @@ extension UIFont {
     }
     
     static func inGameFont(size:CGFloat) -> UIFont {
-        
-        return UIFont(name: "betsy flanagan", size: size)!
+        return UIFont(name: "Origami Mommy", size: size)!
+        //return UIFont(name: "betsy flanagan", size: size)!
     }
 }

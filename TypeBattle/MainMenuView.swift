@@ -29,6 +29,7 @@ class MainMenuView: UIView {
     private lazy var nameIcon:UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "TypeBattle3D"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -209,7 +210,7 @@ class MainMenuView: UIView {
                                       stack.topAnchor.constraint(equalTo: nameIcon.bottomAnchor),
                                       stack.centerXAnchor.constraint(equalTo: centerXAnchor),
                                       stack.widthAnchor.constraint(equalTo: nameIcon.widthAnchor, constant: -25.0),
-                                      leaderboardButton.leadingAnchor.constraint(equalTo: nameIcon.leadingAnchor, constant: -20.0),
+                                      leaderboardButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10.0),
                                       leaderboardButton.topAnchor.constraint(equalTo: topAnchor, constant: 15.0),
                                       leaderboardButton.widthAnchor.constraint(equalToConstant: leaderboardIconWidth),
                                       leaderboardButton.heightAnchor.constraint(equalTo: leaderboardButton.widthAnchor)
@@ -247,71 +248,67 @@ class MainMenuView: UIView {
                 self.gameSession?.players[0].gameCharacter = characterArray[randomCharacterIndex].type
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateInitialViewController()
+                let vc         = storyboard.instantiateInitialViewController() as! GameViewController
+                vc.gameSession = self.gameSession
                 
-                guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-                    return
-                }
-                while let next = top.presentedViewController {
-                    top = next
-                }
+                let window = UIApplication.shared.windows[0] as UIWindow;
+                UIView.transition(from:(window.rootViewController?.view)!,
+                                  to: (vc.view)!,
+                                  duration: 0.5,
+                                  options: .transitionCrossDissolve,
+                                  completion: {
+                                    finished in window.rootViewController = vc
+                })
                 
-                guard let gameVC = vc as? GameViewController else {
-                    print("Not able to segue to game view controller")
-                    return
-                }
-                
-                gameVC.gameSession = self.gameSession
-                
-                top.present(vc!, animated: true, completion: nil)
             }
         }
     }
     
     func myProfileSegue() {
         
-        
         let storyboard = UIStoryboard(name: "ProfilePage", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         
-        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-            return
-        }
-        while let next = top.presentedViewController {
-            top = next
-        }
+        let window = UIApplication.shared.windows[0] as UIWindow;
+        UIView.transition(from:(window.rootViewController?.view)!,
+                          to: (vc?.view)!,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          completion: {
+                            finished in window.rootViewController = vc
+        })
         
-        top.present(vc!, animated: true, completion: nil)
     }
     
     func multiplayerSegue() {
-
+        
         let storyboard = UIStoryboard(name: "Multiplayer", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         
-        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-            return
-        }
-        while let next = top.presentedViewController {
-            top = next
-        }
-        
-        top.present(vc!, animated: true, completion: nil)
+        let window = UIApplication.shared.windows[0] as UIWindow;
+        UIView.transition(from:(window.rootViewController?.view)!,
+                          to: (vc?.view)!,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          completion: {
+                            finished in window.rootViewController = vc
+        })
+
     }
     
     func leaderboardSegue() {
-            
+
         let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         
-        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-            return
-        }
-        while let next = top.presentedViewController {
-            top = next
-        }
-        
-        top.present(vc!, animated: true, completion: nil)
+        let window = UIApplication.shared.windows[0] as UIWindow;
+        UIView.transition(from:(window.rootViewController?.view)!,
+            to: (vc?.view)!,
+            duration: 0.5,
+            options: .transitionCrossDissolve,
+            completion: {
+                finished in window.rootViewController = vc
+        })
     }
     
     func settingsSegue() {
@@ -319,13 +316,14 @@ class MainMenuView: UIView {
         let storyboard = UIStoryboard(name: "Settings", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         
-        guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-            return
-        }
-        while let next = top.presentedViewController {
-            top = next
-        }
+        let window = UIApplication.shared.windows[0] as UIWindow;
+        UIView.transition(from:(window.rootViewController?.view)!,
+                          to: (vc?.view)!,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          completion: {
+                            finished in window.rootViewController = vc
+        })
         
-        top.present(vc!, animated: true, completion: nil)
     }
 }

@@ -57,6 +57,7 @@
 	<string>Please, authorize location to use this feature</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>origami-mommy.regular.ttf</string>
 		<string>Supersonic Rocketship.ttf</string>
 		<string>betsy flanagan.ttf</string>
 	</array>
