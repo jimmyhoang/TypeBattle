@@ -113,7 +113,7 @@ class GameOverViewController: UIViewController, UITableViewDelegate, UITableView
         // Identify if player is the main player
         if (self.currentPlayer.playerID == player.playerID)
         {
-            self.finalPositionLabel.text = "\(player.finalPosition)"
+            self.finalPositionLabel.text = printPosition(position: player.finalPosition)
             self.totalTimeLabel.text = String(format:"%01i:%02i:%02i", minutes, seconds, miliseconds)
         }
         
@@ -122,5 +122,18 @@ class GameOverViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         return cell
+    }
+    
+    func printPosition(position: Int) -> String {
+        switch position {
+        case 1:
+            return "1st"
+        case 2:
+            return "2nd"
+        case 3:
+            return "3rd"
+        default:
+            return "\(position)th"
+        }
     }
 }
