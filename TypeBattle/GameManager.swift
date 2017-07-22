@@ -294,35 +294,35 @@ class GameManager {
         
         allTypes.append(GameCharacter(type: .cat,
                                       typeDescription: "Cat comes from a family of dogs.",
-                                      perkDescription: "ABILITY: Randomly changes next 10 letters between upper/lower case for all other players"))
+                                      perkDescription: ""))
         
         allTypes.append(GameCharacter(type: .dog,
                                       typeDescription: "Dog comes from a family of cats.",
-                                      perkDescription: "ABILITY: Randomly changes next 10 letters positions for all other players"))
+                                      perkDescription: ""))
         
         allTypes.append(GameCharacter(type: .knight,
                                       typeDescription: "The warrior has battled through multiple wars to defend the origami mommy.",
-                                      perkDescription: "ABILITY: Send all others players 5 positions back"))
+                                      perkDescription: ""))
         
         allTypes.append(GameCharacter(type: .robot,
                                       typeDescription: "Robot comes from the year 3678 in search of the origami mommy. ",
-                                      perkDescription: "ABILITY: Skip 8 letters"))
+                                      perkDescription: ""))
         
         allTypes.append(GameCharacter(type: .ninjaBoy,
                                       typeDescription: "Ninja Boy is a ninja, but a boy.",
-                                      perkDescription: "ABILITY: Allows you to type uppercase letters as lowercase"))
+                                      perkDescription: ""))
         
         allTypes.append(GameCharacter(type: .ninjaGirl,
                                       typeDescription: "Ninja Girl is a ninja, but a girl.",
-                                      perkDescription: "ABILITY: Allows you to skip spaces in the text"))
+                                      perkDescription: ""))
         
         allTypes.append(GameCharacter(type: .zombieBoy,
                                       typeDescription: "Zombie Boy is a zombie who was a boy.",
-                                      perkDescription: "ABILITY: Hide part of the text for all other players"))
+                                      perkDescription: ""))
         
         allTypes.append(GameCharacter(type: .zombieGirl,
                                       typeDescription: "Zombie Girl is a zombie who was a girl.",
-                                      perkDescription: "ABILITY: Skip 2 words"))
+                                      perkDescription: ""))
         
         return allTypes
     }
