@@ -231,6 +231,9 @@ class MainMenuView: UIView {
     }
     
     func trainingSegue() {
+        guard var top  = UIApplication.shared.keyWindow?.rootViewController else {return}
+        while let next = top.presentedViewController {top = next}
+        guard let vc   = top as? MainMenuViewController else {return}
         
         // Create lobby
         let category = arc4random_uniform(2) == 1 ? "quote" : "poem"
@@ -238,27 +241,14 @@ class MainMenuView: UIView {
         
         // Create session
         NetworkManager.getWords(category: category) { (someRandomText) in
-            
             DispatchQueue.main.async {
                 // Create room with the creator as the first player
                 self.gameSession = self.gameManager.createGameSession(lobby: lobby, someRandomText: someRandomText)
-                
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc         = storyboard.instantiateInitialViewController() as! GameViewController
                 vc.gameSession = self.gameSession
-                
-                let window = UIApplication.shared.windows[0] as UIWindow;
-                UIView.transition(from:(window.rootViewController?.view)!,
-                                  to: (vc.view)!,
-                                  duration: 0.5,
-                                  options: .transitionCrossDissolve,
-                                  completion: {
-                                    finished in window.rootViewController = vc
-                })
-                
+                vc.performSegue(withIdentifier: "toTraining", sender: vc)
             }
         }
-    }
+   }
     
     func myProfileSegue() {
         
