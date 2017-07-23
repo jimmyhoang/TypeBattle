@@ -135,6 +135,28 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
             
             // If game was started by creator send to game scene
             if (self.currentGameSession.status == .started) {
+                
+                if(self.readyButton.currentTitle?.lowercased() == "ready") {
+                    
+                    // Unselect previous character
+                    guard let previousImage = self.view.viewWithTag(self.selectedCharacterTag) else {
+                        print("Unexpected error")
+                        return
+                    }
+                    previousImage.backgroundColor = UIColor.gameBlue
+                    
+                    // Select character Cat
+                    self.selectedCharacterTag = 1
+                    guard let characterImage = self.view.viewWithTag(1) as? UIImageView else {
+                        print("Unexpected error")
+                        return
+                    }
+                    characterImage.backgroundColor = UIColor.gameRed
+                    self.characterDescription.text = self.characters[self.selectedCharacterTag - 1].typeDescription
+                    self.perkDescription.text = self.characters[self.selectedCharacterTag - 1].perkDescription
+
+                }
+                
                 self.readyButton.setTitle("unready", for: .normal)
                 self.startGameTimer()
             }
