@@ -192,6 +192,48 @@ class GameManager {
         }
     }
     
+    func playerCompletedGame (gameSessionID: String, playerID: String, totalTime: Double) {
+        
+        let ref = Database.database().reference(withPath: "game_sessions")
+        let gameRef = ref.child(gameSessionID)
+        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            // Finish game
+            gameSession.status = .finished
+            
+            // Create property to store current player
+            var currentPlayer = PlayerSession(playerID: "", playerName: "")
+            var nextPosition = 0
+            
+            for player in gameSession.players {
+                
+                // find player
+                if(player.playerID == playerID) {
+                    currentPlayer = player
+                }
+                
+                // check players that already finished the game
+                if(player.finalPosition != 0) {
+                    nextPosition += 1
+                }
+            }
+            
+            currentPlayer.finalPosition = nextPosition
+            currentPlayer.totalTime = totalTime
+            
+            // persist in firebase
+            gameRef.setValue(gameSession.createDictionary())
+        })
+    }
+    
     func cancelGameSession (gameSessionID: String) {
         
         Database.database().reference(withPath: "game_sessions").child(gameSessionID).removeValue()
