@@ -44,6 +44,18 @@ class SettingsView: UIView {
         return aSwitch
     }()
     
+    private lazy var buttonSoundSwitch:UISwitch = {
+        let aSwitch = UISwitch()
+        
+        aSwitch.translatesAutoresizingMaskIntoConstraints = false
+        aSwitch.isOn = true
+        aSwitch.onTintColor = UIColor.gameOrange
+        
+        aSwitch.addTarget(self, action: #selector(buttonSwitched(sender:)), for: .valueChanged)
+        
+        return aSwitch
+    }()
+    
     private lazy var settingsLabel:GameLabel = {
         let label = GameLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -58,6 +70,15 @@ class SettingsView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.gameFont(size: 30.0)
         label.text = "BG Music:"
+        
+        return label
+    }()
+    
+    private lazy var buttonSoundLabel:GameLabel = {
+        let label = GameLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.gameFont(size: 30.0)
+        label.text = "Button FX:"
         
         return label
     }()
@@ -80,6 +101,14 @@ class SettingsView: UIView {
             soundSwitch.setOn(false, animated: false)
         }
         
+        self.addSubview(buttonSoundLabel)
+        
+        self.addSubview(buttonSoundSwitch)
+        let buttonStatus = userDefaults.value(forKey: "buttonSoundStatus") as? String
+        if buttonStatus == "Off" {
+            buttonSoundSwitch.setOn(false, animated: false)
+        }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
         self.setNeedsUpdateConstraints()
     }
@@ -91,8 +120,12 @@ class SettingsView: UIView {
                                      soundLabel.leadingAnchor.constraint(equalTo: settingsLabel.leadingAnchor),
                                      soundSwitch.centerYAnchor.constraint(equalTo: soundLabel.centerYAnchor),
                                      soundSwitch.leadingAnchor.constraint(equalTo: soundLabel.trailingAnchor, constant: 25.0),
+                                     buttonSoundLabel.topAnchor.constraint(equalTo: soundLabel.bottomAnchor, constant: 50.0),
+                                     buttonSoundLabel.trailingAnchor.constraint(equalTo: soundLabel.trailingAnchor),
+                                     buttonSoundSwitch.topAnchor.constraint(equalTo: buttonSoundLabel.topAnchor),
+                                     buttonSoundSwitch.leadingAnchor.constraint(equalTo: buttonSoundLabel.trailingAnchor, constant: 25.0),
                                      backButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                     backButton.topAnchor.constraint(equalTo: soundSwitch.bottomAnchor, constant: 30.0)
+                                     backButton.topAnchor.constraint(equalTo: buttonSoundLabel.bottomAnchor, constant: 30.0)
             ])
         
         super.updateConstraints()
@@ -134,6 +167,20 @@ class SettingsView: UIView {
         
         userDefaults.synchronize()
         
+    }
+    
+    func buttonSwitched(sender:UISwitch) {
+        if buttonSoundSwitch.isOn {
+            
+            userDefaults.set("On", forKey: "buttonSoundStatus")
+            
+        } else {
+            
+            userDefaults.set("Off", forKey: "buttonSoundStatus")
+            
+        }
+        
+        userDefaults.synchronize()
     }
     
     func createMenuButton(title:String!) -> MainMenuButton {
