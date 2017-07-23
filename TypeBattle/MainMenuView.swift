@@ -264,65 +264,52 @@ class MainMenuView: UIView {
    }
     
     func myProfileSegue() {
-        
         let storyboard = UIStoryboard(name: "ProfilePage", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
+        let window     = UIApplication.shared.windows[0] as UIWindow
         
-        let window = UIApplication.shared.windows[0] as UIWindow;
-        UIView.transition(from:(window.rootViewController?.view)!,
-                          to: (vc?.view)!,
-                          duration: 0.5,
-                          options: .transitionCrossDissolve,
-                          completion: {
-                            finished in window.rootViewController = vc
-        })
+        let transition      = CATransition()
+        transition.subtype  = kCATransitionFade
+        transition.duration = 0.5
         
+        window.set(rootViewController: vc!, withTransition: transition)
     }
     
     func multiplayerSegue() {
-        
         let storyboard = UIStoryboard(name: "Multiplayer", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
+        let window     = UIApplication.shared.windows[0] as UIWindow
         
-        let window = UIApplication.shared.windows[0] as UIWindow;
-        UIView.transition(from:(window.rootViewController?.view)!,
-                          to: (vc?.view)!,
-                          duration: 0.5,
-                          options: .transitionCrossDissolve,
-                          completion: {
-                            finished in window.rootViewController = vc
-        })
-
+        let transition      = CATransition()
+        transition.subtype  = kCATransitionFade
+        transition.duration = 0.5
+        
+        window.set(rootViewController: vc!, withTransition: transition)
     }
     
     func leaderboardSegue() {
-
         let storyboard = UIStoryboard(name: "Leaderboard", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
+        let window     = UIApplication.shared.windows[0] as UIWindow
         
-        let window = UIApplication.shared.windows[0] as UIWindow;
-        UIView.transition(from:(window.rootViewController?.view)!,
-            to: (vc?.view)!,
-            duration: 0.5,
-            options: .transitionCrossDissolve,
-            completion: {
-                finished in window.rootViewController = vc
-        })
+        
+        let transition      = CATransition()
+        transition.subtype  = kCATransitionFade
+        transition.duration = 0.5
+        
+        window.set(rootViewController: vc!, withTransition: transition)
     }
     
     func settingsSegue() {
-        
         let storyboard = UIStoryboard(name: "Settings", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
+        let window     = UIApplication.shared.windows[0] as UIWindow
+       
+        let transition      = CATransition()
+        transition.subtype  = kCATransitionFade
+        transition.duration = 0.5
         
-        let window = UIApplication.shared.windows[0] as UIWindow;
-        UIView.transition(from:(window.rootViewController?.view)!,
-                          to: (vc?.view)!,
-                          duration: 0.5,
-                          options: .transitionCrossDissolve,
-                          completion: {
-                            finished in window.rootViewController = vc
-        })
-        
+        window.set(rootViewController: vc!, withTransition: transition)
+ 
     }
 }
