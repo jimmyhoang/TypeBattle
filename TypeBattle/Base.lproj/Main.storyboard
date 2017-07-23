@@ -57,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME OVER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXY-z1-g7q">
-                                <rect key="frame" x="86" y="36" width="204" height="53"/>
+                                <rect key="frame" x="86.5" y="36" width="204" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="IjR-ed-0uI"/>
                                 </constraints>
@@ -76,7 +76,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your position:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kI-Ro-Hf7">
-                                <rect key="frame" x="131" y="97" width="114" height="26"/>
+                                <rect key="frame" x="131.5" y="97" width="114" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="sKi-mp-oF3"/>
                                 </constraints>
@@ -94,7 +94,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:07:45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wab-Ou-iIF">
-                                <rect key="frame" x="142.5" y="210" width="90" height="53"/>
+                                <rect key="frame" x="143" y="210" width="90" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="VPU-WQ-SSH"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="vzC-Wg-EHb"/>
@@ -104,7 +104,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your total time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2T7-Bx-CaO">
-                                <rect key="frame" x="121" y="184" width="134" height="26"/>
+                                <rect key="frame" x="121.5" y="184" width="134" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="p1w-Rq-ln8"/>
                                 </constraints>
@@ -123,9 +123,6 @@
                                 <state key="normal" title="Back">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="MlG-xO-Xyf" kind="presentation" modalTransitionStyle="crossDissolve" id="BZe-3B-NAf"/>
-                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="34" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="k64-xd-XoQ">
                                 <rect key="frame" x="16" y="299" width="343" height="272"/>
@@ -226,14 +223,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxg-tQ-LyQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="966" y="136"/>
-        </scene>
-        <!--Multiplayer-->
-        <scene sceneID="cnv-al-ued">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Multiplayer" id="MlG-xO-Xyf" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QaF-Id-wTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-272" y="1420"/>
         </scene>
     </scenes>
 </document>
