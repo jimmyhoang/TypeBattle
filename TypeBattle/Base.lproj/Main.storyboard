@@ -123,6 +123,9 @@
                                 <state key="normal" title="Back">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="zeX-z2-TOo" eventType="touchUpInside" id="buE-xb-imw"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="34" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="k64-xd-XoQ">
                                 <rect key="frame" x="16" y="299" width="343" height="272"/>
