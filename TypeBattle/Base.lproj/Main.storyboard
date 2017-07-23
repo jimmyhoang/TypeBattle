@@ -57,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME OVER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXY-z1-g7q">
-                                <rect key="frame" x="86.5" y="36" width="204" height="53"/>
+                                <rect key="frame" x="86" y="36" width="204" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="IjR-ed-0uI"/>
                                 </constraints>
@@ -65,8 +65,8 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1st" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ym0-hv-90e">
-                                <rect key="frame" x="157.5" y="123" width="60" height="53"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1st" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ym0-hv-90e">
+                                <rect key="frame" x="158" y="123" width="60" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="7gX-Og-Ndx"/>
                                     <constraint firstAttribute="height" constant="53" id="Sg8-12-DcH"/>
@@ -76,7 +76,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your position:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kI-Ro-Hf7">
-                                <rect key="frame" x="131.5" y="97" width="114" height="26"/>
+                                <rect key="frame" x="131" y="97" width="114" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="sKi-mp-oF3"/>
                                 </constraints>
@@ -85,7 +85,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FINAL LEADERBOARD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMW-2d-7Mt">
-                                <rect key="frame" x="16" y="271" width="154.5" height="26"/>
+                                <rect key="frame" x="16" y="271" width="155" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="hNo-M8-YSy"/>
                                 </constraints>
@@ -93,7 +93,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:07:45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wab-Ou-iIF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:07:45" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wab-Ou-iIF">
                                 <rect key="frame" x="143" y="210" width="90" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="VPU-WQ-SSH"/>
@@ -104,7 +104,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your total time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2T7-Bx-CaO">
-                                <rect key="frame" x="121.5" y="184" width="134" height="26"/>
+                                <rect key="frame" x="121" y="184" width="134" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="p1w-Rq-ln8"/>
                                 </constraints>
@@ -132,14 +132,14 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="34"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rUV-VV-CHL" id="F99-Bk-Pri">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="33.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="33"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUr-Uf-Iia">
-                                                    <rect key="frame" x="8" y="0.0" width="327" height="33.5"/>
+                                                    <rect key="frame" x="8" y="0.0" width="327" height="34"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1st" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geD-ux-nGT">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="33.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="34"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="f89-YM-8Is"/>
                                                             </constraints>
@@ -148,13 +148,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4J-hP-VrE">
-                                                            <rect key="frame" x="50" y="0.0" width="212" height="33.5"/>
+                                                            <rect key="frame" x="50" y="0.0" width="212" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dv6-tc-v2S">
-                                                            <rect key="frame" x="262" y="0.0" width="65" height="33.5"/>
+                                                            <rect key="frame" x="262" y="0.0" width="65" height="34"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="65" id="Ozm-D3-glz"/>
                                                             </constraints>
