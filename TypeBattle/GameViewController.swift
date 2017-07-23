@@ -145,7 +145,12 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
     func backToMainMenu(sender:UIButton!) {
         // Play sound
         MusicHelper.sharedHelper.playButtonSound()
+        let storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
+        let vc         = storyboard.instantiateInitialViewController()
         
-        performSegue(withIdentifier: "quit-game-segue", sender: self)
+        let window = UIApplication.shared.windows[0] as UIWindow
+        
+        window.set(rootViewController: vc!)
+//        performSegue(withIdentifier: "quit-game-segue", sender: self)
     }
 }
