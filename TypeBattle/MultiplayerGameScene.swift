@@ -9,7 +9,7 @@
 import SpriteKit
 
 protocol MultiplayerSceneDelegate: class {
-    func gameDidEnd(playerSessions: [PlayerSession])
+    func gameDidEnd(gameSessionID: String)
 }
 
 class MultiplayerGameScene: SKScene {
@@ -526,14 +526,15 @@ class MultiplayerGameScene: SKScene {
                     if self.gameEnding == false {
                         if playerStatus[index][3] as! Double == 100 {
                             self.gameEnding = true
-                            aPlayer.totalTime = Double(self.timerTime)
-                            self.stopTimer = true
+//                            aPlayer.totalTime = Double(self.timerTime)
+//                            self.stopTimer = true
                             self.startEndGameCountdown()
                         }
-                    } else {
-                        aPlayer.totalTime = Double(self.timerTime)
-                        self.stopTimer = true
                     }
+//                    else {
+//                        aPlayer.totalTime = Double(self.timerTime)
+//                        self.stopTimer = true
+//                    }
                     
                     //check and set my position
                     if self.mainPlayer.currentIndex < aPlayer.currentIndex {
@@ -551,11 +552,13 @@ class MultiplayerGameScene: SKScene {
                         if playerStatus[index][3] as! Double == 100 {
                             self.gameEnding = true
                             self.mainPlayer.totalTime = Double(self.timerTime)
+                            self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerID: self.currentPlayer.playerID, totalTime: self.mainPlayer.totalTime)
                             self.stopTimer = true
                             self.startEndGameCountdown()
                         }
                     }  else {
                         self.mainPlayer.totalTime = Double(self.timerTime)
+                        self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerID: self.currentPlayer.playerID, totalTime: self.mainPlayer.totalTime)
                         self.stopTimer = true
                     }
                 }
@@ -572,15 +575,15 @@ class MultiplayerGameScene: SKScene {
     
     //MARK: End Game
     func endGame() {
-        gameManager.finishGameSession(gameSession: gameSession)
-        var tempPlayerSessionArray = [PlayerSession]()
-
-        for key in playerDict.keys {
-            let tempDict = playerDict[key] as! Dictionary<String, Any>
-            let playerSession = tempDict["player"] as! PlayerSession
-            tempPlayerSessionArray.append(playerSession)
-        }
-        mpDelegate?.gameDidEnd(playerSessions: tempPlayerSessionArray)
+//        gameManager.finishGameSession(gameSession: gameSession)
+//        var tempPlayerSessionArray = [PlayerSession]()
+//
+//        for key in playerDict.keys {
+//            let tempDict = playerDict[key] as! Dictionary<String, Any>
+//            let playerSession = tempDict["player"] as! PlayerSession
+//            tempPlayerSessionArray.append(playerSession)
+//        }
+        mpDelegate?.gameDidEnd(gameSessionID: gameSession.gameSessionID)
     }
     
     //MARK: Custom Position Print

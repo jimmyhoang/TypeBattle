@@ -33,7 +33,7 @@ class PlayerSession {
         self.playerName = playerName
         self.currentIndex = currentIndex
         self.gameCharacter = gameCharacter
-        self.totalTime = 0.0
+        self.totalTime = totalTime
         self.isReady = isReady
         self.finalPosition = finalPosition
     }

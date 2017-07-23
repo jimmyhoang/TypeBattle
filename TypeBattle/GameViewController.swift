@@ -189,15 +189,15 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
     }
     
     //MARK: Delegate
-    func gameDidEnd(playerSessions: [PlayerSession]) {
-        gameSession.players = playerSessions
+    func gameDidEnd(gameSessionID: String) {
+        gameSession.gameSessionID = gameSessionID
         performSegue(withIdentifier: "gameover-segue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gameover-segue" {
             if let nextVC = segue.destination as? GameOverViewController {
-                nextVC.playersSession = gameSession.players
+                nextVC.gameSessionID = gameSession.gameSessionID
             }
         }
     }
