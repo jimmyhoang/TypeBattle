@@ -82,10 +82,22 @@ class CharacterAnimation {
             actionAnimated(selectedAction: action)
             break
         case .ninjaBoy:
-            actionAnimated(selectedAction: action)
+            if action == .idle {
+                actionAnimated(selectedAction: action)
+                player.size = CGSize (width: 70, height: 120)
+            } else {
+                actionAnimated(selectedAction: action)
+                player.size = CGSize (width: 100, height: 120)
+            }
             break
         case .ninjaGirl:
-            actionAnimated(selectedAction: action)
+            if action == .idle {
+                actionAnimated(selectedAction: action)
+                player.size = CGSize (width: 70, height: 120)
+            } else {
+                actionAnimated(selectedAction: action)
+                player.size = CGSize (width: 90, height: 120)
+            }
             break
         case .zombieBoy:
             actionAnimated(selectedAction: action)
