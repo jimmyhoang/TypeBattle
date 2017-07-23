@@ -45,7 +45,6 @@ class MultiplayerGameScene: SKScene {
     var playerProgress: Double = 0.0
     let playerSize = CGSize(width: 100, height: 120)
     let playerMovement: CGFloat = 20.0
-//    var isIdle: Bool!
     
     var playerNameLabelNode: SKLabelNode!
     var otherPlayerProgress: Double = 0.0
@@ -81,8 +80,13 @@ class MultiplayerGameScene: SKScene {
     var initialTime: TimeInterval!
     var timerTime: TimeInterval!
     var firstFrame = true
+    var stopTimer = false
+    
+    //countdownTimer Pos, NOT timer Pos
     var timerXPos: CGFloat!
     var timerYPos: CGFloat!
+    
+    
     
     //Countdown
     var countdownNode: SKLabelNode!
@@ -160,8 +164,11 @@ class MultiplayerGameScene: SKScene {
             initialTime = currentTime
             firstFrame = false
         }
-        timerTime = currentTime - initialTime
-        updateTimer(time: timerTime)
+        
+        if stopTimer == false {
+            timerTime = currentTime - initialTime
+            updateTimer(time: timerTime)
+        }
         
         neverEndingSky(widthOfSky: skyWidth)
     }
@@ -189,7 +196,6 @@ class MultiplayerGameScene: SKScene {
             
             addChild(playerNode)
             CharacterAnimation.doAction(player: playerNode, char: gameSession.players[index].gameCharacter, action: .idle)
-//            isIdle = true
             playerNodesInGame.append(playerNode)
             
             //create playerDict containing player-specific information
@@ -225,7 +231,6 @@ class MultiplayerGameScene: SKScene {
     func moveMainPlayer() {
         if mainPlayer.currentIndex == 0 {
             CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .run)
-//            isIdle = false
         } else if mainPlayer.currentIndex == textArray.count - 1 {
             CharacterAnimation.doAction(player: mainPlayerNode, char: mainPlayer.gameCharacter, action: .idle)
         }
@@ -521,8 +526,13 @@ class MultiplayerGameScene: SKScene {
                     if self.gameEnding == false {
                         if playerStatus[index][3] as! Double == 100 {
                             self.gameEnding = true
+                            aPlayer.totalTime = Double(self.timerTime)
+                            self.stopTimer = true
                             self.startEndGameCountdown()
                         }
+                    } else {
+                        aPlayer.totalTime = Double(self.timerTime)
+                        self.stopTimer = true
                     }
                     
                     //check and set my position
@@ -540,8 +550,13 @@ class MultiplayerGameScene: SKScene {
                     if self.gameEnding == false {
                         if playerStatus[index][3] as! Double == 100 {
                             self.gameEnding = true
+                            self.mainPlayer.totalTime = Double(self.timerTime)
+                            self.stopTimer = true
                             self.startEndGameCountdown()
                         }
+                    }  else {
+                        self.mainPlayer.totalTime = Double(self.timerTime)
+                        self.stopTimer = true
                     }
                 }
             }
