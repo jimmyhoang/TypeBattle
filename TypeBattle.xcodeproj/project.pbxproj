@@ -31,9 +31,6 @@
 		43D9BBCE1F1B51FC00B0B4AC /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9BBCD1F1B51FC00B0B4AC /* LeaderboardView.swift */; };
 		43D9BBD01F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D9BBCF1F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift */; };
 		4A434C131F1EC5CE00CE8701 /* MultiplayerGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A434C121F1EC5CE00CE8701 /* MultiplayerGameScene.swift */; };
-		4AE6177A1F22E6A6005C01F8 /* EndGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE617771F22E6A6005C01F8 /* EndGameTableViewCell.swift */; };
-		4AE6177B1F22E6A6005C01F8 /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE617781F22E6A6005C01F8 /* EndGameView.swift */; };
-		4AE6177C1F22E6A6005C01F8 /* EndGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE617791F22E6A6005C01F8 /* EndGameView.xib */; };
 		4AF075591F1888820056E013 /* CharacterAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF075581F1888820056E013 /* CharacterAnimation.swift */; };
 		9C1BCADC1F23E1C100429BB3 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1BCADB1F23E1C100429BB3 /* GameOverViewController.swift */; };
 		9C1BCADE1F23E1E400429BB3 /* FinalLeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1BCADD1F23E1E400429BB3 /* FinalLeaderboardTableViewCell.swift */; };
@@ -95,9 +92,6 @@
 		43D9BBCD1F1B51FC00B0B4AC /* LeaderboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		43D9BBCF1F1B5D0900B0B4AC /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
 		4A434C121F1EC5CE00CE8701 /* MultiplayerGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameScene.swift; sourceTree = "<group>"; };
-		4AE617771F22E6A6005C01F8 /* EndGameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGameTableViewCell.swift; sourceTree = "<group>"; };
-		4AE617781F22E6A6005C01F8 /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGameView.swift; sourceTree = "<group>"; };
-		4AE617791F22E6A6005C01F8 /* EndGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndGameView.xib; sourceTree = "<group>"; };
 		4AF075581F1888820056E013 /* CharacterAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterAnimation.swift; sourceTree = "<group>"; };
 		7E54337C874835B9BE8DB6A2 /* Pods-TypeBattle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypeBattle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypeBattle/Pods-TypeBattle.debug.xcconfig"; sourceTree = "<group>"; };
 		9C1BCADB1F23E1C100429BB3 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
@@ -177,9 +171,6 @@
 				FF889A101F169C3E006955BB /* GameViewController.swift */,
 				FF889A121F169C3E006955BB /* Main.storyboard */,
 				9C1BCADB1F23E1C100429BB3 /* GameOverViewController.swift */,
-				4AE617771F22E6A6005C01F8 /* EndGameTableViewCell.swift */,
-				4AE617781F22E6A6005C01F8 /* EndGameView.swift */,
-				4AE617791F22E6A6005C01F8 /* EndGameView.xib */,
 			);
 			name = GameViewController;
 			sourceTree = "<group>";
@@ -386,7 +377,6 @@
 				TargetAttributes = {
 					FF889A041F169C3E006955BB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 56EET8Q46G;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -425,7 +415,6 @@
 				4340E60A1F17F862003C0167 /* Supersonic Rocketship.ttf in Resources */,
 				FF889A351F16E779006955BB /* GoogleService-Info.plist in Resources */,
 				FF7B2D8E1F217B750064B63E /* bgmusic.mp3 in Resources */,
-				4AE6177C1F22E6A6005C01F8 /* EndGameView.xib in Resources */,
 				438DC9641F180600005699C3 /* MainMenu.storyboard in Resources */,
 				436D73851F21391700CA301A /* betsy flanagan.ttf in Resources */,
 				FF889A161F169C3E006955BB /* Assets.xcassets in Resources */,
@@ -518,7 +507,6 @@
 				436D73831F21342000CA301A /* LeaderboardViewController.swift in Sources */,
 				9C9DE0251F1E92DD006B6FEE /* SimGameViewController.swift in Sources */,
 				FF889A0F1F169C3E006955BB /* GameScene.swift in Sources */,
-				4AE6177B1F22E6A6005C01F8 /* EndGameView.swift in Sources */,
 				9C34E2C41F173EE0008372DC /* GameCharacter.swift in Sources */,
 				FF889A111F169C3E006955BB /* GameViewController.swift in Sources */,
 				4A434C131F1EC5CE00CE8701 /* MultiplayerGameScene.swift in Sources */,
@@ -533,7 +521,6 @@
 				436D73811F21281500CA301A /* ProfilePageViewController.swift in Sources */,
 				435913661F196B5100F59509 /* ProfilePageView.swift in Sources */,
 				9C34E2CE1F184F33008372DC /* MainLobbyViewController.swift in Sources */,
-				4AE6177A1F22E6A6005C01F8 /* EndGameTableViewCell.swift in Sources */,
 				9C34E2BE1F173E00008372DC /* GameLobby.swift in Sources */,
 				432041CC1F1FD83E009E3771 /* BackgroundScene.swift in Sources */,
 				9C1BCADC1F23E1C100429BB3 /* GameOverViewController.swift in Sources */,
@@ -662,7 +649,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TypeBattle/TypeBattle.entitlements;
-				DEVELOPMENT_TEAM = 56EET8Q46G;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -682,7 +669,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TypeBattle/TypeBattle.entitlements;
-				DEVELOPMENT_TEAM = 56EET8Q46G;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

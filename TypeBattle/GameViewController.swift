@@ -190,22 +190,16 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
     
     //MARK: Delegate
     func gameDidEnd(playerSessions: [PlayerSession]) {
-        //let endView = EndGameView(withPlayers: playerSessions, andFrame: frameOfKeyboard)
-        
-        let endView = Bundle.main.loadNibNamed("EndGameView", owner: self, options: nil)?.first as! EndGameView
-        endView.players = playerSessions
-        endView.frame = frameOfKeyboard
-        
-        textField.resignFirstResponder()
-        
-        endView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(endView)
-        
-        //constraints
-        endView.topAnchor.constraint(equalTo: gameView.bottomAnchor).isActive = true
-        endView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        endView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        endView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        gameSession.players = playerSessions
+        performSegue(withIdentifier: "gameover-segue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gameover-segue" {
+            if let nextVC = segue.destination as? GameOverViewController {
+                nextVC.playersSession = gameSession.players
+            }
+        }
     }
     
     //MARK: Private Methods
