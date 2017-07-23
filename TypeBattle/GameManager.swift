@@ -211,7 +211,7 @@ class GameManager {
             
             // Create property to store current player
             var currentPlayer = PlayerSession(playerID: "", playerName: "")
-            var nextPosition = 0
+            var nextPosition = 1
             
             for player in gameSession.players {
                 
