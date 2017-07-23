@@ -250,8 +250,26 @@ class GameManager {
         ref.setValue(dictionary)
     }
     
-    func listAvailableGameSessions(withCompletionBlock block: @escaping (GameSession, String) -> Swift.Void) {
+    func getGameSession(gameSessionID: String, withCompletionBlock block: @escaping (GameSession) -> Swift.Void) {
     
+        let ref = Database.database().reference(withPath: "game_sessions")
+        let gameRef = ref.child(gameSessionID)
+        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+            
+            // try to parse dictionary to a GameSession object
+            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+                else {
+                    print("Error getting GameSession")
+                    return
+            }
+            
+            block(gameSession)
+        })
+    }
+    
+    func listAvailableGameSessions(withCompletionBlock block: @escaping (GameSession, String) -> Swift.Void) {
+        
         let ref = Database.database().reference(withPath: "game_sessions")
         ref.observe(.childAdded, with: { (snapshot) in
             let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
@@ -284,7 +302,7 @@ class GameManager {
                 block(gameSession, "updated")
             }
         })
-
+        
         ref.observe(.childRemoved, with: { (snapshot) in
             let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
             
@@ -300,8 +318,8 @@ class GameManager {
                 block(gameSession, "deleted")
             }
         })
-
-    
+        
+        
     }
     
     func observeLeaderboardChanges(gameSessionID: String, withCompletionBlock block: @escaping (Array<Array<Any>>) -> Swift.Void) {
