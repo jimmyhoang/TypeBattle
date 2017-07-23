@@ -23,6 +23,7 @@ class SettingsView: UIView {
     var player:Player!
     var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
     let userDefaults = UserDefaults.standard
+    var buttonTag = 0
     
     private lazy var backButton:MainMenuButton = {
         let button = self.createMenuButton(title: "Back")
@@ -31,6 +32,15 @@ class SettingsView: UIView {
         
         return button
     }()
+    
+    private lazy var creditsButton:MainMenuButton = {
+        let button = self.createMenuButton(title: "Credits")
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(goToCredits(sender:)), for: .touchUpInside)
+        
+        return button
+    }()
+
     
     private lazy var soundSwitch:UISwitch = {
         let aSwitch = UISwitch()
@@ -89,6 +99,8 @@ class SettingsView: UIView {
         self.setupBackground()
         self.background.backgroundColor = UIColor.background
         
+        self.addSubview(creditsButton)
+        
         self.addSubview(backButton)
         
         self.addSubview(settingsLabel)
@@ -110,6 +122,7 @@ class SettingsView: UIView {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
+        
         self.setNeedsUpdateConstraints()
     }
     
@@ -125,14 +138,25 @@ class SettingsView: UIView {
                                      buttonSoundSwitch.topAnchor.constraint(equalTo: buttonSoundLabel.topAnchor),
                                      buttonSoundSwitch.leadingAnchor.constraint(equalTo: buttonSoundLabel.trailingAnchor, constant: 25.0),
                                      backButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                     backButton.topAnchor.constraint(equalTo: buttonSoundLabel.bottomAnchor, constant: 30.0)
+                                     backButton.topAnchor.constraint(equalTo: creditsButton.bottomAnchor, constant: 30.0),
+                                     creditsButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+                                     creditsButton.topAnchor.constraint(equalTo: buttonSoundLabel.bottomAnchor, constant: 30.0)
             ])
         
         super.updateConstraints()
     }
     
     func 🚶🏿💯(sender:Notification) {
-        let storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
+        let storyboard: UIStoryboard
+            
+        switch(buttonTag) {
+        case 1:
+            storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
+        case 2:
+            storyboard = UIStoryboard(name: "Credits", bundle: nil)
+        default:
+            storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
+        }
         let vc         = storyboard.instantiateInitialViewController()
         
         let window = UIApplication.shared.windows[0] as UIWindow;
@@ -149,7 +173,14 @@ class SettingsView: UIView {
     func backToMainMenu(sender:UIButton!) {
         // Play sound
         MusicHelper.sharedHelper.playButtonSound()
-        
+        buttonTag = 1
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
+    }
+    
+    func goToCredits(sender:UIButton!) {
+        // Play sound
+        MusicHelper.sharedHelper.playButtonSound()
+        buttonTag = 2
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     

@@ -45,6 +45,8 @@
 		9C34E2D21F184F64008372DC /* JoinRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2D11F184F64008372DC /* JoinRoomViewController.swift */; };
 		9C34E2D41F18B31F008372DC /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2D31F18B31F008372DC /* RoomTableViewCell.swift */; };
 		9C39A5961F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C39A5951F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift */; };
+		9C9808711F2482680080B77B /* Credits.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9808701F2482680080B77B /* Credits.storyboard */; };
+		9C9808731F2482AF0080B77B /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9808721F2482AF0080B77B /* CreditsViewController.swift */; };
 		9C9DE0251F1E92DD006B6FEE /* SimGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9DE0241F1E92DD006B6FEE /* SimGameViewController.swift */; };
 		9CA0393C1F208F3800657190 /* buttonSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CA0393B1F208F3800657190 /* buttonSound.mp3 */; };
 		FF7B2D8E1F217B750064B63E /* bgmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FF7B2D8D1F217B750064B63E /* bgmusic.mp3 */; };
@@ -105,6 +107,8 @@
 		9C34E2D11F184F64008372DC /* JoinRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinRoomViewController.swift; sourceTree = "<group>"; };
 		9C34E2D31F18B31F008372DC /* RoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
 		9C39A5951F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInLobbyTableViewCell.swift; sourceTree = "<group>"; };
+		9C9808701F2482680080B77B /* Credits.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Credits.storyboard; sourceTree = "<group>"; };
+		9C9808721F2482AF0080B77B /* CreditsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		9C9DE0241F1E92DD006B6FEE /* SimGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimGameViewController.swift; sourceTree = "<group>"; };
 		9CA0393B1F208F3800657190 /* buttonSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonSound.mp3; sourceTree = "<group>"; };
 		B5D5DD2C2501F40C389C845E /* Pods_TypeBattle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypeBattle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,6 +291,8 @@
 				436D738C1F21902900CA301A /* Settings.storyboard */,
 				436D73901F21905D00CA301A /* SettingsViewController.swift */,
 				436D738E1F21903800CA301A /* SettingsView.swift */,
+				9C9808701F2482680080B77B /* Credits.storyboard */,
+				9C9808721F2482AF0080B77B /* CreditsViewController.swift */,
 				FF889A421F1861A2006955BB /* NetworkManager.swift */,
 				432041CB1F1FD83E009E3771 /* BackgroundScene.swift */,
 				FF7B2D8F1F217BA40064B63E /* MusicHelper.swift */,
@@ -415,6 +421,7 @@
 				43193A711F22A6E400DBF720 /* origami-mommy.regular.ttf in Resources */,
 				436D738D1F21902900CA301A /* Settings.storyboard in Resources */,
 				43D9BBCC1F1B51E100B0B4AC /* Leaderboard.storyboard in Resources */,
+				9C9808711F2482680080B77B /* Credits.storyboard in Resources */,
 				435913641F196AD200F59509 /* ProfilePage.storyboard in Resources */,
 				FF889A191F169C3E006955BB /* LaunchScreen.storyboard in Resources */,
 				9CA0393C1F208F3800657190 /* buttonSound.mp3 in Resources */,
@@ -478,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				439F8B481F225A5D008C7DC5 /* MainMenuViewController.swift in Sources */,
+				9C9808731F2482AF0080B77B /* CreditsViewController.swift in Sources */,
 				FF889A431F1861A2006955BB /* NetworkManager.swift in Sources */,
 				9C34E2D21F184F64008372DC /* JoinRoomViewController.swift in Sources */,
 				431E7F361F181F9900B7B5CE /* MainMenuButton.swift in Sources */,
