@@ -463,7 +463,7 @@ class MultiplayerGameScene: SKScene {
             self.countdownNode.text = "Game Ends In \(self.countdownTime)"
             self.countdownTime -= 1
             
-            if (self.countdownNode.fontColor?.isEqual(color: UIColor.white))! {
+            if (self.countdownNode.fontColor?.isEqual(color: UIColor.gameRed))! {
                 self.countdownNode.fontColor = .gameOrange
             } else {
                 self.countdownNode.fontColor = .gameRed
@@ -484,7 +484,7 @@ class MultiplayerGameScene: SKScene {
         countdownNode.horizontalAlignmentMode = .center
         countdownNode.verticalAlignmentMode = .bottom
         countdownNode.text = "Game Ends In \(self.countdownTime)"
-        countdownNode.fontColor = .white
+        countdownNode.fontColor = .gameRed
         countdownNode.name = "coundownTimer"
         
         let countdownTimerXPos: CGFloat = 0
