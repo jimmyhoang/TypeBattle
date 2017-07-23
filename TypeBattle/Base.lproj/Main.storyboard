@@ -15,6 +15,14 @@
         </array>
     </customFonts>
     <scenes>
+        <!--MainMenu-->
+        <scene sceneID="7uG-1T-ZLK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MainMenu" id="kGY-b4-5FL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Clg-f5-cDD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="759" y="-373"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
@@ -26,10 +34,10 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <segue destination="zeX-z2-TOo" kind="showDetail" identifier="gameover-segue" id="O3c-ow-mbd"/>
+                        <segue destination="kGY-b4-5FL" kind="presentation" identifier="quit-game-segue" modalTransitionStyle="crossDissolve" id="BER-Qj-HNl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -49,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME OVER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXY-z1-g7q">
-                                <rect key="frame" x="85.5" y="36" width="204" height="53"/>
+                                <rect key="frame" x="86" y="36" width="204" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="IjR-ed-0uI"/>
                                 </constraints>
@@ -69,7 +77,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your position:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kI-Ro-Hf7">
-                                <rect key="frame" x="131.5" y="97" width="114" height="26"/>
+                                <rect key="frame" x="131" y="97" width="114" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="sKi-mp-oF3"/>
                                 </constraints>
@@ -87,7 +95,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:07:45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wab-Ou-iIF">
-                                <rect key="frame" x="143" y="210" width="90" height="53"/>
+                                <rect key="frame" x="142.5" y="210" width="90" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="VPU-WQ-SSH"/>
                                     <constraint firstAttribute="height" constant="53" id="hJC-fD-EoO"/>
@@ -98,7 +106,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your total time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2T7-Bx-CaO">
-                                <rect key="frame" x="120.5" y="184" width="134" height="26"/>
+                                <rect key="frame" x="121" y="184" width="134" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="p1w-Rq-ln8"/>
                                 </constraints>

@@ -109,6 +109,16 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
         gameView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         gameView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         gameView.heightAnchor.constraint(equalToConstant: gameViewHeight).isActive = true
+        
+        // quit button
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "red_boxCross"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(backToMainMenu(sender:)), for: .touchUpInside)
+        self.view.addSubview(button)
+        
+        button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10).isActive = true
+        button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10).isActive = true
     }
     
     //MARK: Delegate
@@ -129,5 +139,13 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
         endView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         endView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         endView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+    }
+    
+    //MARK: Private Methods
+    func backToMainMenu(sender:UIButton!) {
+        // Play sound
+        MusicHelper.sharedHelper.playButtonSound()
+        
+        performSegue(withIdentifier: "quit-game-segue", sender: self)
     }
 }

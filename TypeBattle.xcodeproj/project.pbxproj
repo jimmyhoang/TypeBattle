@@ -169,6 +169,7 @@
 			children = (
 				FF889A101F169C3E006955BB /* GameViewController.swift */,
 				FF889A121F169C3E006955BB /* Main.storyboard */,
+				9C1BCADB1F23E1C100429BB3 /* GameOverViewController.swift */,
 				4AE617771F22E6A6005C01F8 /* EndGameTableViewCell.swift */,
 				4AE617781F22E6A6005C01F8 /* EndGameView.swift */,
 				4AE617791F22E6A6005C01F8 /* EndGameView.xib */,
@@ -305,7 +306,6 @@
 				FF889A0E1F169C3E006955BB /* GameScene.swift */,
 				4A434C121F1EC5CE00CE8701 /* MultiplayerGameScene.swift */,
 				4AF075581F1888820056E013 /* CharacterAnimation.swift */,
-				9C1BCADB1F23E1C100429BB3 /* GameOverViewController.swift */,
 				9C1BCADF1F23E1E900429BB3 /* Custom Cells */,
 			);
 			name = GameScene;
