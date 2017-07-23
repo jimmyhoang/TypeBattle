@@ -89,7 +89,7 @@ class ProfilePageView: UIView {
         //sv.isLayoutMarginsRelativeArrangement = true
         //sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         sv.axis = .horizontal
-        sv.spacing = 5
+        sv.spacing = 0
         return sv
     }()
     
@@ -109,7 +109,7 @@ class ProfilePageView: UIView {
         sv.alignment = UIStackViewAlignment.fill
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.isLayoutMarginsRelativeArrangement = true
-        sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        sv.layoutMargins = UIEdgeInsets(top: 8, left: 25, bottom: 8, right: 8)
         sv.axis = .vertical
         sv.spacing = 10
         return sv
@@ -117,14 +117,14 @@ class ProfilePageView: UIView {
     
     private lazy var signoutButton:MainMenuButton = {
         let signoutButton = self.createMenuButton(title: "Sign out")
-        signoutButton.translatesAutoresizingMaskIntoConstraints = false
+//        signoutButton.translatesAutoresizingMaskIntoConstraints = false
         
         signoutButton.addTarget(self, action: #selector(signout(sender:)), for: .touchUpInside)
         
         return signoutButton
     }()
     
-    /*private lazy var bottomHorizontalStack:UIStackView = {
+    private lazy var bottomHorizontalStack:UIStackView = {
         let sv = UIStackView()
         sv.distribution = .fillEqually
         sv.alignment = UIStackViewAlignment.fill
@@ -134,7 +134,7 @@ class ProfilePageView: UIView {
         sv.axis = .horizontal
         sv.spacing = 5
         return sv
-    }()*/
+    }()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -154,11 +154,12 @@ class ProfilePageView: UIView {
         self.mainVerticalStack.addArrangedSubview(matchesWonLabel)
         self.mainVerticalStack.addArrangedSubview(matchesPlayedLabel)
         
-        self.addSubview(signoutButton)
+//        self.addSubview(signoutButton)
         
         self.addSubview(backButton)
-        //self.addSubview(bottomHorizontalStack)
-        //self.bottomHorizontalStack.addArrangedSubview(backButton)
+        self.addSubview(bottomHorizontalStack)
+        self.bottomHorizontalStack.addArrangedSubview(backButton)
+        self.bottomHorizontalStack.addArrangedSubview(signoutButton)
         //self.bottomHorizontalStack.addArrangedSubview(editProfileButton)
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
         self.setNeedsUpdateConstraints()
@@ -171,17 +172,21 @@ class ProfilePageView: UIView {
                                      topHorizontalStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
                                      mainVerticalStack.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor, constant: 10.0),
                                      mainVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
-                                     backButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                     backButton.topAnchor.constraint(equalTo: signoutButton.bottomAnchor, constant: 10.0),
-                                     signoutButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10.0),
-                                     signoutButton.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0),
-                                     signoutButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+                                     bottomHorizontalStack.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0),
+                                     bottomHorizontalStack.heightAnchor.constraint(equalToConstant: 60.0),
+                                     bottomHorizontalStack.leadingAnchor.constraint(equalTo: topHorizontalStack.leadingAnchor),
+                                     bottomHorizontalStack.trailingAnchor.constraint(equalTo: topHorizontalStack.trailingAnchor)
+//                                     backButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+//                                     backButton.topAnchor.constraint(equalTo: signoutButton.bottomAnchor, constant: 10.0),
+//                                     signoutButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10.0),
+//                                     signoutButton.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0),
+//                                     signoutButton.centerXAnchor.constraint(equalTo: centerXAnchor)
 //                                     signoutButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 40.0)
             ])
         
         //constraints for elements in the upper horizontal stack view
         NSLayoutConstraint.activate([profilePicture.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, multiplier: 0.3),
-                                     upperVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, multiplier: 0.65)])
+                                     upperVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, multiplier: 0.7)])
         super.updateConstraints()
     }
     
