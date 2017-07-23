@@ -17,13 +17,10 @@ class GameOverViewController: UIViewController, UITableViewDelegate, UITableView
     
     var currentPlayer: Player!
     var playersSession = [PlayerSession]()
-    
+    var gameSessionID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //TODO: erase - just sample data
-//        self.loadSampleData()
         
         // Get logged user
         let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -38,52 +35,28 @@ class GameOverViewController: UIViewController, UITableViewDelegate, UITableView
             return p1.finalPosition < p2.finalPosition
         }
         
-        // Move Did Not Finished players (position 0 and time 0) to the end of the array
-        for p in self.playersSession {
-            if (p.finalPosition == 0) {
-                let player = self.playersSession.removeFirst()
-                self.playersSession.append(player)
-            }
-            else {
-                break
+        // Get GameSessionData
+        if(self.gameSessionID != "") {
+            let gameManager = GameManager()
+            gameManager.getGameSession(gameSessionID: self.gameSessionID) { (gs) in
+                
+                self.playersSession = gs.players
+                
+                // Move Did Not Finished players (position 0 and time 0) to the end of the array
+                for p in self.playersSession {
+                    if (p.finalPosition == 0) {
+                        let player = self.playersSession.removeFirst()
+                        self.playersSession.append(player)
+                    }
+                    else {
+                        break
+                    }
+                }
+                
+                self.tableView.reloadData()
             }
         }
-    
-    
     }
-    
-//    func loadSampleData() {
-//        
-//        let p = PlayerSession(playerID: "11111", playerName: "Player 1")
-//        p.finalPosition = 4
-//        p.totalTime = 71.11
-//        self.playersSession.append(p)
-//        
-//        let p2 = PlayerSession(playerID: "22222", playerName: "Player 2")
-//        p2.finalPosition = 1
-//        p2.totalTime = 60.53
-//        self.playersSession.append(p2)
-//        
-//        let p3 = PlayerSession(playerID: "33333", playerName: "Player 3")
-//        p3.finalPosition = 2
-//        p3.totalTime = 65.12
-//        self.playersSession.append(p3)
-//        
-//        let p4 = PlayerSession(playerID: "44444", playerName: "Player 4")
-//        self.playersSession.append(p4)
-//        
-//        let p5 = PlayerSession(playerID: "5555", playerName: "Player 5")
-//        p5.finalPosition = 3
-//        p5.totalTime = 72.98
-//        self.playersSession.append(p5)
-//        
-//        let p6 = PlayerSession(playerID: "66666", playerName: "Player 6")
-//        self.playersSession.append(p6)
-//        
-//        let p7 = PlayerSession(playerID: "7777", playerName: "Player 7")
-//        self.playersSession.append(p7)
-//
-//    }
     
     // MARK: UITableViewDelegate, UITableViewDataSource
     
