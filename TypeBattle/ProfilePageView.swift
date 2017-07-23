@@ -48,7 +48,7 @@ class ProfilePageView: UIView {
     
     private lazy var nameLabel:GameLabel = {
         let label = GameLabel()
-        label.font = UIFont.gameFont(size: 25.0)
+        label.font = UIFont.gameFont(size: 30.0)
         label.text = "Test Player"
         label.text = self.player.name
         
@@ -86,8 +86,8 @@ class ProfilePageView: UIView {
         let sv = UIStackView()
         sv.alignment = UIStackViewAlignment.fill
         sv.translatesAutoresizingMaskIntoConstraints = false
-        //sv.isLayoutMarginsRelativeArrangement = true
-        //sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+//        sv.isLayoutMarginsRelativeArrangement = true
+//        sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         sv.axis = .horizontal
         sv.spacing = 0
         return sv
@@ -100,7 +100,7 @@ class ProfilePageView: UIView {
         sv.isLayoutMarginsRelativeArrangement = true
         sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         sv.axis = .vertical
-        sv.spacing = 5
+        sv.spacing = 3
         return sv
     }()
     
@@ -109,7 +109,7 @@ class ProfilePageView: UIView {
         sv.alignment = UIStackViewAlignment.fill
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.isLayoutMarginsRelativeArrangement = true
-        sv.layoutMargins = UIEdgeInsets(top: 8, left: 25, bottom: 8, right: 8)
+        sv.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         sv.axis = .vertical
         sv.spacing = 10
         return sv
@@ -167,8 +167,8 @@ class ProfilePageView: UIView {
     
     override func updateConstraints() {
         NSLayoutConstraint.activate([topHorizontalStack.topAnchor.constraint(equalTo: topAnchor, constant: 50.0),
-                                     topHorizontalStack.leadingAnchor.constraint(equalTo: leadingAnchor),
-                                     topHorizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor),
+                                     topHorizontalStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8.0),
+                                     topHorizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8.0),
                                      topHorizontalStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
                                      mainVerticalStack.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor, constant: 10.0),
                                      mainVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
