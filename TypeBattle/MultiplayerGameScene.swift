@@ -108,6 +108,7 @@ class MultiplayerGameScene: SKScene {
         setupCamera()
         setupPlayers()
         setupText()
+        setupTextPosIndicator()
         setupBackground()
         detectKeystroke()
         setupTimer()
@@ -213,10 +214,12 @@ class MultiplayerGameScene: SKScene {
             playerNode.addChild(playerNameLabelNode)
             
         }
-        
         mainPlayerInDict = playerDict[currentPlayer.playerID] as! Dictionary<String, Any>
         mainPlayerNode = mainPlayerInDict["playerNode"] as! SKSpriteNode
         mainPlayer = mainPlayerInDict["player"] as! PlayerSession
+        
+        let textNode = mainPlayerNode.childNode(withName: "namePlate") as! SKLabelNode
+        textNode.fontColor = .black
     }
     
     //Add a player to scene
@@ -499,6 +502,19 @@ class MultiplayerGameScene: SKScene {
         cam.addChild(countdownNode)
     }
     
+    //Set initial properties of textPosIndicator
+    func setupTextPosIndicator() {
+        let textPosIndicator = SKSpriteNode()
+        textPosIndicator.texture = SKTexture(imageNamed: "redSliderUp")
+        textPosIndicator.size = CGSize(width: 30, height: 30)
+        textPosIndicator.anchorPoint = CGPoint.zero
+        
+        let textPosIndicatorX = textContainerNode.position.x
+        let textPosIndicatorY = textContainerNode.position.y - textPosIndicator.frame.size.height
+        textPosIndicator.position = CGPoint(x: textPosIndicatorX, y: textPosIndicatorY)
+        cam.addChild(textPosIndicator)
+    }
+    
     //MARK: Leaderboard Observer
     func observePlayerPosition() {
         gameManager.observeLeaderboardChanges(gameSessionID: gameSession.gameSessionID) { (playerStatus) in
@@ -542,17 +558,21 @@ class MultiplayerGameScene: SKScene {
                     }
                 //else the currentPlayer
                 }else {
-                    if playerStatus[index][3] as! Double == 100 {
-                        if self.gameEnding == false {
+                    if self.gameEnding == false {
+                        if playerStatus[index][3] as! Double == 100 {
                             self.gameEnding = true
                             self.mainPlayer.totalTime = Double(self.timerTime)
                             self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerID: self.currentPlayer.playerID, totalTime: self.mainPlayer.totalTime)
                             self.stopTimer = true
                             self.startEndGameCountdown()
-                        }else {
+                            print("if")
+                        }
+                    }else {
+                        if playerStatus[index][3] as! Double == 100{
                             self.mainPlayer.totalTime = Double(self.timerTime)
                             self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerID: self.currentPlayer.playerID, totalTime: self.mainPlayer.totalTime)
                             self.stopTimer = true
+                            print("else")
                         }
                     }
                 }
