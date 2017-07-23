@@ -33,6 +33,11 @@ class MusicHelper {
     }
     
     func playButtonSound() {
+        let userDefaults = UserDefaults.standard
+        let buttonStatus = userDefaults.value(forKey: "buttonSoundStatus") as? String
+        if buttonStatus == "Off" {
+            return
+        }
         let buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
         do {
             buttonPlayer = try AVAudioPlayer(contentsOf: buttonSound as URL)

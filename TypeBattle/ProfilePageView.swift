@@ -8,6 +8,8 @@
 
 import UIKit
 import SpriteKit
+import Firebase
+
 class ProfilePageView: UIView {
 
     /*
@@ -23,9 +25,6 @@ class ProfilePageView: UIView {
     var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
     
     private lazy var profilePicture:UIImageView = {
-//        var imageView = UIImageView(image: UIImage(named: "knight/Idle (1)"))
-        
-        //uncomment the next line to init using the actual player avatar (hasn't been implemented yet)
         var imageView = UIImageView(image: self.player.avatar)
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -116,6 +115,15 @@ class ProfilePageView: UIView {
         return sv
     }()
     
+    private lazy var signoutButton:MainMenuButton = {
+        let signoutButton = self.createMenuButton(title: "Sign out")
+        signoutButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        signoutButton.addTarget(self, action: #selector(signout(sender:)), for: .touchUpInside)
+        
+        return signoutButton
+    }()
+    
     /*private lazy var bottomHorizontalStack:UIStackView = {
         let sv = UIStackView()
         sv.distribution = .fillEqually
@@ -146,6 +154,8 @@ class ProfilePageView: UIView {
         self.mainVerticalStack.addArrangedSubview(matchesWonLabel)
         self.mainVerticalStack.addArrangedSubview(matchesPlayedLabel)
         
+        self.addSubview(signoutButton)
+        
         self.addSubview(backButton)
         //self.addSubview(bottomHorizontalStack)
         //self.bottomHorizontalStack.addArrangedSubview(backButton)
@@ -162,12 +172,11 @@ class ProfilePageView: UIView {
                                      mainVerticalStack.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor, constant: 10.0),
                                      mainVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
                                      backButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                     backButton.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0)
-                                     //bottomHorizontalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
-                                     //bottomHorizontalStack.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0)
-                                     //mainVerticalStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
-                                     //backButton.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor),
-                                     //backButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+                                     backButton.topAnchor.constraint(equalTo: signoutButton.bottomAnchor, constant: 10.0),
+                                     signoutButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10.0),
+                                     signoutButton.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0),
+                                     signoutButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+//                                     signoutButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 40.0)
             ])
         
         //constraints for elements in the upper horizontal stack view
@@ -196,6 +205,35 @@ class ProfilePageView: UIView {
         MusicHelper.sharedHelper.playButtonSound()
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
+    }
+    
+    func signout(sender:UIButton!) {
+        MusicHelper.sharedHelper.playButtonSound()
+        
+        let alertController = UIAlertController(title: "Confirmation", message: "Do you really want to sign out?", preferredStyle: .alert)
+        let confirmAction   = UIAlertAction(title: "Confirm", style: .default) { (alert) in
+            try! Auth.auth().signOut()
+            
+            let storyboard = UIStoryboard(name: "Login", bundle: nil)
+            let vc         = storyboard.instantiateInitialViewController()
+            
+            let window = UIApplication.shared.windows[0] as UIWindow;
+            UIView.transition(from:(window.rootViewController?.view)!,
+                              to: (vc?.view)!,
+                              duration: 0.5,
+                              options: .transitionCrossDissolve,
+                              completion: {
+                                finished in window.rootViewController = vc
+            })
+            
+        }
+        let cancelAction    = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+
     }
 
     func createMenuButton(title:String!) -> MainMenuButton {

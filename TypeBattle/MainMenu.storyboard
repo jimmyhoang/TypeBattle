@@ -24,6 +24,7 @@
                     </view>
                     <connections>
                         <segue destination="czS-JA-Ppy" kind="showDetail" identifier="toTraining" id="Oaz-ca-32e"/>
+                        <segue destination="GRg-e4-r3F" kind="showDetail" identifier="profileSegue" id="jtf-c3-mB1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2Q-PT-Cy0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -37,6 +38,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dJ-Jn-ixW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-6" y="20"/>
+        </scene>
+        <!--ProfilePage-->
+        <scene sceneID="Msy-YK-Lnm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProfilePage" id="GRg-e4-r3F" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eeG-So-5wb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="35" y="192"/>
         </scene>
     </scenes>
 </document>
