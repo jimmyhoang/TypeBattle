@@ -24,7 +24,7 @@
                     </view>
                     <connections>
                         <segue destination="ecm-m3-3uc" kind="showDetail" identifier="mainMenuSegue" action="showViewController:sender:" id="l3h-2I-iRU"/>
-                        <segue destination="0hP-Mc-q9z" kind="showDetail" id="vul-9N-xEG"/>
+                        <segue destination="0hP-Mc-q9z" kind="showDetail" identifier="loginSegue" id="vul-9N-xEG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qvQ-DH-eEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
