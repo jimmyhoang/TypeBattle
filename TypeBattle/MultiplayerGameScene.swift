@@ -542,19 +542,24 @@ class MultiplayerGameScene: SKScene {
                     }
                 //else the currentPlayer
                 }else {
-                    if playerStatus[index][3] as! Double == 100 {
+                    // only do something when current player completes 100% for the first time (totaltime == 0)...
+                    if playerStatus[index][3] as! Double == 100 && self.mainPlayer.totalTime == 0.0 {
+                        
+                        // if is the first one to finish, set boolean property and startcountdown
                         if self.gameEnding == false {
                             self.gameEnding = true
-                            self.mainPlayer.totalTime = Double(self.timerTime)
-                            self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerID: self.currentPlayer.playerID, totalTime: self.mainPlayer.totalTime)
-                            self.stopTimer = true
                             self.startEndGameCountdown()
-                        }else {
-                            self.mainPlayer.totalTime = Double(self.timerTime)
-                            self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerID: self.currentPlayer.playerID, totalTime: self.mainPlayer.totalTime)
-                            self.stopTimer = true
                         }
+                        
+                        // stop timer and get time from timer
+                        self.mainPlayer.totalTime = Double(self.timerTime)
+                        self.stopTimer = true
+                        
+                        // persist data on firebase
+                        self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerID: self.currentPlayer.playerID, totalTime: self.mainPlayer.totalTime)
+                        
                     }
+                    
                 }
             }
             self.positionLabelNode.text = self.printPosition(position: self.myPosition)

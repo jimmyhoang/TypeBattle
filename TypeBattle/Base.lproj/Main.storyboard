@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -57,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME OVER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZXY-z1-g7q">
-                                <rect key="frame" x="85.5" y="36" width="204" height="53"/>
+                                <rect key="frame" x="86" y="36" width="204" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="IjR-ed-0uI"/>
                                 </constraints>
@@ -66,18 +66,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1st" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ym0-hv-90e">
-                                <rect key="frame" x="163.5" y="123" width="48" height="53"/>
+                                <rect key="frame" x="157.5" y="123" width="60" height="53"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="7gX-Og-Ndx"/>
+                                    <constraint firstAttribute="width" constant="60" id="7gX-Og-Ndx"/>
                                     <constraint firstAttribute="height" constant="53" id="Sg8-12-DcH"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="atU-fg-04I"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="30"/>
                                 <color key="textColor" red="0.76862745099999996" green="0.18823529410000001" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your position:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kI-Ro-Hf7">
-                                <rect key="frame" x="130.5" y="97" width="114" height="26"/>
+                                <rect key="frame" x="131" y="97" width="114" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="sKi-mp-oF3"/>
                                 </constraints>
@@ -95,10 +94,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:07:45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wab-Ou-iIF">
-                                <rect key="frame" x="143" y="210" width="90" height="53"/>
+                                <rect key="frame" x="142.5" y="210" width="90" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="VPU-WQ-SSH"/>
-                                    <constraint firstAttribute="height" constant="53" id="hJC-fD-EoO"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="vzC-Wg-EHb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="30"/>
@@ -106,7 +104,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your total time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2T7-Bx-CaO">
-                                <rect key="frame" x="120.5" y="184" width="134" height="26"/>
+                                <rect key="frame" x="121" y="184" width="134" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="p1w-Rq-ln8"/>
                                 </constraints>

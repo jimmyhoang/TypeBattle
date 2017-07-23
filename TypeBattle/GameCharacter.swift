@@ -33,7 +33,7 @@ enum GameCharacterType: String {
             return .ninjaGirl
         case "robot":
             return .robot
-        case "zombieBoy":
+        case "zombieboy":
             return .zombieBoy
         default:
             return .zombieGirl
