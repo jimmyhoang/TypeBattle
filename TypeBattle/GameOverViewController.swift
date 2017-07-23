@@ -75,24 +75,28 @@ class GameOverViewController: UIViewController, UITableViewDelegate, UITableView
         if (player.finalPosition > 0) {
             cell.positionLabel.text = "\(player.finalPosition)"
             cell.timeLabel.text = String(format:"%01i:%02i:%02i", minutes, seconds, miliseconds)
+            
+            // Identify if player is the main player
+            if (self.currentPlayer.playerID == player.playerID)
+            {
+                self.finalPositionLabel.text = printPosition(position: player.finalPosition)
+                self.totalTimeLabel.text = String(format:"%01i:%02i:%02i", minutes, seconds, miliseconds)
+            }
         }
         else
         {
             cell.positionLabel.text = "-"
             
             cell.timeLabel.text = "DNF"
+            
+            // Identify if player is the main player
+            if (self.currentPlayer.playerID == player.playerID)
+            {
+                self.finalPositionLabel.text = "-"
+                self.totalTimeLabel.text = "DNF"
+            }
         }
-        
-        // Identify if player is the main player
-        if (self.currentPlayer.playerID == player.playerID)
-        {
-            self.finalPositionLabel.text = printPosition(position: player.finalPosition)
-            self.totalTimeLabel.text = String(format:"%01i:%02i:%02i", minutes, seconds, miliseconds)
-        }
-        
         cell.nameLabel.text = player.playerName
-        
-        
         
         return cell
     }
@@ -108,5 +112,16 @@ class GameOverViewController: UIViewController, UITableViewDelegate, UITableView
         default:
             return "\(position)th"
         }
+    }
+    
+    //MARK: Actions
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        
+        let storyboard = UIStoryboard(name: "Multiplayer", bundle: nil)
+        let vc         = storyboard.instantiateInitialViewController()
+        
+        let window = UIApplication.shared.windows[0] as UIWindow
+        
+        window.set(rootViewController: vc!)
     }
 }
