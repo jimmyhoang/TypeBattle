@@ -549,11 +549,11 @@ class MultiplayerGameScene: SKScene {
                             self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerID: self.currentPlayer.playerID, totalTime: self.mainPlayer.totalTime)
                             self.stopTimer = true
                             self.startEndGameCountdown()
+                        }else {
+                            self.mainPlayer.totalTime = Double(self.timerTime)
+                            self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerID: self.currentPlayer.playerID, totalTime: self.mainPlayer.totalTime)
+                            self.stopTimer = true
                         }
-                    }else {
-                        self.mainPlayer.totalTime = Double(self.timerTime)
-                        self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerID: self.currentPlayer.playerID, totalTime: self.mainPlayer.totalTime)
-                        self.stopTimer = true
                     }
                 }
             }
