@@ -189,8 +189,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
     }
     
     //MARK: Delegate
-    func gameDidEnd(gameSessionID: String) {
-        gameSession.gameSessionID = gameSessionID
+    func gameDidEnd() {
         performSegue(withIdentifier: "gameover-segue", sender: self)
     }
     
