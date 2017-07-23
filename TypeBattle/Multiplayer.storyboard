@@ -438,7 +438,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOBBY (1/8)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07q-rL-zA0">
-                                <rect key="frame" x="97.666666666666657" y="36" width="219.33333333333334" height="47"/>
+                                <rect key="frame" x="98" y="36" width="219.33333333333331" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="lwR-0F-CQN"/>
                                 </constraints>
@@ -836,6 +836,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Xzh-Ng-wRI"/>
-        <segue reference="lxy-RV-lua"/>
+        <segue reference="ozR-nN-e9y"/>
     </inferredMetricsTieBreakers>
 </document>
