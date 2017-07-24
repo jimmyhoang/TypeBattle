@@ -64,6 +64,8 @@
 		FF889A3D1F18422E006955BB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A3C1F18422E006955BB /* RegisterViewController.swift */; };
 		FF889A3F1F18423C006955BB /* RegisterScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF889A3E1F18423C006955BB /* RegisterScreen.storyboard */; };
 		FF889A431F1861A2006955BB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF889A421F1861A2006955BB /* NetworkManager.swift */; };
+		FFAF90AA1F25878200F73C8C /* Wraith-Arc-Blocks.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFAF90A91F25878200F73C8C /* Wraith-Arc-Blocks.otf */; };
+		FFAF90AC1F25878700F73C8C /* CIRCLED_.TTF in Resources */ = {isa = PBXBuildFile; fileRef = FFAF90AB1F25878700F73C8C /* CIRCLED_.TTF */; };
 		FFF210461F194A3000E51644 /* AvatarPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF210451F194A3000E51644 /* AvatarPickerCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +132,8 @@
 		FF889A3C1F18422E006955BB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		FF889A3E1F18423C006955BB /* RegisterScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterScreen.storyboard; sourceTree = "<group>"; };
 		FF889A421F1861A2006955BB /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		FFAF90A91F25878200F73C8C /* Wraith-Arc-Blocks.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wraith-Arc-Blocks.otf"; sourceTree = "<group>"; };
+		FFAF90AB1F25878700F73C8C /* CIRCLED_.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = CIRCLED_.TTF; sourceTree = "<group>"; };
 		FFF210451F194A3000E51644 /* AvatarPickerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarPickerCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +164,8 @@
 			children = (
 				43193A701F22A6E400DBF720 /* origami-mommy.regular.ttf */,
 				4340E6091F17F862003C0167 /* Supersonic Rocketship.ttf */,
+				FFAF90A91F25878200F73C8C /* Wraith-Arc-Blocks.otf */,
+				FFAF90AB1F25878700F73C8C /* CIRCLED_.TTF */,
 				436D73841F21391700CA301A /* betsy flanagan.ttf */,
 			);
 			name = Fonts;
@@ -415,6 +421,7 @@
 				4340E60A1F17F862003C0167 /* Supersonic Rocketship.ttf in Resources */,
 				FF889A351F16E779006955BB /* GoogleService-Info.plist in Resources */,
 				FF7B2D8E1F217B750064B63E /* bgmusic.mp3 in Resources */,
+				FFAF90AC1F25878700F73C8C /* CIRCLED_.TTF in Resources */,
 				438DC9641F180600005699C3 /* MainMenu.storyboard in Resources */,
 				436D73851F21391700CA301A /* betsy flanagan.ttf in Resources */,
 				FF889A161F169C3E006955BB /* Assets.xcassets in Resources */,
@@ -422,6 +429,7 @@
 				436D738D1F21902900CA301A /* Settings.storyboard in Resources */,
 				43D9BBCC1F1B51E100B0B4AC /* Leaderboard.storyboard in Resources */,
 				9C9808711F2482680080B77B /* Credits.storyboard in Resources */,
+				FFAF90AA1F25878200F73C8C /* Wraith-Arc-Blocks.otf in Resources */,
 				435913641F196AD200F59509 /* ProfilePage.storyboard in Resources */,
 				FF889A191F169C3E006955BB /* LaunchScreen.storyboard in Resources */,
 				9CA0393C1F208F3800657190 /* buttonSound.mp3 in Resources */,
