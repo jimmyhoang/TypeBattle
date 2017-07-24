@@ -46,7 +46,7 @@
                                 <rect key="frame" x="16" y="88" width="343" height="447"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkU-pY-HYE">
-                                        <rect key="frame" x="118" y="8" width="107" height="50"/>
+                                        <rect key="frame" x="118.5" y="8" width="106.5" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="g7B-3A-WZi"/>
                                         </constraints>
@@ -76,7 +76,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FERNANDO JINZENJI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLc-vq-9oS">
-                                        <rect key="frame" x="62" y="176" width="220" height="34"/>
+                                        <rect key="frame" x="62.5" y="176" width="219.5" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="ulc-Yg-483"/>
                                         </constraints>
@@ -85,7 +85,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JIMMY HOANG" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3e-4r-lRF">
-                                        <rect key="frame" x="97" y="218" width="150" height="34"/>
+                                        <rect key="frame" x="97.5" y="218" width="149.5" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="zyT-Gz-kVC"/>
                                         </constraints>
@@ -93,8 +93,8 @@
                                         <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HARRY Z. LEE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qx3-XQ-9o0">
-                                        <rect key="frame" x="98" y="260" width="147" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HARRY Z. LI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qx3-XQ-9o0">
+                                        <rect key="frame" x="108.5" y="260" width="126.5" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="rYO-bx-vRV"/>
                                         </constraints>
@@ -103,7 +103,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIGHTHOUSE LABS STAFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKQ-aG-X10">
-                                        <rect key="frame" x="40" y="358" width="264" height="34"/>
+                                        <rect key="frame" x="40.5" y="358" width="264" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="ufg-65-p8O"/>
                                         </constraints>
