@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Y0-Ey-bIB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Y0-Ey-bIB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,7 +28,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GC-li-S1U">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GC-li-S1U" customClass="MainMenuButton" customModule="TypeBattle" customModuleProvider="target">
                                 <rect key="frame" x="24" y="28" width="48" height="30"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TypeBattle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgk-tb-6H0" customClass="GameLabel" customModule="TypeBattle" customModuleProvider="target">
-                                <rect key="frame" x="105" y="68" width="165" height="28"/>
+                                <rect key="frame" x="105.5" y="68" width="164.5" height="28"/>
                                 <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="31"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -55,7 +55,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="avatarCell" id="Lbo-F1-L30" customClass="AvatarPickerCollectionViewCell" customModule="TypeBattle" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-1" width="65" height="72"/>
+                                        <rect key="frame" x="0.0" y="-0.5" width="65" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="65" height="72"/>
@@ -81,13 +81,13 @@
                                 <rect key="frame" x="75" y="224" width="225" height="333"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nickname" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="56e-HH-Dvt">
-                                        <rect key="frame" x="0.0" y="0.0" width="225" height="51"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="225" height="50.5"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JR7-zq-cyT">
-                                        <rect key="frame" x="0.0" y="71" width="225" height="50"/>
+                                        <rect key="frame" x="0.0" y="70.5" width="225" height="50.5"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -99,13 +99,13 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rl3-3a-d5C">
-                                        <rect key="frame" x="0.0" y="212" width="225" height="50"/>
+                                        <rect key="frame" x="0.0" y="212" width="225" height="50.5"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycc-M9-a0o">
-                                        <rect key="frame" x="0.0" y="282" width="225" height="51"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycc-M9-a0o" customClass="MainMenuButton" customModule="TypeBattle" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="282.5" width="225" height="50.5"/>
                                         <state key="normal" title="Register"/>
                                         <connections>
                                             <action selector="registerButton:" destination="0Y0-Ey-bIB" eventType="touchUpInside" id="1ot-SV-qdv"/>
@@ -137,6 +137,7 @@
                         <outlet property="emailTextField" destination="JR7-zq-cyT" id="DHm-lz-w5N"/>
                         <outlet property="nicknameTextField" destination="56e-HH-Dvt" id="8lg-9i-eMD"/>
                         <outlet property="passwordTextField" destination="yoI-vO-DsN" id="rxd-Ui-LEh"/>
+                        <outlet property="registerButton" destination="Ycc-M9-a0o" id="IAd-84-rAt"/>
                         <outlet property="titleLabel" destination="fgk-tb-6H0" id="1wW-Ny-D8G"/>
                         <segue destination="wtZ-fu-bB5" kind="showDetail" identifier="mainmenu" action="showViewController:sender:" id="Fsp-bS-tys"/>
                     </connections>

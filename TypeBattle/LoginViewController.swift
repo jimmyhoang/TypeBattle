@@ -15,11 +15,13 @@ import SpriteKit
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Properties
+    @IBOutlet weak var bottomStackView: UIStackView!
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var fireloginButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailButton: MainMenuButton!
+    @IBOutlet weak var facebookButton: MainMenuButton!
     
     let screenSize = UIScreen.main.bounds
     var background: BackgroundScene!
@@ -32,6 +34,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         NetworkManager.fetchPlayerDetails { (success) in
             
         }
+
+        fireloginButton.backgroundColor = UIColor.gameRed
+        fireloginButton.setTitleColor(UIColor.white, for: .normal)
+        fireloginButton.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        fireloginButton.layer.cornerRadius = 4.0
+        
+        bottomStackView.isLayoutMarginsRelativeArrangement = true
+        bottomStackView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        
+        facebookButton.backgroundColor = UIColor.gameRed
+        facebookButton.setTitleColor(UIColor.white, for: .normal)
+        facebookButton.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        facebookButton.layer.cornerRadius = 4.0
+        
+        emailButton.backgroundColor = UIColor.gameRed
+        emailButton.setTitleColor(UIColor.white, for: .normal)
+        emailButton.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        emailButton.layer.cornerRadius = 4.0
+        
+
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
     
