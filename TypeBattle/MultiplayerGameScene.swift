@@ -579,7 +579,9 @@ class MultiplayerGameScene: SKScene {
                 }
             }
             self.myPosition = tempPosition
-            self.positionLabelNode.text = self.printPosition(position: self.myPosition)
+            if self.mainPlayer.currentIndex < self.textArray.count - 1 {
+                self.positionLabelNode.text = self.printPosition(position: self.myPosition)
+            }
         }
     }
     
