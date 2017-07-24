@@ -86,8 +86,6 @@ class MultiplayerGameScene: SKScene {
     var timerXPos: CGFloat!
     var timerYPos: CGFloat!
     
-    
-    
     //Countdown
     var countdownNode: SKLabelNode!
     var countdownTime = 10
@@ -173,6 +171,7 @@ class MultiplayerGameScene: SKScene {
         
         neverEndingSky(widthOfSky: skyWidth)
     }
+    
     
     //MARK: Players
     //Setup players
@@ -342,7 +341,7 @@ class MultiplayerGameScene: SKScene {
     func setupText() {
         //textContainer
         textContainerNode = SKSpriteNode()
-        textContainerNode.color = UIColor.gameTeal
+        textContainerNode.color = UIColor.clear
         textContainerNode.anchorPoint = CGPoint.zero
         
         let textContainerXPos = -100
@@ -444,7 +443,7 @@ class MultiplayerGameScene: SKScene {
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
         let miliseconds = Int(time.truncatingRemainder(dividingBy: 1) * 100)
-        timerTextNode.text = String(format:"%2i:%02i:%02i", minutes, seconds, miliseconds)
+        timerTextNode.text = String(format:"%01i:%02i:%02i", minutes, seconds, miliseconds)
     }
     
     //Setup position label
@@ -508,6 +507,7 @@ class MultiplayerGameScene: SKScene {
         textPosIndicator.texture = SKTexture(imageNamed: "redSliderUp")
         textPosIndicator.size = CGSize(width: 30, height: 30)
         textPosIndicator.anchorPoint = CGPoint.zero
+        textPosIndicator.zPosition = 20
         
         let textPosIndicatorX = textContainerNode.position.x
         let textPosIndicatorY = textContainerNode.position.y - textPosIndicator.frame.size.height

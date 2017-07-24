@@ -49,6 +49,7 @@ class GameScene: SKScene {
     var initialTime: TimeInterval!
     var timerTime: TimeInterval!
     var firstFrame = true
+    var stopTimer = false
     
     //MARK: Scene DidMove
     override func didMove(to view: SKView) {
@@ -58,6 +59,7 @@ class GameScene: SKScene {
         sceneWidth = self.frame.size.width
         setupCamera()
         setupText()
+        setupTextPosIndicator()
         setupBackground()
         setupMainPlayer()
         detectKeystroke()
@@ -78,42 +80,17 @@ class GameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func touchDown(atPoint pos : CGPoint) {
-        
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         if firstFrame == true {
             initialTime = currentTime
             firstFrame = false
         }
-        timerTime = currentTime - initialTime
-        updateTimer(time: timerTime)
+        
+        if stopTimer == false {
+            timerTime = currentTime - initialTime
+            updateTimer(time: timerTime)
+        }
         
         neverEndingSky(widthOfSky: skyWidth)
     }
@@ -208,9 +185,13 @@ class GameScene: SKScene {
     func setupText() {
         //textContainer
         textContainerNode = SKSpriteNode()
-        textContainerNode.color = UIColor.gameTeal
+        textContainerNode.color = UIColor.clear
         textContainerNode.anchorPoint = CGPoint.zero
-        textContainerNode.position = CGPoint(x: 0 - cam.position.x + 100, y: 0 + cam.position.y - 150)
+        
+        let textContainerXPos = -100
+        let textContainerYPos = 80
+        
+        textContainerNode.position = CGPoint(x: textContainerXPos, y: textContainerYPos)
         textContainerNode.zPosition = 10
         cam.addChild(textContainerNode)
 
@@ -233,6 +214,19 @@ class GameScene: SKScene {
         textContainerNode.size = CGSize(width: CGFloat(textArray.count) * spaceBetweenLetters, height: textNode.frame.height)
     }
 
+    //Set initial properties of textPosIndicator
+    func setupTextPosIndicator() {
+        let textPosIndicator = SKSpriteNode()
+        textPosIndicator.texture = SKTexture(imageNamed: "redSliderUp")
+        textPosIndicator.size = CGSize(width: 30, height: 30)
+        textPosIndicator.anchorPoint = CGPoint.zero
+        
+        let textPosIndicatorX = textContainerNode.position.x
+        let textPosIndicatorY = textContainerNode.position.y - textPosIndicator.frame.size.height
+        textPosIndicator.position = CGPoint(x: textPosIndicatorX, y: textPosIndicatorY)
+        cam.addChild(textPosIndicator)
+    }
+    
     //Moving Text
     func moveText() {
         let movement = spaceBetweenLetters
@@ -284,19 +278,24 @@ class GameScene: SKScene {
     //Setup
     func setupTimer() {
         timerTextNode = SKLabelNode(fontNamed: inGameTextFontName)
-        timerTextNode.fontSize = textFontSize
-        timerTextNode.fontColor = UIColor.black
-        timerTextNode.text = "0.00"
+        timerTextNode.fontSize = 30
+        timerTextNode.horizontalAlignmentMode = .center
+        timerTextNode.verticalAlignmentMode = .bottom
+        timerTextNode.fontColor = .black
+        timerTextNode.text = "0:00.00"
         
-        let timerXPos = cam.position.x + cam.frame.size.width/2 - timerTextNode.frame.size.width
-        let timerYPos = cam.position.y + cam.frame.size.height/2 - timerTextNode.frame.size.height
-
+        let timerXPos: CGFloat = 0
+        let timerYPos = sceneHeight/2 - timerTextNode.frame.size.height
+        
         timerTextNode.position = CGPoint(x: timerXPos, y: timerYPos)
         cam.addChild(timerTextNode)
     }
     
     //update time
     func updateTimer(time: Double) {
-        timerTextNode.text = String(format: "%.2f", time)
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        let miliseconds = Int(time.truncatingRemainder(dividingBy: 1) * 100)
+        timerTextNode.text = String(format:"%01i:%02i:%02i", minutes, seconds, miliseconds)
     }
 }
