@@ -269,6 +269,34 @@ class GameManager {
         ref.setValue(dictionary)
     }
     
+    func setGameStartTime (gameSessionID: String, intervalReference: TimeInterval) {
+        
+        // create a json strutucture in firebase to control game sync
+        let ref = Database.database().reference(withPath: "game_sync").child(gameSessionID)
+        let startInterval = intervalReference + 10.0
+        let dictionary = ["startInterval": startInterval]
+        ref.setValue(dictionary)
+    }
+    
+    func observeForStartTime (gameSessionID: String, withCompletionBlock block: @escaping (TimeInterval) -> Swift.Void) {
+        
+        let ref = Database.database().reference(withPath: "game_sync").child(gameSessionID)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let dictionary = snapshot.value as? [String : Double] else {
+                print("GameManager.ObserveForStartTime error. Could not parse dictionary.")
+                return
+            }
+            
+            guard let startInterval = dictionary["startInterval"]  else {
+                print("GameManager.ObserveForStartTime error. Could not retrieve StartInterval")
+                return
+            }
+            
+            block(startInterval)
+        })
+    }
+    
     func getGameSession(gameSessionID: String, withCompletionBlock block: @escaping (GameSession) -> Swift.Void) {
     
         let ref = Database.database().reference(withPath: "game_sessions")

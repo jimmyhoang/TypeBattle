@@ -12,14 +12,16 @@ import FirebaseAuth
 import FacebookLogin
 import FacebookCore
 import SpriteKit
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, BGSceneDelegate {
     
     //MARK: Properties
+    @IBOutlet weak var bottomStackView: UIStackView!
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var fireloginButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailButton: MainMenuButton!
+    @IBOutlet weak var facebookButton: MainMenuButton!
     
     let screenSize = UIScreen.main.bounds
     var background: BackgroundScene!
@@ -29,15 +31,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.delegate    = self
         passwordTextField.delegate = self
         
-        NetworkManager.fetchPlayerDetails()
-        NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
+        NetworkManager.fetchPlayerDetails { (success) in
+            
+        }
+
+        fireloginButton.backgroundColor = UIColor.gameRed
+        fireloginButton.setTitleColor(UIColor.white, for: .normal)
+        fireloginButton.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        fireloginButton.layer.cornerRadius = 4.0
+        
+        bottomStackView.isLayoutMarginsRelativeArrangement = true
+        bottomStackView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        
+        facebookButton.backgroundColor = UIColor.gameRed
+        facebookButton.setTitleColor(UIColor.white, for: .normal)
+        facebookButton.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        facebookButton.layer.cornerRadius = 4.0
+        
+        emailButton.backgroundColor = UIColor.gameRed
+        emailButton.setTitleColor(UIColor.white, for: .normal)
+        emailButton.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        emailButton.layer.cornerRadius = 4.0
+        
+
     }
-    
-    deinit {
-        print("deinited")
-    }
-    
-    func 🚶🏿💯(sender:Notification) {
+
+    func animationDidFinish() {
         let storyboard = UIStoryboard(name: "RegisterScreen", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         let window     = UIApplication.shared.windows[0] as UIWindow
@@ -52,6 +71,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         self.setupBackground()
         self.background.backgroundColor = UIColor.background
+        background.bgDelegate = self
+
     }
     
     func setupBackground() {
@@ -94,7 +115,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         NetworkManager.login(email: email, password: password) { (success, error) -> (Void) in
             if success == true {
-                self.performSegue(withIdentifier: "mainmenu", sender: self)
+                let storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
+                let vc         = storyboard.instantiateInitialViewController()
+                let window     = UIApplication.shared.windows[0] as UIWindow
+                
+                let transition      = CATransition()
+                transition.subtype  = kCATransitionFade
+                transition.duration = 0.5
+                
+                window.set(rootViewController: vc!, withTransition: transition)
+
             } else {
                 let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
                 

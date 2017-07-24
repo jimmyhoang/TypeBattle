@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import Firebase
 
-class ProfilePageView: UIView {
+class ProfilePageView: UIView, BGSceneDelegate {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -26,7 +26,9 @@ class ProfilePageView: UIView {
     
     private lazy var profilePicture:UIImageView = {
         var imageView = UIImageView(image: self.player.avatar)
-        imageView.contentMode = .scaleAspectFit
+        
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
@@ -49,7 +51,6 @@ class ProfilePageView: UIView {
     private lazy var nameLabel:GameLabel = {
         let label = GameLabel()
         label.font = UIFont.gameFont(size: 30.0)
-        label.text = "Test Player"
         label.text = self.player.name
         
         return label
@@ -58,8 +59,7 @@ class ProfilePageView: UIView {
     private lazy var levelLabel:GameLabel = {
         let label = GameLabel()
         label.font = UIFont.gameFont(size: 25.0)
-        label.text = "Level: 1"
-        label.text = "Level: \(self.player.level)"
+        label.text = "Level \(self.player.level)"
         
         return label
     }()
@@ -67,7 +67,6 @@ class ProfilePageView: UIView {
     private lazy var matchesWonLabel:GameLabel = {
         let label = GameLabel()
         label.font = UIFont.gameFont(size: 25.0)
-        label.text = "Matches Won: 0"
         label.text = "Matches Won: \(self.player.matchesWon)"
         
         return label
@@ -76,7 +75,6 @@ class ProfilePageView: UIView {
     private lazy var matchesPlayedLabel:GameLabel = {
         let label = GameLabel()
         label.font = UIFont.gameFont(size: 25.0)
-        label.text = "Matches Played: 3"
         label.text = "Matches Played: \(self.player.matchesPlayed)"
         
         return label
@@ -161,7 +159,9 @@ class ProfilePageView: UIView {
         self.bottomHorizontalStack.addArrangedSubview(backButton)
         self.bottomHorizontalStack.addArrangedSubview(signoutButton)
         //self.bottomHorizontalStack.addArrangedSubview(editProfileButton)
-        NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
+        
+        background.bgDelegate = self
+        
         self.setNeedsUpdateConstraints()
     }
     
@@ -169,7 +169,7 @@ class ProfilePageView: UIView {
         NSLayoutConstraint.activate([topHorizontalStack.topAnchor.constraint(equalTo: topAnchor, constant: 50.0),
                                      topHorizontalStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8.0),
                                      topHorizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8.0),
-                                     topHorizontalStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2),
+                                     topHorizontalStack.heightAnchor.constraint(equalToConstant: 100),
                                      mainVerticalStack.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor, constant: 10.0),
                                      mainVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor),
                                      bottomHorizontalStack.topAnchor.constraint(equalTo: mainVerticalStack.bottomAnchor, constant: 10.0),
@@ -185,12 +185,12 @@ class ProfilePageView: UIView {
             ])
         
         //constraints for elements in the upper horizontal stack view
-        NSLayoutConstraint.activate([profilePicture.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, multiplier: 0.3),
-                                     upperVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, multiplier: 0.7)])
+        NSLayoutConstraint.activate([profilePicture.widthAnchor.constraint(equalToConstant: 100.0),
+                                     upperVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, constant: -100.0)])
         super.updateConstraints()
     }
     
-    func 🚶🏿💯(sender:Notification) {
+    func animationDidFinish() {
         let storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         let window     = UIApplication.shared.windows[0] as UIWindow
@@ -200,6 +200,7 @@ class ProfilePageView: UIView {
         transition.duration = 0.5
         
         window.set(rootViewController: vc!, withTransition: transition)
+    
     }
     
     func backToMainMenu(sender:UIButton!) {

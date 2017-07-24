@@ -8,7 +8,7 @@
 
 import UIKit
 import SpriteKit
-class SettingsView: UIView {
+class SettingsView: UIView, BGSceneDelegate {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -121,7 +121,7 @@ class SettingsView: UIView {
             buttonSoundSwitch.setOn(false, animated: false)
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
+        background.bgDelegate = self
         
         self.setNeedsUpdateConstraints()
     }
@@ -146,9 +146,9 @@ class SettingsView: UIView {
         super.updateConstraints()
     }
     
-    func 🚶🏿💯(sender:Notification) {
+    func animationDidFinish() {
         let storyboard: UIStoryboard
-            
+        
         switch(buttonTag) {
         case 1:
             storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
@@ -157,19 +157,17 @@ class SettingsView: UIView {
         default:
             storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
         }
+        
         let vc         = storyboard.instantiateInitialViewController()
+        let window     = UIApplication.shared.windows[0] as UIWindow
         
-        let window = UIApplication.shared.windows[0] as UIWindow;
-        UIView.transition(from:(window.rootViewController?.view)!,
-                          to: (vc?.view)!,
-                          duration: 0.5,
-                          options: .transitionCrossDissolve,
-                          completion: {
-                            finished in window.rootViewController = vc
-        })
+        let transition      = CATransition()
+        transition.subtype  = kCATransitionFade
+        transition.duration = 0.5
         
+        window.set(rootViewController: vc!, withTransition: transition)
     }
-    
+
     func backToMainMenu(sender:UIButton!) {
         // Play sound
         MusicHelper.sharedHelper.playButtonSound()

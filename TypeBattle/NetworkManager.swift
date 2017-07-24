@@ -44,14 +44,19 @@ class NetworkManager{
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error == nil {
-                fetchPlayerDetails()
-                loginSuccess = true
+                fetchPlayerDetails(completion: { (success) in
+                    if success {
+                        loginSuccess = true
+                        completion(loginSuccess, errorDescription)
+                    }
+                })
             }
             else {
                 guard let error  = error else {return}
                 errorDescription = error.localizedDescription
+                completion(loginSuccess, errorDescription)
             }
-            completion(loginSuccess, errorDescription)
+            
         }
     }
  
@@ -71,50 +76,60 @@ class NetworkManager{
                 let credential   = FacebookAuthProvider.credential(withAccessToken: (AccessToken.current?.authenticationToken)!)
                 
                 Auth.auth().signIn(with: credential, completion: { (user, error) in
-                    if error == nil {
-                        let params = ["fields": "picture.type(large), name"]
-                        let graphRequest = GraphRequest(graphPath: "me", parameters: params, accessToken: AccessToken.current, httpMethod: GraphRequestHTTPMethod.GET, apiVersion: GraphAPIVersion.defaultVersion)
+                    
+                    fetchPlayerDetails(completion: { (success) in
                         
-                      graphRequest.start({ (urlResponse, graphResult) in
-                            switch graphResult {
-                            case .failed (let error):
-                                print(error)
-                            case .success (let graphResponse):
-                                
-                                guard let responseDictionary = graphResponse.dictionaryValue else {return}
-                                let photoDict                = responseDictionary["picture"] as! NSDictionary
-                                let dataDict                 = photoDict["data"] as! NSDictionary
-                                
-                                let name             = responseDictionary["name"] as! String
-                                guard let url        = dataDict["url"] as? String else {return}
-                                guard let stringURL  = URL(string: url) else {return}
-                                guard let user       = user else {return}
-                                let newPlayer        = Player(name: name, playerID: user.uid, avatarName: "")
-                                newPlayer.avatarName = "facebook"
-                                newPlayer.fbPicURL   = url
-                                
-                                DispatchQueue.main.async {
-                                    downloadFBImage(url: stringURL, completion: { (image) -> (Void) in
-                                        newPlayer.avatar = image
-                                    })
+                        if success {
+                            loginSuccess = true
+                            completion(loginSuccess, errorDescription)
+                        }
+                        
+                        if !success {
+                            let params = ["fields": "picture.type(large), name"]
+                            let graphRequest = GraphRequest(graphPath: "me", parameters: params, accessToken: AccessToken.current, httpMethod: GraphRequestHTTPMethod.GET, apiVersion: GraphAPIVersion.defaultVersion)
+                            
+                            graphRequest.start({ (urlResponse, graphResult) in
+                                switch graphResult {
+                                case .failed (let error):
+                                    print(error)
+                                case .success (let graphResponse):
+                                    
+                                    guard let responseDictionary = graphResponse.dictionaryValue else {return}
+                                    let photoDict                = responseDictionary["picture"] as! NSDictionary
+                                    let dataDict                 = photoDict["data"] as! NSDictionary
+                                    
+                                    let name             = responseDictionary["name"] as! String
+                                    guard let url        = dataDict["url"] as? String else {return}
+                                    guard let stringURL  = URL(string: url) else {return}
+                                    guard let user       = user else {return}
+                                    let newPlayer        = Player(name: name, playerID: user.uid, avatarName: "")
+                                    newPlayer.avatarName = "facebook"
+                                    newPlayer.fbPicURL   = url
+                                    
+                                    DispatchQueue.main.async {
+                                        downloadFBImage(url: stringURL, completion: { (image) -> (Void) in
+                                            newPlayer.avatar = image
+                                        })
+                                    }
+                                    
+                                    let playerRef      = ref.child(user.uid.lowercased())
+                                    let appDelegate    = UIApplication.shared.delegate as! AppDelegate
+                                    appDelegate.player = newPlayer
+                                    
+                                    playerRef.setValue(newPlayer.toAnyObject())
+                                    
+                                    loginSuccess = true
+                                    completion(loginSuccess,errorDescription)
                                 }
-                                
-                                let playerRef      = ref.child(user.uid.lowercased())
-                                let appDelegate    = UIApplication.shared.delegate as! AppDelegate
-                                appDelegate.player = newPlayer
-                                
-                                playerRef.setValue(newPlayer.toAnyObject())
-                                
-                                loginSuccess = true
-                                completion(loginSuccess,errorDescription)
-                            }
-                        })
-                    } else {
-                        guard let error  = error else {return}
-                        errorDescription = error.localizedDescription
-                        completion(loginSuccess,errorDescription)
-                    }
-                })
+                            })
+                        } else {
+                            guard let error  = error else {return}
+                            errorDescription = error.localizedDescription
+                            completion(loginSuccess,errorDescription)
+                        }
+                    })
+
+                } )
             }
         }
     }
@@ -156,15 +171,15 @@ class NetworkManager{
 
     }
     
-    class func fetchPlayerDetails() {
+    class func fetchPlayerDetails(completion: @escaping (Bool) -> Swift.Void) {
        
         guard let userID  = Auth.auth().currentUser?.uid.lowercased() else {return}
         let appDelegate   = UIApplication.shared.delegate as! AppDelegate
         
         self.fetchPlayerDetails(playerID: userID) { (player) in
             appDelegate.player = player
+            completion(true)
         }
-        
     }
 
     class func downloadFBImage(url:URL, completion:@escaping (UIImage) -> (Void)) {
@@ -177,6 +192,7 @@ class NetworkManager{
     
     class func loadPlayers(completion:@escaping (Player?) -> ()) {
         let ref = Database.database().reference(withPath: "players")
+        
         ref.queryOrdered(byChild: "matchesWon").observeSingleEvent(of: .value, with: {(snapshot) in
             if !snapshot.exists() {
                 return
@@ -190,8 +206,11 @@ class NetworkManager{
                 guard let id         = rawPlayer.object(forKey: "playerID") as? String else {continue}
                 guard let avatarName = rawPlayer.object(forKey: "avatarName") as? String else {continue}
                 guard let matchesWon = rawPlayer.object(forKey: "matchesWon") as? Int else {continue}
+                guard let level      = rawPlayer.object(forKey: "level") as? Int else {continue}
+                
                 let player           = Player(name: name, playerID: id, avatarName: avatarName)
                 player.matchesWon    = matchesWon
+                player.level         = level
                 
                 completion(player)
             }

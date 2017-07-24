@@ -24,11 +24,11 @@
                         <viewControllerLayoutGuide type="top" id="Gon-zp-wGi"/>
                         <viewControllerLayoutGuide type="bottom" id="Q3o-AI-hcx"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ILm-aX-s5P">
+                    <view key="view" tag="100" contentMode="scaleToFill" id="ILm-aX-s5P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GC-li-S1U">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GC-li-S1U" customClass="MainMenuButton" customModule="TypeBattle" customModuleProvider="target">
                                 <rect key="frame" x="24" y="28" width="48" height="30"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
@@ -41,7 +41,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Upt-an-4JD">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="69" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Upt-an-4JD">
                                 <rect key="frame" x="57" y="128" width="262" height="71"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -84,13 +84,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="225" height="51"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JR7-zq-cyT">
                                         <rect key="frame" x="0.0" y="71" width="225" height="50"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yoI-vO-DsN">
                                         <rect key="frame" x="0.0" y="141" width="225" height="51"/>
@@ -104,7 +104,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycc-M9-a0o">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycc-M9-a0o" customClass="MainMenuButton" customModule="TypeBattle" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="282" width="225" height="51"/>
                                         <state key="normal" title="Register"/>
                                         <connections>
@@ -129,6 +129,9 @@
                             <constraint firstItem="ToG-qh-Wsy" firstAttribute="centerX" secondItem="ILm-aX-s5P" secondAttribute="centerX" id="umK-Nh-iU5"/>
                             <constraint firstItem="ToG-qh-Wsy" firstAttribute="height" secondItem="ILm-aX-s5P" secondAttribute="height" multiplier="0.5" id="wAn-7S-bEi"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="kmH-Ke-7Bn" appends="YES" id="OCr-Nf-zl5"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="5GC-li-S1U" id="Kzf-EH-I5f"/>
@@ -137,14 +140,16 @@
                         <outlet property="emailTextField" destination="JR7-zq-cyT" id="DHm-lz-w5N"/>
                         <outlet property="nicknameTextField" destination="56e-HH-Dvt" id="8lg-9i-eMD"/>
                         <outlet property="passwordTextField" destination="yoI-vO-DsN" id="rxd-Ui-LEh"/>
+                        <outlet property="registerButton" destination="Ycc-M9-a0o" id="IAd-84-rAt"/>
+                        <outlet property="tapGesture" destination="kmH-Ke-7Bn" id="oqF-Y8-Z9B"/>
                         <outlet property="titleLabel" destination="fgk-tb-6H0" id="1wW-Ny-D8G"/>
                         <segue destination="wtZ-fu-bB5" kind="showDetail" identifier="mainmenu" action="showViewController:sender:" id="Fsp-bS-tys"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sGQ-Fu-Saw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="gm5-Z3-uYg">
+                <tapGestureRecognizer id="kmH-Ke-7Bn">
                     <connections>
-                        <action selector="screenTapped:" destination="0Y0-Ey-bIB" id="eD7-pc-edG"/>
+                        <action selector="screenTapped:" destination="0Y0-Ey-bIB" id="aV7-dy-V19"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
