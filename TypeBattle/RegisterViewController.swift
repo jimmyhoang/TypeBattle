@@ -139,7 +139,15 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     @IBAction func cancelButton(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        let vc         = storyboard.instantiateInitialViewController()
+        let window     = UIApplication.shared.windows[0] as UIWindow
+        
+        let transition      = CATransition()
+        transition.subtype  = kCATransitionFade
+        transition.duration = 0.5
+        
+        window.set(rootViewController: vc!, withTransition: transition)
     }
     
     // MARK: UICollectionViewDelegate

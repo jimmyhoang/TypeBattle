@@ -38,7 +38,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func 🚶🏿💯(sender:Notification) {
-        performSegue(withIdentifier: "registerscreen", sender: self)
+        let storyboard = UIStoryboard(name: "RegisterScreen", bundle: nil)
+        let vc         = storyboard.instantiateInitialViewController()
+        let window     = UIApplication.shared.windows[0] as UIWindow
+        
+        let transition      = CATransition()
+        transition.subtype  = kCATransitionFade
+        transition.duration = 0.5
+        
+        window.set(rootViewController: vc!, withTransition: transition)
     }
     
     override func viewWillAppear(_ animated: Bool) {
