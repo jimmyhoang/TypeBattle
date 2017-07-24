@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VgI-AH-1q6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VgI-AH-1q6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVE-S7-oyc">
-                                <rect key="frame" x="0.0" y="95" width="375" height="406"/>
+                                <rect key="frame" x="0.0" y="95" width="375" height="430.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TypeBattle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhB-IJ-Ti0" customClass="GameLabel" customModule="TypeBattle" customModuleProvider="target">
                                         <rect key="frame" x="36" y="0.0" width="303" height="36"/>
@@ -70,7 +70,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFt-t6-yPp" customClass="MainMenuButton" customModule="TypeBattle" customModuleProvider="target">
-                                        <rect key="frame" x="163" y="255" width="50" height="36"/>
+                                        <rect key="frame" x="164" y="255" width="48" height="31"/>
                                         <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="20"/>
                                         <state key="normal" title="Login">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -100,11 +100,11 @@
                                     <constraint firstItem="y2l-RP-3X1" firstAttribute="centerY" secondItem="Git-wR-80p" secondAttribute="centerY" constant="1.75" id="usw-V3-Dbc"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NPC-Jm-S7L">
-                                <rect key="frame" x="24" y="579" width="327" height="80"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NPC-Jm-S7L">
+                                <rect key="frame" x="24" y="599" width="327" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xK-4b-8Kh" customClass="MainMenuButton" customModule="TypeBattle" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="164" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="60"/>
                                         <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="17"/>
                                         <state key="normal" title="Email">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -114,7 +114,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGk-ko-IvA" customClass="MainMenuButton" customModule="TypeBattle" customModuleProvider="target">
-                                        <rect key="frame" x="164" y="0.0" width="163" height="80"/>
+                                        <rect key="frame" x="167.5" y="0.0" width="159.5" height="60"/>
                                         <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="17"/>
                                         <state key="normal" title="Facebook">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -125,11 +125,11 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="q6k-0Q-eOd"/>
+                                    <constraint firstAttribute="height" constant="60" id="q6k-0Q-eOd"/>
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No account? Register with:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvi-gb-3Ct" customClass="GameLabel" customModule="TypeBattle" customModuleProvider="target">
-                                <rect key="frame" x="84" y="551" width="207" height="20"/>
+                                <rect key="frame" x="82.5" y="575.5" width="211" height="15.5"/>
                                 <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -154,8 +154,10 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="bottomStackView" destination="NPC-Jm-S7L" id="c9b-rm-o7T"/>
                         <outlet property="emailButton" destination="5xK-4b-8Kh" id="l9F-F5-Eww"/>
                         <outlet property="emailTextField" destination="4pQ-cq-Zk5" id="tJ4-jT-AKG"/>
+                        <outlet property="facebookButton" destination="qGk-ko-IvA" id="vlJ-RZ-cwE"/>
                         <outlet property="fireloginButton" destination="aFt-t6-yPp" id="2YM-ce-A0b"/>
                         <outlet property="loginView" destination="KVE-S7-oyc" id="Xzu-x9-AF9"/>
                         <outlet property="passwordTextField" destination="Git-wR-80p" id="0F3-gb-Svc"/>
