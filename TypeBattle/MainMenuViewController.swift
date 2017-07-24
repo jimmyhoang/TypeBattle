@@ -14,6 +14,7 @@ class MainMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NetworkManager.fetchPlayerDetails()
     }
 
     override func didReceiveMemoryWarning() {
