@@ -253,6 +253,9 @@ class GameScene: SKScene {
                 changeCurrentTextColor(index: arrayIndex)
                 arrayIndex += 1
             }
+            if arrayIndex == textArray.count {
+                stopTimer = true
+            }
         }
     }
     

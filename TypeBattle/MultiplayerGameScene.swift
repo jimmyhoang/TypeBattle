@@ -345,7 +345,7 @@ class MultiplayerGameScene: SKScene {
         textContainerNode.anchorPoint = CGPoint.zero
         
         let textContainerXPos = -100
-        let textContainerYPos = 50
+        let textContainerYPos = 60
         
         textContainerNode.position = CGPoint(x: textContainerXPos, y: textContainerYPos)
         textContainerNode.zPosition = 10
@@ -518,6 +518,7 @@ class MultiplayerGameScene: SKScene {
     //MARK: Leaderboard Observer
     func observePlayerPosition() {
         gameManager.observeLeaderboardChanges(gameSessionID: gameSession.gameSessionID) { (playerStatus) in
+            var tempPosition = 1
             for index in 0 ..< playerStatus.count {
                 //loop through every player except currentPlayer
                 if self.currentPlayer.playerID != playerStatus[index][0] as! String {
@@ -548,13 +549,7 @@ class MultiplayerGameScene: SKScene {
                     
                     //check and set my position
                     if self.mainPlayer.currentIndex < aPlayer.currentIndex {
-                        var tempPosition = 1
                         tempPosition += 1
-                        self.myPosition = tempPosition
-                    } else if self.mainPlayer.currentIndex > aPlayer.currentIndex {
-                        var tempPosition = playerStatus.count
-                        tempPosition -= 1
-                        self.myPosition = tempPosition
                     }
                 //else the currentPlayer
                 }else {
@@ -578,6 +573,7 @@ class MultiplayerGameScene: SKScene {
                     }
                 }
             }
+            self.myPosition = tempPosition
             self.positionLabelNode.text = self.printPosition(position: self.myPosition)
         }
     }
