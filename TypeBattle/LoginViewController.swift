@@ -55,11 +55,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, BGSceneDelegat
         
 
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
+
     func animationDidFinish() {
         let storyboard = UIStoryboard(name: "RegisterScreen", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
@@ -119,7 +115,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate, BGSceneDelegat
         
         NetworkManager.login(email: email, password: password) { (success, error) -> (Void) in
             if success == true {
-                self.performSegue(withIdentifier: "mainmenu", sender: self)
+                let storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
+                let vc         = storyboard.instantiateInitialViewController()
+                let window     = UIApplication.shared.windows[0] as UIWindow
+                
+                let transition      = CATransition()
+                transition.subtype  = kCATransitionFade
+                transition.duration = 0.5
+                
+                window.set(rootViewController: vc!, withTransition: transition)
+
             } else {
                 let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
                 
