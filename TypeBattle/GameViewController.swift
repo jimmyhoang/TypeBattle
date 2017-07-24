@@ -44,8 +44,9 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        gameManager.stopObservingLeaderboardChanges(gameSessionID: self.gameSession.gameSessionID)
+        if (gameSession.players.count > 1) {
+            gameManager.stopObservingLeaderboardChanges(gameSessionID: self.gameSession.gameSessionID)
+        }
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
