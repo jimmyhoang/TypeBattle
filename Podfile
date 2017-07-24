@@ -6,11 +6,13 @@ target 'TypeBattle' do
   use_frameworks!
 
   # Pods for TypeBattle
-    pod 'RealmSwift'
     pod 'Firebase'
     pod 'Firebase/Core'
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
     pod 'SwiftyJSON'
+    pod 'FacebookCore'
+    pod 'FacebookLogin'
+    pod 'Nuke', '~> 5.1'
 
 end

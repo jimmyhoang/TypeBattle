@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zkw-Y1-KoK">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile Page View Controller-->
+        <scene sceneID="ZMm-c9-Pj5">
+            <objects>
+                <viewController id="zkw-Y1-KoK" customClass="ProfilePageViewController" customModule="TypeBattle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SKg-sK-qrb"/>
+                        <viewControllerLayoutGuide type="bottom" id="jfe-cJ-cqr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9sb-hA-Etf" customClass="ProfilePageView" customModule="TypeBattle" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="ecm-m3-3uc" kind="showDetail" identifier="mainMenuSegue" action="showViewController:sender:" id="l3h-2I-iRU"/>
+                        <segue destination="0hP-Mc-q9z" kind="showDetail" identifier="loginSegue" id="vul-9N-xEG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qvQ-DH-eEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-191" y="-62"/>
+        </scene>
+        <!--MainMenu-->
+        <scene sceneID="Jsh-sg-9Te">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="MainMenu" storyboardName="MainMenu" id="ecm-m3-3uc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tBs-Hg-rzf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="484" y="-60"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="TYh-Uo-o1P">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="0hP-Mc-q9z" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Ss-uG-pDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="508" y="40"/>
+        </scene>
+    </scenes>
+</document>
