@@ -72,7 +72,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, BGSceneDelegat
         self.setupBackground()
         self.background.backgroundColor = UIColor.background
         background.bgDelegate = self
-
     }
     
     func setupBackground() {

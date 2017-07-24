@@ -76,9 +76,29 @@ class BackgroundScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        //test
-        mainPlayer.gameCharacter = .knight
-        //
+        let app    = UIApplication.shared.delegate as! AppDelegate
+        let player = app.player
+        
+        switch player.avatarName {
+        case "cat/Idle (1)":
+            mainPlayer.gameCharacter = .cat
+        case "dog/Idle (1)":
+            mainPlayer.gameCharacter = .dog
+        case "knight/Idle (1)":
+            mainPlayer.gameCharacter = .knight
+        case "ninjaBoy/Idle__000":
+            mainPlayer.gameCharacter = .ninjaBoy
+        case "ninjaGirl/Idle__000":
+            mainPlayer.gameCharacter = .ninjaGirl
+        case "robot/Idle (1)":
+            mainPlayer.gameCharacter = .robot
+        case "zombieBoy/Idle (1)":
+            mainPlayer.gameCharacter = .zombieBoy
+        case "zombieGirl/Idle (1)":
+            mainPlayer.gameCharacter = .zombieGirl
+        default:
+            mainPlayer.gameCharacter = .knight
+        }
         
         self.anchorPoint = CGPoint.zero
         sceneHeight = self.frame.size.height
