@@ -33,6 +33,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
     
+    deinit {
+        print("deinited")
+    }
+    
     func 🚶🏿💯(sender:Notification) {
         performSegue(withIdentifier: "registerscreen", sender: self)
     }
