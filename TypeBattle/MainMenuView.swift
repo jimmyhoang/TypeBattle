@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-class MainMenuView: UIView {
+class MainMenuView: UIView, BGSceneDelegate {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -115,6 +115,7 @@ class MainMenuView: UIView {
         
         setupBackground()
         background.backgroundColor = UIColor.background
+        background.bgDelegate = self
         
 //        let playerSessions = [PlayerSession(playerID: "100", playerName: "alex")]
 //        playerSessions[0].totalTime = 50
@@ -126,11 +127,8 @@ class MainMenuView: UIView {
 //        self.addSubview(endgame)
         self.setNeedsUpdateConstraints()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
-    
-    func 🚶🏿💯(sender:Notification) {
-        
+    func animationDidFinish() {
         switch buttonTag {
         case 1:
             trainingSegue()
@@ -152,6 +150,7 @@ class MainMenuView: UIView {
             break
         }
     }
+
     
     func spButtonTapped(sender: UIButton) {
         MusicHelper.sharedHelper.playButtonSound()

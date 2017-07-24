@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import SpriteKit
-class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
+class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource, BGSceneDelegate {
 
     //MARK: - properties
     let screenSize = UIScreen.main.bounds
@@ -50,6 +50,7 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
         super.init(coder: aDecoder)
         self.setupBackground()
         self.background.backgroundColor = UIColor.background
+        background.bgDelegate = self
         //self.backgroundColor = UIColor.background
         
         self.addSubview(leaderboardLabel)
@@ -63,6 +64,7 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         self.setNeedsUpdateConstraints()
         
+        
         NetworkManager.loadPlayers { (player) in
             guard let player = player else {return}
             
@@ -73,7 +75,6 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
             self.table.reloadData()
         }
 
-        NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
     
     override func updateConstraints() {
@@ -115,8 +116,7 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = UIColor.gameRed
     }
     
-    func 🚶🏿💯(sender:Notification) {
-  
+    func animationDidFinish() {
         let storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         let window     = UIApplication.shared.windows[0] as UIWindow
