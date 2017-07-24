@@ -520,6 +520,16 @@ class MultiplayerGameScene: SKScene {
         cam.addChild(textPosIndicator)
     }
     
+    //Set initial game sync properties
+    func setupGameSyncLabel() {
+        let gameSyncLabel = SKLabelNode(fontNamed: rocketFontName)
+        gameSyncLabel.fontSize = textFontSize
+        gameSyncLabel.horizontalAlignmentMode = .center
+        gameSyncLabel.verticalAlignmentMode = .bottom
+        gameSyncLabel.position = CGPoint(x: 0, y: textContainerNode.position.y - 30)
+        gameSyncLabel.text = "Synchronizing Game"
+    }
+    
     //MARK: Leaderboard Observer
     func observePlayerPosition() {
         gameManager.observeLeaderboardChanges(gameSessionID: gameSession.gameSessionID) { (playerStatus) in
@@ -610,5 +620,4 @@ class MultiplayerGameScene: SKScene {
             return "\(position)th"
         }
     }
-    
 }
