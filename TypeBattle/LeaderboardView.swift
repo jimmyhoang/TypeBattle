@@ -163,8 +163,8 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
         gameView.translatesAutoresizingMaskIntoConstraints = false
         gameView.presentScene(background)
         gameView.ignoresSiblingOrder = true
-        gameView.showsFPS = true
-        gameView.showsNodeCount = true
+        gameView.showsFPS = false
+        gameView.showsNodeCount = false
         
         self.insertSubview(gameView, belowSubview: leaderboardLabel)
         
