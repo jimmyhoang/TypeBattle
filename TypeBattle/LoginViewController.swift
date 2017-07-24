@@ -33,8 +33,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
     
+    deinit {
+        print("deinited")
+    }
+    
     func 🚶🏿💯(sender:Notification) {
-        performSegue(withIdentifier: "registerscreen", sender: self)
+        let storyboard = UIStoryboard(name: "RegisterScreen", bundle: nil)
+        let vc         = storyboard.instantiateInitialViewController()
+        let window     = UIApplication.shared.windows[0] as UIWindow
+        
+        let transition      = CATransition()
+        transition.subtype  = kCATransitionFade
+        transition.duration = 0.5
+        
+        window.set(rootViewController: vc!, withTransition: transition)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,8 +69,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         gameView.translatesAutoresizingMaskIntoConstraints = false
         gameView.presentScene(background)
         gameView.ignoresSiblingOrder = true
-        gameView.showsFPS = true
-        gameView.showsNodeCount = true
+        gameView.showsFPS = false
+        gameView.showsNodeCount = false
         
         self.view.insertSubview(gameView, belowSubview: loginView)
         
