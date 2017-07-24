@@ -72,7 +72,7 @@ class NetworkManager{
                 
                 Auth.auth().signIn(with: credential, completion: { (user, error) in
                     if error == nil {
-                        let params = ["fields": "picture, name"]
+                        let params = ["fields": "picture.type(large), name"]
                         let graphRequest = GraphRequest(graphPath: "me", parameters: params, accessToken: AccessToken.current, httpMethod: GraphRequestHTTPMethod.GET, apiVersion: GraphAPIVersion.defaultVersion)
                         
                       graphRequest.start({ (urlResponse, graphResult) in
