@@ -47,14 +47,16 @@ class NetworkManager{
                 fetchPlayerDetails(completion: { (success) in
                     if success {
                         loginSuccess = true
+                        completion(loginSuccess, errorDescription)
                     }
                 })
             }
             else {
                 guard let error  = error else {return}
                 errorDescription = error.localizedDescription
+                completion(loginSuccess, errorDescription)
             }
-            completion(loginSuccess, errorDescription)
+            
         }
     }
  
