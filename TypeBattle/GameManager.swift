@@ -229,6 +229,25 @@ class GameManager {
             currentPlayer.finalPosition = nextPosition
             currentPlayer.totalTime = totalTime
             
+            NetworkManager.fetchPlayerDetails(playerID: currentPlayer.playerID, withCompletionBlock: { (pl) in
+                pl.matchesPlayed += 1
+                print("matches \(pl.matchesPlayed)")
+                if(currentPlayer.finalPosition == 1) {
+                    pl.matchesWon += 1
+                    
+                    var needed = 0
+                    for i in 0...pl.level {
+                        needed += i
+                    }
+                    
+                    pl.level = (pl.matchesWon == needed ) ? pl.level + 1: pl.level
+                }
+                
+                // persist in firebase
+                let playerRef = Database.database().reference(withPath: "players").child(currentPlayer.playerID)
+                playerRef.setValue(pl.toAnyObject())
+            })
+            
             // persist in firebase
             gameRef.setValue(gameSession.createDictionary())
         })
@@ -345,6 +364,13 @@ class GameManager {
             block(playersArray)
         })
 
+    }
+    
+    func stopObservingLeaderboardChanges(gameSessionID: String) {
+        
+        let ref = Database.database().reference(withPath: "players_sessions").child(gameSessionID)
+        ref.removeAllObservers()
+        
     }
     
     func getAllCharacters() -> Array<GameCharacter> {
