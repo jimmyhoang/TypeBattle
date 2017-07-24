@@ -44,6 +44,7 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         nicknameTextField.delegate        = self
         passwordTextField.delegate        = self
         emailTextField.delegate           = self
+        collectionView.delegate           = self
         
         setupBackground()
         self.background.backgroundColor = UIColor.background
@@ -170,6 +171,8 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
         }
     }
+    
+
     
     // MARK: - TextfieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
