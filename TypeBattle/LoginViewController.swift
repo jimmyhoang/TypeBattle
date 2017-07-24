@@ -31,6 +31,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.delegate    = self
         passwordTextField.delegate = self
         
+        NetworkManager.fetchPlayerDetails { (success) in
+            
+        }
+
         fireloginButton.backgroundColor = UIColor.gameRed
         fireloginButton.setTitleColor(UIColor.white, for: .normal)
         fireloginButton.titleLabel?.font = UIFont.gameFont(size: 30.0)
@@ -49,7 +53,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailButton.titleLabel?.font = UIFont.gameFont(size: 30.0)
         emailButton.layer.cornerRadius = 4.0
         
-        NetworkManager.fetchPlayerDetails()
+
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
     

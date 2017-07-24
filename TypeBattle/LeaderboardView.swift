@@ -67,8 +67,12 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource {
             guard let player = player else {return}
             
             self.players.append(player)
+            self.players.sort { (p1, p2) -> Bool in
+                return p1.matchesWon > p2.matchesWon
+            }
             self.table.reloadData()
         }
+
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
     
