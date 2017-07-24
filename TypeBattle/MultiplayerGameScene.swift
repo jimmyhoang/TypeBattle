@@ -63,11 +63,15 @@ class MultiplayerGameScene: SKScene {
     var textNode: SKLabelNode!
     var textContainerNode: SKSpriteNode!
     var arrayIndex = 0
-    let spaceBetweenLetters: CGFloat = 25
+    let spaceBetweenLetters: CGFloat = 30
     var textNodeWidth: CGFloat!
     
-    let inGameFontName = "Origami Mommy"
-    
+    let inGameFontName = "Wraith-Arc-Blocks"
+    let rocketFontName = "Supersonic Rocketship"
+    let textFontSize: CGFloat = 50
+    let playerNamePlateFontSize: CGFloat = 15
+    let timerFontSize: CGFloat = 40
+
     //Camera
     var cam: SKCameraNode!
     
@@ -204,10 +208,10 @@ class MultiplayerGameScene: SKScene {
             playerDict.updateValue(gameDict, forKey: key)
             
             //Add namePlate for each player
-            playerNameLabelNode = SKLabelNode(fontNamed: inGameFontName)
+            playerNameLabelNode = SKLabelNode(fontNamed: rocketFontName)
             playerNameLabelNode.horizontalAlignmentMode = .left
             playerNameLabelNode.position = CGPoint(x: playerSize.width , y: 0)
-            playerNameLabelNode.fontSize = 15
+            playerNameLabelNode.fontSize = playerNamePlateFontSize
             playerNameLabelNode.name = "namePlate"
             playerNameLabelNode.text = "\(gameSession.players[index].playerName) >>> \(playerProgress)%"
             playerNode.addChild(playerNameLabelNode)
@@ -361,7 +365,7 @@ class MultiplayerGameScene: SKScene {
             textNode = SKLabelNode(fontNamed: inGameFontName)
             textNode.text = char
             textNode.horizontalAlignmentMode = .right
-            textNode.fontSize = 40
+            textNode.fontSize = textFontSize
             textNode.fontColor = UIColor.gameRed
             textNode.position = CGPoint(x: textNode.frame.width + space, y: 0)
             textNode.zPosition = 10
@@ -425,14 +429,14 @@ class MultiplayerGameScene: SKScene {
     //Setup timer
     func setupTimer() {
         timerTextNode = SKLabelNode(fontNamed: inGameFontName)
-        timerTextNode.fontSize = 30
+        timerTextNode.fontSize = timerFontSize
         timerTextNode.horizontalAlignmentMode = .center
         timerTextNode.verticalAlignmentMode = .bottom
         timerTextNode.fontColor = .black
         timerTextNode.text = "0:00.00"
         
         timerXPos = 0
-        timerYPos = sceneHeight/2 - timerTextNode.frame.size.height
+        timerYPos = sceneHeight/2 - timerTextNode.frame.size.height - 15
         
         timerTextNode.position = CGPoint(x: timerXPos, y: timerYPos)
         cam.addChild(timerTextNode)
@@ -448,13 +452,14 @@ class MultiplayerGameScene: SKScene {
     
     //Setup position label
     func setupPositionLabel() {
-        positionLabelNode = SKLabelNode(fontNamed: inGameFontName)
+        positionLabelNode = SKLabelNode(fontNamed: rocketFontName)
         positionLabelNode.horizontalAlignmentMode = .left
         positionLabelNode.verticalAlignmentMode = .bottom
-        positionLabelNode.fontSize = 40
+        positionLabelNode.fontColor = UIColor.gameRed
+        positionLabelNode.fontSize = textFontSize
         positionLabelNode.text = "1st"
         
-        let positionLabelXPos = sceneWidth/2 - positionLabelNode.frame.size.width
+        let positionLabelXPos = sceneWidth/2 - positionLabelNode.frame.size.width - 10
         let positionLabelYPos = sceneHeight/2 - positionLabelNode.frame.size.height
         
         positionLabelNode.position = CGPoint(x: positionLabelXPos, y: positionLabelYPos)
@@ -486,8 +491,8 @@ class MultiplayerGameScene: SKScene {
     
     //Set initial countdownNode properties
     func setupEndCountdownNode() {
-        countdownNode = SKLabelNode(fontNamed: inGameFontName)
-        countdownNode.fontSize = 30
+        countdownNode = SKLabelNode(fontNamed: rocketFontName)
+        countdownNode.fontSize = timerFontSize
         countdownNode.horizontalAlignmentMode = .center
         countdownNode.verticalAlignmentMode = .bottom
         countdownNode.text = "Game Ends In \(self.countdownTime)"

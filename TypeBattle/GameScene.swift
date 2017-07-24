@@ -36,10 +36,10 @@ class GameScene: SKScene {
     var textNode: SKLabelNode!
     var textContainerNode: SKSpriteNode!
     var arrayIndex = 0
-    let spaceBetweenLetters: CGFloat = 25
+    let spaceBetweenLetters: CGFloat = 30
     var textNodeWidth: CGFloat!
-    let inGameTextFontName = "Origami Mommy"
-    let textFontSize: CGFloat = 40
+    let inGameTextFontName = "Wraith-Arc-Blocks"
+    let textFontSize: CGFloat = 50
 
     //Camera
     var cam: SKCameraNode!
@@ -281,14 +281,14 @@ class GameScene: SKScene {
     //Setup
     func setupTimer() {
         timerTextNode = SKLabelNode(fontNamed: inGameTextFontName)
-        timerTextNode.fontSize = 30
+        timerTextNode.fontSize = 40
         timerTextNode.horizontalAlignmentMode = .center
         timerTextNode.verticalAlignmentMode = .bottom
         timerTextNode.fontColor = .black
         timerTextNode.text = "0:00.00"
         
         let timerXPos: CGFloat = 0
-        let timerYPos = sceneHeight/2 - timerTextNode.frame.size.height
+        let timerYPos = sceneHeight/2 - timerTextNode.frame.size.height - 15
         
         timerTextNode.position = CGPoint(x: timerXPos, y: timerYPos)
         cam.addChild(timerTextNode)
