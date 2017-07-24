@@ -377,7 +377,6 @@
 				TargetAttributes = {
 					FF889A041F169C3E006955BB = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 56EET8Q46G;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -650,7 +649,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TypeBattle/TypeBattle.entitlements;
-				DEVELOPMENT_TEAM = 56EET8Q46G;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -670,7 +669,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TypeBattle/TypeBattle.entitlements;
-				DEVELOPMENT_TEAM = 56EET8Q46G;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
