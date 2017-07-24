@@ -157,16 +157,15 @@ class SettingsView: UIView {
         default:
             storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
         }
+
         let vc         = storyboard.instantiateInitialViewController()
+        let window     = UIApplication.shared.windows[0] as UIWindow
         
-        let window = UIApplication.shared.windows[0] as UIWindow;
-        UIView.transition(from:(window.rootViewController?.view)!,
-                          to: (vc?.view)!,
-                          duration: 0.5,
-                          options: .transitionCrossDissolve,
-                          completion: {
-                            finished in window.rootViewController = vc
-        })
+        let transition      = CATransition()
+        transition.subtype  = kCATransitionFade
+        transition.duration = 0.5
+        
+        window.set(rootViewController: vc!, withTransition: transition)
         
     }
     

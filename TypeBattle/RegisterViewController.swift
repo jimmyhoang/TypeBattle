@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 import SpriteKit
-class RegisterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
+class RegisterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
     // MARK: Properties
     @IBOutlet weak var confirmPasswordTextField: UITextField!
@@ -19,6 +19,7 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var registerButton: MainMenuButton!
+    @IBOutlet var tapGesture: UITapGestureRecognizer!
     
     var defaultAvatars: NSDictionary = [
         "cat/Idle (1)"        : UIImage(named: "cat/Idle (1)")!,
@@ -46,6 +47,7 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         passwordTextField.delegate        = self
         emailTextField.delegate           = self
         collectionView.delegate           = self
+        tapGesture.delegate               = self
         
         setupBackground()
         self.background.backgroundColor = UIColor.background
@@ -218,6 +220,22 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
             checkmarkImageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
         }
     }
+    
+    // MARK: - GestureDelegate
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        let view = touch.view
+        
+        if view?.tag != 100 {
+            return false
+        }
+        
+        return true
+    }
+    
+    
+    
+    
+    
     
     func createMenuButton(title:String!) -> MainMenuButton {
         let button = MainMenuButton()
