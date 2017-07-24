@@ -43,7 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if Auth.auth().currentUser?.uid == nil {
             storyboard = UIStoryboard.init(name: "Login", bundle: .main)
         } else {
-            NetworkManager.fetchPlayerDetails()
+            NetworkManager.fetchPlayerDetails(completion: { (success) in
+            })
             storyboard = UIStoryboard.init(name: "MainMenu", bundle: .main)
         }
         

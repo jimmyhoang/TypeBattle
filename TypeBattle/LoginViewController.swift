@@ -29,7 +29,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.delegate    = self
         passwordTextField.delegate = self
         
-        NetworkManager.fetchPlayerDetails()
+        NetworkManager.fetchPlayerDetails { (success) in
+            
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
     
