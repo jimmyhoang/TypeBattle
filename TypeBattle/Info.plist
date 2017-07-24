@@ -57,6 +57,8 @@
 	<string>Please, authorize location to use this feature</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>CIRCLED_.ttf</string>
+		<string>Wraith-Arc-Blocks.otf</string>
 		<string>origami-mommy.regular.ttf</string>
 		<string>Supersonic Rocketship.ttf</string>
 		<string>betsy flanagan.ttf</string>
