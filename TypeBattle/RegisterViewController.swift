@@ -232,11 +232,6 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         return true
     }
     
-    
-    
-    
-    
-    
     func createMenuButton(title:String!) -> MainMenuButton {
         let button = MainMenuButton()
         button.contentVerticalAlignment = .fill

@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import Firebase
 
-class ProfilePageView: UIView {
+class ProfilePageView: UIView, BGSceneDelegate {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -159,7 +159,9 @@ class ProfilePageView: UIView {
         self.bottomHorizontalStack.addArrangedSubview(backButton)
         self.bottomHorizontalStack.addArrangedSubview(signoutButton)
         //self.bottomHorizontalStack.addArrangedSubview(editProfileButton)
-        NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
+        
+        background.bgDelegate = self
+        
         self.setNeedsUpdateConstraints()
     }
     
@@ -188,7 +190,7 @@ class ProfilePageView: UIView {
         super.updateConstraints()
     }
     
-    func 🚶🏿💯(sender:Notification) {
+    func animationDidFinish() {
         let storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         let window     = UIApplication.shared.windows[0] as UIWindow
@@ -198,6 +200,7 @@ class ProfilePageView: UIView {
         transition.duration = 0.5
         
         window.set(rootViewController: vc!, withTransition: transition)
+    
     }
     
     func backToMainMenu(sender:UIButton!) {

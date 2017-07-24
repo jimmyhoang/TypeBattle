@@ -10,7 +10,15 @@
 import SpriteKit
 import GameplayKit
 
+
+protocol BGSceneDelegate: class {
+    func animationDidFinish()
+}
+
 class BackgroundScene: SKScene {
+    
+    //Delegate
+    weak var bgDelegate:BGSceneDelegate?
     
     //Scene
     var sceneHeight: CGFloat!
@@ -63,7 +71,7 @@ class BackgroundScene: SKScene {
     func 🚶🏿🔥 (sender: Notification) {
         let moveRight = SKAction.moveBy(x: playerMovement, y: 0, duration: 1.0)
         mainPlayerNode.run(moveRight, completion: {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
+            self.bgDelegate?.animationDidFinish()
         })
     }
     
