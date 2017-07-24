@@ -18,6 +18,7 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var registerButton: MainMenuButton!
     
     var defaultAvatars: NSDictionary = [
         "cat/Idle (1)"        : UIImage(named: "cat/Idle (1)")!,
@@ -51,7 +52,15 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         avatarImages              = defaultAvatars.allValues as! [UIImage]
 
+        cancelButton.backgroundColor = UIColor.gameRed
+        cancelButton.setTitleColor(UIColor.white, for: .normal)
+        cancelButton.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        cancelButton.layer.cornerRadius = 4.0
         
+        registerButton.backgroundColor = UIColor.gameRed
+        registerButton.setTitleColor(UIColor.white, for: .normal)
+        registerButton.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        registerButton.layer.cornerRadius = 4.0
         // Do any additional setup after loading the view.
     }
     
@@ -210,5 +219,15 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    
+    func createMenuButton(title:String!) -> MainMenuButton {
+        let button = MainMenuButton()
+        button.contentVerticalAlignment = .fill
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.gameRed
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        button.layer.cornerRadius = 4.0
+        return button
+    }
 }

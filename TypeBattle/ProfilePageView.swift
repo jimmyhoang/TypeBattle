@@ -26,7 +26,9 @@ class ProfilePageView: UIView {
     
     private lazy var profilePicture:UIImageView = {
         var imageView = UIImageView(image: self.player.avatar)
-        imageView.contentMode = .scaleAspectFit
+        
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
@@ -186,6 +188,7 @@ class ProfilePageView: UIView {
         
         //constraints for elements in the upper horizontal stack view
         NSLayoutConstraint.activate([profilePicture.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, multiplier: 0.3),
+                                     profilePicture.heightAnchor.constraint(equalTo: profilePicture.widthAnchor),
                                      upperVerticalStack.widthAnchor.constraint(equalTo: topHorizontalStack.widthAnchor, multiplier: 0.7)])
         super.updateConstraints()
     }
