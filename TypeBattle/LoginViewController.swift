@@ -12,7 +12,7 @@ import FirebaseAuth
 import FacebookLogin
 import FacebookCore
 import SpriteKit
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, BGSceneDelegate {
     
     //MARK: Properties
     @IBOutlet weak var bottomStackView: UIStackView!
@@ -54,14 +54,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailButton.layer.cornerRadius = 4.0
         
 
-        NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿💯(sender:)), name: NSNotification.Name(rawValue:"doneAnimation"), object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func 🚶🏿💯(sender:Notification) {
+    func animationDidFinish() {
         let storyboard = UIStoryboard(name: "RegisterScreen", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         let window     = UIApplication.shared.windows[0] as UIWindow
@@ -76,6 +75,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         self.setupBackground()
         self.background.backgroundColor = UIColor.background
+        background.bgDelegate = self
+
     }
     
     func setupBackground() {
