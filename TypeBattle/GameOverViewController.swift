@@ -30,17 +30,17 @@ class GameOverViewController: UIViewController, UITableViewDelegate, UITableView
         self.backButton.layer.cornerRadius = 4.0
         self.backButton.contentVerticalAlignment = .fill
         
-        // Sort PlayerSession by position
-        self.playersSession.sort { (p1, p2) -> Bool in
-            return p1.finalPosition < p2.finalPosition
-        }
-        
         // Get GameSessionData
         if(self.gameSessionID != "") {
             let gameManager = GameManager()
             gameManager.getGameSession(gameSessionID: self.gameSessionID) { (gs) in
                 
                 self.playersSession = gs.players
+                
+                // Sort PlayerSession by position
+                self.playersSession.sort { (p1, p2) -> Bool in
+                    return p1.finalPosition < p2.finalPosition
+                }
                 
                 // Move Did Not Finished players (position 0 and time 0) to the end of the array
                 for p in self.playersSession {

@@ -42,6 +42,12 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
         return true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        gameManager.stopObservingLeaderboardChanges(gameSessionID: self.gameSession.gameSessionID)
+    }
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
