@@ -32,6 +32,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
