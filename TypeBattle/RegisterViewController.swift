@@ -138,7 +138,16 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         if confirmPassword(password: password, confirm: confirm) {
             NetworkManager.registerUser(email: email, password: password, nickname: nickname, avatarName: selectedImage, completion: { () -> (Void) in
-                self.performSegue(withIdentifier: "mainmenu", sender: self)
+                let storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
+                let vc         = storyboard.instantiateInitialViewController()
+                let window     = UIApplication.shared.windows[0] as UIWindow
+                
+                let transition      = CATransition()
+                transition.subtype  = kCATransitionFade
+                transition.duration = 0.5
+                
+                window.set(rootViewController: vc!, withTransition: transition)
+                //self.performSegue(withIdentifier: "mainmenu", sender: self)
             })
         } else {
             let alertController = UIAlertController(title: "Error", message: "Passwords do not match!", preferredStyle: .alert)
