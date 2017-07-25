@@ -30,7 +30,7 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
     var currentPlayer: Player!
     var lobbytimer: Timer! // just for basic "Waiting for players..." animation
     var gameTimer: Timer! // game about to start warning
-    var gameTimerCounter = 8 // counter to control start of the game when creator press enter
+    var gameTimerCounter = 5 // counter to control start of the game when creator press enter
     
     var buttonSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonSound", ofType: "mp3")!)
 
