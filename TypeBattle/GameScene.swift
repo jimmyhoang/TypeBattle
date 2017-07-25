@@ -53,7 +53,7 @@ class GameScene: SKScene {
     
     //MARK: Scene DidMove
     override func didMove(to view: SKView) {
-
+        
         self.anchorPoint = CGPoint.zero
         sceneHeight = self.frame.size.height
         sceneWidth = self.frame.size.width
@@ -272,7 +272,7 @@ class GameScene: SKScene {
         cam = SKCameraNode()
         
         cam.position = CGPoint(x: self.anchorPoint.x + sceneWidth/2, y: self.anchorPoint.y + sceneHeight/2)
-        
+        cam.zPosition = 40
         self.camera = cam
         addChild(cam)
     }
