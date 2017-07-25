@@ -225,6 +225,11 @@ class JoinRoomViewController: UIViewController, UITableViewDelegate, UITableView
         MusicHelper.sharedHelper.playButtonSound()
         
         self.gameManager.startGameSession(gameSessionID: self.currentGameSession.gameSessionID)
+        
+        if currentPlayer.playerID == self.currentGameSession.ownerID {
+            let date = Date()
+            gameManager.setGameStartTime(gameSessionID: self.currentGameSession.gameSessionID, intervalReference: Int(date.timeIntervalSinceReferenceDate))
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {

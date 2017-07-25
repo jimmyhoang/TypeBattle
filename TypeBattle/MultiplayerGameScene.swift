@@ -120,19 +120,11 @@ class MultiplayerGameScene: SKScene {
         setupGameSyncLabel()
         setupPositionLabel()
         
-        if currentPlayer.playerID == gameSession.ownerID {
-            let date = Date()
-            gameManager.setGameStartTime(gameSessionID: gameSession.gameSessionID, intervalReference: Int(date.timeIntervalSinceReferenceDate))
-        }
-        
         gameManager.observeForStartTime(gameSessionID: gameSession.gameSessionID) { (allStartTime) in
             self.startTime = allStartTime
             
             self.syncTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (t) in
 
-                print(self.startTime)
-                print("********")
-                print(t.fireDate.timeIntervalSinceReferenceDate)
                 if(Int(self.startTime) == Int(t.fireDate.timeIntervalSinceReferenceDate)) {
                     self.cam.childNode(withName: "sync")?.removeFromParent()
                     self.startGameCountdown()
@@ -140,8 +132,6 @@ class MultiplayerGameScene: SKScene {
                 }
             })
         }
-        
-        
     }
     
     //MARK: Init

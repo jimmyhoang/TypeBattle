@@ -273,7 +273,7 @@ class GameManager {
         
         // create a json strutucture in firebase to control game sync
         let ref = Database.database().reference(withPath: "game_sync").child(gameSessionID)
-        let startInterval = intervalReference + 5
+        let startInterval = intervalReference + 10
         let dictionary = ["startInterval": startInterval]
         ref.setValue(dictionary)
     }
