@@ -175,7 +175,7 @@ class GameManager {
         // increment matches won/played for each player
         for ps in gameSession.players {
         
-            NetworkManager.fetchPlayerDetails(playerID: ps.playerID, withCompletionBlock: { (pl) in
+            NetworkManager.fetchPlayerDetails(playerID: ps.playerID, withCompletionBlock: { (pl, didWork) in
                 pl.matchesPlayed += 1
                 
                 if(ps.finalPosition == 1) {
@@ -229,7 +229,7 @@ class GameManager {
             currentPlayer.finalPosition = nextPosition
             currentPlayer.totalTime = totalTime
             
-            NetworkManager.fetchPlayerDetails(playerID: currentPlayer.playerID, withCompletionBlock: { (pl) in
+            NetworkManager.fetchPlayerDetails(playerID: currentPlayer.playerID, withCompletionBlock: { (pl,didWork) in
                 pl.matchesPlayed += 1
                 if(currentPlayer.finalPosition == 1) {
                     pl.matchesWon += 1
