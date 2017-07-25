@@ -30,9 +30,14 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
     var gameSession: GameSession!
     let gameManager = GameManager()
     
+    var warningLabel: UILabel!
+    var backButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = .white
+        setupWarningLabel()
+        setupBackButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,7 +81,6 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
         view.addSubview(textField)
         textField.autocorrectionType = .no
         textField.becomeFirstResponder()
-        textField.isSecureTextEntry = true
         view.layoutIfNeeded()
     }
     
@@ -84,9 +88,57 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
         let userInfo:NSDictionary = notification.userInfo! as NSDictionary
         let keyboardFrame:NSValue = userInfo.value(forKey:UIKeyboardFrameEndUserInfoKey) as! NSValue
         let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboard = self.view.convert(keyboardRectangle, from: self.view.window)
+        let height = self.view.frame.size.height;
+        
         frameOfKeyboard = keyboardRectangle
         keyboardHeight = keyboardRectangle.height
-        setupGameScene()
+        
+        if ((keyboard.origin.y + keyboard.size.height) > height) {
+            return
+        } else {
+            setupGameScene()
+            warningLabel.removeFromSuperview()
+            backButton.removeFromSuperview()
+        }
+        
+    }
+    
+    //MARK: Setup keyboard warning
+    func setupWarningLabel() {
+        warningLabel = GameLabel(frame: CGRect.zero)
+        warningLabel.text = "Please disconnect external keyboard to continue!\n\nOr press back to go to Main Menu."
+        warningLabel.numberOfLines = 8
+        warningLabel.textAlignment = .center
+        warningLabel.font = UIFont.gameFont(size: 26)
+        warningLabel.textColor = .gameRed
+        warningLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(warningLabel)
+        
+        warningLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        warningLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -150).isActive = true
+        warningLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -50).isActive = true
+    }
+    
+    func setupBackButton() {
+        backButton = MainMenuButton(frame: CGRect.zero)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.setTitle("Back", for: .normal)
+        backButton.titleLabel?.font = UIFont.gameFont(size: 26)
+        backButton.setTitleColor(UIColor.gameRed, for: .normal)
+        backButton.contentVerticalAlignment = .fill
+        backButton.backgroundColor = UIColor.gameOrange
+        backButton.layer.cornerRadius = 4.0
+        backButton.addTarget(self, action:  #selector(backButtonPressed(sender:)), for: .touchUpInside)
+        self.view.addSubview(backButton)
+        
+        backButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        backButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
+    }
+    
+    func backButtonPressed(sender: UIButton) {
+        performSegue(withIdentifier: "quit-game-segue", sender: self)
     }
     
     //MARK: Setup gameScene
