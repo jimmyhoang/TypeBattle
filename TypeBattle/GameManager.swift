@@ -231,7 +231,6 @@ class GameManager {
             
             NetworkManager.fetchPlayerDetails(playerID: currentPlayer.playerID, withCompletionBlock: { (pl) in
                 pl.matchesPlayed += 1
-                print("matches \(pl.matchesPlayed)")
                 if(currentPlayer.finalPosition == 1) {
                     pl.matchesWon += 1
                     
@@ -267,6 +266,34 @@ class GameManager {
                           "pct": progress] as [String : Any]
         
         ref.setValue(dictionary)
+    }
+    
+    func setGameStartTime (gameSessionID: String, intervalReference: Int) {
+        
+        // create a json strutucture in firebase to control game sync
+        let ref = Database.database().reference(withPath: "game_sync").child(gameSessionID)
+        let startInterval = intervalReference + 10
+        let dictionary = ["startInterval": startInterval]
+        ref.setValue(dictionary)
+    }
+    
+    func observeForStartTime (gameSessionID: String, withCompletionBlock block: @escaping (Int) -> Swift.Void) {
+        
+        let ref = Database.database().reference(withPath: "game_sync").child(gameSessionID)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let dictionary = snapshot.value as? [String : Int] else {
+                print("GameManager.ObserveForStartTime error. Could not parse dictionary.")
+                return
+            }
+            
+            guard let startInterval = dictionary["startInterval"]  else {
+                print("GameManager.ObserveForStartTime error. Could not retrieve StartInterval")
+                return
+            }
+            
+            block(startInterval)
+        })
     }
     
     func getGameSession(gameSessionID: String, withCompletionBlock block: @escaping (GameSession) -> Swift.Void) {
@@ -387,11 +414,11 @@ class GameManager {
                                       perkDescription: ""))
         
         allTypes.append(GameCharacter(type: .knight,
-                                      typeDescription: "The warrior has battled through multiple wars to defend the origami mommy.",
+                                      typeDescription: "The knight has battled through multiple zombie ninjas to defend his kingdom.",
                                       perkDescription: ""))
         
         allTypes.append(GameCharacter(type: .robot,
-                                      typeDescription: "Robot comes from the year 3678 in search of the origami mommy. ",
+                                      typeDescription: "Robot comes from the year 3678 to warn the ninjas of their zombie future. ",
                                       perkDescription: ""))
         
         allTypes.append(GameCharacter(type: .ninjaBoy,
@@ -403,11 +430,11 @@ class GameManager {
                                       perkDescription: ""))
         
         allTypes.append(GameCharacter(type: .zombieBoy,
-                                      typeDescription: "Zombie Boy is a zombie who was a boy.",
+                                      typeDescription: "Zombie Boy is a zombie who was a ninja boy.",
                                       perkDescription: ""))
         
         allTypes.append(GameCharacter(type: .zombieGirl,
-                                      typeDescription: "Zombie Girl is a zombie who was a girl.",
+                                      typeDescription: "Zombie Girl is a zombie who was a ninja girl.",
                                       perkDescription: ""))
         
         return allTypes

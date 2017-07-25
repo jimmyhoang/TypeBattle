@@ -241,7 +241,6 @@ class NetworkManager{
         let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
             
             guard let data = data else {
-                print("data is nil")
                 return
             }
             

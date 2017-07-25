@@ -70,7 +70,7 @@ class MultiplayerGameScene: SKScene {
     let rocketFontName = "Supersonic Rocketship"
     let textFontSize: CGFloat = 50
     let playerNamePlateFontSize: CGFloat = 15
-    let timerFontSize: CGFloat = 40
+    let timerFontSize: CGFloat = 30
 
     //Camera
     var cam: SKCameraNode!
@@ -83,8 +83,10 @@ class MultiplayerGameScene: SKScene {
     var timerTextNode: SKLabelNode!
     var initialTime: TimeInterval!
     var timerTime: TimeInterval!
-    var firstFrame = true
-    var stopTimer = false
+    var firstFrame = false
+    var stopTimer = true
+    var startTime: Int!
+    var syncTimer: Timer!
     
     //countdownTimer Pos, NOT timer Pos
     var timerXPos: CGFloat!
@@ -93,6 +95,7 @@ class MultiplayerGameScene: SKScene {
     //Countdown
     var countdownNode: SKLabelNode!
     var countdownTime = 10
+    var startGameTimerTime = 3
     
     //End Game
     var isGameOver = false
@@ -109,13 +112,29 @@ class MultiplayerGameScene: SKScene {
         
         setupCamera()
         setupPlayers()
-        setupText()
-        setupTextPosIndicator()
+        
+        //parse gameText into textArray
+        textArray = NetworkManager.parseWords(words: gameSession.gameText)
+        gameTextLength = textArray.count
+       
         setupBackground()
         detectKeystroke()
         setupTimer()
+        setupGameSyncLabel()
         setupPositionLabel()
-        observePlayerPosition()
+        
+        gameManager.observeForStartTime(gameSessionID: gameSession.gameSessionID) { (allStartTime) in
+            self.startTime = allStartTime
+            
+            self.syncTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (t) in
+
+                if(Int(self.startTime) == Int(t.fireDate.timeIntervalSinceReferenceDate)) {
+                    self.cam.childNode(withName: "sync")?.removeFromParent()
+                    self.startGameCountdown()
+                    self.syncTimer.invalidate()
+                }
+            })
+        }
     }
     
     //MARK: Init
@@ -132,40 +151,12 @@ class MultiplayerGameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Touch Events
-    func touchDown(atPoint pos : CGPoint) {
-        
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         if firstFrame == true {
             initialTime = currentTime
             firstFrame = false
+            stopTimer = false
         }
         
         if stopTimer == false {
@@ -183,7 +174,7 @@ class MultiplayerGameScene: SKScene {
         setMainUser()
         //first player position
         var playerXPos: CGFloat = 10.0
-        var playerYPos: CGFloat = 17.5
+        var playerYPos: CGFloat = 10.0
         var playerZPos: CGFloat = 20.0
         numberOfPlayers = gameSession.players.count
         
@@ -195,7 +186,7 @@ class MultiplayerGameScene: SKScene {
             playerNode.position = CGPoint(x: playerXPos, y: playerYPos)
             playerNode.zPosition = playerZPos
             playerXPos += 10.0
-            playerYPos += 30.0
+            playerYPos += 20.0
             playerZPos -= 1.0
             
             addChild(playerNode)
@@ -284,10 +275,10 @@ class MultiplayerGameScene: SKScene {
         
         //dirt ground
         let groundWidth = groundContainerWidth
-        let groundHeight: CGFloat = 35.0
+        let groundHeight: CGFloat = 25.0
         
         var groundLaneYPos: CGFloat = 0.0
-        let groundLaneIncrement: CGFloat = 30.0
+        let groundLaneIncrement: CGFloat = 20.0
         var groundLaneZPos: CGFloat = 10.0
         
         for _ in 0..<numberOfPlayers {
@@ -347,6 +338,7 @@ class MultiplayerGameScene: SKScene {
         textContainerNode = SKSpriteNode()
         textContainerNode.color = UIColor.clear
         textContainerNode.anchorPoint = CGPoint.zero
+        textContainerNode.name = "textContainer"
         
         let textContainerXPos = -100
         let textContainerYPos = 60
@@ -355,9 +347,7 @@ class MultiplayerGameScene: SKScene {
         textContainerNode.zPosition = 10
         cam.addChild(textContainerNode)
         
-        //parse gameText into textArray
-        textArray = NetworkManager.parseWords(words: gameSession.gameText)
-        gameTextLength = textArray.count
+        
         //make a labelNode for each letter in textArray
         var space: CGFloat = 0
         
@@ -390,6 +380,9 @@ class MultiplayerGameScene: SKScene {
     
     //Check user entered text with game text
     func checkUserText(sender: Notification) {
+        if stopTimer == true {
+            return
+        }
         let textField = sender.object as! UITextField
         let lowerText = textField.text?.lowercased()
         textField.text = ""
@@ -420,7 +413,7 @@ class MultiplayerGameScene: SKScene {
         cam = SKCameraNode()
         
         cam.position = CGPoint(x: self.anchorPoint.x + sceneWidth/2, y: self.anchorPoint.y + sceneHeight/2)
-        
+        cam.zPosition = 40
         self.camera = cam
         addChild(cam)
     }
@@ -495,7 +488,6 @@ class MultiplayerGameScene: SKScene {
         countdownNode.fontSize = timerFontSize
         countdownNode.horizontalAlignmentMode = .center
         countdownNode.verticalAlignmentMode = .bottom
-        countdownNode.text = "Game Ends In \(self.countdownTime)"
         countdownNode.fontColor = .gameRed
         countdownNode.name = "coundownTimer"
         
@@ -503,6 +495,53 @@ class MultiplayerGameScene: SKScene {
         let countdownTimerYPos = timerYPos - countdownNode.frame.size.height - 50
         
         countdownNode.position = CGPoint(x: countdownTimerXPos, y: countdownTimerYPos)
+        countdownNode.text = "Game Ends In \(self.countdownTime)"
+        cam.addChild(countdownNode)
+    }
+    
+    //Startgame Timer
+    func startGameCountdown() {
+        setupStartCountdownNode()
+        let wait = SKAction.wait(forDuration: 1.0)
+        var countdownCount = startGameTimerTime
+        let count = SKAction.run {
+            self.countdownNode.text = "Game Starts In \(countdownCount)"
+            countdownCount -= 1
+            
+            if (self.countdownNode.fontColor?.isEqual(color: UIColor.gameRed))! {
+                self.countdownNode.fontColor = .gameOrange
+            } else {
+                self.countdownNode.fontColor = .gameRed
+            }
+        }
+        let countOnce = SKAction.sequence([count, wait])
+        let countdown = SKAction.repeat(countOnce, count: countdownCount)
+        
+        countdownNode.run(countdown) {
+            self.firstFrame = true
+            self.observePlayerPosition()
+            self.cam.childNode(withName: "startCountdownTimer")?.removeFromParent()
+            self.setupText()
+            self.setupTextPosIndicator()
+        }
+    }
+    
+    //Set initial startGame timer properties
+    func setupStartCountdownNode() {
+        countdownNode = SKLabelNode(fontNamed: rocketFontName)
+        countdownNode.fontSize = timerFontSize
+        countdownNode.horizontalAlignmentMode = .center
+        countdownNode.verticalAlignmentMode = .bottom
+        countdownNode.fontColor = .gameRed
+        countdownNode.name = "startCountdownTimer"
+        
+        let countdownTimerXPos: CGFloat = 0
+        let countdownTimerYPos = timerYPos - countdownNode.frame.size.height - 50
+        
+        countdownNode.position = CGPoint(x: countdownTimerXPos, y: countdownTimerYPos)
+        
+        countdownNode.text = "Game Starts In \(self.countdownTime)"
+
         cam.addChild(countdownNode)
     }
     
@@ -518,6 +557,23 @@ class MultiplayerGameScene: SKScene {
         let textPosIndicatorY = textContainerNode.position.y - textPosIndicator.frame.size.height
         textPosIndicator.position = CGPoint(x: textPosIndicatorX, y: textPosIndicatorY)
         cam.addChild(textPosIndicator)
+    }
+    
+    //Set initial game sync properties
+    func setupGameSyncLabel() {
+        let gameSyncLabel = SKLabelNode(fontNamed: rocketFontName)
+        gameSyncLabel.fontSize = timerFontSize
+        gameSyncLabel.horizontalAlignmentMode = .center
+        gameSyncLabel.verticalAlignmentMode = .bottom
+
+        let gameSyncLabelXPos: CGFloat = 0
+        let gameSyncLabelYPos = timerYPos - gameSyncLabel.frame.size.height - 50
+        
+        gameSyncLabel.position = CGPoint(x: gameSyncLabelXPos, y: gameSyncLabelYPos)
+        gameSyncLabel.fontColor = UIColor.gameOrange
+        gameSyncLabel.text = "Synchronizing"
+        gameSyncLabel.name = "sync"
+        cam.addChild(gameSyncLabel)
     }
     
     //MARK: Leaderboard Observer
@@ -610,5 +666,4 @@ class MultiplayerGameScene: SKScene {
             return "\(position)th"
         }
     }
-    
 }

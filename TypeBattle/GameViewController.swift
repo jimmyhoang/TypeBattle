@@ -32,6 +32,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,6 +102,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
         //check to present singlePlayer or multiPlayer
         if gameSession.players.count == 1 {
             scene = GameScene(size: gameView.frame.size, gameSesh: gameSession)
+
         }else {
             scene = MultiplayerGameScene(size: gameView.frame.size, gameSesh: gameSession)
             let mpScene = scene as! MultiplayerGameScene

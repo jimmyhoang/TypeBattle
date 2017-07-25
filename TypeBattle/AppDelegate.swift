@@ -67,7 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // get root view controller
         guard var top = UIApplication.shared.keyWindow?.rootViewController else {
-            print("not my controller")
             return
         }
         

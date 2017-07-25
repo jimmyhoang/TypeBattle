@@ -51,23 +51,23 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         setupBackground()
         self.background.backgroundColor = UIColor.background
+        background.view?.tag            = 100
         
-        avatarImages              = defaultAvatars.allValues as! [UIImage]
+        avatarImages                    = defaultAvatars.allValues as! [UIImage]
 
-        cancelButton.backgroundColor = UIColor.gameRed
+        cancelButton.backgroundColor    = UIColor.gameRed
         cancelButton.setTitleColor(UIColor.white, for: .normal)
-        cancelButton.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        cancelButton.titleLabel?.font   = UIFont.gameFont(size: 30.0)
         cancelButton.layer.cornerRadius = 4.0
         
-        registerButton.backgroundColor = UIColor.gameRed
+        registerButton.backgroundColor    = UIColor.gameRed
         registerButton.setTitleColor(UIColor.white, for: .normal)
-        registerButton.titleLabel?.font = UIFont.gameFont(size: 30.0)
+        registerButton.titleLabel?.font   = UIFont.gameFont(size: 30.0)
         registerButton.layer.cornerRadius = 4.0
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.setupBackground()
         self.background.backgroundColor = UIColor.background
     }
     
@@ -163,8 +163,9 @@ class RegisterViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     // MARK: UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell               = collectionView.dequeueReusableCell(withReuseIdentifier: "avatarCell", for: indexPath) as! AvatarPickerCollectionViewCell
-        cell.avatarImage.image = avatarImages[indexPath.item]
+        let cell                     = collectionView.dequeueReusableCell(withReuseIdentifier: "avatarCell", for: indexPath) as! AvatarPickerCollectionViewCell
+        cell.avatarImage.image       = avatarImages[indexPath.item]
+        cell.avatarImage.contentMode = .scaleAspectFit
         
         return cell
     }
