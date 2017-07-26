@@ -629,7 +629,7 @@ class MultiplayerGameScene: SKScene {
                         self.stopTimer = true
                         
                         // persist data on firebase
-                        self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerID: self.currentPlayer.playerID, totalTime: self.mainPlayer.totalTime)
+                        self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerIndex: index, totalTime: self.mainPlayer.totalTime)
                         
                     }
                 }
