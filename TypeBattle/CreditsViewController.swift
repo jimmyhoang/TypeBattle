@@ -16,12 +16,7 @@ class CreditsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        animate()
-    }
-    
-    func animate() {
-        UIView.animate(withDuration: 5.0, delay: 0.0, options: .curveEaseIn, animations: {
-            self.creditsView.frame = CGRect(x: 0, y: -600, width: self.creditsView.frame.width, height: self.creditsView.frame.height)
-        }, completion: nil)
+        
+        
     }
 }

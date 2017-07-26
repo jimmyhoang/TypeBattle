@@ -134,19 +134,19 @@ class NetworkManager{
         }
     }
     
-    class func fetchPlayerDetails(playerID: String, withCompletionBlock block: @escaping (Player) -> Swift.Void) {
+    class func fetchPlayerDetails(playerID: String, withCompletionBlock block: @escaping (Player, Bool) -> Swift.Void) {
         let ref           = Database.database().reference(withPath: "players")
         let pRef          = ref.child(playerID)
         pRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            if !snapshot.exists() {return}
+            if !snapshot.exists() {block(Player(),false); return}
             
-            guard let user             = snapshot.value as? NSDictionary else {return}
-            guard let name             = user.object(forKey: "name") as? String else {return}
-            guard let avatarName       = user.object(forKey: "avatarName") as? String else {return}
-            guard let level            = user.object(forKey: "level") as? Int else {return}
-            guard let levelProgression = user.object(forKey: "levelProgression") as? Double else {return}
-            guard let matchesPlayed    = user.object(forKey: "matchesPlayed") as? Int else {return}
-            guard let matchesWon       = user.object(forKey: "matchesWon") as? Int else {return}
+            guard let user             = snapshot.value as? NSDictionary else {block(Player(),false); return}
+            guard let name             = user.object(forKey: "name") as? String else {block(Player(),false); return}
+            guard let avatarName       = user.object(forKey: "avatarName") as? String else {block(Player(),false); return}
+            guard let level            = user.object(forKey: "level") as? Int else {block(Player(),false); return}
+            guard let levelProgression = user.object(forKey: "levelProgression") as? Double else {block(Player(),false); return}
+            guard let matchesPlayed    = user.object(forKey: "matchesPlayed") as? Int else {block(Player(),false); return}
+            guard let matchesWon       = user.object(forKey: "matchesWon") as? Int else {block(Player(),false); return}
 
             
             let newPlayer              = Player(name: name, playerID: playerID, avatarName: avatarName)
@@ -166,7 +166,7 @@ class NetworkManager{
                 })
             }
             
-            block(newPlayer)
+            block(newPlayer, true)
         })
 
     }
@@ -176,9 +176,13 @@ class NetworkManager{
         guard let userID  = Auth.auth().currentUser?.uid.lowercased() else {return}
         let appDelegate   = UIApplication.shared.delegate as! AppDelegate
         
-        self.fetchPlayerDetails(playerID: userID) { (player) in
-            appDelegate.player = player
-            completion(true)
+        self.fetchPlayerDetails(playerID: userID) { (player, didWork) in
+            if (didWork) {
+                appDelegate.player = player
+                completion(true)
+            } else {
+                completion(false)
+            }
         }
     }
 

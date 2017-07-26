@@ -141,7 +141,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate, BGSceneDelegat
     @IBAction func facebookButton(_ sender: Any) {
         NetworkManager.facebookLogin { (success, error) -> (Void) in
             if success == true {
-                self.performSegue(withIdentifier: "mainmenu", sender: self)
+                let storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
+                let vc         = storyboard.instantiateInitialViewController()
+                let window     = UIApplication.shared.windows[0] as UIWindow
+                
+                let transition      = CATransition()
+                transition.subtype  = kCATransitionFade
+                transition.duration = 0.5
+                
+                window.set(rootViewController: vc!, withTransition: transition)
+                //self.performSegue(withIdentifier: "mainmenu", sender: self)
             } else {
                 let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
                 
