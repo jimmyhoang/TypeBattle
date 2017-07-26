@@ -138,7 +138,12 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
     }
     
     func backButtonPressed(sender: UIButton) {
-        performSegue(withIdentifier: "quit-game-segue", sender: self)
+        let storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
+        let vc         = storyboard.instantiateInitialViewController()
+        
+        let window = UIApplication.shared.windows[0] as UIWindow
+        
+        window.set(rootViewController: vc!)
     }
     
     //MARK: Setup gameScene
