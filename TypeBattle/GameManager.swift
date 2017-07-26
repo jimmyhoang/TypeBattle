@@ -192,46 +192,50 @@ class GameManager {
         }
     }
     
-    func playerCompletedGame (gameSessionID: String, playerID: String, totalTime: Double) {
+    func playerCompletedGame (gameSessionID: String, playerIndex: Int, totalTime: Double) {
         
-        let ref = Database.database().reference(withPath: "game_sessions")
-        let gameRef = ref.child(gameSessionID)
-        gameRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            let sessionDictionary = snapshot.value as? [String : Any] ?? [:]
+        let ref = Database.database().reference(withPath: "game_sessions").child(gameSessionID).child("players")
+        let playerRef = ref.child(String(playerIndex))
+        playerRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let playerSessionDictionary = snapshot.value as? [String : Any] ?? [:]
             
             // try to parse dictionary to a GameSession object
-            guard let gameSession = GameSession.convertToGameSession (dictionary: sessionDictionary)
+            guard let playerSession = PlayerSession.convertToPlayerSession(dictionary: playerSessionDictionary)
                 else {
-                    print("Error getting GameSession")
+                    print("Error getting PlayerSession")
                     return
             }
             
-            // Finish game
-            gameSession.status = .finished
+            // set completed time
+            playerSession.totalTime = totalTime
             
-            // Create property to store current player
-            var currentPlayer = PlayerSession(playerID: "", playerName: "")
-            var nextPosition = 1
+            // persist in firebase
+            playerRef.setValue(playerSession.createDictionary())
+        })
+    }
+    
+    func saveLeaderboard (gameSession: GameSession) {
+        
+        // set game as finished
+        gameSession.status = .finished
+        
+        var currentPosition = 1
+        
+        // requirement to work: sorted by total time array
+        for ps in gameSession.players {
             
-            for player in gameSession.players {
-                
-                // find player
-                if(player.playerID == playerID) {
-                    currentPlayer = player
-                }
-                
-                // check players that already finished the game
-                if(player.finalPosition != 0) {
-                    nextPosition += 1
-                }
+            if ps.totalTime == 0 { // player did not finish
+                break
             }
             
-            currentPlayer.finalPosition = nextPosition
-            currentPlayer.totalTime = totalTime
+            // set player final position, starting with 1st place
+            ps.finalPosition = currentPosition
+            currentPosition += 1
             
-            NetworkManager.fetchPlayerDetails(playerID: currentPlayer.playerID, withCompletionBlock: { (pl,didWork) in
+            // save statistics
+            NetworkManager.fetchPlayerDetails(playerID: ps.playerID, withCompletionBlock: { (pl,didWork) in
                 pl.matchesPlayed += 1
-                if(currentPlayer.finalPosition == 1) {
+                if(ps.finalPosition == 1) {
                     pl.matchesWon += 1
                     
                     var needed = 0
@@ -243,13 +247,14 @@ class GameManager {
                 }
                 
                 // persist in firebase
-                let playerRef = Database.database().reference(withPath: "players").child(currentPlayer.playerID)
+                let playerRef = Database.database().reference(withPath: "players").child(ps.playerID)
                 playerRef.setValue(pl.toAnyObject())
             })
-            
-            // persist in firebase
-            gameRef.setValue(gameSession.createDictionary())
-        })
+        }
+        
+        // persist in firebase
+        let ref = Database.database().reference(withPath: "game_sessions").child(gameSession.gameSessionID)
+        ref.setValue(gameSession.createDictionary())
     }
     
     func cancelGameSession (gameSessionID: String) {

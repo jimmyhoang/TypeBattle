@@ -54,6 +54,9 @@ class GameOverViewController: UIViewController, UITableViewDelegate, UITableView
                 }
                 
                 self.tableView.reloadData()
+                
+                // save leaderboard
+                gameManager.saveLeaderboard(gameSession: gs)
             }
         }
     }
