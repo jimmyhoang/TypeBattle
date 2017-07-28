@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VgI-AH-1q6">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Supersonic Rocketship.ttf">
+            <string>SupersonicRocketship</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="lJf-j8-TjM">
+            <objects>
+                <viewController id="VgI-AH-1q6" customClass="LoginViewController" customModule="TypeBattle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="woM-91-GX8"/>
+                        <viewControllerLayoutGuide type="bottom" id="66I-XL-tFs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dXc-rh-LYs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVE-S7-oyc">
+                                <rect key="frame" x="0.0" y="95" width="375" height="430"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TypeBattle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhB-IJ-Ti0" customClass="GameLabel" customModule="TypeBattle" customModuleProvider="target">
+                                        <rect key="frame" x="36" y="0.0" width="303" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="Hi6-pv-N5M"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4pQ-cq-Zk5">
+                                        <rect key="frame" x="110" y="69" width="155" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="155" id="2gM-O1-SmK"/>
+                                            <constraint firstAttribute="height" constant="36.5" id="LcY-Xo-Lw0"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Git-wR-80p">
+                                        <rect key="frame" x="110" y="128" width="155" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36.5" id="8Ib-fa-oYd"/>
+                                            <constraint firstAttribute="width" constant="155" id="qAa-gq-qD2"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username" translatesAutoresizingMaskIntoConstraints="NO" id="uiD-lj-19q">
+                                        <rect key="frame" x="62" y="66" width="40" height="40"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="y2l-RP-3X1">
+                                        <rect key="frame" x="62" y="128" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="UoG-GF-NeM"/>
+                                            <constraint firstAttribute="width" constant="40" id="r5D-zk-Omn"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFt-t6-yPp" customClass="MainMenuButton" customModule="TypeBattle" customModuleProvider="target">
+                                        <rect key="frame" x="164" y="255" width="48" height="31"/>
+                                        <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="20"/>
+                                        <state key="normal" title="Login">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginButton:" destination="VgI-AH-1q6" eventType="touchUpInside" id="1GK-Ow-iQH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.30980392156862746" green="1" blue="0.92941176470588238" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="4pQ-cq-Zk5" firstAttribute="leading" secondItem="uiD-lj-19q" secondAttribute="trailing" constant="8" id="0h4-5m-2DV"/>
+                                    <constraint firstItem="dhB-IJ-Ti0" firstAttribute="leading" secondItem="KVE-S7-oyc" secondAttribute="leading" constant="36" id="1hn-Wf-3Y3"/>
+                                    <constraint firstItem="4pQ-cq-Zk5" firstAttribute="top" secondItem="dhB-IJ-Ti0" secondAttribute="bottom" constant="33" id="43d-K7-HsA"/>
+                                    <constraint firstItem="y2l-RP-3X1" firstAttribute="top" secondItem="KVE-S7-oyc" secondAttribute="top" constant="128" id="8Bl-ho-Smv"/>
+                                    <constraint firstItem="aFt-t6-yPp" firstAttribute="centerX" secondItem="KVE-S7-oyc" secondAttribute="centerX" id="AJS-QZ-04X"/>
+                                    <constraint firstItem="aFt-t6-yPp" firstAttribute="top" secondItem="Git-wR-80p" secondAttribute="bottom" constant="90" id="DBW-3K-N9G"/>
+                                    <constraint firstItem="Git-wR-80p" firstAttribute="leading" secondItem="y2l-RP-3X1" secondAttribute="trailing" constant="8" id="Ldg-NS-xLZ"/>
+                                    <constraint firstItem="dhB-IJ-Ti0" firstAttribute="top" secondItem="KVE-S7-oyc" secondAttribute="top" id="PWj-uM-ope"/>
+                                    <constraint firstItem="y2l-RP-3X1" firstAttribute="leading" secondItem="uiD-lj-19q" secondAttribute="leading" id="RQb-6Y-wxk"/>
+                                    <constraint firstItem="Git-wR-80p" firstAttribute="top" secondItem="4pQ-cq-Zk5" secondAttribute="bottom" constant="22.5" id="aP7-uM-9zj"/>
+                                    <constraint firstItem="4pQ-cq-Zk5" firstAttribute="centerX" secondItem="KVE-S7-oyc" secondAttribute="centerX" id="crJ-Ho-dqu"/>
+                                    <constraint firstAttribute="trailing" secondItem="dhB-IJ-Ti0" secondAttribute="trailing" constant="36" id="f7c-CX-dnB"/>
+                                    <constraint firstItem="y2l-RP-3X1" firstAttribute="trailing" secondItem="uiD-lj-19q" secondAttribute="trailing" id="g6V-aA-Zf1"/>
+                                    <constraint firstItem="y2l-RP-3X1" firstAttribute="top" secondItem="uiD-lj-19q" secondAttribute="bottom" constant="22" id="ghs-cz-oRm"/>
+                                    <constraint firstItem="uiD-lj-19q" firstAttribute="top" secondItem="dhB-IJ-Ti0" secondAttribute="bottom" constant="30" id="ipT-qB-oxZ"/>
+                                    <constraint firstItem="y2l-RP-3X1" firstAttribute="centerY" secondItem="Git-wR-80p" secondAttribute="centerY" constant="1.75" id="usw-V3-Dbc"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NPC-Jm-S7L">
+                                <rect key="frame" x="24" y="599" width="327" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xK-4b-8Kh" customClass="MainMenuButton" customModule="TypeBattle" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
+                                        <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="17"/>
+                                        <state key="normal" title="Email">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="registerButton:" destination="VgI-AH-1q6" eventType="touchUpInside" id="6Br-CK-nyq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGk-ko-IvA" customClass="MainMenuButton" customModule="TypeBattle" customModuleProvider="target">
+                                        <rect key="frame" x="168" y="0.0" width="159" height="60"/>
+                                        <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="17"/>
+                                        <state key="normal" title="Facebook">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="facebookButton:" destination="VgI-AH-1q6" eventType="touchUpInside" id="j0r-ww-Jxi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="q6k-0Q-eOd"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No account? Register with:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvi-gb-3Ct" customClass="GameLabel" customModule="TypeBattle" customModuleProvider="target">
+                                <rect key="frame" x="82" y="575" width="211" height="16"/>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.16470588235294117" green="0.80000000000000004" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="KVE-S7-oyc" firstAttribute="top" secondItem="woM-91-GX8" secondAttribute="bottom" constant="75" id="2z6-uM-RhU"/>
+                            <constraint firstItem="66I-XL-tFs" firstAttribute="top" secondItem="NPC-Jm-S7L" secondAttribute="bottom" constant="8" id="69r-Vi-DXW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NPC-Jm-S7L" secondAttribute="trailing" constant="8" id="LOG-A6-gZm"/>
+                            <constraint firstItem="NPC-Jm-S7L" firstAttribute="leading" secondItem="dXc-rh-LYs" secondAttribute="leadingMargin" constant="8" id="RGR-UD-fBd"/>
+                            <constraint firstItem="KVE-S7-oyc" firstAttribute="centerX" secondItem="dXc-rh-LYs" secondAttribute="centerX" id="SeR-3t-Jn0"/>
+                            <constraint firstItem="mvi-gb-3Ct" firstAttribute="top" secondItem="KVE-S7-oyc" secondAttribute="bottom" constant="50" id="XN6-jA-1jQ"/>
+                            <constraint firstItem="mvi-gb-3Ct" firstAttribute="centerX" secondItem="NPC-Jm-S7L" secondAttribute="centerX" id="cNc-sW-N41"/>
+                            <constraint firstItem="KVE-S7-oyc" firstAttribute="width" secondItem="dXc-rh-LYs" secondAttribute="width" id="hBg-Mc-827"/>
+                            <constraint firstItem="mvi-gb-3Ct" firstAttribute="bottom" secondItem="NPC-Jm-S7L" secondAttribute="top" constant="-8" id="rYU-CI-OXO"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="dt7-eu-dTS" appends="YES" id="srA-hY-Ro0"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="bottomStackView" destination="NPC-Jm-S7L" id="c9b-rm-o7T"/>
+                        <outlet property="emailButton" destination="5xK-4b-8Kh" id="l9F-F5-Eww"/>
+                        <outlet property="emailTextField" destination="4pQ-cq-Zk5" id="tJ4-jT-AKG"/>
+                        <outlet property="facebookButton" destination="qGk-ko-IvA" id="vlJ-RZ-cwE"/>
+                        <outlet property="fireloginButton" destination="aFt-t6-yPp" id="2YM-ce-A0b"/>
+                        <outlet property="loginView" destination="KVE-S7-oyc" id="Xzu-x9-AF9"/>
+                        <outlet property="passwordTextField" destination="Git-wR-80p" id="0F3-gb-Svc"/>
+                        <segue destination="ecP-u5-fy7" kind="showDetail" identifier="mainmenu" action="showViewController:sender:" id="gO3-nU-BAs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z3u-p0-ldB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="dt7-eu-dTS">
+                    <connections>
+                        <action selector="screenTapped:" destination="VgI-AH-1q6" id="mnV-xY-Qcf"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-116" y="138.98050974512745"/>
+        </scene>
+        <!--MainMenu-->
+        <scene sceneID="iyj-mP-uH4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MainMenu" id="ecP-u5-fy7" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wUL-4G-gQh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560" y="96"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="password" width="96" height="96"/>
+        <image name="username" width="96" height="96"/>
+    </resources>
+</document>

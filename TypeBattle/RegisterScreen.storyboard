@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0Y0-Ey-bIB">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Supersonic Rocketship.ttf">
+            <string>SupersonicRocketship</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Register View Controller-->
+        <scene sceneID="7vn-Jj-KQH">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" id="0Y0-Ey-bIB" customClass="RegisterViewController" customModule="TypeBattle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gon-zp-wGi"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q3o-AI-hcx"/>
+                    </layoutGuides>
+                    <view key="view" tag="100" contentMode="scaleToFill" id="ILm-aX-s5P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GC-li-S1U" customClass="MainMenuButton" customModule="TypeBattle" customModuleProvider="target">
+                                <rect key="frame" x="24" y="28" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButton:" destination="0Y0-Ey-bIB" eventType="touchUpInside" id="FpK-p6-3ug"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TypeBattle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgk-tb-6H0" customClass="GameLabel" customModule="TypeBattle" customModuleProvider="target">
+                                <rect key="frame" x="105" y="68" width="165" height="28"/>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="69" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Upt-an-4JD">
+                                <rect key="frame" x="57" y="128" width="262" height="71"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="iMm-9O-UZK"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oEz-LL-eut">
+                                    <size key="itemSize" width="65" height="72"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="avatarCell" id="Lbo-F1-L30" customClass="AvatarPickerCollectionViewCell" customModule="TypeBattle" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="-1" width="65" height="72"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="65" height="72"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cat/Idle (1)" translatesAutoresizingMaskIntoConstraints="NO" id="LSb-3L-7nq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="72"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="avatarImage" destination="LSb-3L-7nq" id="Sei-Wk-WWH"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="0Y0-Ey-bIB" id="lak-eA-Pdf"/>
+                                    <outlet property="delegate" destination="0Y0-Ey-bIB" id="CLD-xb-Hkl"/>
+                                </connections>
+                            </collectionView>
+                            <stackView opaque="NO" tag="100" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ToG-qh-Wsy">
+                                <rect key="frame" x="75" y="224" width="225" height="333"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nickname" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="56e-HH-Dvt">
+                                        <rect key="frame" x="0.0" y="0.0" width="225" height="51"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JR7-zq-cyT">
+                                        <rect key="frame" x="0.0" y="71" width="225" height="50"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yoI-vO-DsN">
+                                        <rect key="frame" x="0.0" y="141" width="225" height="51"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rl3-3a-d5C">
+                                        <rect key="frame" x="0.0" y="212" width="225" height="50"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycc-M9-a0o" customClass="MainMenuButton" customModule="TypeBattle" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="282" width="225" height="51"/>
+                                        <state key="normal" title="Register"/>
+                                        <connections>
+                                            <action selector="registerButton:" destination="0Y0-Ey-bIB" eventType="touchUpInside" id="1ot-SV-qdv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.48627450979999998" green="0.91764705879999997" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="ToG-qh-Wsy" firstAttribute="width" secondItem="ILm-aX-s5P" secondAttribute="width" multiplier="0.6" id="2gQ-d0-mPH"/>
+                            <constraint firstItem="fgk-tb-6H0" firstAttribute="top" secondItem="Gon-zp-wGi" secondAttribute="bottom" constant="48" id="Ddi-Fr-hiV"/>
+                            <constraint firstItem="fgk-tb-6H0" firstAttribute="centerX" secondItem="ILm-aX-s5P" secondAttribute="centerX" id="Nsh-RP-FhR"/>
+                            <constraint firstItem="5GC-li-S1U" firstAttribute="top" secondItem="Gon-zp-wGi" secondAttribute="bottom" constant="8" id="Tq1-ZV-Ywd"/>
+                            <constraint firstItem="Upt-an-4JD" firstAttribute="width" secondItem="ILm-aX-s5P" secondAttribute="width" multiplier="0.7" id="WAc-ZI-L5O"/>
+                            <constraint firstItem="Upt-an-4JD" firstAttribute="top" secondItem="fgk-tb-6H0" secondAttribute="bottom" constant="32" id="giD-gF-BuR"/>
+                            <constraint firstItem="Upt-an-4JD" firstAttribute="centerX" secondItem="ILm-aX-s5P" secondAttribute="centerX" id="oUS-Qq-2Ii"/>
+                            <constraint firstItem="5GC-li-S1U" firstAttribute="leading" secondItem="ILm-aX-s5P" secondAttribute="leadingMargin" constant="8" id="pcj-dl-wyk"/>
+                            <constraint firstItem="ToG-qh-Wsy" firstAttribute="top" secondItem="Upt-an-4JD" secondAttribute="bottom" constant="25" id="t1c-uE-6C0"/>
+                            <constraint firstItem="ToG-qh-Wsy" firstAttribute="centerX" secondItem="ILm-aX-s5P" secondAttribute="centerX" id="umK-Nh-iU5"/>
+                            <constraint firstItem="ToG-qh-Wsy" firstAttribute="height" secondItem="ILm-aX-s5P" secondAttribute="height" multiplier="0.5" id="wAn-7S-bEi"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="kmH-Ke-7Bn" appends="YES" id="OCr-Nf-zl5"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="5GC-li-S1U" id="Kzf-EH-I5f"/>
+                        <outlet property="collectionView" destination="Upt-an-4JD" id="wKT-NI-t7u"/>
+                        <outlet property="confirmPasswordTextField" destination="Rl3-3a-d5C" id="nRw-QJ-CU1"/>
+                        <outlet property="emailTextField" destination="JR7-zq-cyT" id="DHm-lz-w5N"/>
+                        <outlet property="nicknameTextField" destination="56e-HH-Dvt" id="8lg-9i-eMD"/>
+                        <outlet property="passwordTextField" destination="yoI-vO-DsN" id="rxd-Ui-LEh"/>
+                        <outlet property="registerButton" destination="Ycc-M9-a0o" id="IAd-84-rAt"/>
+                        <outlet property="tapGesture" destination="kmH-Ke-7Bn" id="oqF-Y8-Z9B"/>
+                        <outlet property="titleLabel" destination="fgk-tb-6H0" id="1wW-Ny-D8G"/>
+                        <segue destination="wtZ-fu-bB5" kind="showDetail" identifier="mainmenu" action="showViewController:sender:" id="Fsp-bS-tys"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sGQ-Fu-Saw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="kmH-Ke-7Bn">
+                    <connections>
+                        <action selector="screenTapped:" destination="0Y0-Ey-bIB" id="aV7-dy-V19"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-108" y="11.244377811094454"/>
+        </scene>
+        <!--MainMenu-->
+        <scene sceneID="b0e-w5-rSF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MainMenu" id="wtZ-fu-bB5" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aT4-B1-dol" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="539" y="53"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cat/Idle (1)" width="542" height="474"/>
+    </resources>
+</document>
