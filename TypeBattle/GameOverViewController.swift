@@ -53,10 +53,23 @@ class GameOverViewController: UIViewController, UITableViewDelegate, UITableView
                     }
                 }
                 
+                // Set final positions
+                for position in 0 ..< self.playersSession.count {
+                    
+                    if (self.playersSession[position].totalTime == 0) {
+                        break
+                    }
+                    
+                    self.playersSession[position].finalPosition = position + 1
+                }
+                
                 self.tableView.reloadData()
                 
-                // save leaderboard
-                gameManager.saveLeaderboard(gameSession: gs)
+                // save leaderboard (only 1st position player, to avoid saving twice)
+                if(self.currentPlayer.playerID == self.playersSession[0].playerID) {
+                    gameManager.saveLeaderboard(gameSession: gs)
+                    print(self.currentPlayer.name)
+                }
             }
         }
     }
