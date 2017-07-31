@@ -219,22 +219,15 @@ class GameManager {
         // set game as finished
         gameSession.status = .finished
         
-        var currentPosition = 1
-        
-        // requirement to work: sorted by total time array
         for ps in gameSession.players {
-            
-            if ps.totalTime == 0 { // player did not finish
-                break
-            }
-            
-            // set player final position, starting with 1st place
-            ps.finalPosition = currentPosition
-            currentPosition += 1
             
             // save statistics
             NetworkManager.fetchPlayerDetails(playerID: ps.playerID, withCompletionBlock: { (pl,didWork) in
+                
+                // Increment number of matches played
                 pl.matchesPlayed += 1
+                
+                // Increment number of matches won and check profile level
                 if(ps.finalPosition == 1) {
                     pl.matchesWon += 1
                     
