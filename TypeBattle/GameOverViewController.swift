@@ -37,14 +37,14 @@ class GameOverViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 self.playersSession = gs.players
                 
-                // Sort PlayerSession by position
+                // Sort PlayerSession by time completion
                 self.playersSession.sort { (p1, p2) -> Bool in
-                    return p1.finalPosition < p2.finalPosition
+                    return p1.totalTime < p2.totalTime
                 }
                 
                 // Move Did Not Finished players (position 0 and time 0) to the end of the array
                 for p in self.playersSession {
-                    if (p.finalPosition == 0) {
+                    if (p.totalTime == 0) {
                         let player = self.playersSession.removeFirst()
                         self.playersSession.append(player)
                     }
@@ -53,7 +53,23 @@ class GameOverViewController: UIViewController, UITableViewDelegate, UITableView
                     }
                 }
                 
+                // Set final positions
+                for position in 0 ..< self.playersSession.count {
+                    
+                    if (self.playersSession[position].totalTime == 0) {
+                        break
+                    }
+                    
+                    self.playersSession[position].finalPosition = position + 1
+                }
+                
                 self.tableView.reloadData()
+                
+                // save leaderboard (only 1st position player, to avoid saving twice)
+                if(self.currentPlayer.playerID == self.playersSession[0].playerID) {
+                    gameManager.saveLeaderboard(gameSession: gs)
+                    print(self.currentPlayer.name)
+                }
             }
         }
     }
@@ -72,14 +88,16 @@ class GameOverViewController: UIViewController, UITableViewDelegate, UITableView
         let seconds = Int(player.totalTime) % 60
         let miliseconds = Int(player.totalTime.truncatingRemainder(dividingBy: 1) * 100)
         
-        if (player.finalPosition > 0) {
-            cell.positionLabel.text = "\(player.finalPosition)"
+        let position = indexPath.row + 1
+        
+        if (player.totalTime > 0) {
+            cell.positionLabel.text = "\(position)"
             cell.timeLabel.text = String(format:"%01i:%02i:%02i", minutes, seconds, miliseconds)
             
             // Identify if player is the main player
             if (self.currentPlayer.playerID == player.playerID)
             {
-                self.finalPositionLabel.text = printPosition(position: player.finalPosition)
+                self.finalPositionLabel.text = printPosition(position: position)
                 self.totalTimeLabel.text = String(format:"%01i:%02i:%02i", minutes, seconds, miliseconds)
             }
         }

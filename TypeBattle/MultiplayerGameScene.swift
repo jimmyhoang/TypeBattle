@@ -628,9 +628,16 @@ class MultiplayerGameScene: SKScene {
                         self.mainPlayer.totalTime = Double(self.timerTime)
                         self.stopTimer = true
                         
-                        // persist data on firebase
-                        self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerID: self.currentPlayer.playerID, totalTime: self.mainPlayer.totalTime)
-                        
+                        // inside GameSession, identify index of main player inside array
+                        for playerIndex in 0 ..< self.gameSession.players.count {
+                            if(self.gameSession.players[playerIndex].playerID == self.mainPlayer.playerID) {
+                                
+                                // persist data on firebase
+                                self.gameManager.playerCompletedGame(gameSessionID: self.gameSession.gameSessionID, playerIndex: playerIndex, totalTime: self.mainPlayer.totalTime)
+                                
+                                break
+                            }
+                        }
                     }
                 }
             }
