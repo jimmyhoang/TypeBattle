@@ -12,11 +12,9 @@ class CreditsViewController: UIViewController {
 
 
     @IBOutlet weak var creditsView: UIView!
-    @IBOutlet weak var topCreditsViewConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
     }
 }
