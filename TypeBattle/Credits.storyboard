@@ -35,96 +35,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRz-pD-uRK">
-                                <rect key="frame" x="16" y="36" width="343" height="615"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkU-pY-HYE">
-                                        <rect key="frame" x="119" y="70" width="106.5" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="g7B-3A-WZi"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="32"/>
-                                        <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developed/Tested/Published by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMp-fA-53x">
-                                        <rect key="frame" x="48" y="168" width="247" height="20"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special Thanks to:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k66-nh-M03">
-                                        <rect key="frame" x="101" y="392" width="141" height="20"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ALEX LEE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kv2-Ni-ORa">
-                                        <rect key="frame" x="120" y="196" width="103" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="qqj-87-XmE"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="26"/>
-                                        <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FERNANDO JINZENJI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLc-vq-9oS">
-                                        <rect key="frame" x="62.5" y="238" width="219.5" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="ulc-Yg-483"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="26"/>
-                                        <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JIMMY HOANG" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3e-4r-lRF">
-                                        <rect key="frame" x="97.5" y="280" width="149.5" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="zyT-Gz-kVC"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="26"/>
-                                        <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HARRY Z. LI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qx3-XQ-9o0">
-                                        <rect key="frame" x="109" y="322" width="126.5" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="rYO-bx-vRV"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="26"/>
-                                        <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIGHTHOUSE LABS STAFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKQ-aG-X10">
-                                        <rect key="frame" x="40" y="420" width="264" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="ufg-65-p8O"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="26"/>
-                                        <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.062745098040000002" green="0.062745098040000002" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="rkU-pY-HYE" firstAttribute="centerX" secondItem="vRz-pD-uRK" secondAttribute="centerX" id="3mi-je-LMK"/>
-                                    <constraint firstItem="g3e-4r-lRF" firstAttribute="centerX" secondItem="vRz-pD-uRK" secondAttribute="centerX" id="6le-eS-UPk"/>
-                                    <constraint firstItem="k66-nh-M03" firstAttribute="centerX" secondItem="vRz-pD-uRK" secondAttribute="centerX" id="7Yu-yj-yfC"/>
-                                    <constraint firstItem="aMp-fA-53x" firstAttribute="top" secondItem="rkU-pY-HYE" secondAttribute="bottom" constant="48" id="BRe-11-wIF"/>
-                                    <constraint firstItem="qx3-XQ-9o0" firstAttribute="centerX" secondItem="vRz-pD-uRK" secondAttribute="centerX" id="CV8-yh-x5P"/>
-                                    <constraint firstItem="kv2-Ni-ORa" firstAttribute="centerX" secondItem="vRz-pD-uRK" secondAttribute="centerX" id="FG5-Qe-plI"/>
-                                    <constraint firstItem="BLc-vq-9oS" firstAttribute="centerX" secondItem="vRz-pD-uRK" secondAttribute="centerX" id="GY6-Ah-Wl7"/>
-                                    <constraint firstItem="vKQ-aG-X10" firstAttribute="centerX" secondItem="vRz-pD-uRK" secondAttribute="centerX" id="Op9-4N-4ZV"/>
-                                    <constraint firstItem="rkU-pY-HYE" firstAttribute="top" secondItem="vRz-pD-uRK" secondAttribute="top" constant="70" id="Rd6-t6-nYk"/>
-                                    <constraint firstItem="aMp-fA-53x" firstAttribute="centerX" secondItem="vRz-pD-uRK" secondAttribute="centerX" id="TfM-E7-EAQ"/>
-                                    <constraint firstItem="kv2-Ni-ORa" firstAttribute="top" secondItem="aMp-fA-53x" secondAttribute="bottom" constant="8" id="Xu8-R7-JMm"/>
-                                    <constraint firstItem="BLc-vq-9oS" firstAttribute="top" secondItem="kv2-Ni-ORa" secondAttribute="bottom" constant="8" id="Zrb-eV-u1i"/>
-                                    <constraint firstItem="vKQ-aG-X10" firstAttribute="top" secondItem="k66-nh-M03" secondAttribute="bottom" constant="8" id="mHw-6A-4Vf"/>
-                                    <constraint firstItem="k66-nh-M03" firstAttribute="top" secondItem="qx3-XQ-9o0" secondAttribute="bottom" constant="36" id="mdk-wu-Tnw"/>
-                                    <constraint firstItem="qx3-XQ-9o0" firstAttribute="top" secondItem="g3e-4r-lRF" secondAttribute="bottom" constant="8" id="rsP-7y-cr3"/>
-                                    <constraint firstItem="g3e-4r-lRF" firstAttribute="top" secondItem="BLc-vq-9oS" secondAttribute="bottom" constant="8" id="wi2-Dn-etC"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4C3-XL-TUT">
                                 <rect key="frame" x="24" y="24" width="38" height="36"/>
                                 <state key="normal" image="red_boxCross"/>
@@ -132,22 +42,95 @@
                                     <segue destination="7SI-DJ-slZ" kind="showDetail" id="2ug-dO-ht2"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkU-pY-HYE">
+                                <rect key="frame" x="134" y="80" width="106.5" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="g7B-3A-WZi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="32"/>
+                                <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developed/Tested/Published by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMp-fA-53x">
+                                <rect key="frame" x="67" y="220" width="247" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ALEX LEE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kv2-Ni-ORa">
+                                <rect key="frame" x="139" y="248" width="103" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="qqj-87-XmE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="26"/>
+                                <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FERNANDO JINZENJI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLc-vq-9oS">
+                                <rect key="frame" x="81" y="290" width="219.5" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="ulc-Yg-483"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="26"/>
+                                <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JIMMY HOANG" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3e-4r-lRF">
+                                <rect key="frame" x="116" y="332" width="149.5" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="zyT-Gz-kVC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="26"/>
+                                <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HARRY Z. LI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qx3-XQ-9o0">
+                                <rect key="frame" x="127" y="374" width="126.5" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="rYO-bx-vRV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="26"/>
+                                <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special Thanks to:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k66-nh-M03">
+                                <rect key="frame" x="117" y="472" width="141" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIGHTHOUSE LABS STAFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKQ-aG-X10">
+                                <rect key="frame" x="55" y="500" width="264" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="ufg-65-p8O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="26"/>
+                                <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.062745098040000002" green="0.062745098040000002" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="rkU-pY-HYE" firstAttribute="centerX" secondItem="Rru-jw-I4T" secondAttribute="centerX" id="2Gm-MZ-h9W"/>
                             <constraint firstItem="4C3-XL-TUT" firstAttribute="top" secondItem="Rru-jw-I4T" secondAttribute="topMargin" constant="24" id="3cc-9K-rze"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vRz-pD-uRK" secondAttribute="trailing" id="9yp-oZ-4XZ"/>
-                            <constraint firstItem="vRz-pD-uRK" firstAttribute="top" secondItem="PRn-s4-xyd" secondAttribute="bottom" constant="16" id="Iiq-hc-rPW"/>
-                            <constraint firstItem="nYd-Bm-dqf" firstAttribute="top" secondItem="vRz-pD-uRK" secondAttribute="bottom" constant="16" id="Mic-BE-PWD"/>
+                            <constraint firstItem="g3e-4r-lRF" firstAttribute="centerX" secondItem="Rru-jw-I4T" secondAttribute="centerX" constant="3.25" id="8aR-J0-i68"/>
+                            <constraint firstItem="aMp-fA-53x" firstAttribute="top" secondItem="rkU-pY-HYE" secondAttribute="bottom" constant="90" id="9eg-g2-CHi"/>
+                            <constraint firstItem="aMp-fA-53x" firstAttribute="centerX" secondItem="Rru-jw-I4T" secondAttribute="centerX" constant="3" id="AM9-kX-Ihv"/>
+                            <constraint firstItem="qx3-XQ-9o0" firstAttribute="top" secondItem="g3e-4r-lRF" secondAttribute="bottom" constant="8" id="HxB-xg-sHh"/>
+                            <constraint firstItem="k66-nh-M03" firstAttribute="centerX" secondItem="Rru-jw-I4T" secondAttribute="centerX" id="HyE-aR-h6t"/>
+                            <constraint firstItem="qx3-XQ-9o0" firstAttribute="centerX" secondItem="Rru-jw-I4T" secondAttribute="centerX" constant="2.75" id="KLZ-We-9Rk"/>
+                            <constraint firstItem="BLc-vq-9oS" firstAttribute="centerX" secondItem="Rru-jw-I4T" secondAttribute="centerX" constant="3.25" id="OHr-EL-Xh0"/>
+                            <constraint firstItem="vKQ-aG-X10" firstAttribute="centerX" secondItem="Rru-jw-I4T" secondAttribute="centerX" constant="-0.5" id="QI7-IS-RKe"/>
+                            <constraint firstItem="rkU-pY-HYE" firstAttribute="top" secondItem="Rru-jw-I4T" secondAttribute="top" constant="80" id="RNV-oH-zwa"/>
                             <constraint firstItem="4C3-XL-TUT" firstAttribute="leading" secondItem="Rru-jw-I4T" secondAttribute="leadingMargin" constant="8" id="RQO-gB-LFD"/>
-                            <constraint firstItem="vRz-pD-uRK" firstAttribute="leading" secondItem="Rru-jw-I4T" secondAttribute="leadingMargin" id="qQw-bp-DH9"/>
+                            <constraint firstItem="BLc-vq-9oS" firstAttribute="top" secondItem="kv2-Ni-ORa" secondAttribute="bottom" constant="8" id="SYR-q7-bVO"/>
+                            <constraint firstItem="kv2-Ni-ORa" firstAttribute="top" secondItem="aMp-fA-53x" secondAttribute="bottom" constant="8" id="TZ8-4c-ZMl"/>
+                            <constraint firstItem="kv2-Ni-ORa" firstAttribute="centerX" secondItem="Rru-jw-I4T" secondAttribute="centerX" constant="3" id="ZNh-0t-oAE"/>
+                            <constraint firstItem="vKQ-aG-X10" firstAttribute="top" secondItem="k66-nh-M03" secondAttribute="bottom" constant="8" id="dgE-O4-2se"/>
+                            <constraint firstItem="k66-nh-M03" firstAttribute="top" secondItem="qx3-XQ-9o0" secondAttribute="bottom" constant="64" id="kro-6w-2eB"/>
+                            <constraint firstItem="g3e-4r-lRF" firstAttribute="top" secondItem="BLc-vq-9oS" secondAttribute="bottom" constant="8" id="pkI-le-BNI"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="creditsView" destination="vRz-pD-uRK" id="WBB-Ct-giT"/>
-                        <outlet property="topCreditsViewConstraint" destination="Iiq-hc-rPW" id="fVI-i2-OP7"/>
-                        <outlet property="view" destination="vRz-pD-uRK" id="mLK-YQ-cjH"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfB-LY-edv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
