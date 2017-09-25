@@ -203,14 +203,14 @@ class ProfilePageView: UIView, BGSceneDelegate {
     
     }
     
-    func backToMainMenu(sender:UIButton!) {
+    @objc func backToMainMenu(sender:UIButton!) {
         // Play sound
         MusicHelper.sharedHelper.playButtonSound()
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
-    func signout(sender:UIButton!) {
+    @objc func signout(sender:UIButton!) {
         MusicHelper.sharedHelper.playButtonSound()
         
         let alertController = UIAlertController(title: "Confirmation", message: "Do you really want to sign out?", preferredStyle: .alert)

@@ -168,21 +168,21 @@ class SettingsView: UIView, BGSceneDelegate {
         window.set(rootViewController: vc!, withTransition: transition)
     }
 
-    func backToMainMenu(sender:UIButton!) {
+    @objc func backToMainMenu(sender:UIButton!) {
         // Play sound
         MusicHelper.sharedHelper.playButtonSound()
         buttonTag = 1
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
-    func goToCredits(sender:UIButton!) {
+    @objc func goToCredits(sender:UIButton!) {
         // Play sound
         MusicHelper.sharedHelper.playButtonSound()
         buttonTag = 2
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
-    func switched(sender:UISwitch) {
+    @objc func switched(sender:UISwitch) {
         if soundSwitch.isOn {
             
             userDefaults.set("On", forKey: "backgroundMusicStatus")
@@ -198,7 +198,7 @@ class SettingsView: UIView, BGSceneDelegate {
         
     }
     
-    func buttonSwitched(sender:UISwitch) {
+    @objc func buttonSwitched(sender:UISwitch) {
         if buttonSoundSwitch.isOn {
             
             userDefaults.set("On", forKey: "buttonSoundStatus")

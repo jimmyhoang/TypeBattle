@@ -129,7 +129,7 @@ class LeaderboardView: UIView, UITableViewDelegate, UITableViewDataSource, BGSce
         
     }
     
-    func backToMainMenu(sender:UIButton!) {
+    @objc func backToMainMenu(sender:UIButton!) {
         // Play sound
         MusicHelper.sharedHelper.playButtonSound()
         

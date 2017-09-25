@@ -68,7 +68,7 @@ class BackgroundScene: SKScene {
         NotificationCenter.default.addObserver(self, selector: #selector(🚶🏿🔥(sender:)), name: NSNotification.Name(rawValue:"startAnimation"), object: nil)
     }
     
-    func 🚶🏿🔥 (sender: Notification) {
+    @objc func 🚶🏿🔥 (sender: Notification) {
         let moveRight = SKAction.moveBy(x: playerMovement, y: 0, duration: 1.0)
         mainPlayerNode.run(moveRight, completion: {
             self.bgDelegate?.animationDidFinish()

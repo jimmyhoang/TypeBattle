@@ -84,7 +84,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
         view.layoutIfNeeded()
     }
     
-    func keyboardWillShow(notification:NSNotification) {
+    @objc func keyboardWillShow(notification:NSNotification) {
         let userInfo:NSDictionary = notification.userInfo! as NSDictionary
         let keyboardFrame:NSValue = userInfo.value(forKey:UIKeyboardFrameEndUserInfoKey) as! NSValue
         let keyboardRectangle = keyboardFrame.cgRectValue
@@ -137,7 +137,7 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
         backButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
     }
     
-    func backButtonPressed(sender: UIButton) {
+    @objc func backButtonPressed(sender: UIButton) {
         let storyboard = UIStoryboard(name: "MainMenu", bundle: nil)
         let vc         = storyboard.instantiateInitialViewController()
         
@@ -268,21 +268,21 @@ class GameViewController: UIViewController, UITextFieldDelegate, MultiplayerScen
     }
     
     //MARK: Private Methods
-    func backToMainMenu(sender:UIButton!) {
+    @objc func backToMainMenu(sender:UIButton!) {
         // Play sound
         MusicHelper.sharedHelper.playButtonSound()
         
         quitGameview.isHidden = false
     }
     
-    func noButtonPressed(sender:UIButton) {
+    @objc func noButtonPressed(sender:UIButton) {
         // Play sound
         MusicHelper.sharedHelper.playButtonSound()
         
         quitGameview.isHidden = true
     }
     
-    func yesButtonPressed(sender: UIButton) {
+    @objc func yesButtonPressed(sender: UIButton) {
         // Play sound
         MusicHelper.sharedHelper.playButtonSound()
         

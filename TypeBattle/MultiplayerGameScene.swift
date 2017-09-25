@@ -379,7 +379,7 @@ class MultiplayerGameScene: SKScene {
     }
     
     //Check user entered text with game text
-    func checkUserText(sender: Notification) {
+    @objc func checkUserText(sender: Notification) {
         if stopTimer == true {
             return
         }

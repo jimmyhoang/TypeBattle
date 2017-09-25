@@ -109,7 +109,7 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     //MARK: Actions
-    func joinRoomPressed(sender: UIButton) {
+    @objc func joinRoomPressed(sender: UIButton) {
         
         // Play sound
         MusicHelper.sharedHelper.playButtonSound()
@@ -186,10 +186,10 @@ class MainLobbyViewController: UIViewController, UITableViewDelegate, UITableVie
             if let roomLocation = self.availableRooms[i].location {
                 
                 let range = 5.0
-                let minLat = roomLocation.coordinate.latitude.adding(range * -1.0)
-                let maxLat = roomLocation.coordinate.latitude.adding(range)
-                let minLong = roomLocation.coordinate.longitude.adding(range * -1.0)
-                let maxLong = roomLocation.coordinate.longitude.adding(range)
+                let minLat = (roomLocation.coordinate.latitude + range) * -1
+                let maxLat = roomLocation.coordinate.latitude + range
+                let minLong = (roomLocation.coordinate.longitude + range) * -1
+                let maxLong = roomLocation.coordinate.longitude + range
                 
                 if (minLat < lat && maxLat > lat && minLong < long && maxLong > long) {
                     self.availableRoomsByLocation.append(self.availableRooms[i])

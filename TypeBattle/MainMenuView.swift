@@ -98,7 +98,7 @@ class MainMenuView: UIView, BGSceneDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor(colorLiteralRed: 194.0/255.0, green: 217.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+        self.backgroundColor = UIColor(red: 194.0/255.0, green: 217.0/255.0, blue: 241.0/255.0, alpha: 1.0)
         self.addSubview(nameIcon)
         self.addSubview(leaderboardButton)
         
@@ -152,31 +152,31 @@ class MainMenuView: UIView, BGSceneDelegate {
     }
 
     
-    func spButtonTapped(sender: UIButton) {
+    @objc func spButtonTapped(sender: UIButton) {
         MusicHelper.sharedHelper.playButtonSound()
         buttonTag = 1
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
-    func lbButtonTapped(sender: UIButton) {
+    @objc func lbButtonTapped(sender: UIButton) {
         MusicHelper.sharedHelper.playButtonSound()
         buttonTag = 5
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
-    func mpButtonTapped(sender: UIButton) {
+    @objc func mpButtonTapped(sender: UIButton) {
         MusicHelper.sharedHelper.playButtonSound()
         buttonTag = 2
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
-    func settingsButtonTapped(sender: UIButton) {
+    @objc func settingsButtonTapped(sender: UIButton) {
         MusicHelper.sharedHelper.playButtonSound()
         buttonTag = 3
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)
     }
     
-    func profileButtonTapped(sender: UIButton) {
+    @objc func profileButtonTapped(sender: UIButton) {
         MusicHelper.sharedHelper.playButtonSound()
         buttonTag = 4
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "startAnimation"), object: nil)

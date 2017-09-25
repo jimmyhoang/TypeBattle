@@ -241,7 +241,7 @@ class GameScene: SKScene {
     }
     
     //Check user entered text with game text
-    func checkUserText(sender: Notification) {
+    @objc func checkUserText(sender: Notification) {
         let textField = sender.object as! UITextField
         let lowerText = textField.text?.lowercased()
         textField.text = ""

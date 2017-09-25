@@ -50,7 +50,7 @@ class CreateRoomViewController: UIViewController, UITextFieldDelegate, CLLocatio
         // Set up segmented control
         let font = UIFont.gameFont(size: 17)
         self.categorySegmentedControl.contentVerticalAlignment = .bottom
-        self.categorySegmentedControl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
+        self.categorySegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
         
         // Get logged user
         let delegate = UIApplication.shared.delegate as! AppDelegate
