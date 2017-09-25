@@ -1346,12 +1346,12 @@ void VersionSet::SetupOtherInputs(Compaction* c) {
                                    &c->grandparents_);
   }
 
-  if (false) {
-    Log(options_->info_log, "Compacting %d '%s' .. '%s'",
-        level,
-        smallest.DebugString().c_str(),
-        largest.DebugString().c_str());
-  }
+//  if (false) {
+//    Log(options_->info_log, "Compacting %d '%s' .. '%s'",
+//        level,
+//        smallest.DebugString().c_str(),
+//        largest.DebugString().c_str());
+//  }
 
   // Update the place where we will do the next compaction for this level.
   // We update this immediately instead of waiting for the VersionEdit

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -68,7 +68,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1st" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ym0-hv-90e">
                                 <rect key="frame" x="158" y="123" width="60" height="53"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="7gX-Og-Ndx"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="7gX-Og-Ndx"/>
                                     <constraint firstAttribute="height" constant="53" id="Sg8-12-DcH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="30"/>
@@ -117,7 +117,7 @@
                                 <color key="backgroundColor" red="0.99215686270000003" green="0.32156862749999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="1tg-y3-T7K"/>
-                                    <constraint firstAttribute="width" constant="80" id="yIv-3x-27j"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="yIv-3x-27j"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SupersonicRocketship" family="Supersonic Rocketship" pointSize="21"/>
                                 <state key="normal" title="Back">
@@ -135,7 +135,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="34"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rUV-VV-CHL" id="F99-Bk-Pri">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="33"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="33.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUr-Uf-Iia">
@@ -144,22 +144,22 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1st" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geD-ux-nGT">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="34"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="f89-YM-8Is"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="f89-YM-8Is"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.1647058824" green="0.80000000000000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4J-hP-VrE">
-                                                            <rect key="frame" x="50" y="0.0" width="212" height="34"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Player Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4J-hP-VrE">
+                                                            <rect key="frame" x="50" y="0.0" width="216" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.30980392159999998" green="1" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dv6-tc-v2S">
-                                                            <rect key="frame" x="262" y="0.0" width="65" height="34"/>
+                                                            <rect key="frame" x="266" y="0.0" width="61" height="34"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="65" id="Ozm-D3-glz"/>
+                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="65" id="Ozm-D3-glz"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.1647058824" green="0.80000000000000004" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -205,6 +205,7 @@
                             <constraint firstItem="ZXY-z1-g7q" firstAttribute="top" secondItem="bmZ-3c-7la" secondAttribute="bottom" constant="16" id="JJ1-ya-cXm"/>
                             <constraint firstItem="ym0-hv-90e" firstAttribute="top" secondItem="6kI-Ro-Hf7" secondAttribute="bottom" id="MXI-bh-Vtv"/>
                             <constraint firstItem="wab-Ou-iIF" firstAttribute="top" secondItem="2T7-Bx-CaO" secondAttribute="bottom" id="MxG-Jz-dXf"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sMW-2d-7Mt" secondAttribute="trailingMargin" id="Oa2-wL-QDd"/>
                             <constraint firstItem="sMW-2d-7Mt" firstAttribute="top" secondItem="wab-Ou-iIF" secondAttribute="bottom" constant="8" id="Tsf-Yh-wea"/>
                             <constraint firstItem="6kI-Ro-Hf7" firstAttribute="top" secondItem="ZXY-z1-g7q" secondAttribute="bottom" constant="8" id="YQf-vc-LRO"/>
                             <constraint firstItem="G8Q-kX-peQ" firstAttribute="top" secondItem="k64-xd-XoQ" secondAttribute="bottom" constant="16" id="duu-mN-XhN"/>

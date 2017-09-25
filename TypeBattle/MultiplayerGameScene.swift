@@ -429,7 +429,14 @@ class MultiplayerGameScene: SKScene {
         timerTextNode.text = "0:00.00"
         
         timerXPos = 0
-        timerYPos = sceneHeight/2 - timerTextNode.frame.size.height - 15
+        
+        // Not the best way to check for iPhone X. Should be improved later...
+        var timerYPos: CGFloat = 0
+        if UIScreen.main.nativeBounds.height == 2436 {
+            timerYPos = sceneHeight/2 - timerTextNode.frame.size.height - 45
+        } else {
+            timerYPos = sceneHeight/2 - timerTextNode.frame.size.height - 15
+        }
         
         timerTextNode.position = CGPoint(x: timerXPos, y: timerYPos)
         cam.addChild(timerTextNode)

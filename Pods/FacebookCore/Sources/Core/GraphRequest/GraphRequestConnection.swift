@@ -86,6 +86,9 @@ extension GraphRequestConnection {
    As described in [Graph API Batch Requests](https://developers.facebook.com/docs/reference/api/batch/).
    - parameter completion:     Optional completion closure that is going to be called when the connection finishes or fails.
    */
+    
+  
+    
   public func add<T: GraphRequestProtocol>(_ request: T,
                   batchEntryName: String? = nil,
                   completion: Completion<T>? = nil) {
