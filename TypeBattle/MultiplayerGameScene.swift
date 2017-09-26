@@ -431,7 +431,6 @@ class MultiplayerGameScene: SKScene {
         timerXPos = 0
         
         // Not the best way to check for iPhone X. Should be improved later...
-        var timerYPos: CGFloat = 0
         if UIScreen.main.nativeBounds.height == 2436 {
             timerYPos = sceneHeight/2 - timerTextNode.frame.size.height - 45
         } else {
