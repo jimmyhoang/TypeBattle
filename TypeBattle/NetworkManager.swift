@@ -222,40 +222,50 @@ class NetworkManager{
     }
 
     class func getWords(category:String, completion:@escaping (String) -> ()) {
-        var number            = 0
-        let lowerCategory     = category.lowercased()
+//        var number            = 0
+//        let lowerCategory     = category.lowercased()
+//
+//        switch lowerCategory {
+//        case "poem":
+//            number = Int(arc4random_uniform(20))
+//        case "quote":
+//            number = Int(arc4random_uniform(50))
+//        default:
+//            break
+//        }
+//
+//        var components    = URLComponents()
+//        components.scheme = "https"
+//        components.host   = "typeiama.vapor.cloud"
+//        components.path   = "/\(lowerCategory)/\(number)"
+//
+//        let url       = components.url
+//        let request   = URLRequest(url: url!)
+//
+//        let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
+//
+//            guard let data = data else {
+//                return
+//            }
+//
+//            let json = JSON(data: data)
+//
+//            if let text = json[lowerCategory].string {
+//                let lowerCased = text.lowercased()
+//                completion(lowerCased)
+//            }
+//        }
+//        task.resume()
         
-        switch lowerCategory {
-        case "poem":
-            number = Int(arc4random_uniform(20))
-        case "quote":
-            number = Int(arc4random_uniform(50))
-        default:
-            break
+        // 06/10/2017 - We had to disable vapor server (free tier expired). All poems and quotes are now hardcoded inside the app. Still keeping the completion call...
+        var gameText = GameTextType.quote
+        
+        if category == "poem" {
+            gameText = GameTextType.poem
         }
         
-        var components    = URLComponents()
-        components.scheme = "https"
-        components.host   = "typeiama.vapor.cloud"
-        components.path   = "/\(lowerCategory)/\(number)"
-        
-        let url       = components.url
-        let request   = URLRequest(url: url!)
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
-            
-            guard let data = data else {
-                return
-            }
-            
-            let json = JSON(data: data)
-
-            if let text = json[lowerCategory].string {
-                let lowerCased = text.lowercased()
-                completion(lowerCased)
-            }
-        }
-        task.resume()
+        let randomText = GameText.getRandomText(type: gameText)
+        completion(randomText)
     }
     
     class func parseWords(words:String) -> [String] {

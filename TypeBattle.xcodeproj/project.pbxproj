@@ -45,6 +45,7 @@
 		9C34E2D21F184F64008372DC /* JoinRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2D11F184F64008372DC /* JoinRoomViewController.swift */; };
 		9C34E2D41F18B31F008372DC /* RoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34E2D31F18B31F008372DC /* RoomTableViewCell.swift */; };
 		9C39A5961F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C39A5951F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift */; };
+		9C55E6C71F8B0B02009D3796 /* GameText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C55E6C61F8B0B02009D3796 /* GameText.swift */; };
 		9C9808711F2482680080B77B /* Credits.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9808701F2482680080B77B /* Credits.storyboard */; };
 		9C9808731F2482AF0080B77B /* CreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9808721F2482AF0080B77B /* CreditsViewController.swift */; };
 		9C9DE0251F1E92DD006B6FEE /* SimGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9DE0241F1E92DD006B6FEE /* SimGameViewController.swift */; };
@@ -109,6 +110,7 @@
 		9C34E2D11F184F64008372DC /* JoinRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinRoomViewController.swift; sourceTree = "<group>"; };
 		9C34E2D31F18B31F008372DC /* RoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomTableViewCell.swift; sourceTree = "<group>"; };
 		9C39A5951F1C900F000D3252 /* PlayerInLobbyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInLobbyTableViewCell.swift; sourceTree = "<group>"; };
+		9C55E6C61F8B0B02009D3796 /* GameText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameText.swift; sourceTree = "<group>"; };
 		9C9808701F2482680080B77B /* Credits.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Credits.storyboard; sourceTree = "<group>"; };
 		9C9808721F2482AF0080B77B /* CreditsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsViewController.swift; sourceTree = "<group>"; };
 		9C9DE0241F1E92DD006B6FEE /* SimGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimGameViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				9C34E2BF1F173E07008372DC /* GameSession.swift */,
 				9C34E2C51F1746D5008372DC /* PlayerSession.swift */,
 				9C34E2C31F173EE0008372DC /* GameCharacter.swift */,
+				9C55E6C61F8B0B02009D3796 /* GameText.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				9C34E2D21F184F64008372DC /* JoinRoomViewController.swift in Sources */,
 				431E7F361F181F9900B7B5CE /* MainMenuButton.swift in Sources */,
 				9C34E2C61F1746D5008372DC /* PlayerSession.swift in Sources */,
+				9C55E6C71F8B0B02009D3796 /* GameText.swift in Sources */,
 				FF889A231F16AFF6006955BB /* Player.swift in Sources */,
 				431978DC1F242FB800E0EC32 /* UIWindow+TransitionFix.swift in Sources */,
 				436D738F1F21903800CA301A /* SettingsView.swift in Sources */,
